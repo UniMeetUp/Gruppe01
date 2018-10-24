@@ -12,6 +12,11 @@ html {
 
 body {
   font-family: 'Source Sans Pro';
+   background: url('../img/backgroundlight.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
 
 .btn-xl {
@@ -90,14 +95,9 @@ h6 {
   position: relative;
   display: table;
   width: 100%;
-  height: 100vh;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.1))), url("../img/backgroundlight.jpg");
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../img/backgroundlight.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100vh; 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .masthead h1 {
