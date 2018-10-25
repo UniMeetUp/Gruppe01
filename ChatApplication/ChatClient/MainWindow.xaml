@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <ListBox Name="MessageList" Height="100"></ListBox>
-            <TextBox Name="MessageTextBox"></TextBox>
+            <TextBox Name="MessageTextBox" KeyDown="MessageTextBox_OnKeyDown"></TextBox>
             <Button Name="SendBtn" Content="Send" Click="SendBtnEvent"></Button>
             <Button Name="SendFileBtn" Content="Send file" Click="SendFileBtnEvent"></Button>
             <FlowDocumentScrollViewer Height="242">

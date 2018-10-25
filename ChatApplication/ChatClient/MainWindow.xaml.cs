@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -84,6 +85,11 @@ namespace ChatClient
 
         private async void SendBtnEvent(object sender, RoutedEventArgs e)
         {
+            SendMessage();
+        }
+
+        private async void SendMessage()
+        {
             try
             {
                 await connection.InvokeAsync("SendMessage", "anne", MessageTextBox.Text);
@@ -116,6 +122,14 @@ namespace ChatClient
                 {
                     MessageList.Items.Add(exception.Message);
                 }
+            }
+        }
+
+        private void MessageTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+               SendMessage();
             }
         }
     }
