@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using ChatServer.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ChatServer
 {
@@ -37,6 +40,10 @@ namespace ChatServer
             }).AddMessagePackProtocol();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddDbContext<ChatServerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ChatServerContext")));
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "UMU API", Version = "v1"});});
             //services.AddSignalR().AddMessagePackProtocol(options =>
             //{
             //    options.FormatterResolvers = new List<MessagePack.IFormatterResolver>()
@@ -71,6 +78,8 @@ namespace ChatServer
             });
 
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "UMU API");});
         }
     }
 }
