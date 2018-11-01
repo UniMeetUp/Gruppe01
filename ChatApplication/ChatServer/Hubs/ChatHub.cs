@@ -10,6 +10,7 @@ namespace ChatServer.Hubs
     {
         private readonly ChatServerContext _context;
 
+        //Database context - has connection to database
         public ChatHub(ChatServerContext context)
         {
             _context = context;
