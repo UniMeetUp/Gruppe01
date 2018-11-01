@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ChatServer.Models;
+using Microsoft.AspNetCore.StaticFiles;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ChatServer
@@ -66,8 +67,16 @@ namespace ChatServer
                 app.UseHsts();
             }
 
+            app.UseDefaultFiles();
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            var provider = new FileExtensionContentTypeProvider();
+            provider.Mappings.Add(".exe", "application/vnd.microsoft.portable-executable"); //file ext, ContentType
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ContentTypeProvider = provider
+            });
+
             app.UseCookiePolicy();
             app.UseSignalR(routes =>
             {

@@ -10,6 +10,5 @@ namespace ChatLib
         public string EmailAddress { get; set; }
         public string HashedPassword { get; set; }
         public string DisplayName { get; set; }
-
     }
 }
