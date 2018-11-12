@@ -1,11 +1,14 @@
-﻿namespace CommonLib.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CommonLib.Models
 {
     public class FileMessage
     {
+        [Key]
         public int Id { get; set; }
         public byte[] FileBinary { get; set; }
         public string FileHeaders { get; set; }
-        public int GroupId { get; set; }
-        public int SenderUserId { get; set; }
+        public User User { get; set; }
+        public Group Group { get; set; }
     }
 }
