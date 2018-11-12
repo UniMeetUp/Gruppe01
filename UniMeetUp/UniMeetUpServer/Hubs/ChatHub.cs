@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
 using CommonLib.Models;
 using Microsoft.AspNetCore.SignalR;
-using UniMeetUpServer.Data;
+using UniMeetUpServer.Models;
 
 namespace UniMeetUpServer.Hubs
 {
     public class ChatHub : Hub
     {
-        private readonly UniMeetUpContext _context;
+        private readonly UniMeetUpServerContext _context;
 
         //Database context - has connection to database
-        public ChatHub(UniMeetUpContext context)
+        public ChatHub(UniMeetUpServerContext context)
         {
             _context = context;
         }

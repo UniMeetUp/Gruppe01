@@ -4,6 +4,7 @@ namespace CommonLib.Models
 {
     public class User
     {
+        [Key]
         public int Id { get; set; }
         public string EmailAddress { get; set; }
         public string HashedPassword { get; set; }

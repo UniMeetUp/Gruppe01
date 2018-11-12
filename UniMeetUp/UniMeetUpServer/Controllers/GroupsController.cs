@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
-using UniMeetUpServer.Data;
+using UniMeetUpServer.Models;
 
 namespace UniMeetUpServer.Controllers
 {
@@ -12,9 +14,9 @@ namespace UniMeetUpServer.Controllers
     [ApiController]
     public class GroupsController : ControllerBase
     {
-        private readonly UniMeetUpContext _context;
+        private readonly UniMeetUpServerContext _context;
 
-        public GroupsController(UniMeetUpContext context)
+        public GroupsController(UniMeetUpServerContext context)
         {
             _context = context;
         }

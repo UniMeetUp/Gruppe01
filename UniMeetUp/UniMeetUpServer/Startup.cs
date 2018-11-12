@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.StaticFiles;
 using Swashbuckle.AspNetCore.Swagger;
-using UniMeetUpServer.Data;
+using UniMeetUpServer.Models;
 using UniMeetUpServer.Hubs;
 
 namespace UniMeetUpServer
@@ -39,10 +39,13 @@ namespace UniMeetUpServer
             }).AddMessagePackProtocol();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<UniMeetUpContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpContext")));
+            services.AddDbContext<UniMeetUpServerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpServerContext")));
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "UMU API", Version = "v1"});});
+
+            services.AddDbContext<UniMeetUpServerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpServerContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,56 +12,56 @@ namespace UniMeetUpServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FileMessagesController : ControllerBase
+    public class WaypointsController : ControllerBase
     {
         private readonly UniMeetUpServerContext _context;
 
-        public FileMessagesController(UniMeetUpServerContext context)
+        public WaypointsController(UniMeetUpServerContext context)
         {
             _context = context;
         }
 
-        // GET: api/FileMessages
+        // GET: api/Waypoints
         [HttpGet]
-        public IEnumerable<FileMessage> GetFileMessage()
+        public IEnumerable<Waypoint> GetWaypoint()
         {
-            return _context.FileMessage;
+            return _context.Waypoint;
         }
 
-        // GET: api/FileMessages/5
+        // GET: api/Waypoints/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetFileMessage([FromRoute] int id)
+        public async Task<IActionResult> GetWaypoint([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var fileMessage = await _context.FileMessage.FindAsync(id);
+            var waypoint = await _context.Waypoint.FindAsync(id);
 
-            if (fileMessage == null)
+            if (waypoint == null)
             {
                 return NotFound();
             }
 
-            return Ok(fileMessage);
+            return Ok(waypoint);
         }
 
-        // PUT: api/FileMessages/5
+        // PUT: api/Waypoints/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFileMessage([FromRoute] int id, [FromBody] FileMessage fileMessage)
+        public async Task<IActionResult> PutWaypoint([FromRoute] int id, [FromBody] Waypoint waypoint)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != fileMessage.Id)
+            if (id != waypoint.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(fileMessage).State = EntityState.Modified;
+            _context.Entry(waypoint).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +69,7 @@ namespace UniMeetUpServer.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FileMessageExists(id))
+                if (!WaypointExists(id))
                 {
                     return NotFound();
                 }
@@ -82,45 +82,45 @@ namespace UniMeetUpServer.Controllers
             return NoContent();
         }
 
-        // POST: api/FileMessages
+        // POST: api/Waypoints
         [HttpPost]
-        public async Task<IActionResult> PostFileMessage([FromBody] FileMessage fileMessage)
+        public async Task<IActionResult> PostWaypoint([FromBody] Waypoint waypoint)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.FileMessage.Add(fileMessage);
+            _context.Waypoint.Add(waypoint);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFileMessage", new { id = fileMessage.Id }, fileMessage);
+            return CreatedAtAction("GetWaypoint", new { id = waypoint.Id }, waypoint);
         }
 
-        // DELETE: api/FileMessages/5
+        // DELETE: api/Waypoints/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFileMessage([FromRoute] int id)
+        public async Task<IActionResult> DeleteWaypoint([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var fileMessage = await _context.FileMessage.FindAsync(id);
-            if (fileMessage == null)
+            var waypoint = await _context.Waypoint.FindAsync(id);
+            if (waypoint == null)
             {
                 return NotFound();
             }
 
-            _context.FileMessage.Remove(fileMessage);
+            _context.Waypoint.Remove(waypoint);
             await _context.SaveChangesAsync();
 
-            return Ok(fileMessage);
+            return Ok(waypoint);
         }
 
-        private bool FileMessageExists(int id)
+        private bool WaypointExists(int id)
         {
-            return _context.FileMessage.Any(e => e.Id == id);
+            return _context.Waypoint.Any(e => e.Id == id);
         }
     }
 }

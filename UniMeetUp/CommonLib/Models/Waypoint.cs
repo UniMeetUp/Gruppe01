@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace CommonLib.Models
 {
-    public class Location
+    public class Waypoint
     {
         [Key]
         public int Id { get; set; }
