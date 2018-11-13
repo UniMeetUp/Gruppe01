@@ -8,7 +8,7 @@ namespace CommonLib.Models
         public int Id { get; set; }
         public string EmailAddress { get; set; }
         public string HashedPassword { get; set; }
-        [MaxLength(20)]
+        [MaxLength(25)]
         public string DisplayName { get; set; }
     }
 }
