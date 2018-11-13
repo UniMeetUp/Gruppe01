@@ -26,7 +26,7 @@ namespace UniMeetUpServer.Hubs
         public Task FileMessage(FileMessage file)
         {
             _context.FileMessage.Add(file);
-            _context.SaveChanges();
+           _context.SaveChanges();
             return Clients.All.SendAsync("FileMessage", file);
         }
 

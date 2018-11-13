@@ -34,13 +34,11 @@ namespace UniMeetUpServer.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.Property<int?>("UserId1");
-
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("ChatMessage");
                 });
@@ -51,19 +49,20 @@ namespace UniMeetUpServer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte[]>("FileBinary");
+                    b.Property<byte[]>("FileBinary")
+                        .IsRequired();
 
                     b.Property<string>("FileHeaders");
 
                     b.Property<int?>("GroupId");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserEmailAddress");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserEmailAddress");
 
                     b.ToTable("FileMessage");
                 });
@@ -96,33 +95,31 @@ namespace UniMeetUpServer.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserEmailAddress");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserEmailAddress");
 
                     b.ToTable("Location");
                 });
 
             modelBuilder.Entity("CommonLib.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("EmailAddress")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("DisplayName")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("EmailAddress");
+                        .HasMaxLength(25);
 
                     b.Property<int?>("GroupId");
 
-                    b.Property<string>("HashedPassword");
+                    b.Property<string>("HashedPassword")
+                        .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("EmailAddress");
 
                     b.HasIndex("GroupId");
 
@@ -143,13 +140,13 @@ namespace UniMeetUpServer.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserEmailAddress");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserEmailAddress");
 
                     b.ToTable("Waypoint");
                 });
@@ -163,7 +160,7 @@ namespace UniMeetUpServer.Migrations
 
                     b.HasOne("CommonLib.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CommonLib.Models.FileMessage", b =>
@@ -174,7 +171,7 @@ namespace UniMeetUpServer.Migrations
 
                     b.HasOne("CommonLib.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserEmailAddress");
                 });
 
             modelBuilder.Entity("CommonLib.Models.Location", b =>
@@ -185,7 +182,7 @@ namespace UniMeetUpServer.Migrations
 
                     b.HasOne("CommonLib.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserEmailAddress");
                 });
 
             modelBuilder.Entity("CommonLib.Models.User", b =>
@@ -203,7 +200,7 @@ namespace UniMeetUpServer.Migrations
 
                     b.HasOne("CommonLib.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserEmailAddress");
                 });
 #pragma warning restore 612, 618
         }

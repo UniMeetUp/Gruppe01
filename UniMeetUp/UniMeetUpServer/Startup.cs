@@ -43,9 +43,6 @@ namespace UniMeetUpServer
                     options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpServerContext")));
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "UMU API", Version = "v1"});});
-
-            services.AddDbContext<UniMeetUpServerContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpServerContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
