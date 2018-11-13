@@ -56,7 +56,7 @@ namespace UniMeetUpServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != fileMessage.Id)
+            if (id != fileMessage.FileMessageId)
             {
                 return BadRequest();
             }
@@ -94,7 +94,7 @@ namespace UniMeetUpServer.Controllers
             _context.FileMessage.Add(fileMessage);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFileMessage", new { id = fileMessage.Id }, fileMessage);
+            return CreatedAtAction("GetFileMessage", new { id = fileMessage.FileMessageId }, fileMessage);
         }
 
         // DELETE: api/FileMessages/5
@@ -120,7 +120,7 @@ namespace UniMeetUpServer.Controllers
 
         private bool FileMessageExists(int id)
         {
-            return _context.FileMessage.Any(e => e.Id == id);
+            return _context.FileMessage.Any(e => e.FileMessageId == id);
         }
     }
 }

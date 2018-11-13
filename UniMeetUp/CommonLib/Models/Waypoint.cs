@@ -8,12 +8,15 @@ namespace CommonLib.Models
     public class Waypoint
     {
         [Key]
-        public int Id { get; set; }
+        public int WaypointId { get; set; }
 
         [Required]
         public decimal Longitude { get; set; }
         public decimal Latitude { get; set; }
         public DateTime TimeStamp { get; set; }
+
+        public string UserId { get; set; }
+        public int GroupId { get; set; }
         public User User { get; set; }
         public Group Group { get; set; }
     }

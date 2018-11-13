@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using CommonLib.Models;
 
 namespace UniMeetUpServer.Models
 {
@@ -20,5 +21,7 @@ namespace UniMeetUpServer.Models
         public DbSet<CommonLib.Models.User> User { get; set; }
 
         public DbSet<CommonLib.Models.Waypoint> Waypoint { get; set; }
+
+        public DbSet<CommonLib.Models.UserGroup> UserGroup { get; set; }
     }
 }

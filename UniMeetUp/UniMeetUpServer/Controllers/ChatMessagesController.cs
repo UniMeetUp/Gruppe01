@@ -56,7 +56,7 @@ namespace UniMeetUpServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != chatMessage.Id)
+            if (id != chatMessage.ChatMessageId)
             {
                 return BadRequest();
             }
@@ -94,7 +94,7 @@ namespace UniMeetUpServer.Controllers
             _context.ChatMessage.Add(chatMessage);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetChatMessage", new { id = chatMessage.Id }, chatMessage);
+            return CreatedAtAction("GetChatMessage", new { id = chatMessage.ChatMessageId }, chatMessage);
         }
 
         // DELETE: api/ChatMessages/5
@@ -120,7 +120,7 @@ namespace UniMeetUpServer.Controllers
 
         private bool ChatMessageExists(int id)
         {
-            return _context.ChatMessage.Any(e => e.Id == id);
+            return _context.ChatMessage.Any(e => e.ChatMessageId == id);
         }
     }
 }

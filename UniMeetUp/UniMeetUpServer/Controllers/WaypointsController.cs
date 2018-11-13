@@ -56,7 +56,7 @@ namespace UniMeetUpServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != waypoint.Id)
+            if (id != waypoint.WaypointId)
             {
                 return BadRequest();
             }
@@ -94,7 +94,7 @@ namespace UniMeetUpServer.Controllers
             _context.Waypoint.Add(waypoint);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWaypoint", new { id = waypoint.Id }, waypoint);
+            return CreatedAtAction("GetWaypoint", new { id = waypoint.WaypointId }, waypoint);
         }
 
         // DELETE: api/Waypoints/5
@@ -120,7 +120,7 @@ namespace UniMeetUpServer.Controllers
 
         private bool WaypointExists(int id)
         {
-            return _context.Waypoint.Any(e => e.Id == id);
+            return _context.Waypoint.Any(e => e.WaypointId == id);
         }
     }
 }

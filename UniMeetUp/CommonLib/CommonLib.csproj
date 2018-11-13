@@ -5,13 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="MessagePack">
-      <HintPath>..\..\..\..\..\..\.nuget\packages\messagepack\1.7.3.4\lib\netstandard2.0\MessagePack.dll</HintPath>
-    </Reference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
 </Project>

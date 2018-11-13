@@ -30,7 +30,7 @@ namespace UniMeetUpServer.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] int id)
+        public async Task<IActionResult> GetUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace UniMeetUpServer.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] int id)
+        public async Task<IActionResult> DeleteUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {

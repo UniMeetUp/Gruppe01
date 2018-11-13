@@ -56,7 +56,7 @@ namespace UniMeetUpServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != location.Id)
+            if (id != location.LocationId)
             {
                 return BadRequest();
             }
@@ -94,7 +94,7 @@ namespace UniMeetUpServer.Controllers
             _context.Location.Add(location);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLocation", new { id = location.Id }, location);
+            return CreatedAtAction("GetLocation", new { id = location.LocationId }, location);
         }
 
         // DELETE: api/Locations/5
@@ -120,7 +120,7 @@ namespace UniMeetUpServer.Controllers
 
         private bool LocationExists(int id)
         {
-            return _context.Location.Any(e => e.Id == id);
+            return _context.Location.Any(e => e.LocationId == id);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace UniMeetUpServer.Migrations
 
             modelBuilder.Entity("CommonLib.Models.ChatMessage", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ChatMessageId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -34,7 +34,7 @@ namespace UniMeetUpServer.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("ChatMessageId");
 
                     b.HasIndex("GroupId");
 
@@ -45,7 +45,7 @@ namespace UniMeetUpServer.Migrations
 
             modelBuilder.Entity("CommonLib.Models.FileMessage", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FileMessageId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -54,40 +54,40 @@ namespace UniMeetUpServer.Migrations
 
                     b.Property<string>("FileHeaders");
 
-                    b.Property<int?>("GroupId");
+                    b.Property<int>("GroupId");
 
-                    b.Property<string>("UserEmailAddress");
+                    b.Property<string>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("FileMessageId");
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("UserEmailAddress");
+                    b.HasIndex("UserId");
 
                     b.ToTable("FileMessage");
                 });
 
             modelBuilder.Entity("CommonLib.Models.Group", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GroupId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("GroupName")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("GroupId");
 
                     b.ToTable("Group");
                 });
 
             modelBuilder.Entity("CommonLib.Models.Location", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LocationId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("GroupId");
+                    b.Property<int>("GroupId");
 
                     b.Property<decimal>("Latitude");
 
@@ -95,13 +95,13 @@ namespace UniMeetUpServer.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.Property<string>("UserEmailAddress");
+                    b.Property<string>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("LocationId");
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("UserEmailAddress");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Location");
                 });
@@ -114,25 +114,40 @@ namespace UniMeetUpServer.Migrations
                     b.Property<string>("DisplayName")
                         .HasMaxLength(25);
 
-                    b.Property<int?>("GroupId");
-
                     b.Property<string>("HashedPassword")
                         .IsRequired();
 
                     b.HasKey("EmailAddress");
 
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("CommonLib.Models.UserGroup", b =>
+                {
+                    b.Property<int>("UserGroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmailAddress");
+
+                    b.Property<int>("GroupId");
+
+                    b.HasKey("UserGroupId");
+
+                    b.HasIndex("EmailAddress");
+
                     b.HasIndex("GroupId");
 
-                    b.ToTable("User");
+                    b.ToTable("UserGroup");
                 });
 
             modelBuilder.Entity("CommonLib.Models.Waypoint", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("WaypointId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("GroupId");
+                    b.Property<int>("GroupId");
 
                     b.Property<decimal>("Latitude");
 
@@ -140,13 +155,13 @@ namespace UniMeetUpServer.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.Property<string>("UserEmailAddress");
+                    b.Property<string>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("WaypointId");
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("UserEmailAddress");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Waypoint");
                 });
@@ -167,40 +182,48 @@ namespace UniMeetUpServer.Migrations
                 {
                     b.HasOne("CommonLib.Models.Group", "Group")
                         .WithMany()
-                        .HasForeignKey("GroupId");
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CommonLib.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserEmailAddress");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CommonLib.Models.Location", b =>
                 {
                     b.HasOne("CommonLib.Models.Group", "Group")
                         .WithMany()
-                        .HasForeignKey("GroupId");
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CommonLib.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserEmailAddress");
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("CommonLib.Models.User", b =>
+            modelBuilder.Entity("CommonLib.Models.UserGroup", b =>
                 {
-                    b.HasOne("CommonLib.Models.Group")
-                        .WithMany("Users")
-                        .HasForeignKey("GroupId");
+                    b.HasOne("CommonLib.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("EmailAddress");
+
+                    b.HasOne("CommonLib.Models.Group", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CommonLib.Models.Waypoint", b =>
                 {
                     b.HasOne("CommonLib.Models.Group", "Group")
                         .WithMany()
-                        .HasForeignKey("GroupId");
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CommonLib.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserEmailAddress");
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Annotations;
 using System.Windows.Input;
 using CommonLib.Models;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -36,11 +37,12 @@ namespace UniMeetUpClient
 
         private async void Connect()
         {
-            connection.On<string, string>("ReceiveMessage", (user, message) =>
+            connection.On<string, string>("ReceiveMessage", (emailAddress, message) =>
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    var newMessage = $"{user}: {message}";
+                    //String that are is displayed in listbox -> should be changed to displayname
+                    var newMessage = $"{emailAddress}: {message}";
                     MessageList.Items.Add(newMessage);
                 });
             });
@@ -82,14 +84,15 @@ namespace UniMeetUpClient
 
         private async void SendBtnEvent(object sender, RoutedEventArgs e)
         {
-            SendMessage();
+            await SendMessage();
         }
 
-        private async void SendMessage()
+        private async Task SendMessage()
         {
             try
-            {
-                await connection.InvokeAsync("SendMessage", "anne", MessageTextBox.Text);
+            { 
+                //Calls method in hub - with the three arguments: email, groupid and message
+                await connection.InvokeAsync("SendMessage", "anne@petersen.dk", 1, MessageTextBox.Text);
                 MessageTextBox.Clear();
                 MessageTextBox.Focus();
             }
@@ -113,7 +116,7 @@ namespace UniMeetUpClient
                 };
                 try
                 {
-                    await connection.InvokeAsync("FileMessage", file);
+                    await connection.InvokeAsync("FileMessage", "anne@petersen.dk", 1, file);
                 }
                 catch (Exception exception)
                 {

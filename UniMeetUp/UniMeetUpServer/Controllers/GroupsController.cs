@@ -56,7 +56,7 @@ namespace UniMeetUpServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != @group.Id)
+            if (id != @group.GroupId)
             {
                 return BadRequest();
             }
@@ -94,7 +94,7 @@ namespace UniMeetUpServer.Controllers
             _context.Group.Add(@group);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGroup", new { id = @group.Id }, @group);
+            return CreatedAtAction("GetGroup", new { id = @group.GroupId }, @group);
         }
 
         // DELETE: api/Groups/5
@@ -120,7 +120,7 @@ namespace UniMeetUpServer.Controllers
 
         private bool GroupExists(int id)
         {
-            return _context.Group.Any(e => e.Id == id);
+            return _context.Group.Any(e => e.GroupId == id);
         }
     }
 }
