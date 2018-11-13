@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.ComponentModel.Annotations">
-      <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.ComponentModel.Annotations.dll</HintPath>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MessagePack">
+      <HintPath>..\..\..\..\..\..\.nuget\packages\messagepack\1.7.3.4\lib\netstandard2.0\MessagePack.dll</HintPath>
     </Reference>
   </ItemGroup>
 
