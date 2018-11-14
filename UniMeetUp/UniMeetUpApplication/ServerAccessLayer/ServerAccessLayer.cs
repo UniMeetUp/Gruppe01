@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +19,20 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         public ServerAccessLayer()
         {
-            client.BaseAddress = new Uri("http://62.107.0.222");
+            client.BaseAddress = new Uri("https://localhost:44364/");
         }
 
-        public async Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
+        public  HttpStatusCode Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
         {
             //Do something
+            
 
-            HttpResponseMessage response = 
-                await client.PostAsJsonAsync("http://localhost:123/", userForLogin);
-                
-            return response;
+            //HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", userForLogin);
+
+            var response = client.PostAsJsonAsync("api/Users/login", userForLogin).Result;
+
+
+            return response.StatusCode;
         }
 
         public async Task<string> Get_all_user_data_from_database()
