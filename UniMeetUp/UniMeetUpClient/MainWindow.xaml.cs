@@ -17,7 +17,7 @@ namespace UniMeetUpClient
     public partial class MainWindow : Window
     {
         private HubConnection connection;
-        private User _user = new User();
+       
         private const string storageDir = "ReceivedFiles";
         public MainWindow()
         {
