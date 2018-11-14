@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000">
     <UserControl.Resources>
+
         <DataTemplate DataType="{x:Type viewModel:CreateAccountViewModel}">
             <view:CreateAccountView DataContext="{Binding}"/>
         </DataTemplate>
@@ -74,7 +75,9 @@
             <ColumnDefinition MaxWidth="100" MinWidth="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        --><!--LEFT COLUMN IN MAIN WINDOW--><!--
+        -->
+    <!--LEFT COLUMN IN MAIN WINDOW-->
+    <!--
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,-0.4" Width="200" >
 
             <TextBox GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search" Width="75" BorderBrush="AliceBlue" ></TextBox>
@@ -98,7 +101,9 @@
             <Button Content="AddPerson" Command="{Binding AddPersonCommand}"></Button>
             <Button Content="Files" Command="{Binding FileRepoCommand}"></Button>
             <Button Content="Settings" Command="{Binding AccountSettingsCommand}"></Button>
-            --><!--<Button Content="Back to Login test" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.LoginPageCommand}"></Button>--><!--
+            -->
+    <!--<Button Content="Back to Login test" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.LoginPageCommand}"></Button>-->
+    <!--
             <Button Content="Back to Login test" Command="{Binding LogOutCommand}"></Button>
         </StackPanel>
 
@@ -107,19 +112,21 @@
 
     </Grid>-->
 
-<Grid Background="White" ShowGridLines="True">
+    <Grid Background="White" ShowGridLines="True">
     <Grid.RowDefinitions>
         <RowDefinition Height="Auto"></RowDefinition>
-        <RowDefinition Height="390"></RowDefinition>
-        <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
+        <RowDefinition></RowDefinition>
+        <RowDefinition Height="27"></RowDefinition>
+    </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
         <ColumnDefinition Width="200"></ColumnDefinition>
         <ColumnDefinition></ColumnDefinition>
         <ColumnDefinition Width="40"></ColumnDefinition>
     </Grid.ColumnDefinitions>
+    
     <!--Search field-->
-        <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
+    <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
+    
         <TextBox Grid.Column="0" Grid.Row="0" Name="txbSearch" >
         <TextBox.Style>
             <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -147,50 +154,118 @@
             </Style>
         </TextBox.Style>
     </TextBox>
-        <!--Labels:-->
-        <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" >
-        <Label>Groups:</Label>
-        <Separator></Separator>
-        <Label>PlaceHolder1</Label>
-        <Label>PlaceHolder2</Label>
-        <Label>PlaceHolder3</Label>
-        <Label>PlaceHolder4</Label>
-        </StackPanel>
-    <!--images/buttons:-->
-    <DockPanel></DockPanel>
-        <!--<StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" >
 
-            <Viewbox MaxWidth="20">
-                <Frame Source="Images/Add_grey_16x.xaml"></Frame>
-            </Viewbox>
-            <Button>press me</Button>
-            <Button>press me</Button>
-            <Button>press me</Button>
-            <Button>press me</Button>
-        </StackPanel>-->
+        
+    
+    <!--images/buttons:-->
+    
+        <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--Labels:-->
+            <ListBox Grid.Row="2" Grid.Column="0">
+                <ListBoxItem Content="Group 1"></ListBoxItem>
+                <ListBoxItem Content="Group 2"></ListBoxItem>
+                <ListBoxItem Content="Group 3"></ListBoxItem>
+                <ListBoxItem Content="Group 4"></ListBoxItem>
+            </ListBox>
+            <!--Labels:-->
+            <DockPanel LastChildFill="False">
+                <Label DockPanel.Dock="Left">Groups:</Label>
+
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+
+                    <Viewbox MaxHeight="20" DockPanel.Dock="Right" Width="30">
+                        <Frame Source="Images/Add_grey_16x.xaml"/>
+                    </Viewbox>
+
+                </StackPanel>
+            </DockPanel>
+            <!--DockPanel Grid.Row="0" Grid.Column="0">
+                
+                
+            </DockPanel>-->
+            <Separator Grid.Row="1" Grid.Column="0"></Separator>
+        </Grid>
+
     <!--Display name-->
-    <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
+    
+    <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
         <Label>Display name</Label>
     </StackPanel>
+    
     <!--User options-->
+    
     <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button>Press me</Button>
-    </StackPanel>
+        <Viewbox  DockPanel.Dock="Right" Width="25">
+            <Frame Source="Images/Ellipsis_16x.xaml"/>
+        </Viewbox>
+        </StackPanel>
+    
     <!--fileClip-->
+    
         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button>press me</Button>
-    </StackPanel>
+            <Viewbox MaxHeight="20" DockPanel.Dock="Right" Width="30">
+                <!--<Viewbox.RenderTransform>
+                    <RotateTransform Angle="25"></RotateTransform>
+                </Viewbox.RenderTransform>-->
+                <Frame Source="Images/Attach_16x.xaml" />
+
+            </Viewbox>
+        </StackPanel>
+    
     <!--ButtonPaneRight-->
+    
         <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
-            <Button>press</Button>
-    </StackPanel>
+            
+            <Viewbox DockPanel.Dock="Right" Height="25">
+                <Frame Source="Images/Message_16x.xaml" />
+            </Viewbox>
+        </StackPanel>
+    
     <!--ButtonPaneRight-->
+    
     <StackPanel Grid.Row="1" Grid.Column="2">
-            <Button>press</Button>
-            <Button>press</Button>
-        <Separator></Separator>
-            <Button>press</Button>
-    </StackPanel>
+        <Viewbox DockPanel.Dock="Right" Height="30">
+            <Frame Source="Images/GeoLocation_16x.xaml" />
+        </Viewbox>
+            <Viewbox DockPanel.Dock="Right" Height="30">
+            <Frame Source="Images/AddUser_16x.xaml" />
+        </Viewbox>
+            <Separator></Separator>
+        <Viewbox DockPanel.Dock="Right">
+            <Frame Source="Images/Folder_16xSM.xaml" />
+        </Viewbox>
+        </StackPanel>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+            <Style TargetType="{x:Type Viewbox}">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type Separator}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type StackPanel}">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+        </Grid.Resources>
 
     </Grid>
+   
+ 
 </UserControl>
