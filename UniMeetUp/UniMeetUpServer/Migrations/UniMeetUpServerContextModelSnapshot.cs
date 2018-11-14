@@ -124,17 +124,11 @@ namespace UniMeetUpServer.Migrations
 
             modelBuilder.Entity("CommonLib.Models.UserGroup", b =>
                 {
-                    b.Property<int>("UserGroupId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("EmailAddress");
 
                     b.Property<int>("GroupId");
 
-                    b.HasKey("UserGroupId");
-
-                    b.HasIndex("EmailAddress");
+                    b.HasKey("EmailAddress", "GroupId");
 
                     b.HasIndex("GroupId");
 
@@ -205,11 +199,12 @@ namespace UniMeetUpServer.Migrations
             modelBuilder.Entity("CommonLib.Models.UserGroup", b =>
                 {
                     b.HasOne("CommonLib.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("EmailAddress");
+                        .WithMany("UserGroups")
+                        .HasForeignKey("EmailAddress")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CommonLib.Models.Group", "Group")
-                        .WithMany()
+                        .WithMany("UserGroups")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
