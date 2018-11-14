@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniMeetUpServer", "UniMeetU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLib", "CommonLib\CommonLib.csproj", "{C200B8EB-1E51-4A50-BBB3-80843CF73B28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeetUpApplication", "..\..\..\..\..\Downloads\UniMeetUpApplication-master\UniMeetUpApplication\UniMeetUpApplication.csproj", "{7B555227-B40A-4C5F-84F8-8526E5D6F63F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeetUpApplication", "UniMeetUpApplication\UniMeetUpApplication.csproj", "{7B555227-B40A-4C5F-84F8-8526E5D6F63F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeetUpApplication.Unit.Test", "..\..\..\..\..\Downloads\UniMeetUpApplication-master\UniMeetUpApplication.Unit.Test\UniMeetUpApplication.Unit.Test.csproj", "{9AB08726-11FB-49F5-975F-F0057AF6CB83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeetUpApplication.Unit.Test", "UniMeetUpApplication.Unit.Test\UniMeetUpApplication.Unit.Test.csproj", "{9AB08726-11FB-49F5-975F-F0057AF6CB83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
