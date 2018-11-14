@@ -6,19 +6,22 @@ using System.Text;
 
 namespace CommonLib.Models
 {
-    public class UserGrou
+    public class UserGroup
     {
 
-        protected override void OnModelCreating(Modelbuilder modelbuilder)
-        {
+        //protected override void OnModelCreating(Modelbuilder modelbuilder)
+        //{
 
-        }
+        //}
 
-        [ForeignKey("Group")]
+        [Key]
+        public int UserGroupId { get; set; }
+
+       
         public int GroupId { get; set; }
         public Group Group { get; set; }
 
-        [ForeignKey("User")]
+        
         public string EmailAddress { get; set; }
         public User User { get; set; }
     }

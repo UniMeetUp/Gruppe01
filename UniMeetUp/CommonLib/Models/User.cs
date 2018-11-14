@@ -17,5 +17,8 @@ namespace CommonLib.Models
         public string DisplayName { get; set; }
 
         public ICollection<Group> Groups { get; } = new List<Group>();
+   
+        
+
     }
 }
