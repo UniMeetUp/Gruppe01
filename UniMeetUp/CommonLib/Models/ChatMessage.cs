@@ -11,7 +11,16 @@ namespace CommonLib.Models
 
         [Required]
         public string Message { get; set; }
-        public DateTime TimeStamp { get; set; }
+
+        public DateTime TimeStamp
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+            set { TimeStamp = DateTime.Now; }
+        }
+
 
         public string UserId { get; set; }
         public int GroupId { get; set; }
