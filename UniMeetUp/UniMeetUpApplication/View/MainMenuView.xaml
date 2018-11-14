@@ -6,7 +6,7 @@
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type viewModel:CreateAccountViewModel}">
             <view:CreateAccountView DataContext="{Binding}"/>
@@ -66,7 +66,7 @@
         <Binding Source="{StaticResource vm}"></Binding>
     </UserControl.DataContext>-->
 
-    <Grid Background="White" DataContext="{StaticResource MainMenuViewModel}">
+    <!--<Grid Background="White" DataContext="{StaticResource MainMenuViewModel}">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="200"></ColumnDefinition>
@@ -74,7 +74,7 @@
             <ColumnDefinition MaxWidth="100" MinWidth="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <!--LEFT COLUMN IN MAIN WINDOW-->
+        --><!--LEFT COLUMN IN MAIN WINDOW--><!--
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,-0.4" Width="200" >
 
             <TextBox GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search" Width="75" BorderBrush="AliceBlue" ></TextBox>
@@ -98,12 +98,99 @@
             <Button Content="AddPerson" Command="{Binding AddPersonCommand}"></Button>
             <Button Content="Files" Command="{Binding FileRepoCommand}"></Button>
             <Button Content="Settings" Command="{Binding AccountSettingsCommand}"></Button>
-            <!--<Button Content="Back to Login test" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.LoginPageCommand}"></Button>-->
+            --><!--<Button Content="Back to Login test" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.LoginPageCommand}"></Button>--><!--
             <Button Content="Back to Login test" Command="{Binding LogOutCommand}"></Button>
         </StackPanel>
 
         <ContentControl  x:Name="ConControl" Grid.Column="1" Content="{Binding}" DataContext="{Binding CurrentPage}" ></ContentControl>
 
+
+    </Grid>-->
+
+<Grid Background="White" ShowGridLines="True">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="390"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="200"></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition Width="40"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <!--Search field-->
+        <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
+        <TextBox Grid.Column="0" Grid.Row="0" Name="txbSearch" >
+        <TextBox.Style>
+            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                <Style.Resources>
+                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                        <VisualBrush.Visual>
+                            <Label Content="Search..."  Foreground="LightGray" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Style.Resources>
+                <Style.Triggers>
+                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        <Setter Property="Margin" Value="5"></Setter>
+                    </Trigger>
+                    <Trigger Property="Text" Value="{x:Null}">
+                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        <Setter Property="Margin" Value="5"></Setter>
+                    </Trigger>
+                    <Trigger Property="IsKeyboardFocused" Value="True">
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="Margin" Value="5"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </TextBox.Style>
+    </TextBox>
+        <!--Labels:-->
+        <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" >
+        <Label>Groups:</Label>
+        <Separator></Separator>
+        <Label>PlaceHolder1</Label>
+        <Label>PlaceHolder2</Label>
+        <Label>PlaceHolder3</Label>
+        <Label>PlaceHolder4</Label>
+        </StackPanel>
+    <!--images/buttons:-->
+    <DockPanel></DockPanel>
+        <!--<StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" >
+
+            <Viewbox MaxWidth="20">
+                <Frame Source="Images/Add_grey_16x.xaml"></Frame>
+            </Viewbox>
+            <Button>press me</Button>
+            <Button>press me</Button>
+            <Button>press me</Button>
+            <Button>press me</Button>
+        </StackPanel>-->
+    <!--Display name-->
+    <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
+        <Label>Display name</Label>
+    </StackPanel>
+    <!--User options-->
+    <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button>Press me</Button>
+    </StackPanel>
+    <!--fileClip-->
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button>press me</Button>
+    </StackPanel>
+    <!--ButtonPaneRight-->
+        <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
+            <Button>press</Button>
+    </StackPanel>
+    <!--ButtonPaneRight-->
+    <StackPanel Grid.Row="1" Grid.Column="2">
+            <Button>press</Button>
+            <Button>press</Button>
+        <Separator></Separator>
+            <Button>press</Button>
+    </StackPanel>
 
     </Grid>
 </UserControl>
