@@ -21,6 +21,7 @@ namespace UniMeetUpClient
         public MainWindow()
         {
             InitializeComponent();
+            //Is to be updated when we are going to use Peters server - localhost is changed with umu.cybersecure.dk
             connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:44364/chatHub")
                 .AddMessagePackProtocol()
@@ -37,6 +38,7 @@ namespace UniMeetUpClient
 
         private async void Connect()
         {
+            //What to do when "ReceiveMessage" is called from the server
             connection.On<string, string>("ReceiveMessage", (emailAddress, message) =>
             {
                 this.Dispatcher.Invoke(() =>
@@ -47,6 +49,7 @@ namespace UniMeetUpClient
                 });
             });
 
+            //What to do when "FileMessage" is called from the server
             connection.On<FileMessage>("FileMessage", (file) =>
             {
                 this.Dispatcher.Invoke(() =>
@@ -56,6 +59,9 @@ namespace UniMeetUpClient
                     Directory.CreateDirectory(storageDir);
                     File.WriteAllBytes(Path.Combine(storageDir, file.FileHeaders), file.FileBinary);
                     MessageList.Items.Add(file.FileHeaders);
+                    
+                    
+                    //Doesn't work - but can be used for sending pictures. 
                     //var bitmapImage = new BitmapImage();
                     //using (var ms = new MemoryStream(file.FileBinary))
                     //{
