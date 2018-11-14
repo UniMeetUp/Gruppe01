@@ -6,35 +6,22 @@ using System.Text;
 
 namespace CommonLib.Models
 {
-    public class Group
+    public class UserGrou
     {
-        public int GroupId { get; set; }
-        [Required]
-        public string GroupName { get; set; }
 
-        public ICollection<User> Users { get; } = new List<User>();
-    }
+        protected override void OnModelCreating(Modelbuilder modelbuilder)
+        {
 
-    public class User
-    {
-        [Key]
-        public string EmailAddress { get; set; }
+        }
 
-        [Required]
-        public string HashedPassword { get; set; }
-        [MaxLength(25)]
-        public string DisplayName { get; set; }
-
-        public ICollection<Group> Groups { get; } = new List<Group>();
-    }
-
-    public class UserGroup
-    {
-        public int UserGroupId { get; set; }
+        [ForeignKey("Group")]
         public int GroupId { get; set; }
         public Group Group { get; set; }
 
+        [ForeignKey("User")]
         public string EmailAddress { get; set; }
         public User User { get; set; }
     }
+
+
 }
