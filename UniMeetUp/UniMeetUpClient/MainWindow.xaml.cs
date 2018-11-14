@@ -17,6 +17,7 @@ namespace UniMeetUpClient
     public partial class MainWindow : Window
     {
         private HubConnection connection;
+        private User _user = new User();
         private const string storageDir = "ReceivedFiles";
         public MainWindow()
         {
@@ -92,7 +93,7 @@ namespace UniMeetUpClient
             try
             { 
                 //Calls method in hub - with the three arguments: email, groupid and message
-                await connection.InvokeAsync("SendMessage", "anne@petersen.dk", 1, MessageTextBox.Text);
+                await connection.InvokeAsync("SendMessage", "T", 1, MessageTextBox.Text);
                 MessageTextBox.Clear();
                 MessageTextBox.Focus();
             }
@@ -116,7 +117,7 @@ namespace UniMeetUpClient
                 };
                 try
                 {
-                    await connection.InvokeAsync("FileMessage", "anne@petersen.dk", 1, file);
+                    await connection.InvokeAsync("FileMessage", "T", 1, file);
                 }
                 catch (Exception exception)
                 {

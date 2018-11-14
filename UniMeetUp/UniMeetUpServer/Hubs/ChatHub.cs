@@ -15,13 +15,13 @@ namespace UniMeetUpServer.Hubs
         {
             _context = context;
         }
-        public async Task SendMessage(string emailAddress, int groupId, string message)
+        public async Task SendMessage(string displayName, int groupId, string message)
         {
-            var msg = new ChatMessage {Message = message, UserId = emailAddress, GroupId = groupId};
+            var msg = new ChatMessage {Message = message, UserId = displayName, GroupId = groupId};
             _context.ChatMessage.Add(msg);
             _context.SaveChanges();
             
-            await Clients.All.SendAsync("ReceiveMessage", emailAddress, message);
+            await Clients.All.SendAsync("ReceiveMessage", displayName, message);
         }
 
         public Task FileMessage(string emailAddress, int groupId, FileMessage file)
