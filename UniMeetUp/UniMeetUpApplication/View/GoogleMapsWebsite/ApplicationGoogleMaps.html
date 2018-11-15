@@ -31,7 +31,10 @@
             // global varibles
             var map;
             //var geocoder = new google.maps.Geocoder();
-            
+            var myVar = setInterval(myTimer, 0);
+
+            var markerPlaced = false;
+
             
             function initialize(){
                 var mapOptions = {
@@ -249,13 +252,37 @@
                     //showMyPosition();
                     //addMarker(0, 0);
                     //getLocation();
+                    markerPlaced = true;
                     window.external.GetCurrentGroupID();
 
+                    myVar = setInterval(myTimer, 1000);
+                   
+                    
                 });
             }
 
 
-            
+            function setStatus(status) {
+                markerPlaced = status;
+            }
+
+            function GeoLocationNotSupported() {
+                alert(
+                    "Geolocation does not support, please enable your windows location: \n 1. Go to Start windows \n" +
+                    " 2. then Settings  \n 3. then privat settings \n 4. Turn on lokation");
+            }
+
+
+            function myTimer() {
+                if (markerPlaced) {
+                    GeoLocationNotSupported();
+                }
+                clearInterval(myVar);
+            }
+
+           
+
+
         </script>
         
   
