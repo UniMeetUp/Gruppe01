@@ -15,6 +15,8 @@ namespace UniMeetUpServer.Hubs
         {
             _context = context;
         }
+
+        //All is to be changed to group
         public async Task SendMessage(string emailAddress, int groupId, string message)
         {
             var msg = new ChatMessage {Message = message, UserId = emailAddress, GroupId = groupId};
@@ -32,7 +34,5 @@ namespace UniMeetUpServer.Hubs
             _context.SaveChanges();
             return Clients.All.SendAsync("FileMessage", file);
         }
-
-
     }
 }
