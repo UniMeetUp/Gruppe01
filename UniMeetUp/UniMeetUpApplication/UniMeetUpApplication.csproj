@@ -231,7 +231,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -243,7 +243,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Properties\ApplicationGoogleMaps.html" />
+    <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="View\umu_logo.png" />
   </ItemGroup>

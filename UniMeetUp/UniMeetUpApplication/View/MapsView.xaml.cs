@@ -30,13 +30,31 @@ namespace UniMeetUpApplication.View
 
         public void LoadMaps()
         {
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html"))
+            //if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html"))
+            //{
+
+            //    Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html");
+
+            //  MyWebBrowser.Navigate(uri);
+            //}
+            var mapsFile = Properties.Resources.ApplicationGoogleMaps;
+
+            if (File.Exists("pack://application:,,,/GoogleMapsWebsite/ApplicationGoogleMaps.html"))
             {
 
-                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html");
+                Uri uri = new Uri("pack://application:,,,/GoogleMapsWebsite/ApplicationGoogleMaps.html");
 
-                MyWebBrowser.Navigate(uri);
+              MyWebBrowser.Navigate(uri);
             }
+            else
+            {
+               // MessageBox.Show("File not found");
+            }
+
+           
+
+
+
 
         }
 
