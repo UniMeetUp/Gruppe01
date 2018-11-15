@@ -41,7 +41,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
         public string Get_groups_for_specific_user(string email)
         {
             var str =
-                client.GetStringAsync($"api/Group/").Result;
+                client.GetStringAsync($"api/Groups/{email}/all").Result;
 
             return str;
         }

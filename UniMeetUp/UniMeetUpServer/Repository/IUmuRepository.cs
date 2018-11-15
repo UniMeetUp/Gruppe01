@@ -9,5 +9,6 @@ namespace UniMeetUpServer.Repository
     public interface IUmuRepository
     {
         User GetUserById(string email);
+        List<Group> GetGroupsForUser(string email);
     }
 }

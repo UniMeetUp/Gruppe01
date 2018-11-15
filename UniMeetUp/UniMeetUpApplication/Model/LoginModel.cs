@@ -34,7 +34,7 @@ namespace UniMeetUpApplication.Model
         public  User getAllUserData(string email)
         {
             // making a reference to the masterViewModel user object
-            var user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
+            User user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
 
         
                var userStr = _serverAccessLayer.Get_user_from_database(email);
@@ -42,9 +42,13 @@ namespace UniMeetUpApplication.Model
 
                if (userStr != null && groupStr != null)
                {
-                   JObject jsonUser = JObject.Parse(userStr.ToString());
-                   JObject jsonGroup = JObject.Parse(groupStr.ToString());
-                
+                   JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));JObject.Parse(userStr.ToString());
+                   JArray jsonGroup = new JArray(JArray.Parse(groupStr.ToString())); 
+
+                   user.displayName = jsonUser.GetValue("displayName").ToString();
+                   user.emailAdresse = jsonUser.GetValue("emailAddress").ToString();
+
+                   
                    //user.displayName = json.GetValue("displayName").ToString();
                    //user.emailAdresse = json.GetValue("Email").ToString();
                }
