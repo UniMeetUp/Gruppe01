@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.ServerAccessLayer.Interfaces;
+using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.Model
 {
@@ -32,14 +33,19 @@ namespace UniMeetUpApplication.Model
 
         public  User getAllUserData()
         {
-            User user = new User();
+            
 
             var str = _serverAccessLayer.Get_all_user_data_from_database();
             
             JObject json = JObject.Parse(str.ToString());
 
+
+           var user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
+
             user.displayName = json.GetValue("displayName").ToString();
             user.emailAdresse = json.GetValue("Email").ToString();
+
+            
 
             //user.groups = json.GetValue("groups").ToList();
 

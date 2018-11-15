@@ -17,7 +17,7 @@
     <Grid DataContext="{StaticResource vm}" Background="White">
 
 
-     <WebBrowser  x:Name="WebBrowser" Loaded="WebBrowser_OnLoaded"/>
+     <WebBrowser  x:Name="MyWebBrowser" Loaded="WebBrowser_OnLoaded"/>
         
 
     </Grid>

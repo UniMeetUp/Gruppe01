@@ -43,8 +43,10 @@ namespace UniMeetUpApplication.ServerAccessLayer
             //Do something
         }
 
-        public bool Check_In_Database_If_Email_Is_Already_In_Use(string username)
+        public bool Check_In_Database_If_Email_Is_Already_In_Use(string email)
         {
+            
+            
             //Do something
             return false;
         }
