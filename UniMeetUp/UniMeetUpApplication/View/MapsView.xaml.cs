@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Device.Location;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
+
+
 
 namespace UniMeetUpApplication.View
 {
@@ -21,6 +14,9 @@ namespace UniMeetUpApplication.View
     /// </summary>
     public partial class MapsView : UserControl
     {
+        public static WebBrowser browser;
+
+
         public MapsView()
         {
             InitializeComponent();
@@ -28,6 +24,7 @@ namespace UniMeetUpApplication.View
             // Load map
             LoadMaps();
 
+            browser = MyWebBrowser;
         }
 
 
@@ -37,8 +34,8 @@ namespace UniMeetUpApplication.View
             {
 
                 Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html");
-                
-                WebBrowser.Navigate(uri);
+
+                MyWebBrowser.Navigate(uri);
             }
 
         }
@@ -51,16 +48,69 @@ namespace UniMeetUpApplication.View
         }
 
 
-    }
 
-
-
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    public class HtmlInteropInternalTestClass
-    {
-        public int GetCurrentGroupID()
+        [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+        public class HtmlInteropInternalTestClass
         {
-            return 42;
+
+            private GeoCoordinateWatcher watcher = null;
+
+
+            private GeoCoordinate _currentLocation;
+            GeoCoordinateWatcher _geoWatcher = new GeoCoordinateWatcher();
+
+            public void GetCurrentGroupID()
+            {
+                watcher = new GeoCoordinateWatcher();
+                // Catch the StatusChanged event.  
+                watcher.StatusChanged += Watcher_StatusChanged;
+                // Start the watcher.  
+                watcher.Start();
+
+
+
+            }
+
+            private void Watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) // Find GeoLocation of Device  
+            {
+
+
+                try
+                {
+                    if (e.Status == GeoPositionStatus.Ready)
+                    {
+                        // Display the latitude and longitude.  
+                        if (watcher.Position.Location.IsUnknown)
+                        {
+                            MessageBox.Show("unknowlocation");
+
+                        }
+                        else
+                        {
+                            double latitude = watcher.Position.Location.Latitude;
+                            double longitute = watcher.Position.Location.Longitude;
+
+                            browser.InvokeScript("addMarker", new object[]{latitude, longitute});
+                           
+
+                        }
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Exeption");
+                }
+            }
+
+
         }
+
+
     }
+
+
 }
