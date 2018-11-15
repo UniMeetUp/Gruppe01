@@ -22,7 +22,7 @@ namespace UniMeetUpApplication.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace UniMeetUpApplication.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UniMeetUpApplication.Properties.Resources", typeof(Resources).Assembly);
@@ -51,35 +51,12 @@ namespace UniMeetUpApplication.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
-        ///&lt;html&gt;
-        ///    &lt;!--&lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;--&gt;
-        ///    &lt;!--&lt;title&gt;Google Maps test&lt;/title&gt;--&gt;
-        ///    &lt;head&gt;
-        ///        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
-        ///        &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no&quot;/&gt;
-        ///    &lt;/head&gt;
-        ///        
-        ///
-        ///        &lt;style type=&quot;text/css&quot;&gt;
-        ///            html {height: 100%}
-        ///            body {height: 100%; margin: 0; padding: 0}
-        ///            #mapDiv {height: 100%}
-        ///      [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string ApplicationGoogleMaps {
-            get {
-                return ResourceManager.GetString("ApplicationGoogleMaps", resourceCulture);
             }
         }
     }
