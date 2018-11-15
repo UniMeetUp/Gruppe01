@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.StaticFiles;
 using Swashbuckle.AspNetCore.Swagger;
 using UniMeetUpServer.Models;
 using UniMeetUpServer.Hubs;
+using UniMeetUpServer.Repository;
+
 
 namespace UniMeetUpServer
 {
@@ -43,6 +45,8 @@ namespace UniMeetUpServer
                     options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpServerContext")));
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "UMU API", Version = "v1"});});
+
+            services.AddScoped<IUmuRepository, UmuRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
