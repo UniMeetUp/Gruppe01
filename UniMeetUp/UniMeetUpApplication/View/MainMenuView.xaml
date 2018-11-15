@@ -201,9 +201,12 @@
     <!--User options-->
     
     <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-        <Viewbox  DockPanel.Dock="Right" Width="25">
-            <Frame Source="Images/Ellipsis_16x.xaml"/>
-        </Viewbox>
+        <Button Background="Transparent" BorderThickness="0" Command="{Binding AccountSettingsCommand}">
+            <Viewbox  DockPanel.Dock="Right" Width="25">
+                <Frame Source="Images/Ellipsis_16x.xaml"/>
+            </Viewbox>
+            </Button>
+           
         </StackPanel>
     
     <!--fileClip-->
