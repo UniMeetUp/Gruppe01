@@ -16,7 +16,6 @@ namespace CommonLib.Models
         [MaxLength(25)]
         public string DisplayName { get; set; }
 
-        public ICollection<UserGroup> UserGroups { get; } = new List<UserGroup>();
-    
+        public ICollection<UserGroup> UserGroups { get; set; } = new List<UserGroup>();
     }
 }
