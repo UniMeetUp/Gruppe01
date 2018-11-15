@@ -83,7 +83,7 @@
                 </TextBox.Style>
             </TextBox>
 
-            <PasswordBox x:Name="PasswordBox" Width="253" MaxLength="16" />
+            <TextBox x:Name="tbPassword" Width="253" MaxLength="16" />
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 

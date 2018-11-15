@@ -43,6 +43,24 @@ namespace UniMeetUpApplication.View
 
         }
 
-       
+
+        private void WebBrowser_OnLoaded(object sender, RoutedEventArgs e)
+        {
+
+            ((WebBrowser)sender).ObjectForScripting = new HtmlInteropInternalTestClass();
+        }
+
+
+    }
+
+
+
+    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    public class HtmlInteropInternalTestClass
+    {
+        public int GetCurrentGroupID()
+        {
+            return 42;
+        }
     }
 }
