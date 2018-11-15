@@ -57,7 +57,7 @@
 
         <StackPanel Grid.Column="1">
             <Image Source="umu_logo.png" MaxWidth="400" Height="300" />
-            <TextBox Name="tbEmail" Margin="5">
+            <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com">
 
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -83,7 +83,7 @@
                 </TextBox.Style>
             </TextBox>
 
-            <TextBox x:Name="tbPassword" Width="253" MaxLength="16" />
+            <TextBox x:Name="tbPassword" Width="253" MaxLength="16" Text="lort" />
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 
