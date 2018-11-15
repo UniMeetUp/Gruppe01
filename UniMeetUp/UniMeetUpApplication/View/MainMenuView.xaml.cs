@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UniMeetUpApplication.View.Dialogs;
 
 namespace UniMeetUpApplication.View
 {
@@ -35,6 +36,16 @@ namespace UniMeetUpApplication.View
             TextBox txtBox = sender as TextBox;
             if (txbSearch.Text == "Search")
                 txtBox.Text = string.Empty;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddGroupDialog _dialogBox = new AddGroupDialog();
+            if (_dialogBox.ShowDialog() == true)
+            {
+                //something
+
+            }
         }
     }
 }
