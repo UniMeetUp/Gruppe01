@@ -33,15 +33,15 @@ namespace UniMeetUpServer.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] string id)
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUser([FromRoute] string email)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid)                                                                                                                                
             {
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.User.FindAsync(id);
+            var user = _umuRepository.GetUserById(email);
 
             if (user == null)
             {
@@ -50,6 +50,8 @@ namespace UniMeetUpServer.Controllers
 
             return Ok(user);
         }
+
+ 
 
 
         // PUT: api/Users/5

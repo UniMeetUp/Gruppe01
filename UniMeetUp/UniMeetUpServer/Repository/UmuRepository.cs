@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CommonLib.Models;
+using Microsoft.EntityFrameworkCore;
 using UniMeetUpServer.Models;
 
 namespace UniMeetUpServer.Repository
@@ -17,8 +18,11 @@ namespace UniMeetUpServer.Repository
 
         public User GetUserById(string email)
         {
+
             return _context.User.Where(u => u.EmailAddress == email).FirstOrDefault();
              
         }
+
+
     }
 }

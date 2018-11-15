@@ -9,6 +9,6 @@ namespace UniMeetUpApplication.Model.Interfaces
     public interface ILoginModel
     {
         bool Validate_Email_and_Password(UserForLogin userForLogin);
-        User getAllUserData();
+        User getAllUserData(string email);
     }
 }
