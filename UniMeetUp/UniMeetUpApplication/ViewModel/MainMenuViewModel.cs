@@ -130,6 +130,9 @@ namespace UniMeetUpApplication.ViewModel
                        }));
             }
         }
+
+
+
         #endregion
     }
 }
