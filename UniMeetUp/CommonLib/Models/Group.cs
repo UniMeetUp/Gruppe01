@@ -14,6 +14,6 @@ namespace CommonLib.Models
         [Required]
         public string GroupName { get; set; }
 
-        public ICollection<UserGroup> UserGroups { get; } = new List<UserGroup>();
+        public ICollection<UserGroup> UserGroups { get; set; } = new List<UserGroup>();
     }
 }
