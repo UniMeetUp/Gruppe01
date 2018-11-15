@@ -26,8 +26,6 @@ namespace UniMeetUpApplication.ViewModel
 
         }
 
-        
-
         public UserControl CurrentPage
         {
             get { return _currentPage; }
@@ -83,7 +81,7 @@ namespace UniMeetUpApplication.ViewModel
             if (_loginModel.Validate_Email_and_Password(userForLogin))
             {
 
-                //_loginModel.getAllUserData();
+                // _loginModel.getAllUserData();
                 //((MasterViewModel)App.Current.MainWindow.DataContext).User = _loginModel.getAllUserData();
 
                 // Problem Fixed!!
