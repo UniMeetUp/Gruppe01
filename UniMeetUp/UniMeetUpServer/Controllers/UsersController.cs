@@ -51,6 +51,7 @@ namespace UniMeetUpServer.Controllers
             return Ok(user);
         }
 
+
         // PUT: api/Users/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser([FromRoute] string id, [FromBody] User user)

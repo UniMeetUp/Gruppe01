@@ -24,21 +24,16 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         public  HttpStatusCode Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
         {
-            //Do something
-            
-
-            //HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", userForLogin);
-
+            //HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", userForLogin); DUER IKKE!!!!!
             var response = client.PostAsJsonAsync("api/Users/login", userForLogin).Result;
-
-
+            
             return response.StatusCode;
         }
 
         public async Task<string> Get_all_user_data_from_database()
         {
             string str =
-                await client.GetStringAsync("");
+                await client.GetStringAsync("api/Users/");
 
             return str;
         }

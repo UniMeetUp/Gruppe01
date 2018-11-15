@@ -83,6 +83,7 @@ namespace UniMeetUpApplication.ViewModel
             if (_loginModel.Validate_Email_and_Password(userForLogin))
             {
 
+                //_loginModel.getAllUserData();
                 //((MasterViewModel)App.Current.MainWindow.DataContext).User = _loginModel.getAllUserData();
 
                 // Problem Fixed!!
