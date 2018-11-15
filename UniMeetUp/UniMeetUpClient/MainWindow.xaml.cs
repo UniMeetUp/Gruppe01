@@ -86,6 +86,8 @@ namespace UniMeetUpClient
             {
                 MessageList.Items.Add(exception.Message);
             }
+
+            await connection.InvokeAsync("JoinGroup", 1);
         }
 
         private async void SendBtnEvent(object sender, RoutedEventArgs e)

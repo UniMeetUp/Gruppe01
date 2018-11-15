@@ -20,6 +20,6 @@ namespace UniMeetUpApplication.Model
         // The string is for the group name
         public List<Group> groups = new List<Group>();
 
-        public Groups groupps = new Groups();
+        
        }
 }
