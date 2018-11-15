@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CommonLib.Models
 {
-    public class UserGroup : DbContext
+    public class UserGroup 
     {
         public int GroupId { get; set; }
         public Group Group { get; set; }
