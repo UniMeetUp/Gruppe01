@@ -37,18 +37,17 @@ namespace UniMeetUpApplication.View
 
             //  MyWebBrowser.Navigate(uri);
             //}
-            var mapsFile = Properties.Resources.ApplicationGoogleMaps;
-
-            if (File.Exists("pack://application:,,,/GoogleMapsWebsite/ApplicationGoogleMaps.html"))
+            
+            if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
             {
 
-                Uri uri = new Uri("pack://application:,,,/GoogleMapsWebsite/ApplicationGoogleMaps.html");
+                Uri uri = new Uri(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"));
 
               MyWebBrowser.Navigate(uri);
             }
             else
             {
-               // MessageBox.Show("File not found");
+                MessageBox.Show("File not found:");
             }
 
            
