@@ -32,8 +32,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         public async Task<string> Get_all_user_data_from_database()
         {
-            string str =
-                await client.GetStringAsync("api/Users/");
+            string str = await client.GetStringAsync("api/Users/");
 
             return str;
         }
@@ -49,6 +48,13 @@ namespace UniMeetUpApplication.ServerAccessLayer
             
             //Do something
             return false;
+        }
+
+        public List<string> GetMessagesFromGroupInDatabase(int groupId)
+        {
+
+
+            return new List<string>();
         }
     }
 }

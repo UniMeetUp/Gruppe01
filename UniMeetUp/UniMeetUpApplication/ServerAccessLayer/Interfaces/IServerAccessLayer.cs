@@ -15,5 +15,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
         void Create_Account_In_Database(UserForCreateAccount userForCreateAccount);
         bool Check_In_Database_If_Email_Is_Already_In_Use(string username);
         Task<string> Get_all_user_data_from_database();
+
+        List<string> GetMessagesFromGroupInDatabase(int groupId);
     }
 }
