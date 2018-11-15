@@ -46,15 +46,15 @@ namespace UniMeetUpServer.Hubs
         public async Task AddUserToGroupViaUserGroup(string emailAddress, int groupId)
         {
             //Create new UserGroup
-            UserGroup UserGroup = new UserGroup();
+            UserGroup userGroup = new UserGroup();
 
             //Set the UserGroups Composite key, made up of current users emailaddress and newly created groups ID
-            UserGroup.EmailAddress = emailAddress;
-            UserGroup.GroupId = groupId;
+            userGroup.EmailAddress = emailAddress;
+            userGroup.GroupId = groupId;
 
             //Add the reference to Usergroup collections in User and Group
-            UserGroup.User.UserGroups.Add(UserGroup);
-            UserGroup.Group.UserGroups.Add(UserGroup);
+            userGroup.User.UserGroups.Add(userGroup);
+            userGroup.Group.UserGroups.Add(userGroup);
         }
 
         public async Task LeaveGroup(int groupId)
