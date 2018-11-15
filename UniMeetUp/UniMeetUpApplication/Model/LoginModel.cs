@@ -49,6 +49,8 @@ namespace UniMeetUpApplication.Model
                    //user.emailAdresse = json.GetValue("Email").ToString();
                }
 
+            
+
             //user.groups = json.GetValue("groups").ToList();
 
             return user;

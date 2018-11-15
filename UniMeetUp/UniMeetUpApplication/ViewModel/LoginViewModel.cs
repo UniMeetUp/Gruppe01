@@ -26,8 +26,6 @@ namespace UniMeetUpApplication.ViewModel
 
         }
 
-        
-
         public UserControl CurrentPage
         {
             get { return _currentPage; }

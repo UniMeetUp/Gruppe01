@@ -10,7 +10,7 @@
         Icon="NewIco.ico"
         
         
-        Height="500" Width="800"
+        Height="600" Width="1200"
         DataContext="{StaticResource MasterViewModel}"
         >
     <!--Window dataContext can be acces through recursion parrent finding by tag = "Window"-->
