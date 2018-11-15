@@ -33,12 +33,28 @@ namespace UniMeetUpServer.Hubs
             return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);
         }
 
+        //Joing a group SignalR style.
         public async Task JoinGroup(int groupId)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupId.ToString());
 
             System.Console.WriteLine($"Client joined room: {groupId.ToString()}");
             //return Groups.Add(Context.ConnectionId, roomName);
+        }
+
+        //Adding a User to a Group on the DB.
+        public async Task AddUserToGroupViaUserGroup(string emailAddress, int groupId)
+        {
+            //Create new UserGroup
+            UserGroup UserGroup = new UserGroup();
+
+            //Set the UserGroups Composite key, made up of current users emailaddress and newly created groups ID
+            UserGroup.EmailAddress = emailAddress;
+            UserGroup.GroupId = groupId;
+
+            //Add the reference to Usergroup collections in User and Group
+            UserGroup.User.UserGroups.Add(UserGroup);
+            UserGroup.Group.UserGroups.Add(UserGroup);
         }
 
         public async Task LeaveGroup(int groupId)
