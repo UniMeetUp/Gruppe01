@@ -20,7 +20,7 @@ namespace UniMeetUpApplication.Model
 
         public bool Validate_Email_and_Password(UserForLogin userForLogin)
         {
-            if (_serverAccessLayer.Check_if_Email_and_Password_is_in_database(userForLogin).Result.StatusCode == HttpStatusCode.OK)
+            if (_serverAccessLayer.Check_if_Email_and_Password_is_in_database(userForLogin) == HttpStatusCode.OK)
             {
                 return true;
             }
