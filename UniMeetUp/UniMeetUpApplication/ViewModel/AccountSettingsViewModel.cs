@@ -8,5 +8,6 @@ namespace UniMeetUpApplication.ViewModel
 {
     class AccountSettingsViewModel
     {
+        //HelloToRasmusBranch
     }
 }
