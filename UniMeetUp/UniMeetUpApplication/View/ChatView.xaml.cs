@@ -49,7 +49,7 @@ namespace UniMeetUpApplication.View
 
 
 
-            MessageList.IsEnabled = true;
+            //MessageList.IsEnabled = true;
         }
 
         private async void Connect()

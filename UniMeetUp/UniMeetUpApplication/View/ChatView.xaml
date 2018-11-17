@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="55"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBox Name="MessageTextBox" Grid.Column="0" IsEnabled="False" TextWrapping="Wrap" KeyDown="MessageTextBox_OnKeyDown"></TextBox>
+            <TextBox Name="MessageTextBox" Grid.Column="0" TextWrapping="Wrap" KeyDown="MessageTextBox_OnKeyDown"></TextBox>
             <Button Name="SendFileBtn" Content="Send file" Grid.Column="1" Click="SendFileBtnEvent"></Button>
         </Grid>
 
