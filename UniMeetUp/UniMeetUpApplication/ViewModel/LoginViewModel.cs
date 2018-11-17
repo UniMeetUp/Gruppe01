@@ -23,7 +23,7 @@ namespace UniMeetUpApplication.ViewModel
         private INotificationService _notificationService = new NotificationService();
         public LoginViewModel()
         {
-
+            
         }
 
         public UserControl CurrentPage

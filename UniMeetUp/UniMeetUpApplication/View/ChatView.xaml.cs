@@ -33,6 +33,7 @@ namespace UniMeetUpApplication.View
         public ChatView()
         {
             InitializeComponent();
+
             connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:44364/chatHub")
                 .AddMessagePackProtocol()
@@ -45,6 +46,10 @@ namespace UniMeetUpApplication.View
             };
 
             Connect();
+
+
+
+            //MessageList.IsEnabled = true;
         }
 
         private async void Connect()
@@ -54,8 +59,9 @@ namespace UniMeetUpApplication.View
                 this.Dispatcher.Invoke(() =>
                 {
                     //String that are is displayed in listbox -> should be changed to displayname
-                    var newMessage = $"{emailAddress}: {message}";
+                    var newMessage = $"{emailAddress}: {message}\n";
                     MessageList.AppendText(newMessage);
+                    MessageList.ScrollToEnd();
                 });
             });
 
@@ -63,7 +69,7 @@ namespace UniMeetUpApplication.View
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    MessageList.AppendText("File received");
+                    MessageList.AppendText("File received\n");
 
                     Directory.CreateDirectory(storageDir);
                     File.WriteAllBytes(System.IO.Path.Combine(storageDir, file.FileHeaders), file.FileBinary);
@@ -84,9 +90,10 @@ namespace UniMeetUpApplication.View
             try
             {
                 await connection.StartAsync();
-                MessageList.AppendText("Connection started");
+                MessageList.AppendText("Connection started\n");
                 //ConnectBtn.IsEnabled = false;
-                SendBtn.IsEnabled = true;
+                //SendBtn.IsEnabled = true;
+
             }
             catch (Exception exception)
             {
@@ -141,7 +148,7 @@ namespace UniMeetUpApplication.View
 
         private void MessageTextBox_OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Return)
+            if (e.Key == Key.Return && MessageTextBox.Text != "")
             {
                 SendMessage();
             }
