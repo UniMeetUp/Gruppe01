@@ -30,7 +30,7 @@
 
    
     <Label Grid.Row="0" Grid.Column="0">Display name:</Label>
-    <TextBox Grid.Row="0" Grid.Column="1"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"></TextBox>
 
 
         <Grid.Resources>
