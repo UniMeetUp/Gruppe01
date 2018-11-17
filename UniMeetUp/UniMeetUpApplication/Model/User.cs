@@ -13,8 +13,9 @@ namespace UniMeetUpApplication.Model
     {
         public User()
         {
+            _groups = new Groups();
+            //_groups.Add(new Group("TESTGRUPPE", 99));
             
-
         }
 
         private string _displayName;
@@ -27,13 +28,28 @@ namespace UniMeetUpApplication.Model
             }
             get { return _displayName; }
         }
-
-
+        
         public string emailAdresse { set; get; }
         public string password { set; get; }
 
         // The string is for the group name
-        public List<Group> groups = new List<Group>();
+        //private List<Group> _groups;
+        //public List<Group> Groups
+        //{
+        //    get { return _groups; }
+        //    set { _groups = value; OnPropertyChanged("Groups");}
+        //}
+
+        public Groups _groups;
+
+        public Groups Groups
+        {
+            get { return _groups;}
+            set { _groups = value; OnPropertyChanged("Groups"); }
+        }
+        
+        
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -42,6 +58,7 @@ namespace UniMeetUpApplication.Model
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
         }
     }
 }

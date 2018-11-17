@@ -35,8 +35,7 @@ namespace UniMeetUpApplication.Model
         {
             // making a reference to the masterViewModel user object
             User user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
-
-        
+            
                var userStr = _serverAccessLayer.Get_user_from_database(email);
                var groupStr = _serverAccessLayer.Get_groups_for_specific_user(email);
 
@@ -44,20 +43,30 @@ namespace UniMeetUpApplication.Model
                {
                    JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));JObject.Parse(userStr.ToString());
                    JArray jsonGroup = new JArray(JArray.Parse(groupStr.ToString())); 
-
-                   //user.displayName = jsonUser.GetValue("displayName").ToString();
-                   user.emailAdresse = jsonUser.GetValue("emailAddress").ToString();
-
-                   
-                   //user.displayName = json.GetValue("displayName").ToString();
-                   //user.emailAdresse = json.GetValue("Email").ToString();
+                
+                   addDisplaynameAndEmailToCurrentUser(jsonUser, user);
+                   addGroupsToCurrentuser(jsonGroup, user);
                }
-
-            
-
-            //user.groups = json.GetValue("groups").ToList();
-
             return user;
         }
+
+        #region HelperFunctions
+
+        private void addGroupsToCurrentuser(JArray jsonGroup, User user)
+        {
+            for (int i = 0; i < jsonGroup.Count; i++)
+            {
+                user.Groups.Add(new Group(jsonGroup[i].ToObject<JObject>().GetValue("groupName").ToString(),
+                    (int)jsonGroup[i].ToObject<JObject>().GetValue("groupId")));
+            }
+        }
+
+        private void addDisplaynameAndEmailToCurrentUser(JObject jsonUser, User user)
+        {
+            user.DisplayName = jsonUser.GetValue("displayName").ToString();
+            user.emailAdresse = jsonUser.GetValue("emailAddress").ToString();
+        }
+        #endregion
+
     }
 }
