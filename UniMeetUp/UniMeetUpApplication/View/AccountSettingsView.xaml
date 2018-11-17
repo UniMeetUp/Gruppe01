@@ -29,64 +29,17 @@
         <Label Grid.Row="3" Grid.Column="0">Current password:</Label>
         <Label Grid.Row="4" Grid.Column="0">New password:</Label>
         <Label Grid.Row="5" Grid.Column="0">Repeat new password:</Label>
-        <TextBox  Grid.Row="3" Grid.Column="1" TextChanged="validateInput" Name="currentPassword" Text="Type current password..." Foreground="#FFC6C8D0" GotFocus="CurrentPasswordHasFocus" LostFocus="CurrentPasswordHasLostFocus"/>
-        <TextBox  Grid.Row="4" Grid.Column="1" Name="newPassword" TextChanged="NewPassword_OnTextChanged">
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Type your new password..."  Foreground="LightGray" />
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-        <TextBox  Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" TextChanged="NewPasswordRepeat_OnTextChanged">
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Repeat your new password..."  Foreground="LightGray" />
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
+        <TextBox  Grid.Row="3" Grid.Column="1" Name="currentPassword" TextChanged="validateInput"/>
+       
 
-   
-    <Label Grid.Row="0" Grid.Column="0">Display name:</Label>
+        <PasswordBox Grid.Row="4" Grid.Column="1" Name="newPassword" PasswordChanged="newPasswordChanged"/>
+        <PasswordBox Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" PasswordChanged="repeatPasswordChanged"/>
+
+        
+        <Label Grid.Row="5" Grid.Column="2" Name="hiddenNew" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
+        <Label Grid.Row="4" Grid.Column="2" Name="hiddenRe" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
+
+        <Label Grid.Row="0" Grid.Column="0">Display name:</Label>
         <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"></TextBox>
 
         <Grid Grid.Row="8" ShowGridLines="True">
@@ -119,6 +72,9 @@
                 <Setter Property="Margin" Value="5"/>
             </Style>
             <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type PasswordBox}">
                 <Setter Property="Margin" Value="5"/>
             </Style>
 

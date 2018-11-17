@@ -44,58 +44,118 @@ namespace UniMeetUpApplication.View
                 currentPassword.BorderBrush = System.Windows.Media.Brushes.Red;
             }
         }
+        
 
+      
 
-        private void NewPasswordRepeat_OnTextChanged(object sender, TextChangedEventArgs e)
+        private void newPasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (newPasswordRepeat.Text == newPassword.Text && newPassword.Text == newPasswordRepeat.Text)
+            if (newPassword.Password == newPasswordRepeat.Password &&  newPasswordRepeat.Password == newPassword.Password)
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
+                hiddenRe.Opacity = 0;
+                hiddenNew.Opacity = 0;
             }
             else
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
+                hiddenRe.Opacity = 100;
+                hiddenNew.Opacity = 100;
             }
         }
 
-        private void NewPassword_OnTextChanged(object sender, TextChangedEventArgs e)
+        private void repeatPasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (newPasswordRepeat.Text == newPassword.Text && newPassword.Text == newPasswordRepeat.Text)
+            if (newPasswordRepeat.Password == newPassword.Password && newPassword.Password == newPasswordRepeat.Password)
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
+                hiddenRe.Opacity = 0;
+                hiddenNew.Opacity = 0;
             }
             else
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
+                hiddenRe.Opacity = 100;
+                hiddenNew.Opacity = 100;
             }
         }
 
 
 
- 
-        private void CurrentPasswordHasFocus(object sender, RoutedEventArgs e)
-        {
-            if (currentPassword.Text == "Type current password...")
-            {
-                currentPassword.Text = "";
-                currentPassword.Foreground = Brushes.Black;
 
-            }
-           
-        }
 
-        private void CurrentPasswordHasLostFocus(object sender, RoutedEventArgs e)
-        {
-            if (currentPassword.Text == "")
-            {
-                currentPassword.Text = "Type current password...";
-                currentPassword.Foreground = Brushes.LightGray;
 
-            }
-        }
+
+        //private void CurrentPasswordHasFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (currentPassword.Text == "Type current password...")
+        //    {
+        //        currentPassword.Text = "";
+        //        currentPassword.Foreground = Brushes.Black;
+
+        //    }
+
+        //}
+
+        //private void CurrentPasswordHasLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (currentPassword.Text == "")
+        //    {
+        //        currentPassword.Text = "Type current password...";
+        //        currentPassword.Foreground = Brushes.LightGray;
+
+        //    }
+        //}
+
+        //private void NewPasswordLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (newPassword.Text == "")
+        //    {
+        //        newPassword.Text = "Type your new password...";
+        //        newPassword.Foreground = Brushes.LightGray;
+
+        //    }
+        //    
+        //}
+
+        //private void NewPasswordGotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (newPassword.Text == "Type your new password...")
+        //    {
+        //        newPassword.Text = "";
+        //        newPassword.Foreground = Brushes.Black;
+
+        //    }
+        //}
+
+        //private void RepeatNewPasswordGotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (newPasswordRepeat.Text == "Repeat your previously typed password...")
+        //    {
+        //        newPasswordRepeat.Text = "";
+        //        newPasswordRepeat.Foreground = Brushes.Black;
+
+        //    }
+        //}
+
+        //private void RepeatNewPasswordLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (newPasswordRepeat.Text == "")
+        //    {
+        //        newPasswordRepeat.Text = "Repeat your previously typed password...";
+        //        newPasswordRepeat.Foreground = Brushes.LightGray;
+
+        //    }
+
+        //}
+
+        //private void test(object sender, RoutedEventArgs e)
+        //{
+        //    
+        //}
     }
 }
