@@ -45,7 +45,7 @@ namespace UniMeetUpApplication.Model
                    JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));JObject.Parse(userStr.ToString());
                    JArray jsonGroup = new JArray(JArray.Parse(groupStr.ToString())); 
 
-                   user.displayName = jsonUser.GetValue("displayName").ToString();
+                   //user.displayName = jsonUser.GetValue("displayName").ToString();
                    user.emailAdresse = jsonUser.GetValue("emailAddress").ToString();
 
                    
