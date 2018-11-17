@@ -165,8 +165,7 @@
         <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="59*"/>
-                <ColumnDefinition Width="141*"/>
-            </Grid.ColumnDefinitions>
+              </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
