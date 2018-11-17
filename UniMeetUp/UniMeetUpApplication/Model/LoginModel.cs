@@ -42,7 +42,7 @@ namespace UniMeetUpApplication.Model
 
            var user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
 
-            user.displayName = json.GetValue("displayName").ToString();
+            user.DisplayName = json.GetValue("displayName").ToString();
             user.emailAdresse = json.GetValue("Email").ToString();
 
             

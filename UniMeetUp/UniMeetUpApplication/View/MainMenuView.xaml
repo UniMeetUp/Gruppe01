@@ -37,6 +37,7 @@
             <view:MapsView DataContext="{Binding}"/>
         </DataTemplate>
 
+
         <view:MapsView x:Key="MapV"></view:MapsView>
         <view:CreateAccountView x:Key="CreateAccountV"></view:CreateAccountView>
         <viewModel:MainMenuViewModel x:Key="MainMenuViewModel"></viewModel:MainMenuViewModel>
@@ -167,6 +168,8 @@
             </Grid.RowDefinitions>
 
             <!--Labels:-->
+           
+
             <ListBox Grid.Row="2" Grid.Column="0">
                 <ListBoxItem Content="Group 1"></ListBoxItem>
                 <ListBoxItem Content="Group 2"></ListBoxItem>
@@ -197,7 +200,7 @@
     <!--Display name-->
     
     <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-        <Label>Display name</Label>
+            <Label Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"></Label>
     </StackPanel>
     
     <!--User options-->
