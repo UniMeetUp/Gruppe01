@@ -236,6 +236,7 @@
     <Compile Include="Model\Interfaces\ILoginModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\OtherUsers.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserForLogin.cs" />
     <Compile Include="Model\UserForCreateAccount.cs" />

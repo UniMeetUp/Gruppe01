@@ -62,6 +62,7 @@ namespace UniMeetUpApplication.Model
         //  the string is the email of the user/member
         //private Dictionary<string, User> users;
 
+        #region NotifypropertyChanged Impl
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -71,6 +72,10 @@ namespace UniMeetUpApplication.Model
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
+
+        #endregion
+
+
 
     }
 }

@@ -14,7 +14,7 @@ namespace UniMeetUpApplication.Model
         public User()
         {
             _groups = new Groups();
-            _groups.Add(new Group("TESTGRUPPE", 99));
+            //_groups.Add(new Group("TESTGRUPPE", 99));
             
         }
 
@@ -28,8 +28,7 @@ namespace UniMeetUpApplication.Model
             }
             get { return _displayName; }
         }
-
-
+        
         public string emailAdresse { set; get; }
         public string password { set; get; }
 
