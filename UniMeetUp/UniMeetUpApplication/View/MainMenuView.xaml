@@ -178,7 +178,7 @@
 
             <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0" 
                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" 
-                     IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" Grid.ColumnSpan="2" 
+                     IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" Grid.ColumnSpan="2"
                      >
 
             </ListBox>
@@ -194,7 +194,7 @@
                     </Button>
                 </StackPanel>
             </DockPanel>
-            <Label Name="lNoCurrentGroups" Grid.Row="1" Content="No current groups" Visibility="Hidden" Grid.ColumnSpan="2"></Label>
+            <!--<Label Name="lNoCurrentGroups" Grid.Row="1" Content="No current groups" Visibility="Hidden" Grid.ColumnSpan="2"></Label>-->
             <!--DockPanel Grid.Row="0" Grid.Column="0">
                 
                 
