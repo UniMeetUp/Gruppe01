@@ -168,13 +168,16 @@
             </Grid.RowDefinitions>
 
             <!--Labels:-->
-           
 
-            <ListBox Grid.Row="2" Grid.Column="0">
-                <ListBoxItem Content="Group 1"></ListBoxItem>
+
+            <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0" ItemsSource=
+                     "{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" 
+                     IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" 
+                     >
+                <!--<ListBoxItem Content="Group 1"></ListBoxItem>
                 <ListBoxItem Content="Group 2"></ListBoxItem>
                 <ListBoxItem Content="Group 3"></ListBoxItem>
-                <ListBoxItem Content="Group 4"></ListBoxItem>
+                <ListBoxItem Content="Group 4"></ListBoxItem>-->
             </ListBox>
             <!--Labels:-->
             <DockPanel LastChildFill="False">

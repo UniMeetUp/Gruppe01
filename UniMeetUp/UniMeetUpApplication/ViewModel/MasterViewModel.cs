@@ -19,6 +19,7 @@ namespace UniMeetUpApplication.ViewModel
         
         private User _user = new User();
         
+        
         public User User
         {
             get { return _user; }
