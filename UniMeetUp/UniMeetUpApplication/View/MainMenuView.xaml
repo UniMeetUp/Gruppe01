@@ -130,33 +130,7 @@
         <!--Search field-->
         <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
 
-        <TextBox Grid.Column="0" Grid.Row="0" Name="txbSearch" >
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Search..."  Foreground="LightGray" />
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
+        <TextBox Grid.Column="0" Grid.Row="0" Name="txbSearch" Text="Search..." Foreground="#FFD2CCCC" LostFocus="searchLostFocus" GotFocus="searchGotFocus" ></TextBox>
 
 
 
@@ -170,6 +144,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--Labels:-->
@@ -181,6 +156,10 @@
                      >
 
             </ListBox>
+            <StatusBar Grid.Row="3" Background="AliceBlue">
+                <StatusBarItem Content="Number of groups:" Opacity="0.5" ></StatusBarItem>
+                <StatusBarItem Name="groupCount" Opacity="0.5" Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.Count}"></StatusBarItem>
+            </StatusBar>
             <!--Labels:-->
             <DockPanel LastChildFill="False" Grid.ColumnSpan="2">
                 <Label DockPanel.Dock="Left">Groups:</Label>
@@ -269,7 +248,7 @@
         </StackPanel>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBox}">
-                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Margin" Value="5"/>
             </Style>
             <Style TargetType="{x:Type Viewbox}">
                 <Setter Property="Margin" Value="3"/>

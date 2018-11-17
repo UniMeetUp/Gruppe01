@@ -54,5 +54,25 @@ namespace UniMeetUpApplication.View
                 //something
             }
         }
+
+        private void searchLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txbSearch.Text == "")
+            {
+                txbSearch.Text = "Search...";
+                txbSearch.Foreground = Brushes.LightGray;
+
+            }
+        }
+
+        private void searchGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txbSearch.Text == "Search...")
+            {
+                txbSearch.Text = "";
+                txbSearch.Foreground = Brushes.Black;
+
+            }
+        }
     }
 }
