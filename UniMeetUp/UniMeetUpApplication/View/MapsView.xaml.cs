@@ -45,10 +45,10 @@ namespace UniMeetUpApplication.View
 
               MyWebBrowser.Navigate(uri);
             }
-            else
-            {
-                MessageBox.Show("File not found:");
-            }
+            //else
+            //{
+            //    MessageBox.Show("File not found:");
+            //}
         }
 
 

@@ -231,6 +231,7 @@
     <Compile Include="Model\CreateAccountModel.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Groups.cs" />
+    <Compile Include="Model\Files.cs" />
     <Compile Include="Model\Interfaces\ICreateAccountModel.cs" />
     <Compile Include="Model\Interfaces\ILoginModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
