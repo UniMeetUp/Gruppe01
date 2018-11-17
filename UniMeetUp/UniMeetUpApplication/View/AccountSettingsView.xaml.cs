@@ -73,5 +73,29 @@ namespace UniMeetUpApplication.View
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
             }
         }
+
+
+
+ 
+        private void CurrentPasswordHasFocus(object sender, RoutedEventArgs e)
+        {
+            if (currentPassword.Text == "Type current password...")
+            {
+                currentPassword.Text = "";
+                currentPassword.Foreground = Brushes.Black;
+
+            }
+           
+        }
+
+        private void CurrentPasswordHasLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (currentPassword.Text == "")
+            {
+                currentPassword.Text = "Type current password...";
+                currentPassword.Foreground = Brushes.LightGray;
+
+            }
+        }
     }
 }

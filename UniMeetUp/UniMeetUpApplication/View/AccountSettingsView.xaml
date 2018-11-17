@@ -29,9 +29,7 @@
         <Label Grid.Row="3" Grid.Column="0">Current password:</Label>
         <Label Grid.Row="4" Grid.Column="0">New password:</Label>
         <Label Grid.Row="5" Grid.Column="0">Repeat new password:</Label>
-        <TextBox  Grid.Row="3" Grid.Column="1" TextChanged="validateInput" Name="currentPassword">
-            
-        </TextBox>
+        <TextBox  Grid.Row="3" Grid.Column="1" TextChanged="validateInput" Name="currentPassword" Text="Type current password..." Foreground="#FFC6C8D0" GotFocus="CurrentPasswordHasFocus" LostFocus="CurrentPasswordHasLostFocus"/>
         <TextBox  Grid.Row="4" Grid.Column="1" Name="newPassword" TextChanged="NewPassword_OnTextChanged">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
