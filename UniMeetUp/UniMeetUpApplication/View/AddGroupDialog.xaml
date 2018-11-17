@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UniMeetUpApplication.View.Dialogs"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Title="Add group" Height="70" Width="320">
     <Grid>

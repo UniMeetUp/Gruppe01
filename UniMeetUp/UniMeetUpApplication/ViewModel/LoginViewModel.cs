@@ -70,9 +70,7 @@ namespace UniMeetUpApplication.ViewModel
         public void Login(object parameter)
         {
             var values = (object[])parameter;
-
-
-
+            
             string Email = values[0].ToString();
             string Password = values[1].ToString();
 
@@ -82,9 +80,7 @@ namespace UniMeetUpApplication.ViewModel
             {
 
                 _loginModel.getAllUserData(userForLogin.Email);
-                //((MasterViewModel)App.Current.MainWindow.DataContext).User = _loginModel.getAllUserData();
-
-                // Problem Fixed!!
+               
                 var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
                 viewModel.MainPageCommand.Execute(null);
             }

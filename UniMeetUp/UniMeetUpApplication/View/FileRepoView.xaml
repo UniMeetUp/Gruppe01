@@ -6,7 +6,76 @@
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
+
+
+
     <Grid Background="White">
-        <TextBox  FontSize="50" HorizontalAlignment="Left" Height="201" Margin="41,124,0,0" TextWrapping="Wrap" Text="THIS IS FILE REPO  VIEW" VerticalAlignment="Top" Width="409"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Column="0" Grid.Row="0"  >
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Search for file..."  Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            <Setter Property="Margin" Value="5"></Setter>
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            <Setter Property="Margin" Value="5"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Margin" Value="5"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <DataGrid Grid.Row="1" IsReadOnly="True" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id:" Binding="{Binding Path='UserId'}"></DataGridTextColumn>
+                <DataGridTextColumn Header="File name:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="From user:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date posted:" Binding="{Binding Path='TimeStamp'}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Download"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+
+        </DataGrid>
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+
+            <Style TargetType="{x:Type ListBox}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type DataGridRow}">
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+
+        </Grid.Resources>
     </Grid>
+
 </UserControl>

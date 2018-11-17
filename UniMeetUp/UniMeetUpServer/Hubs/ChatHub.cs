@@ -43,19 +43,19 @@ namespace UniMeetUpServer.Hubs
         }
 
         //Adding a User to a Group on the DB.
-        public async Task AddUserToGroupViaUserGroup(string emailAddress, int groupId)
-        {
-            //Create new UserGroup
-            UserGroup userGroup = new UserGroup();
-
-            //Set the UserGroups Composite key, made up of current users emailaddress and newly created groups ID
-            userGroup.EmailAddress = emailAddress;
-            userGroup.GroupId = groupId;
-
-            //Add the reference to Usergroup collections in User and Group
-            userGroup.User.UserGroups.Add(userGroup);
-            userGroup.Group.UserGroups.Add(userGroup);
-        }
+        //public async Task AddUserToGroupViaUserGroup(string emailAddress, int groupId)
+        //{
+        //    //Create new UserGroup
+        //    UserGroup userGroup = new UserGroup();
+        //
+        //    //Set the UserGroups Composite key, made up of current users emailaddress and newly created groups ID
+        //    userGroup.EmailAddress = emailAddress;
+        //    userGroup.GroupId = groupId;
+        //
+        //    //Add the reference to Usergroup collections in User and Group
+        //    userGroup.User.UserGroups.Add(userGroup);
+        //    userGroup.Group.UserGroups.Add(userGroup);
+        //}
 
         public async Task LeaveGroup(int groupId)
         {

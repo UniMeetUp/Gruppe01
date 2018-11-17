@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
     <Reference Include="MessagePack, Version=1.7.3.4, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
       <HintPath>..\packages\MessagePack.1.7.3.4\lib\net45\MessagePack.dll</HintPath>
     </Reference>
@@ -210,6 +213,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -231,13 +237,16 @@
     <Compile Include="Model\CreateAccountModel.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Groups.cs" />
+    <Compile Include="Model\Files.cs" />
     <Compile Include="Model\Interfaces\ICreateAccountModel.cs" />
     <Compile Include="Model\Interfaces\ILoginModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\OtherUsers.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserForLogin.cs" />
     <Compile Include="Model\UserForCreateAccount.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ServerAccessLayer\Interfaces\IServerAccessLayer.cs" />
     <Compile Include="ServerAccessLayer\ServerAccessLayer.cs" />
     <Compile Include="Services\Converter.cs" />

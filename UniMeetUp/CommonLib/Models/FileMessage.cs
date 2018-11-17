@@ -1,9 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CommonLib.Models
 {
-    public class FileMessage
+    public class FileMessage 
     {
+        /* FOR TESTING PURPOSES, REASONED NO ACTUAL FILES ARE IN DB */
+        public FileMessage()
+        {
+            
+        }
+        public FileMessage(string fileHeaders, string userId, int groupId)
+        {
+            FileHeaders = fileHeaders;
+            UserId = userId;
+            GroupId = groupId;
+        }
+        /* TESTING STOPS HERE */
+
         [Key]
         public int FileMessageId { get; set; }
         [Required]

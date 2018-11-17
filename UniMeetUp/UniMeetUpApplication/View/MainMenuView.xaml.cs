@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UniMeetUpApplication.View.Dialogs;
+using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.View
 {
@@ -24,7 +25,14 @@ namespace UniMeetUpApplication.View
         public MainMenuView()
         {
             InitializeComponent();
-            
+
+            // Lille test til at skrive en besked om at brugeren ikke er i nogen gruppe.
+            //if (((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.Count == 0)
+            //{
+            //    lNoCurrentGroups.Visibility = Visibility.Visible;
+            //    lbGroups.Visibility = Visibility.Hidden;
+            //}
+
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,7 +52,6 @@ namespace UniMeetUpApplication.View
             if (_dialogBox.ShowDialog() == true)
             {
                 //something
-
             }
         }
     }
