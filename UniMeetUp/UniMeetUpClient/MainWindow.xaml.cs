@@ -87,7 +87,7 @@ namespace UniMeetUpClient
                 MessageList.Items.Add(exception.Message);
             }
 
-            await connection.InvokeAsync("JoinGroup", 1);
+            await connection.InvokeAsync("JoinGroup", 8);
         }
 
         private async void SendBtnEvent(object sender, RoutedEventArgs e)
@@ -100,7 +100,7 @@ namespace UniMeetUpClient
             try
             { 
                 //Calls method in hub - with the three arguments: email, groupid and message
-                await connection.InvokeAsync("SendMessage", "anne@Petersen.dk", 1, MessageTextBox.Text);
+                await connection.InvokeAsync("SendMessage", "anne@Petersen.dk", 8, MessageTextBox.Text);
                 MessageTextBox.Clear();
                 MessageTextBox.Focus();
             }
@@ -124,7 +124,7 @@ namespace UniMeetUpClient
                 };
                 try
                 {
-                    await connection.InvokeAsync("FileMessage", "T", 1, file);
+                    await connection.InvokeAsync("FileMessage", "T", 8, file);
                 }
                 catch (Exception exception)
                 {
