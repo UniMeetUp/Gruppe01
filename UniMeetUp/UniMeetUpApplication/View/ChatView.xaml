@@ -7,11 +7,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
     <Grid Background="White">
-        <StackPanel>
-            <RichTextBox Name="MessageList" Height="159"></RichTextBox>
-            <TextBox Name="MessageTextBox" KeyDown="MessageTextBox_OnKeyDown"></TextBox>
-            <Button Name="SendBtn" Content="Send" Click="SendBtnEvent"></Button>
-            <Button Name="SendFileBtn" Content="Send file" Click="SendFileBtnEvent"></Button>
-        </StackPanel>
-         </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="55"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="MessageTextBox" Grid.Column="0" IsEnabled="False" TextWrapping="Wrap" KeyDown="MessageTextBox_OnKeyDown"></TextBox>
+            <Button Name="SendFileBtn" Content="Send file" Grid.Column="1" Click="SendFileBtnEvent"></Button>
+        </Grid>
+
+        <RichTextBox Name="MessageList" Grid.Row="0"  VerticalScrollBarVisibility="Visible"></RichTextBox>
+        <!--<Button Name="SendBtn" Content="Send" Click="SendBtnEvent"></Button>-->
+        
+    </Grid>
 </UserControl>

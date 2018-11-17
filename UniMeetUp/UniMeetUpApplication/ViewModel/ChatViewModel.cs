@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace UniMeetUpApplication.ViewModel
 {
-    class ChatViewModel
+    public class ChatViewModel
     {
+        public ChatViewModel()
+        {
+            
+        }
     }
 }
