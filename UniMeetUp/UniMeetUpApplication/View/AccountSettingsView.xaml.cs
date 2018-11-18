@@ -50,7 +50,8 @@ namespace UniMeetUpApplication.View
 
         private void newPasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (newPassword.Password == newPasswordRepeat.Password &&  newPasswordRepeat.Password == newPassword.Password)
+            if (newPassword.Password == newPasswordRepeat.Password &&  newPasswordRepeat.Password == newPassword.Password
+                && newPassword.Password != "")
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
@@ -59,7 +60,7 @@ namespace UniMeetUpApplication.View
                 hiddenRe.Opacity = 0;
                 hiddenNew.Opacity = 0;
             }
-            else
+            else if (newPassword.Password != "" || newPassword.Password != newPasswordRepeat.Password)
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -72,7 +73,8 @@ namespace UniMeetUpApplication.View
 
         private void repeatPasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (newPasswordRepeat.Password == newPassword.Password && newPassword.Password == newPasswordRepeat.Password)
+            if (newPasswordRepeat.Password == newPassword.Password && newPassword.Password == newPasswordRepeat.Password
+                && newPasswordRepeat.Password != "")
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
@@ -80,7 +82,7 @@ namespace UniMeetUpApplication.View
                 hiddenNew.Opacity = 0;
                 SaveBttn.IsEnabled = true;
             }
-            else
+            else if (newPasswordRepeat.Password != "" || newPassword.Password != newPasswordRepeat.Password)
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -91,5 +93,77 @@ namespace UniMeetUpApplication.View
             }
         }
 
+        private void currentPasswordLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (currentPassword.Text == "")
+            {
+                currentPassword.BorderBrush = System.Windows.Media.Brushes.LightGray;
+            }
+            else if (newPassword.Password == "" && newPasswordRepeat.Password == "")
+            {
+                newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Gray;
+                hiddenNew.Opacity = 0;
+                newPassword.BorderBrush = System.Windows.Media.Brushes.Gray;
+                hiddenRe.Opacity = 0;
+            }
+        }
+
+        private void newPasswordLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (newPassword.Password == "")
+            {
+                newPassword.BorderBrush = System.Windows.Media.Brushes.Gray;
+                hiddenRe.Opacity = 0;
+
+            }
+            else if (newPassword.Password == "" && newPasswordRepeat.Password != "")
+            {
+                newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
+                newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
+
+                SaveBttn.IsEnabled = false;
+                hiddenRe.Opacity = 100;
+                hiddenNew.Opacity = 100;
+            }
+           }
+
+        private void repeatNewpasswordLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (newPasswordRepeat.Password == "")
+            {
+                newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Gray;
+                hiddenNew.Opacity = 0;
+
+            }
+            else if (newPassword.Password != "" && newPasswordRepeat.Password == "")
+            {
+                newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
+                newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
+
+                SaveBttn.IsEnabled = false;
+                hiddenRe.Opacity = 100;
+                hiddenNew.Opacity = 100;
+            }
+        }
+
+        private void newPasswordGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (newPasswordRepeat.Password == "")
+            {
+                newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Gray;
+                hiddenNew.Opacity = 0;
+            }
+
+           }
+
+        private void repeatNewPasswordGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (newPassword.Password == "")
+            {
+                newPassword.BorderBrush = System.Windows.Media.Brushes.Gray;
+                hiddenRe.Opacity = 0;
+
+            }
+          }
     }
 }

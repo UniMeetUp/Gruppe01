@@ -30,11 +30,11 @@
             <Label Grid.Row="3" Grid.Column="0">Current password:</Label>
             <Label Grid.Row="4" Grid.Column="0">New password:</Label>
             <Label Grid.Row="5" Grid.Column="0">Repeat new password:</Label>
-            <TextBox  Grid.Row="3" Grid.Column="1" Name="currentPassword" TextChanged="validateInput"/>
+            <TextBox  Grid.Row="3" Grid.Column="1" Name="currentPassword" TextChanged="validateInput" LostFocus="currentPasswordLostFocus"/>
 
 
-            <PasswordBox Grid.Row="4" Grid.Column="1" Name="newPassword" PasswordChanged="newPasswordChanged"/>
-            <PasswordBox Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" PasswordChanged="repeatPasswordChanged"/>
+            <PasswordBox Grid.Row="4" Grid.Column="1" Name="newPassword" PasswordChanged="newPasswordChanged" LostFocus="newPasswordLostFocus" GotFocus="newPasswordGotFocus"/>
+            <PasswordBox Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" PasswordChanged="repeatPasswordChanged" LostFocus="repeatNewpasswordLostFocus" GotFocus="repeatNewPasswordGotFocus"/>
 
 
             <Label Grid.Row="5" Grid.Column="2" Name="hiddenNew" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
