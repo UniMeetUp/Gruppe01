@@ -59,7 +59,7 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="2" Width="100">Save</Button>
+                <Button Grid.Column="2" Width="100" Name="SaveBttn" IsEnabled="False">Save</Button>
             </Grid>
 
 

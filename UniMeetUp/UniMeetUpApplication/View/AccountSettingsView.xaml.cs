@@ -54,6 +54,8 @@ namespace UniMeetUpApplication.View
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
+
+                SaveBttn.IsEnabled = true;
                 hiddenRe.Opacity = 0;
                 hiddenNew.Opacity = 0;
             }
@@ -61,6 +63,8 @@ namespace UniMeetUpApplication.View
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
+
+                SaveBttn.IsEnabled = false;
                 hiddenRe.Opacity = 100;
                 hiddenNew.Opacity = 100;
             }
@@ -74,11 +78,14 @@ namespace UniMeetUpApplication.View
                 newPassword.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
                 hiddenRe.Opacity = 0;
                 hiddenNew.Opacity = 0;
+                SaveBttn.IsEnabled = true;
             }
             else
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Red;
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Red;
+
+                SaveBttn.IsEnabled = false;
                 hiddenRe.Opacity = 100;
                 hiddenNew.Opacity = 100;
             }
