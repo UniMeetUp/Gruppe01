@@ -430,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
+    <Resource Include="View\Images\school.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

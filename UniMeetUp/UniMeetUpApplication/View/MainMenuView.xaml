@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
-        
-
+             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000">
+   
     <UserControl.Resources>
+        
 
         <DataTemplate DataType="{x:Type viewModel:CreateAccountViewModel}">
             <view:CreateAccountView DataContext="{Binding}"/>
@@ -116,6 +117,7 @@
     </Grid>-->
 
     <Grid Background="White" ShowGridLines="False" DataContext="{StaticResource MainMenuViewModel}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>

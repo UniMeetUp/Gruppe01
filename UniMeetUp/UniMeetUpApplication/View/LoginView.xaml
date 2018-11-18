@@ -9,6 +9,12 @@
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              mc:Ignorable="d"
              >
+    <!--<UserControl.Background>
+        --><!--<ImageBrush 
+            Stretch="None"
+            AlignmentY="Top"  ImageSource="Images/school.png"></ImageBrush>--><!--
+    </UserControl.Background>-->
+   
     <UserControl.Resources>
         <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
         <services:Converter x:Key="Converter"></services:Converter>
