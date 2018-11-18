@@ -73,16 +73,15 @@ namespace UniMeetUpApplication.ViewModel
             
             string Email = values[0].ToString();
             string Password = values[1].ToString();
-
+            
             UserForLogin userForLogin = new UserForLogin(Email, Password);
 
             if (_loginModel.Validate_Email_and_Password(userForLogin))
             {
-
-                _loginModel.getAllUserData(userForLogin.Email);
-               
                 var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
                 viewModel.MainPageCommand.Execute(null);
+                
+                _loginModel.getAllUserData(userForLogin.Email);
             }
             else
             {

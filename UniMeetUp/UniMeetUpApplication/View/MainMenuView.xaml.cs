@@ -77,7 +77,7 @@ namespace UniMeetUpApplication.View
 
         private void txbSearch_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            TextBox txtBox = sender as TextBox;
+            
             if (txbSearch.Text == "Search for group...")
                 txbSearch.Text = string.Empty;
         }
