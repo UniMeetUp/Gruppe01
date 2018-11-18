@@ -74,5 +74,12 @@ namespace UniMeetUpApplication.View
 
             }
         }
+
+        private void txbSearch_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            
+            if (txbSearch.Text == "Search for group...")
+                txbSearch.Text = string.Empty;
+        }
     }
 }

@@ -130,7 +130,7 @@
         <!--Search field-->
         <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
 
-        <TextBox Grid.Column="0" Grid.Row="0" Name="txbSearch" Text="Search for group..." Margin="5,0,5,10" Foreground="#FFD2CCCC" LostFocus="searchLostFocus" GotFocus="searchGotFocus" Background="White" ></TextBox>
+        <TextBox  Grid.Column="0" Grid.Row="0" Name="txbSearch" Text="Search for group..." Margin="5,0,5,10" Foreground="#FFD2CCCC" LostFocus="searchLostFocus" GotFocus="searchGotFocus" Background="White" GotKeyboardFocus="txbSearch_GotKeyboardFocus"></TextBox>
 
 
 
