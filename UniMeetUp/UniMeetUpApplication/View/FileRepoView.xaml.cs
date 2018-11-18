@@ -41,5 +41,25 @@ namespace UniMeetUpApplication.View
             dataGridFileRepo.ItemsSource = _files;
 
         }
+
+        private void searchGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchBoxFileRep.Text == "Search for file...")
+            {
+                searchBoxFileRep.Text = "";
+                searchBoxFileRep.Foreground = Brushes.Black;
+
+            }
+        }
+
+        private void searchLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchBoxFileRep.Text == "")
+            {
+                searchBoxFileRep.Text = "Search for file...";
+                searchBoxFileRep.Foreground = Brushes.LightGray;
+
+            }
+        }
     }
 }

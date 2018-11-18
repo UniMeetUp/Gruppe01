@@ -115,7 +115,7 @@
 
     </Grid>-->
 
-    <Grid Background="White" ShowGridLines="True" DataContext="{StaticResource MainMenuViewModel}">
+    <Grid Background="White" ShowGridLines="False" DataContext="{StaticResource MainMenuViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -130,13 +130,13 @@
         <!--Search field-->
         <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
 
-        <TextBox Grid.Column="0" Grid.Row="0" Name="txbSearch" Text="Search..." Foreground="#FFD2CCCC" LostFocus="searchLostFocus" GotFocus="searchGotFocus" ></TextBox>
+        <TextBox Grid.Column="0" Grid.Row="0" Name="txbSearch" Text="Search for group..." Margin="5,0,5,10" Foreground="#FFD2CCCC" LostFocus="searchLostFocus" GotFocus="searchGotFocus" Background="White" ></TextBox>
 
 
 
         <!--images/buttons:-->
 
-        <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="True">
+        <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="59*"/>
               </Grid.ColumnDefinitions>
@@ -161,8 +161,9 @@
                 <StatusBarItem Name="groupCount" Opacity="0.5" Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.Count}"></StatusBarItem>
             </StatusBar>
             <!--Labels:-->
+
             <DockPanel LastChildFill="False" Grid.ColumnSpan="2">
-                <Label DockPanel.Dock="Left">Groups:</Label>
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Groups:</Label>
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                     <Button Background="Transparent" BorderThickness="0" Click="Button_Click">
@@ -247,9 +248,9 @@
 
         </StackPanel>
         <Grid.Resources>
-            <Style TargetType="{x:Type TextBox}">
+            <!--<Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="5"/>
-            </Style>
+            </Style>-->
             <Style TargetType="{x:Type Viewbox}">
                 <Setter Property="Margin" Value="3"/>
             </Style>
@@ -265,8 +266,11 @@
             <Style TargetType="{x:Type Separator}">
                 <Setter Property="Margin" Value="5"/>
             </Style>
-            <Style TargetType="{x:Type StackPanel}">
-                <Setter Property="Margin" Value="0"/>
+            <Style TargetType="{x:Type ListBox}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type StatusBar}">
+                <Setter Property="Margin" Value="5"/>
             </Style>
         </Grid.Resources>
 

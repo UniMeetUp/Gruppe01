@@ -14,35 +14,12 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="33"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Grid.Column="0" Grid.Row="0"  >
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Search for file..."  Foreground="LightGray" />
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                            <Setter Property="Margin" Value="5"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
+        <TextBox Grid.Column="0" Grid.Row="0" Foreground="#FFD2CCCC" Name="searchBoxFileRep" Text="Search for file..." GotFocus="searchGotFocus" LostFocus="searchLostFocus">
+
+            
         </TextBox>
 
         <DataGrid Grid.Row="1" IsReadOnly="True" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column">
@@ -69,7 +46,7 @@
             </Style>
 
             <Style TargetType="{x:Type ListBox}">
-                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Margin" Value="0"/>
             </Style>
             <Style TargetType="{x:Type DataGridRow}">
                 <Setter Property="Margin" Value="1"/>

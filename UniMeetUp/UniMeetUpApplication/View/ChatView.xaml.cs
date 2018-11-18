@@ -153,5 +153,17 @@ namespace UniMeetUpApplication.View
                 SendMessage();
             }
         }
+
+        // coloring
+        private void ColoringGotFocus(object sender, RoutedEventArgs e)
+        {
+            MessageTextBox.Background = Brushes.AliceBlue;
+
+        }
+
+        private void ColoringLostfocus(object sender, RoutedEventArgs e)
+        {
+            MessageTextBox.Background = Brushes.White;
+        }
     }
 }

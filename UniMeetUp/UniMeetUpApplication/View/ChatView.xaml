@@ -9,20 +9,29 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="55"></ColumnDefinition>
+                <ColumnDefinition Width="25"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBox Name="MessageTextBox" Grid.Column="0" TextWrapping="Wrap" KeyDown="MessageTextBox_OnKeyDown"></TextBox>
-            <Button Name="SendFileBtn" Content="Send file" Grid.Column="1" Click="SendFileBtnEvent"></Button>
+
+            <TextBox IsReadOnly="False" Margin="0,5,5,5" Name="MessageTextBox" Grid.Column="0" TextWrapping="Wrap" KeyDown="MessageTextBox_OnKeyDown" Background="White" GotFocus="ColoringGotFocus" LostFocus="ColoringLostfocus"/>
+            <!--<Button Name="SendFileBtn" Content="Send file" Grid.Column="1" Click="SendFileBtnEvent"></Button>-->
+            <Button  BorderThickness="0" Click="SendFileBtnEvent" Grid.Column="1" >
+                <Viewbox  DockPanel.Dock="Right">
+                    <Frame Source="Images/Attach_16x.xaml">
+                        </Frame>
+                </Viewbox>
+            </Button>
+
         </Grid>
 
-        <RichTextBox Name="MessageList" Grid.Row="0"  VerticalScrollBarVisibility="Visible"></RichTextBox>
+        
+        <RichTextBox Name="MessageList" Grid.Row="0"  VerticalScrollBarVisibility="Visible" IsReadOnly="True"></RichTextBox>
         <!--<Button Name="SendBtn" Content="Send" Click="SendBtnEvent"></Button>-->
         
     </Grid>

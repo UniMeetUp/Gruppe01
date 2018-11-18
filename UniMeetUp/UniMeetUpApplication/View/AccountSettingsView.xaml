@@ -6,84 +6,86 @@
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
-    <Grid ShowGridLines="False" Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition ></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+    <Grid Background="Black">
+        <Grid ShowGridLines="False" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
 
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition ></ColumnDefinition>
-            <ColumnDefinition ></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Separator Grid.Row="1" Grid.ColumnSpan="2"></Separator>
-        <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource StyleName}" FontWeight="Bold">Change your password here:</Label>
-        <Label Grid.Row="3" Grid.Column="0">Current password:</Label>
-        <Label Grid.Row="4" Grid.Column="0">New password:</Label>
-        <Label Grid.Row="5" Grid.Column="0">Repeat new password:</Label>
-        <TextBox  Grid.Row="3" Grid.Column="1" Name="currentPassword" TextChanged="validateInput"/>
-       
-
-        <PasswordBox Grid.Row="4" Grid.Column="1" Name="newPassword" PasswordChanged="newPasswordChanged"/>
-        <PasswordBox Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" PasswordChanged="repeatPasswordChanged"/>
-
-        
-        <Label Grid.Row="5" Grid.Column="2" Name="hiddenNew" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
-        <Label Grid.Row="4" Grid.Column="2" Name="hiddenRe" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
-
-        <Label Grid.Row="0" Grid.Column="0">Display name:</Label>
-        <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"></TextBox>
-
-        <Grid Grid.Row="8" ShowGridLines="True">
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0">Log out</Button>
-            <Button Grid.Column="1" Background="#FFEFB7B7">Delete account</Button>
+            <Separator Grid.Row="1" Grid.ColumnSpan="2"></Separator>
+            <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource StyleName}" FontWeight="Bold">Change your password here:</Label>
+            <Label Grid.Row="3" Grid.Column="0">Current password:</Label>
+            <Label Grid.Row="4" Grid.Column="0">New password:</Label>
+            <Label Grid.Row="5" Grid.Column="0">Repeat new password:</Label>
+            <TextBox  Grid.Row="3" Grid.Column="1" Name="currentPassword" TextChanged="validateInput"/>
 
+
+            <PasswordBox Grid.Row="4" Grid.Column="1" Name="newPassword" PasswordChanged="newPasswordChanged"/>
+            <PasswordBox Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" PasswordChanged="repeatPasswordChanged"/>
+
+
+            <Label Grid.Row="5" Grid.Column="2" Name="hiddenNew" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
+            <Label Grid.Row="4" Grid.Column="2" Name="hiddenRe" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
+
+            <Label Grid.Row="0" Grid.Column="0">Display name:</Label>
+            <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"></TextBox>
+
+            <Grid Grid.Row="8" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0">Log out</Button>
+                <Button Grid.Column="1" Background="#FFEFB7B7">Delete account</Button>
+
+            </Grid>
+
+            <Grid Grid.Row="8" Grid.Column="2" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="2" Width="100">Save</Button>
+            </Grid>
+
+
+
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+                <Style TargetType="{x:Type Separator}">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+                <Style TargetType="{x:Type PasswordBox}">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+
+                <Style x:Key="StyleName">
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                </Style>
+            </Grid.Resources>
         </Grid>
 
-        <Grid Grid.Row="8" Grid.Column="2" ShowGridLines="False">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="2" Width="100">Save</Button>
-        </Grid>
-        
 
-
-
-        <Grid.Resources>
-            <Style TargetType="{x:Type TextBox}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            <Style TargetType="{x:Type Separator}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            <Style TargetType="{x:Type PasswordBox}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-
-            <Style x:Key="StyleName">
-                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
-          </Style>
-        </Grid.Resources>
-</Grid>
-     
-
+    </Grid>
 
 </UserControl>
