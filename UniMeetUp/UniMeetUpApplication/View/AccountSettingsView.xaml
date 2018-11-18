@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
-    <Grid Background="Black">
-        <Grid ShowGridLines="False" Background="White">
+    <Grid Background="LightGray">
+        <Grid ShowGridLines="False" Background="White" Margin="1,1,1,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>

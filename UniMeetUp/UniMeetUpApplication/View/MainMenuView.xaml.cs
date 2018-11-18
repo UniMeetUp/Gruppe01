@@ -59,7 +59,7 @@ namespace UniMeetUpApplication.View
         {
             if (txbSearch.Text == "")
             {
-                txbSearch.Text = "Search...";
+                txbSearch.Text = "Search for group...";
                 txbSearch.Foreground = Brushes.LightGray;
 
             }
@@ -67,7 +67,7 @@ namespace UniMeetUpApplication.View
 
         private void searchGotFocus(object sender, RoutedEventArgs e)
         {
-            if (txbSearch.Text == "Search...")
+            if (txbSearch.Text == "Search for group...")
             {
                 txbSearch.Text = "";
                 txbSearch.Foreground = Brushes.Black;
