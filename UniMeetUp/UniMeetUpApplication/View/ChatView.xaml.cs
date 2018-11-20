@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Annotations;
 using CommonLib.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,9 +35,6 @@ namespace UniMeetUpApplication.View
             };
 
             Connect();
-
-
-
             //MessageList.IsEnabled = true;
         }
 
@@ -100,7 +86,7 @@ namespace UniMeetUpApplication.View
                 MessageList.AppendText(exception.Message);
             }
 
-            await connection.InvokeAsync("JoinGroup", 1);
+            await connection.InvokeAsync("JoinGroup", 8);
         }
 
         private async void SendBtnEvent(object sender, RoutedEventArgs e)
@@ -113,7 +99,7 @@ namespace UniMeetUpApplication.View
             try
             {
                 //Calls method in hub - with the three arguments: email, groupid and message
-                await connection.InvokeAsync("SendMessage", "anne@Petersen.dk", 1, MessageTextBox.Text);
+                await connection.InvokeAsync("SendMessage", "anne@Petersen.dk", 8, MessageTextBox.Text);
                 MessageTextBox.Clear();
                 MessageTextBox.Focus();
             }
@@ -137,7 +123,7 @@ namespace UniMeetUpApplication.View
                 };
                 try
                 {
-                    await connection.InvokeAsync("FileMessage", "T", 1, file);
+                    await connection.InvokeAsync("FileMessage", "anne@Petersen.dk", 8, file);
                 }
                 catch (Exception exception)
                 {
