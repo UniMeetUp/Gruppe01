@@ -9,11 +9,9 @@
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              mc:Ignorable="d"
              >
-    <!--<UserControl.Background>
-        --><!--<ImageBrush 
-            Stretch="None"
-            AlignmentY="Top"  ImageSource="Images/school.png"></ImageBrush>--><!--
-    </UserControl.Background>-->
+    <UserControl.Background>
+        <ImageBrush ImageSource="Images/geometry2.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,420,420" />
+    </UserControl.Background>
    
     <UserControl.Resources>
         <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
@@ -55,7 +53,7 @@
     </UserControl.Resources>
 
 
-    <Grid Background="White" DataContext="{StaticResource LoginViewModel}">
+    <Grid  DataContext="{StaticResource LoginViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -63,7 +61,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1">
-            <Image Source="umu_logo.png" MaxWidth="400" Height="300" />
+            <Image Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
             <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com">
 
                 <TextBox.Style>
@@ -90,7 +88,7 @@
                 </TextBox.Style>
             </TextBox>
 
-            <TextBox x:Name="tbPassword" Width="253" MaxLength="16" Text="lort" />
+            <TextBox x:Name="tbPassword" Text="lort" Margin="5"/>
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 

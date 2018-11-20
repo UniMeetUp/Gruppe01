@@ -7,9 +7,14 @@
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1000">
-   
-    <UserControl.Resources>
+             d:DesignHeight="450" d:DesignWidth="1000"
+             >
+    <UserControl.Background>
+        <ImageBrush ImageSource="Images/geometry2.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,420,420" />
+    </UserControl.Background>
+
+<UserControl.Resources>
+
         
 
         <DataTemplate DataType="{x:Type viewModel:CreateAccountViewModel}">
@@ -116,12 +121,13 @@
 
     </Grid>-->
 
-    <Grid Background="White" ShowGridLines="False" DataContext="{StaticResource MainMenuViewModel}">
+    <Grid ShowGridLines="False" DataContext="{StaticResource MainMenuViewModel}">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="27"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -158,10 +164,10 @@
                      >
 
             </ListBox>
-            <StatusBar Grid.Row="3" Background="AliceBlue">
-                <StatusBarItem Content="Number of groups:" Opacity="0.5" ></StatusBarItem>
-                <StatusBarItem Name="groupCount" Opacity="0.5" Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.Count}"></StatusBarItem>
-            </StatusBar>
+          
+            
+
+
             <!--Labels:-->
 
             <DockPanel LastChildFill="False" Grid.ColumnSpan="2">
@@ -182,16 +188,21 @@
             </DockPanel>-->
             <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></Separator>
         </Grid>
-
+        <StatusBar Grid.Row="2" Background="AliceBlue">
+            <DockPanel>
+                <StatusBarItem Content="Number of groups:" Opacity="0.5" ></StatusBarItem>
+                <StatusBarItem Name="groupCount" Opacity="0.5" Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.Count}"></StatusBarItem>
+            </DockPanel>
+        </StatusBar>
         <!--Display name-->
 
-        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Label Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"></Label>
+        <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}" FontWeight="Bold"></Label>
         </StackPanel>
 
         <!--User options-->
 
-        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+        <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
             <Button Background="Transparent" BorderThickness="0" Command="{Binding AccountSettingsCommand}">
                 <Viewbox  DockPanel.Dock="Right" Width="25">
                     <Frame Source="Images/Ellipsis_16x.xaml"/>
@@ -246,9 +257,41 @@
 
 
 
-
-
         </StackPanel>
+
+        <StatusBar Grid.Row="3" Grid.Column="1"  Background="Gainsboro" Opacity="0.4" Margin="0,5,0,5">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+               <Label>Current page: MainMenuView </Label>
+                
+                <!--<TextBlock Name="lblCursorPosition"/>-->
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="Current font size: 14" />
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <!--<ProgressBar Value="50" Width="90" Height="16" />-->
+                <StackPanel Orientation="Horizontal" Name="spClock">
+                    <TextBlock Margin="4,0" Name="tlbDate" Text="{Binding Path=Date}"></TextBlock>
+                    <TextBlock Margin="4,0" Name="tlbTime" Text="{Binding Path=Time}"></TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        
         <Grid.Resources>
             <!--<Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="5"/>
@@ -276,7 +319,7 @@
             </Style>
         </Grid.Resources>
 
-
+       
     </Grid>
 
 

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using UniMeetUpApplication.Model;
 using UniMeetUpApplication.View.Dialogs;
 using UniMeetUpApplication.ViewModel;
 
@@ -22,9 +24,17 @@ namespace UniMeetUpApplication.View
     /// </summary>
     public partial class MainMenuView : UserControl
     {
+        Clock clock = new Clock();
+        DispatcherTimer timer = new DispatcherTimer();
         public MainMenuView()
         {
             InitializeComponent();
+
+            spClock.DataContext = clock;
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Start();
+
 
             // Lille test til at skrive en besked om at brugeren ikke er i nogen gruppe.
             //if (((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.Count == 0)
@@ -33,6 +43,10 @@ namespace UniMeetUpApplication.View
             //    lbGroups.Visibility = Visibility.Hidden;
             //}
 
+        }
+        void Timer_Tick(object sender, EventArgs e)
+        {
+            clock.Update();
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e)

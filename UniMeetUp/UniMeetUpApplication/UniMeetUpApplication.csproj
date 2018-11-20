@@ -252,6 +252,7 @@
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Groups.cs" />
     <Compile Include="Model\Files.cs" />
+    <Compile Include="Model\Clock.cs" />
     <Compile Include="Model\Interfaces\ICreateAccountModel.cs" />
     <Compile Include="Model\Interfaces\ILoginModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
@@ -418,9 +419,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\umu_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="WPFTest.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -434,7 +432,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
-    <Resource Include="View\Images\school.png" />
+    <Resource Include="View\Images\geometry2.png" />
+    <Resource Include="View\Images\TTYG3_NOBACK.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
