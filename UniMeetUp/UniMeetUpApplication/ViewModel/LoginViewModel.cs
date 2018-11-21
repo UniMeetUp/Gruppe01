@@ -18,7 +18,7 @@ namespace UniMeetUpApplication.ViewModel
     public class LoginViewModel : ViewModelBase
     {
         public UserControl _currentPage;
-
+   
         private ILoginModel _loginModel = new LoginModel(new ServerAccessLayer.ServerAccessLayer());
         private INotificationService _notificationService = new NotificationService();
         public LoginViewModel()
@@ -73,6 +73,7 @@ namespace UniMeetUpApplication.ViewModel
             
             string Email = values[0].ToString();
             string Password = values[1].ToString();
+            //string Password = values[1].ToString();
             
             UserForLogin userForLogin = new UserForLogin(Email, Password);
 
