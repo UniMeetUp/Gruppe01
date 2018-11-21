@@ -27,7 +27,7 @@ namespace UniMeetUpServer.Hubs
         public Task FileMessage(string emailAddress, int groupId, FileMessage file)
         {
             file.UserId = emailAddress;
-            file.GroupId = 1; 
+            file.GroupId = 8; 
             _context.FileMessage.Add(file);
             _context.SaveChanges();
             return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);
@@ -38,30 +38,30 @@ namespace UniMeetUpServer.Hubs
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupId.ToString());
 
-            System.Console.WriteLine($"Client joined room: {groupId.ToString()}");
+            //System.Console.WriteLine($"Client joined room: {groupId.ToString()}");
             //return Groups.Add(Context.ConnectionId, roomName);
         }
 
         //Adding a User to a Group on the DB.
-        public async Task AddUserToGroupViaUserGroup(string emailAddress, int groupId)
-        {
-            //Create new UserGroup
-            UserGroup userGroup = new UserGroup();
-
-            //Set the UserGroups Composite key, made up of current users emailaddress and newly created groups ID
-            userGroup.EmailAddress = emailAddress;
-            userGroup.GroupId = groupId;
-
-            //Add the reference to Usergroup collections in User and Group
-            userGroup.User.UserGroups.Add(userGroup);
-            userGroup.Group.UserGroups.Add(userGroup);
-        }
+        //public async Task AddUserToGroupViaUserGroup(string emailAddress, int groupId)
+        //{
+        //    //Create new UserGroup
+        //    UserGroup userGroup = new UserGroup();
+        //
+        //    //Set the UserGroups Composite key, made up of current users emailaddress and newly created groups ID
+        //    userGroup.EmailAddress = emailAddress;
+        //    userGroup.GroupId = groupId;
+        //
+        //    //Add the reference to Usergroup collections in User and Group
+        //    userGroup.User.UserGroups.Add(userGroup);
+        //    userGroup.Group.UserGroups.Add(userGroup);
+        //}
 
         public async Task LeaveGroup(int groupId)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupId.ToString());
 
-            System.Console.WriteLine($"Client left room: {groupId.ToString()}");
+            //System.Console.WriteLine($"Client left room: {groupId.ToString()}");
             //return Groups.Remove(Context.ConnectionId, roomName);
         }
     }

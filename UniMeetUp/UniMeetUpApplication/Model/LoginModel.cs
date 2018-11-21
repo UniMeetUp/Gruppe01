@@ -31,25 +31,42 @@ namespace UniMeetUpApplication.Model
             }
         }
 
-        public  User getAllUserData()
+        public  User getAllUserData(string email)
         {
+            // making a reference to the masterViewModel user object
+            User user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
             
+               var userStr = _serverAccessLayer.Get_user_from_database(email);
+               var groupStr = _serverAccessLayer.Get_groups_for_specific_user(email);
 
-            var str = _serverAccessLayer.Get_all_user_data_from_database();
-            
-            JObject json = JObject.Parse(str.ToString());
-
-
-           var user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
-
-            user.displayName = json.GetValue("displayName").ToString();
-            user.emailAdresse = json.GetValue("Email").ToString();
-
-            
-
-            //user.groups = json.GetValue("groups").ToList();
-
+               if (userStr != null && groupStr != null)
+               {
+                   JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));JObject.Parse(userStr.ToString());
+                   JArray jsonGroup = new JArray(JArray.Parse(groupStr.ToString())); 
+                
+                   addDisplaynameAndEmailToCurrentUser(jsonUser, user);
+                   addGroupsToCurrentuser(jsonGroup, user);
+               }
             return user;
         }
+
+        #region HelperFunctions
+
+        private void addGroupsToCurrentuser(JArray jsonGroup, User user)
+        {
+            for (int i = 0; i < jsonGroup.Count; i++)
+            {
+                user.Groups.Add(new Group(jsonGroup[i].ToObject<JObject>().GetValue("groupName").ToString(),
+                    (int)jsonGroup[i].ToObject<JObject>().GetValue("groupId")));
+            }
+        }
+
+        private void addDisplaynameAndEmailToCurrentUser(JObject jsonUser, User user)
+        {
+            user.DisplayName = jsonUser.GetValue("displayName").ToString();
+            user.emailAdresse = jsonUser.GetValue("emailAddress").ToString();
+        }
+        #endregion
+
     }
 }

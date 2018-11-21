@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniMeetUpApplication.ViewModel
+namespace UniMeetUpApplication.Model
 {
-    public class ChatViewModel
+    public class OtherUsers
     {
-        public ChatViewModel()
-        {
-            
-        }
+        
     }
 }

@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using UniMeetUpApplication.Model;
+using UniMeetUpApplication.View.Dialogs;
+using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.View
 {
@@ -20,10 +24,29 @@ namespace UniMeetUpApplication.View
     /// </summary>
     public partial class MainMenuView : UserControl
     {
+        Clock clock = new Clock();
+        DispatcherTimer timer = new DispatcherTimer();
         public MainMenuView()
         {
             InitializeComponent();
-            
+
+            spClock.DataContext = clock;
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Start();
+
+
+            // Lille test til at skrive en besked om at brugeren ikke er i nogen gruppe.
+            //if (((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.Count == 0)
+            //{
+            //    lNoCurrentGroups.Visibility = Visibility.Visible;
+            //    lbGroups.Visibility = Visibility.Hidden;
+            //}
+
+        }
+        void Timer_Tick(object sender, EventArgs e)
+        {
+            clock.Update();
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,6 +58,42 @@ namespace UniMeetUpApplication.View
             TextBox txtBox = sender as TextBox;
             if (txbSearch.Text == "Search")
                 txtBox.Text = string.Empty;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddGroupDialog _dialogBox = new AddGroupDialog();
+            if (_dialogBox.ShowDialog() == true)
+            {
+                //something
+            }
+        }
+
+        private void searchLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txbSearch.Text == "")
+            {
+                txbSearch.Text = "Search for group...";
+                txbSearch.Foreground = Brushes.LightGray;
+
+            }
+        }
+
+        private void searchGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txbSearch.Text == "Search for group...")
+            {
+                txbSearch.Text = "";
+                txbSearch.Foreground = Brushes.Black;
+
+            }
+        }
+
+        private void txbSearch_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            
+            if (txbSearch.Text == "Search for group...")
+                txbSearch.Text = string.Empty;
         }
     }
 }

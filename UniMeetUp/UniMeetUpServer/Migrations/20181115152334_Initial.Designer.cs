@@ -10,8 +10,8 @@ using UniMeetUpServer.Models;
 namespace UniMeetUpServer.Migrations
 {
     [DbContext(typeof(UniMeetUpServerContext))]
-    [Migration("20181114121503_UpdatedAllControllersAndModelsToContext")]
-    partial class UpdatedAllControllersAndModelsToContext
+    [Migration("20181115152334_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

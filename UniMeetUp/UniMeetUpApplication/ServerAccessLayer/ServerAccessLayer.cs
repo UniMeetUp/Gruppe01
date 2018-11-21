@@ -30,17 +30,27 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return response.StatusCode;
         }
 
-        public async Task<string> Get_all_user_data_from_database()
+        public string Get_user_from_database(string email)
         {
-            string str =
-                await client.GetStringAsync("api/Users/");
+            var str =
+                  client.GetStringAsync($"api/Users/{email}").Result;
+
+            return str;
+        }
+
+        public string Get_groups_for_specific_user(string email)
+        {
+            var str =
+                client.GetStringAsync($"api/Groups/{email}/all").Result;
 
             return str;
         }
 
         public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
-            //Do something
+           // var str =
+           //     client.PostAsJsonAsync($"api/User/", userForCreateAccount );
+           
         }
 
         public bool Check_In_Database_If_Email_Is_Already_In_Use(string email)

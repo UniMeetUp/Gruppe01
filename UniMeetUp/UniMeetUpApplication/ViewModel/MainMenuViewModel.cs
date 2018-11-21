@@ -81,7 +81,6 @@ namespace UniMeetUpApplication.ViewModel
                        (_chatCommand = new RelayCommand(() =>
                        {
                            CurrentPage = new ChatView();
-
                        }));
             }
         }
@@ -130,6 +129,9 @@ namespace UniMeetUpApplication.ViewModel
                        }));
             }
         }
+
+
+
         #endregion
     }
 }

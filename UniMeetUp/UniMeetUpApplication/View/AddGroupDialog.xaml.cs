@@ -10,23 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
-namespace UniMeetUpApplication.View
+namespace UniMeetUpApplication.View.Dialogs
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for AddGroupDialog.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class AddGroupDialog : Window
     {
-        public LoginView()
+        public AddGroupDialog()
         {
             InitializeComponent();
-            
         }
-
-     
     }
 }
