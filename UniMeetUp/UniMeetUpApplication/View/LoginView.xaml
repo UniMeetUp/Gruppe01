@@ -62,7 +62,8 @@
 
         <StackPanel Grid.Column="1">
             <Image Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
-            <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com">
+          
+                <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com">
 
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -116,14 +117,18 @@
                 </Button>
             </Grid>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Forgot password">
+                <TextBlock Margin="5">
+                    <Hyperlink NavigateUri="www.google.com">Forgot password?</Hyperlink>
+                </TextBlock>
+                
+                <!--<Button Content="Forgot password">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <ContentPresenter />
                         </ControlTemplate>
                     </Button.Template>
-                </Button>
-                <CheckBox Margin="39,5,0,0" />
+                </Button>-->
+                <CheckBox Margin="98,5,0,0" />
                 <Label Content="Remember me" />
             </StackPanel>
         </StackPanel>
