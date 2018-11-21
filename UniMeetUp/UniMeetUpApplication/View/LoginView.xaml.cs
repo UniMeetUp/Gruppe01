@@ -27,7 +27,7 @@ namespace UniMeetUpApplication.View
             
         }
 
-        private void test(object sender, TextCompositionEventArgs e)
+        private void PasswordIsSentToTxtBx(object sender, TextCompositionEventArgs e)
         {
             tbPassword.Text = passwordBx.Password;
         }
