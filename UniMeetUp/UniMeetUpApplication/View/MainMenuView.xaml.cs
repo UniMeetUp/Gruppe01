@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interactivity;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -94,6 +95,16 @@ namespace UniMeetUpApplication.View
             
             if (txbSearch.Text == "Search for group...")
                 txbSearch.Text = string.Empty;
+        }
+
+        private void LbGroups_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((MasterViewModel) App.Current.MainWindow.DataContext).User._groups.CurrentGroup =
+                ((Group) lbGroups.Items.CurrentItem);
+
+            MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
+            model.ChatCommand.Execute(null);
+
         }
     }
 }

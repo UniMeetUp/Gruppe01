@@ -158,11 +158,14 @@
             <!--Labels:-->
 
 
-            <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0" 
+            <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0"
                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" 
                      IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" Grid.ColumnSpan="2"
+                     SelectedIndex="{Binding SelectedIndex}"
+                     SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup}"
+                     SelectionChanged="LbGroups_OnSelectionChanged"
                      >
-
+                
             </ListBox>
           
             
