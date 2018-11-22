@@ -55,6 +55,8 @@ namespace UniMeetUpApplication.Model
 
         private void addGroupsToCurrentuser(JArray jsonGroup, User user)
         {
+            user.Groups.Clear();
+
             for (int i = 0; i < jsonGroup.Count; i++)
             {
                 user.Groups.Add(new Group(jsonGroup[i].ToObject<JObject>().GetValue("groupName").ToString(),
