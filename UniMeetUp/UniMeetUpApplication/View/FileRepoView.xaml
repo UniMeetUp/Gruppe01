@@ -23,12 +23,10 @@
         </TextBox>
 
         <DataGrid Grid.Row="1" IsReadOnly="True" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column"
-                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Group}">
+                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.ListOfFilesInGroup}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id:" Binding="{Binding Path='UserId'}"></DataGridTextColumn>
-                <DataGridTextColumn Header="File name:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="From user:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Date posted:" Binding="{Binding Path='TimeStamp'}" IsReadOnly="True"></DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Id:" Binding="{Binding Path='FileMessageId'}"></DataGridTextColumn>
+                <DataGridTextColumn Header="File name:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>-->
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -96,6 +96,9 @@ namespace UniMeetUpApplication.View
                 txbSearch.Text = string.Empty;
         }
 
-      
+        private void LbGroups_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }

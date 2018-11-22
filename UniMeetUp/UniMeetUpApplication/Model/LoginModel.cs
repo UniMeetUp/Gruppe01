@@ -41,7 +41,8 @@ namespace UniMeetUpApplication.Model
 
                if (userStr != null && groupStr != null)
                {
-                   JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));JObject.Parse(userStr.ToString());
+                   JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));
+                   JObject.Parse(userStr.ToString());
                    JArray jsonGroup = new JArray(JArray.Parse(groupStr.ToString())); 
                 
                    addDisplaynameAndEmailToCurrentUser(jsonUser, user);
@@ -54,11 +55,15 @@ namespace UniMeetUpApplication.Model
 
         private void addGroupsToCurrentuser(JArray jsonGroup, User user)
         {
+            user.Groups.Clear();
+
             for (int i = 0; i < jsonGroup.Count; i++)
             {
                 user.Groups.Add(new Group(jsonGroup[i].ToObject<JObject>().GetValue("groupName").ToString(),
                     (int)jsonGroup[i].ToObject<JObject>().GetValue("groupId")));
             }
+
+            user.Groups.CurrentGroup = user.Groups[0];
         }
 
         private void addDisplaynameAndEmailToCurrentUser(JObject jsonUser, User user)
