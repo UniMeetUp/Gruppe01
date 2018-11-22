@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Database",
+    "\\Diagrams",
+    "\\UniMeetUp",
+    "\\UniMeetUp\\UniMeetUpApplication"
   ],
+  "SelectedNode": "\\UniMeetUp\\UMU.sln",
   "PreviewInSolutionExplorer": false
 }
