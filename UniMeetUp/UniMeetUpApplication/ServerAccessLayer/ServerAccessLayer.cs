@@ -71,10 +71,12 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return false;
         }
 
+        public HttpStatusCode Post_user_location(UserLocation userLocation)
+        {
+            var str =
+                client.PostAsJsonAsync($"api/Locations/{userLocation.UserId}/update" ,userLocation).Result;
 
-
-
-
-
+            return str.StatusCode;
+        }
     }
 }
