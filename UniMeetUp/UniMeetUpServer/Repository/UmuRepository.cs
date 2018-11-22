@@ -39,11 +39,20 @@ namespace UniMeetUpServer.Repository
             return groups;
         }
 
+        public List<Location> getLocationsForGroup(int id)
+        {
+            var locations = _context.Location
+                .Where(i => i.GroupId == id).ToList();
+
+            return locations;
+        }
+
         public List<FileMessageForDownloadDTO> GetGroupFileMessagesNameAndId(int groupId)
         {
             List<string> _FileHeaderlist = _context.FileMessage.Where(f => f.GroupId == groupId)
                 .Select(f => f.FileHeaders).ToList();
 
+            
             List<int> _FileIdList = _context.FileMessage.Where(f => f.GroupId == groupId)
                 .Select(f => f.FileMessageId).ToList();
 
