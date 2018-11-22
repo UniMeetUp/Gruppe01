@@ -31,5 +31,6 @@ namespace UniMeetUpApplication.View
         {
             tbPassword.Text = passwordBx.Password;
         }
+
     }
 }
