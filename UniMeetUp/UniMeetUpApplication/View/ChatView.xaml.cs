@@ -130,6 +130,9 @@ namespace UniMeetUpApplication.View
                 try
                 {
                     await connection.InvokeAsync("FileMessage", _emailAddress, _groupId, file);
+                    var newMessage = $"{_emailAddress}: Sent {fileName}\n";
+                    MessageList.AppendText(newMessage);
+                    MessageList.ScrollToEnd();
                 }
                 catch (Exception exception)
                 {
