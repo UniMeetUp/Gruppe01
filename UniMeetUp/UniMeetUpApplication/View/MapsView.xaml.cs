@@ -48,11 +48,7 @@ namespace UniMeetUpApplication.View
 
               MyWebBrowser.Navigate(uri);
             }
-
             
-            
-
-
         }
 
 
@@ -121,7 +117,7 @@ namespace UniMeetUpApplication.View
                             
                             
 
-                            //browser.InvokeScript("addMarker", new object[] { latitude, longitute });
+                            browser.InvokeScript("setCurrentMarker", new object[] { latitude, longitute, userLocation.UserId, userLocation.Timestamp.ToString(), user.DisplayName });
                             browser.InvokeScript("setStatus", new object[] {false});
                             
                         }
@@ -165,7 +161,18 @@ namespace UniMeetUpApplication.View
                     string displayName = location.ToObject<JObject>().GetValue("user").ToObject<JObject>().GetValue("displayName").ToString();
 
                     string email = location.ToObject<JObject>().GetValue("userId").ToString();
-                    browser.InvokeScript("addMarkerWithInfo", new object[] { latitude, longitude, email, timeStamp, displayName });
+
+                    if (((MasterViewModel)App.Current.MainWindow.DataContext).User.emailAdresse == email)
+                    {
+                        browser.InvokeScript("setCurrentMarker", new object[] { latitude, longitude, email, timeStamp, displayName });
+                    }
+                    else
+                    {
+                        browser.InvokeScript("addMarkerWithInfo", new object[] { latitude, longitude, email, timeStamp, displayName });
+                    }
+                    
+
+                  
                 }
             }
         }
