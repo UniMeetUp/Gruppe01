@@ -85,5 +85,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
             var str = client.GetStringAsync($"api/FileMessages/Group/{groupId}").Result;
             return str;
         }
+
+        public string Get_File_To_Download_By_Id(int fileId)
+        {
+            var str = client.GetStringAsync($"api/FileMessages/Download/{fileId}").Result;
+
+            return str;
+        }
+
+
     }
 }
