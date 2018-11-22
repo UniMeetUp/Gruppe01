@@ -42,7 +42,7 @@ namespace UniMeetUpServer.Repository
         public List<Location> getLocationsForGroup(int id)
         {
             var locations = _context.Location
-                .Where(i => i.GroupId == id).ToList();
+                .Where(i => i.GroupId == id).Include(a => a.User).ToList();
 
             return locations;
         }
@@ -66,5 +66,28 @@ namespace UniMeetUpServer.Repository
         }
 
 
+
+        public void UpdateLocation(Location location)
+        {
+            
+            var checkIfLocationExist = _context.Location
+                .Where(i => i.UserId == location.UserId && i.GroupId == location.GroupId).FirstOrDefault();
+
+            if (checkIfLocationExist == null)
+            {
+                _context.Location.Add(location);
+            }
+
+            var locations = _context.Location
+                .Where(i => i.UserId == location.UserId).ToList();
+
+            foreach (var item in locations)
+            {
+                item.Latitude = location.Latitude;
+                item.Longitude = location.Longitude;
+            }
+
+
+        }
     }
 }

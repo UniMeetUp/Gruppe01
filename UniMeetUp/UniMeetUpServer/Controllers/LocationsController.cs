@@ -69,6 +69,26 @@ namespace UniMeetUpServer.Controllers
             return Ok(locationsForGroup);
         }
 
+        [HttpPost("{id}/update")]
+        public async Task<IActionResult> UpdateLocation([FromRoute] string email, [FromBody] Location location)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (location == null)
+            {
+                return BadRequest();
+            }
+
+            _umuRepository.UpdateLocation(location);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+
+        }
         // PUT: api/Locations/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLocation([FromRoute] int id, [FromBody] Location location)
@@ -77,12 +97,10 @@ namespace UniMeetUpServer.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             if (id != location.LocationId)
             {
                 return BadRequest();
             }
-
             _context.Entry(location).State = EntityState.Modified;
 
             try

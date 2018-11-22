@@ -18,5 +18,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
         string Get_groups_for_specific_user(string email);
         string Get_Group_File_Messages_Name_And_Id(int groupId);
         string Get_User_locations_for_group(int id);
+
+        HttpStatusCode Post_user_location(UserLocation userLocation);
     }
 }
