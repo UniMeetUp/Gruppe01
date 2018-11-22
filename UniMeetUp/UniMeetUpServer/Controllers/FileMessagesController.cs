@@ -129,6 +129,13 @@ namespace UniMeetUpServer.Controllers
             return _umuRepository.GetGroupFileMessagesNameAndId(id);
         }
 
+        // GET: api/FileMessages/Download/id
+        [HttpGet("Download/{id}")]
+        public async Task<IActionResult> GetFileToDownloadById([FromRoute] int id)
+        {
+            return Ok(_umuRepository.GetFileToDownloadById(id));
+        }
+
         private bool FileMessageExists(int id)
         {
             return _context.FileMessage.Any(e => e.FileMessageId == id);

@@ -30,7 +30,8 @@ namespace UniMeetUpApplication.ViewModel
             {
                 
                 selectedIndex = value;
-                ChatCommand.Execute(null);
+                
+                //ChatCommand.Execute(null);
             }
         }
 

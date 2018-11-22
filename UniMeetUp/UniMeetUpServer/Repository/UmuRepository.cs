@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using CommonLib.Models;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +66,13 @@ namespace UniMeetUpServer.Repository
             return _listToReturn;
         }
 
+        public FileMessageForDownloadDTO GetFileToDownloadById(int fileId)
+        {
+            string fileName = _context.FileMessage.Where(f => f.FileMessageId == fileId).Select(n => n.FileHeaders).FirstOrDefault();
 
+            byte[] fileAr = _context.FileMessage.Where(f => f.FileMessageId == fileId).Select(n => n.FileBinary).FirstOrDefault();
+
+            return new FileMessageForDownloadDTO(fileAr, fileName);
+        }
     }
 }
