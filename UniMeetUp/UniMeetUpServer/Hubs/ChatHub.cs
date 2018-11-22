@@ -27,7 +27,7 @@ namespace UniMeetUpServer.Hubs
         public Task FileMessage(string emailAddress, int groupId, FileMessage file)
         {
             file.UserId = emailAddress;
-            file.GroupId = 1; 
+            file.GroupId = 8; 
             _context.FileMessage.Add(file);
             _context.SaveChanges();
             return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);

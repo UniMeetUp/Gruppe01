@@ -11,6 +11,9 @@ namespace UniMeetUpApplication.Model
     /* TESTING CLASS */
     class Files :  ObservableCollection<FileMessage> // Added 17/11
     {
-       
+        public Files()
+        {
+
+        }
     }
 }

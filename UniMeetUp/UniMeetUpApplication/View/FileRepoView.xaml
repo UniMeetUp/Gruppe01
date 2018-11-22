@@ -22,7 +22,8 @@
             
         </TextBox>
 
-        <DataGrid Grid.Row="1" IsReadOnly="True" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column">
+        <DataGrid Grid.Row="1" IsReadOnly="True" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column"
+                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Group}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id:" Binding="{Binding Path='UserId'}"></DataGridTextColumn>
                 <DataGridTextColumn Header="File name:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>
