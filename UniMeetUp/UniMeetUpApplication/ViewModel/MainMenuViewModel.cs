@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using UniMeetUpApplication.Command;
+using UniMeetUpApplication.Model;
+using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.Services;
 using UniMeetUpApplication.Services.ServiceInterfaces;
 using UniMeetUpApplication.View;
@@ -18,6 +20,8 @@ namespace UniMeetUpApplication.ViewModel
         // Commands
         
         private INavigationService _nav => new NavigationService();
+
+        private IMainMenuModel _mainManuModel = new MainMenuModel(new ServerAccessLayer.ServerAccessLayer());
 
         public UserControl _currentPage = new MapsView();
 
@@ -109,7 +113,9 @@ namespace UniMeetUpApplication.ViewModel
                 return _fileRepoCommand ??
                        (_fileRepoCommand = new RelayCommand(() =>
                        {
+
                            CurrentPage = new FileRepoView();
+                           _mainManuModel.GetAllFilenameAndIdForGroup(8);
 
                        }));
             }

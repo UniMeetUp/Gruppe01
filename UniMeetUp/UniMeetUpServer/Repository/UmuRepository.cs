@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CommonLib.Models;
 using Microsoft.EntityFrameworkCore;
+using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
 
 namespace UniMeetUpServer.Repository
@@ -38,7 +39,23 @@ namespace UniMeetUpServer.Repository
             return groups;
         }
 
+        public List<FileMessageForDownloadDTO> GetGroupFileMessagesNameAndId(int groupId)
+        {
+            List<string> _FileHeaderlist = _context.FileMessage.Where(f => f.GroupId == groupId)
+                .Select(f => f.FileHeaders).ToList();
 
+            List<int> _FileIdList = _context.FileMessage.Where(f => f.GroupId == groupId)
+                .Select(f => f.FileMessageId).ToList();
+
+            List<FileMessageForDownloadDTO> _listToReturn = new List<FileMessageForDownloadDTO>();
+
+            for (int i = 0; i < _FileHeaderlist.Count; i++)
+            {
+                _listToReturn.Add(new FileMessageForDownloadDTO(_FileIdList[i], _FileHeaderlist[i]));
+            }
+
+            return _listToReturn;
+        }
 
 
     }

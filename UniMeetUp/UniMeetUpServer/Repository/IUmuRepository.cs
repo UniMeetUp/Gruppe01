@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CommonLib.Models;
+using UniMeetUpServer.DTO;
 
 namespace UniMeetUpServer.Repository
 {
@@ -10,5 +11,6 @@ namespace UniMeetUpServer.Repository
     {
         User GetUserById(string email);
         List<Group> GetGroupsForUser(string email);
+        List<FileMessageForDownloadDTO> GetGroupFileMessagesNameAndId(int groupId);
     }
 }

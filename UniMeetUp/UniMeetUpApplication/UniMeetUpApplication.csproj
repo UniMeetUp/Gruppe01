@@ -249,13 +249,16 @@
     </ApplicationDefinition>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Model\CreateAccountModel.cs" />
+    <Compile Include="Model\FileMessageForDownload.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Groups.cs" />
     <Compile Include="Model\Files.cs" />
     <Compile Include="Model\Clock.cs" />
     <Compile Include="Model\Interfaces\ICreateAccountModel.cs" />
     <Compile Include="Model\Interfaces\ILoginModel.cs" />
+    <Compile Include="Model\Interfaces\IMainMenuModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\MainMenuModel.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\OtherUsers.cs" />
     <Compile Include="Model\User.cs" />

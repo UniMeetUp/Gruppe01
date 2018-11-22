@@ -61,7 +61,12 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return false;
         }
 
+        public string Get_Group_File_Messages_Name_And_Id(int groupId)
+        {
+            var str = client.GetStringAsync($"api/FileMessages/Group/{groupId}").Result;
 
+            return str;
+        }
 
 
 

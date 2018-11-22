@@ -62,6 +62,18 @@ namespace UniMeetUpApplication.Model
         //  the string is the email of the user/member
         //private Dictionary<string, User> users;
 
+        private List<FileMessageForDownload> _listOfFilesInGroup;
+
+        public List<FileMessageForDownload> ListOfFilesInGroup
+        {
+            get { return _listOfFilesInGroup; }
+            set
+            {
+                _listOfFilesInGroup = value;
+                OnPropertyChanged("ListOfFilesInGroup");
+            }
+        }
+
         #region NotifypropertyChanged Impl
 
         public event PropertyChangedEventHandler PropertyChanged;

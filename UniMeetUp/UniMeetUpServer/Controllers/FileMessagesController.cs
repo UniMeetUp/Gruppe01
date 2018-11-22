@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
+using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
+using UniMeetUpServer.Repository;
 
 namespace UniMeetUpServer.Controllers
 {
@@ -15,10 +17,12 @@ namespace UniMeetUpServer.Controllers
     public class FileMessagesController : ControllerBase
     {
         private readonly UniMeetUpServerContext _context;
+        private IUmuRepository _umuRepository;
 
-        public FileMessagesController(UniMeetUpServerContext context)
+        public FileMessagesController(UniMeetUpServerContext context, IUmuRepository umu)
         {
             _context = context;
+            _umuRepository = umu;
         }
 
         // GET: api/FileMessages
@@ -116,6 +120,13 @@ namespace UniMeetUpServer.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(fileMessage);
+        }
+
+        // GET: api/FileMessages/Group/id
+        [HttpGet("Group/{id}")]
+        public IEnumerable<FileMessageForDownloadDTO> GetGroupFileMessage([FromRoute] int id)
+        {
+            return _umuRepository.GetGroupFileMessagesNameAndId(id);
         }
 
         private bool FileMessageExists(int id)

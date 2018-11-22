@@ -41,7 +41,8 @@ namespace UniMeetUpApplication.Model
 
                if (userStr != null && groupStr != null)
                {
-                   JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));JObject.Parse(userStr.ToString());
+                   JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));
+                   JObject.Parse(userStr.ToString());
                    JArray jsonGroup = new JArray(JArray.Parse(groupStr.ToString())); 
                 
                    addDisplaynameAndEmailToCurrentUser(jsonUser, user);
