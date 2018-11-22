@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
+using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
+using UniMeetUpServer.Repository;
 
 namespace UniMeetUpServer.Controllers
 {
@@ -15,9 +17,11 @@ namespace UniMeetUpServer.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UniMeetUpServerContext _context;
+        private IUmuRepository _umuRepository;
 
-        public UsersController(UniMeetUpServerContext context)
+        public UsersController(UniMeetUpServerContext context, IUmuRepository repo)
         {
+            _umuRepository = repo;
             _context = context;
         }
 
@@ -29,15 +33,15 @@ namespace UniMeetUpServer.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] string id)
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUser([FromRoute] string email)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid)                                                                                                                                
             {
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.User.FindAsync(id);
+            var user = _umuRepository.GetUserById(email);
 
             if (user == null)
             {
@@ -46,6 +50,9 @@ namespace UniMeetUpServer.Controllers
 
             return Ok(user);
         }
+
+ 
+
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
@@ -96,6 +103,39 @@ namespace UniMeetUpServer.Controllers
 
             return CreatedAtAction("GetUser", new { id = user.EmailAddress }, user);
         }
+
+
+        [HttpPost("login")]
+        public async Task<IActionResult> RequestLogin([FromBody] UserForLoginDTO userForLogin)
+        {
+            if (userForLogin == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = _umuRepository.GetUserById(userForLogin.Email);
+            
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            if (user.HashedPassword == userForLogin.Password)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+
+        }
+        
+
+
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

@@ -5,9 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
+             
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
+             d:DesignHeight="450" d:DesignWidth="1000"
+             >
+    <UserControl.Background>
+        <ImageBrush ImageSource="Images/geometry2.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,420,420" />
+    </UserControl.Background>
+
+<UserControl.Resources>
+
+        
+
         <DataTemplate DataType="{x:Type viewModel:CreateAccountViewModel}">
             <view:CreateAccountView DataContext="{Binding}"/>
         </DataTemplate>
@@ -35,6 +44,7 @@
         <DataTemplate DataType="{x:Type viewModel:MapsViewModel}">
             <view:MapsView DataContext="{Binding}"/>
         </DataTemplate>
+
 
         <view:MapsView x:Key="MapV"></view:MapsView>
         <view:CreateAccountView x:Key="CreateAccountV"></view:CreateAccountView>
@@ -66,7 +76,7 @@
         <Binding Source="{StaticResource vm}"></Binding>
     </UserControl.DataContext>-->
 
-    <Grid Background="White" DataContext="{StaticResource MainMenuViewModel}">
+    <!--<Grid Background="White" DataContext="{StaticResource MainMenuViewModel}">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="200"></ColumnDefinition>
@@ -74,7 +84,9 @@
             <ColumnDefinition MaxWidth="100" MinWidth="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <!--LEFT COLUMN IN MAIN WINDOW-->
+        -->
+    <!--LEFT COLUMN IN MAIN WINDOW-->
+    <!--
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,-0.4" Width="200" >
 
             <TextBox GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search" Width="75" BorderBrush="AliceBlue" ></TextBox>
@@ -98,12 +110,220 @@
             <Button Content="AddPerson" Command="{Binding AddPersonCommand}"></Button>
             <Button Content="Files" Command="{Binding FileRepoCommand}"></Button>
             <Button Content="Settings" Command="{Binding AccountSettingsCommand}"></Button>
-            <!--<Button Content="Back to Login test" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.LoginPageCommand}"></Button>-->
+            -->
+    <!--<Button Content="Back to Login test" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.LoginPageCommand}"></Button>-->
+    <!--
             <Button Content="Back to Login test" Command="{Binding LogOutCommand}"></Button>
         </StackPanel>
 
         <ContentControl  x:Name="ConControl" Grid.Column="1" Content="{Binding}" DataContext="{Binding CurrentPage}" ></ContentControl>
 
 
+    </Grid>-->
+
+    <Grid ShowGridLines="False" DataContext="{StaticResource MainMenuViewModel}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="40"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!--Search field-->
+        <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
+
+        <TextBox  Grid.Column="0" Grid.Row="0" Name="txbSearch" Text="Search for group..." Margin="5,0,5,10" Foreground="#FFD2CCCC" LostFocus="searchLostFocus" GotFocus="searchGotFocus" Background="White" GotKeyboardFocus="txbSearch_GotKeyboardFocus"></TextBox>
+
+
+
+        <!--images/buttons:-->
+
+        <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="59*"/>
+              </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--Labels:-->
+
+
+            <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0"
+                     ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" 
+                     IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" Grid.ColumnSpan="2"
+                     SelectedIndex="{Binding SelectedIndex}"
+                     SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup}"
+                     SelectionChanged="LbGroups_OnSelectionChanged"
+                     >
+                
+            </ListBox>
+          
+            
+
+
+            <!--Labels:-->
+
+            <DockPanel LastChildFill="False" Grid.ColumnSpan="2">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Groups:</Label>
+
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button Background="Transparent" BorderThickness="0" Click="Button_Click">
+                        <Viewbox MaxHeight="20" DockPanel.Dock="Right" Width="30" >
+                            <Frame Source="Images/Add_grey_16x.xaml"/>
+                        </Viewbox>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+            <!--<Label Name="lNoCurrentGroups" Grid.Row="1" Content="No current groups" Visibility="Hidden" Grid.ColumnSpan="2"></Label>-->
+            <!--DockPanel Grid.Row="0" Grid.Column="0">
+                
+                
+            </DockPanel>-->
+            <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></Separator>
+        </Grid>
+        <StatusBar Grid.Row="2" Background="AliceBlue">
+            <DockPanel>
+                <StatusBarItem Content="Number of groups:" Opacity="0.5" ></StatusBarItem>
+                <StatusBarItem Name="groupCount" Opacity="0.5" Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.Count}"></StatusBarItem>
+            </DockPanel>
+        </StatusBar>
+        <!--Display name-->
+
+        <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}" FontWeight="Bold"></Label>
+        </StackPanel>
+
+        <!--User options-->
+
+        <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding AccountSettingsCommand}">
+                <Viewbox  DockPanel.Dock="Right" Width="25">
+                    <Frame Source="Images/Ellipsis_16x.xaml"/>
+                </Viewbox>
+            </Button>
+
+        </StackPanel>
+
+        <!--fileClip-->
+
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Viewbox MaxHeight="20" DockPanel.Dock="Right" Width="30">
+                <!--<Viewbox.RenderTransform>
+                    <RotateTransform Angle="25"></RotateTransform>
+                </Viewbox.RenderTransform>-->
+                <Frame Source="Images/Attach_16x.xaml" />
+
+            </Viewbox>
+        </StackPanel>
+
+        <!--ButtonPaneRight-->
+
+        <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding ChatCommand}">
+                <Viewbox DockPanel.Dock="Right" Height="25">
+                    <Frame Source="Images/Message_16x.xaml" />
+                </Viewbox>
+            </Button>
+
+
+        </StackPanel>
+
+        <!--ButtonPaneRight-->
+        <ContentControl  x:Name="ConControl" Grid.Column="1" Grid.RowSpan="3"  Content="{Binding}" DataContext="{Binding CurrentPage}" ></ContentControl>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding MapCommand}">
+                <Viewbox DockPanel.Dock="Right" Height="30">
+                    <Frame Source="Images/GeoLocation_16x.xaml" />
+                </Viewbox>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0">
+                <Viewbox DockPanel.Dock="Right" Height="30">
+                    <Frame Source="Images/AddUser_16x.xaml" />
+                </Viewbox>
+            </Button>
+            <Separator></Separator>
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding FileRepoCommand}">
+                <Viewbox DockPanel.Dock="Right">
+                    <Frame Source="Images/Folder_16xSM.xaml" />
+                </Viewbox>
+            </Button>
+
+
+
+        </StackPanel>
+
+        <StatusBar Grid.Row="3" Grid.Column="1"  Background="Gainsboro" Opacity="0.4" Margin="0,5,0,5">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+               <Label>Current page: MainMenuView </Label>
+                
+                <!--<TextBlock Name="lblCursorPosition"/>-->
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="Current font size: 14" />
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <!--<ProgressBar Value="50" Width="90" Height="16" />-->
+                <StackPanel Orientation="Horizontal" Name="spClock">
+                    <TextBlock Margin="4,0" Name="tlbDate" Text="{Binding Path=Date}"></TextBlock>
+                    <TextBlock Margin="4,0" Name="tlbTime" Text="{Binding Path=Time}"></TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        
+        <Grid.Resources>
+            <!--<Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>-->
+            <Style TargetType="{x:Type Viewbox}">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+            <Style TargetType="{x:Type Separator}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type ListBox}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type StatusBar}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </Grid.Resources>
+
+       
     </Grid>
+
+
 </UserControl>

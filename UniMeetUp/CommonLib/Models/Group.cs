@@ -13,7 +13,7 @@ namespace CommonLib.Models
 
         [Required]
         public string GroupName { get; set; }
-
-        public ICollection<UserGroup> UserGroups { get; } = new List<UserGroup>();
+        
+        public List<UserGroup> UserGroups { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.ServerAccessLayer.Interfaces;
+using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.Model
 {
@@ -20,7 +21,7 @@ namespace UniMeetUpApplication.Model
 
         public bool Validate_Email_and_Password(UserForLogin userForLogin)
         {
-            if (_serverAccessLayer.Check_if_Email_and_Password_is_in_database(userForLogin).Result.StatusCode == HttpStatusCode.OK)
+            if (_serverAccessLayer.Check_if_Email_and_Password_is_in_database(userForLogin) == HttpStatusCode.OK)
             {
                 return true;
             }
@@ -30,20 +31,47 @@ namespace UniMeetUpApplication.Model
             }
         }
 
-        public  User getAllUserData()
+        public  User getAllUserData(string email)
         {
-            User user = new User();
-
-            var str = _serverAccessLayer.Get_all_user_data_from_database();
+            // making a reference to the masterViewModel user object
+            User user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
             
-            JObject json = JObject.Parse(str.ToString());
+               var userStr = _serverAccessLayer.Get_user_from_database(email);
+               var groupStr = _serverAccessLayer.Get_groups_for_specific_user(email);
 
-            user.displayName = json.GetValue("displayName").ToString();
-            user.emailAdresse = json.GetValue("Email").ToString();
-
-            //user.groups = json.GetValue("groups").ToList();
-
+               if (userStr != null && groupStr != null)
+               {
+                   JObject jsonUser = new JObject(JObject.Parse(userStr.ToString()));
+                   JObject.Parse(userStr.ToString());
+                   JArray jsonGroup = new JArray(JArray.Parse(groupStr.ToString())); 
+                
+                   addDisplaynameAndEmailToCurrentUser(jsonUser, user);
+                   addGroupsToCurrentuser(jsonGroup, user);
+               }
             return user;
         }
+
+        #region HelperFunctions
+
+        private void addGroupsToCurrentuser(JArray jsonGroup, User user)
+        {
+            user.Groups.Clear();
+
+            for (int i = 0; i < jsonGroup.Count; i++)
+            {
+                user.Groups.Add(new Group(jsonGroup[i].ToObject<JObject>().GetValue("groupName").ToString(),
+                    (int)jsonGroup[i].ToObject<JObject>().GetValue("groupId")));
+            }
+
+            user.Groups.CurrentGroup = user.Groups[0];
+        }
+
+        private void addDisplaynameAndEmailToCurrentUser(JObject jsonUser, User user)
+        {
+            user.DisplayName = jsonUser.GetValue("displayName").ToString();
+            user.emailAdresse = jsonUser.GetValue("emailAddress").ToString();
+        }
+        #endregion
+
     }
 }

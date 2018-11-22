@@ -3,10 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UniMeetUpApplication.View"
+             xmlns:view="clr-namespace:UniMeetUpApplication.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
     <Grid Background="White">
-        <TextBox  FontSize="50" HorizontalAlignment="Left" Height="149" Margin="82,183,0,0" TextWrapping="Wrap" Text="THIS IS CHAT VIEW" VerticalAlignment="Top" Width="337"/>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="25"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBox IsReadOnly="False" Margin="0,5,5,5" Name="MessageTextBox" Grid.Column="0" TextWrapping="Wrap" KeyDown="MessageTextBox_OnKeyDown" Background="White" GotFocus="ColoringGotFocus" LostFocus="ColoringLostfocus"/>
+            <!--<Button Name="SendFileBtn" Content="Send file" Grid.Column="1" Click="SendFileBtnEvent"></Button>-->
+            <Button  BorderThickness="0" Click="SendFileBtnEvent" Grid.Column="1" >
+                <Viewbox  DockPanel.Dock="Right">
+                    <Frame Source="Images/Attach_16x.xaml">
+                        </Frame>
+                </Viewbox>
+            </Button>
+
+        </Grid>
+
+        
+        <RichTextBox Name="MessageList" Grid.Row="0"  VerticalScrollBarVisibility="Visible" IsReadOnly="True"></RichTextBox>
+        <!--<Button Name="SendBtn" Content="Send" Click="SendBtnEvent"></Button>-->
+        
     </Grid>
 </UserControl>

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.StaticFiles;
 using Swashbuckle.AspNetCore.Swagger;
 using UniMeetUpServer.Models;
 using UniMeetUpServer.Hubs;
+using UniMeetUpServer.Repository;
+
 
 namespace UniMeetUpServer
 {
@@ -42,7 +44,11 @@ namespace UniMeetUpServer
             services.AddDbContext<UniMeetUpServerContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpServerContext")));
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "UMU API", Version = "v1"});});
+
+            services.AddScoped<IUmuRepository, UmuRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

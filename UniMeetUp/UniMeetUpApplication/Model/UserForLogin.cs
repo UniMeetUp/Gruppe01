@@ -10,11 +10,11 @@ namespace UniMeetUpApplication.Model
     {
         public UserForLogin(string email, string password)
         {
-            this.email = email;
-            this.password = password;
+            this.Email = email;
+            this.Password = password;
         }
 
-        public String email { get; set; }
-        public String password { get; set; }
+        public String Email { get; set; }
+        public String Password { get; set; }
     }
 }

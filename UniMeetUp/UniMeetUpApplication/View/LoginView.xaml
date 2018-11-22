@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
+             
              xmlns:services="clr-namespace:UniMeetUpApplication.Services"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              mc:Ignorable="d"
              >
+    <UserControl.Background>
+        <ImageBrush ImageSource="Images/geometry2.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,420,420" />
+    </UserControl.Background>
+   
     <UserControl.Resources>
         <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
         <services:Converter x:Key="Converter"></services:Converter>
@@ -48,7 +53,7 @@
     </UserControl.Resources>
 
 
-    <Grid Background="White" DataContext="{StaticResource LoginViewModel}">
+    <Grid  DataContext="{StaticResource LoginViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -56,8 +61,9 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1">
-            <Image Source="umu_logo.png" MaxWidth="400" Height="300" />
-            <TextBox Name="tbEmail" Margin="5">
+            <Image Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
+          
+                <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com">
 
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -83,7 +89,8 @@
                 </TextBox.Style>
             </TextBox>
 
-            <PasswordBox x:Name="PasswordBox" Width="253" MaxLength="16" />
+            <PasswordBox x:Name="passwordBx" Margin="5"  LostFocus="passwordBx_LostFocus" ></PasswordBox>
+            <TextBox x:Name="tbPassword" Text="lort" Margin="0" Visibility="Hidden" Height="0" Width="0" />
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 
@@ -97,7 +104,7 @@
 
 <!--<Button Grid.Column="1" Name="btnLogin" Content="Login" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
                     Path=DataContext.MainPageCommand}">-->
-                <Button Grid.Column="1" Name="btnLogin" Content="Login" Command="{Binding LoginCommand}">
+                <Button Grid.Column="1" Name="btnLogin" IsDefault="True"  Content="Login" Command="{Binding LoginCommand}">
 
                     <Button.CommandParameter>
 
@@ -110,14 +117,18 @@
                 </Button>
             </Grid>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Forgot password">
+                <TextBlock Margin="5">
+                    <Hyperlink NavigateUri="www.google.com">Forgot password?</Hyperlink>
+                </TextBlock>
+                
+                <!--<Button Content="Forgot password">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <ContentPresenter />
                         </ControlTemplate>
                     </Button.Template>
-                </Button>
-                <CheckBox Margin="39,5,0,0" />
+                </Button>-->
+                <CheckBox Margin="98,5,0,0" />
                 <Label Content="Remember me" />
             </StackPanel>
         </StackPanel>

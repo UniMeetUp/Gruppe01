@@ -8,7 +8,7 @@ namespace CommonLib.Models
 {
     public class User
     {
-        [Key]
+        [Key][EmailAddress]
         public string EmailAddress { get; set; }
 
         [Required]
@@ -16,6 +16,6 @@ namespace CommonLib.Models
         [MaxLength(25)]
         public string DisplayName { get; set; }
 
-        public ICollection<UserGroup> UserGroups { get; } = new List<UserGroup>();
+        public List<UserGroup> UserGroups { get; set; }
     }
 }

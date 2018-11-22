@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <!--<title>Google Maps test</title>-->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    </head>
+        
+
+        <style type="text/css">
+            html {height: 100%}
+            body {height: 100%; margin: 0; padding: 0}
+            #mapDiv {height: 100%}
+            #coordsDiv {
+                position: absolute;
+                background-color: white;
+                border: 1px solid black;
+                bottom: 50px;
+                right: 50px;
+                height: 50px;
+                width: 380px;
+                padding-top: 5px;
+                padding-left: 5px;
+            }
+        </style>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4la7nvqknfe1WbQpxob1-Z_aaY0OjUas">
+        </script>
+       
+        <script type="text/javascript">
+            // global varibles
+            var map;
+            //var geocoder = new google.maps.Geocoder();
+            var myVar = setInterval(myTimer, 0);
+            var currentMarker = new google.maps.Marker();
+
+            function setCurrentMarker(lat, long, info, timestamp, displayName) {
+                    currentMarker.setMap(null);
+                currentMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat, long),
+                    map: map,
+                    title: displayName + 's mor er en luder'
+
+            });
+                
+                
+                var contentOfMarker = '<div id="content"> <p>' + 'Email: ' + info + '<br>Displayname: ' +
+                    displayName + '<br>Last updated: ' + timestamp + '</p> </div>';
+                
+                var infoWindow = new google.maps.InfoWindow({
+                    content : contentOfMarker
+                })
+                
+                google.maps.event.addListener(currentMarker, 'click',
+                    function(){
+                        infoWindow.open(map, currentMarker);
+                    });
+            }
+
+            var markerPlaced = false;
+
+            
+            function initialize(){
+                var mapOptions = {
+                    center : new google.maps.LatLng(56.171896, 10.188197),
+                    zoom : 16,
+                    mapTypeControl: true,
+                    gestureHandling: 'greedy',
+                    mapTypeControlOptions : {
+                        mapTypeIds : [google.maps.MapTypeId.ROADMAP,
+                                      google.maps.MapTypeId.HYBRID],
+                        style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                    },
+                    fullscreenControl: true
+                };
+                
+                var initialCenter = mapOptions.center;
+                var initialZoom = mapOptions.zoom;
+                
+                map = new google.maps.Map(document.getElementById("mapDiv"), mapOptions);
+                //addButton(map);
+                //drawMarkers(map);
+                addGoToIntialExtent(map, initialCenter, initialZoom);
+
+                // For debugging
+                //addShowCords(map);
+
+                // TEST
+                //showMyPosition();
+                //addMarker(56.170863, 10.18853);
+                //testMyLocation();            
+
+
+
+                var UpdateLocationControlDiv = document.createElement('div');
+                var centerControl = new UpdateLocationControl(UpdateLocationControlDiv, map);
+
+                UpdateLocationControlDiv.index = 1;
+                map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(UpdateLocationControlDiv);
+
+                var putWayPointDiv = document.createElement('div');
+                var centerControl = new SetWayPoint(putWayPointDiv, map);
+
+                putWayPointDiv.index = 1;
+                map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(putWayPointDiv);
+
+
+
+
+            }
+
+            function testMyLocation() {
+                
+                navigater.geolocation.getCurrentPosition(function (position) {
+
+                    alert("This went well");
+
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        var centerMarker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            title: "My Location"
+                    });
+                }, function () {
+                    alert("Error");
+                });
+             }
+            
+            function showMyPosition(){
+
+                if (navigator.geolocation) {
+                    
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        alert("hmm");
+
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        //alert(pos.lat + pos.lng);
+
+                        addMarker(pos.lat, pos.lng);
+
+
+                    }, function() {
+                        alert("error");
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    alert("browser does not suppport");
+                }
+            }
+            
+            function addMarkerWithInfo(lat, long, info, timestamp, displayName){
+                
+                var centerMarker = new google.maps.Marker({
+                    position : new google.maps.LatLng(lat,long),
+                    map: map,
+                    title: "Anton the cool dude"
+                    
+                });
+                
+                
+                var contentOfMarker = '<div id="content"> <p>' + 'Email: ' + info + '<br>Displayname: ' +
+                    displayName + '<br>Last updated: ' + timestamp + '</p> </div>';
+                
+                var infoWindow = new google.maps.InfoWindow({
+                    content : contentOfMarker
+                })
+                
+                google.maps.event.addListener(centerMarker, 'click',
+                            function(){
+                        infoWindow.open(map, centerMarker);
+                });
+                
+                
+            }
+            
+            function addGoToIntialExtent(map, initialCenter, initialZoom){
+                
+                google.maps.event.addListener(map, 'rightclick',
+                    function(){
+                    map.setCenter(initialCenter);
+                    map.setZoom(initialZoom);                      
+                });
+            }
+            
+            function addMarker(Lat,Long){
+                
+                 var centerMarker = new google.maps.Marker({
+                    position : new google.maps.LatLng(Lat, Long),
+                     map: map,
+                     animation: google.maps.Animation.DROP,
+                     title: "My Location"
+
+                });
+            }
+           
+           function addShowCords(map) {
+               google.maps.event.addListener(map,
+                   'center_changed',
+                   function() {
+                       var newCenter = map.getCenter();
+                       var newZoom = map.getZoom();
+                       document.getElementById("coordsDiv").innerHTML =
+                           "Center : " + newCenter.toString() + "<br> Zoom : " + newZoom;
+                   });
+           }
+            google.maps.event.addDomListener(window, "load", initialize);
+
+
+            function UpdateLocationControl(controlDiv, map) {
+
+                // Set CSS for the control border.
+                var controlUI = document.createElement('div');
+                controlUI.style.backgroundColor = '#fff';
+                controlUI.style.border = '2px solid #fff';
+                controlUI.style.borderRadius = '3px';
+                controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+                controlUI.style.cursor = 'pointer';
+                controlUI.style.marginBottom = '22px';
+                controlUI.style.marginTop = '20px'
+                controlUI.style.textAlign = 'center';
+                controlUI.title = 'Add Hardcoded Marker';
+                controlDiv.appendChild(controlUI);
+
+                // Set CSS for the control interior.
+                var controlText = document.createElement('div');
+                controlText.style.color = 'rgb(255,25,25)';
+                controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+                controlText.style.fontSize = '16px';
+                controlText.style.lineHeight = '38px';
+                controlText.style.paddingLeft = '5px';
+                controlText.style.paddingRight = '5px';
+                controlText.innerHTML = 'Add waypoint';
+                controlUI.appendChild(controlText);
+
+
+                controlUI.addEventListener('click', function () {
+                    //This is the red button: UpdateMyLocation, on the map
+                    addMarker(56.171896, 10.188197);
+                });
+            }
+
+            function SetWayPoint(controlDiv, map) {
+
+                // Set CSS for the control border.
+                var controlUI = document.createElement('div');
+                controlUI.style.backgroundColor = '#fff';
+                controlUI.style.border = '2px solid #fff';
+                controlUI.style.borderRadius = '3px';
+                controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+                controlUI.style.cursor = 'pointer';
+                controlUI.style.marginBottom = '22px';
+                controlUI.style.marginTop = '20px'
+                controlUI.style.textAlign = 'center';
+                controlUI.title = 'Add Hardcoded Marker';
+                controlDiv.appendChild(controlUI);
+
+                // Set CSS for the control interior.
+                var controlText = document.createElement('div');
+                controlText.style.color = 'rgb(25,25,200)';
+                controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+                controlText.style.fontSize = '16px';
+                controlText.style.lineHeight = '38px';
+                controlText.style.paddingLeft = '5px';
+                controlText.style.paddingRight = '5px';
+                controlText.innerHTML = 'Update my location';
+                controlUI.appendChild(controlText);
+
+
+                controlUI.addEventListener('click', function () {
+                    //showMyPosition();
+                    //addMarker(0, 0);
+                    //getLocation();
+                    markerPlaced = true;
+                    window.external.GetCurrentGroupID();
+
+                    myVar = setInterval(myTimer, 1000);
+                   
+                    
+                });
+            }
+
+
+            function setStatus(status) {
+                markerPlaced = status;
+            }
+
+            function GeoLocationNotSupported() {
+                alert(
+                    "Geolocation does not support, please enable your windows location: \n 1. Go to Start windows \n" +
+                    " 2. then Settings  \n 3. then privat settings \n 4. Turn on lokation");
+            }
+
+
+            function myTimer() {
+                if (markerPlaced) {
+                    GeoLocationNotSupported();
+                }
+                clearInterval(myVar);
+            }
+
+           
+
+
+        </script>
+        
+  
+    
+        <body>
+
+            <div id="mapDiv"></div>
+            <!--<div id="coordsDiv"></div>-->
+
+        </body>
+</html>
