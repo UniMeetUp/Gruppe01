@@ -81,5 +81,10 @@ namespace UniMeetUpApplication.View
             if (txbSearch.Text == "Search for group...")
                 txbSearch.Text = string.Empty;
         }
+
+        private void LbGroups_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }

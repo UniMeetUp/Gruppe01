@@ -19,6 +19,20 @@ namespace UniMeetUpApplication.ViewModel
         
         private INavigationService _nav => new NavigationService();
 
+        private int selectedIndex = 0;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                
+                selectedIndex = value;
+                ChatCommand.Execute(null);
+            }
+        }
+
+
         public UserControl _currentPage = new MapsView();
 
         public UserControl CurrentPage

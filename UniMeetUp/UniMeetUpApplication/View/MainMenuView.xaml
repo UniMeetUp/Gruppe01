@@ -155,8 +155,10 @@
             <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0" 
                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" 
                      IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" Grid.ColumnSpan="2"
+                     SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup}"
+                     SelectedIndex="{Binding SelectedIndex}"
                      >
-
+                
             </ListBox>
             <StatusBar Grid.Row="3" Background="AliceBlue">
                 <StatusBarItem Content="Number of groups:" Opacity="0.5" ></StatusBarItem>
