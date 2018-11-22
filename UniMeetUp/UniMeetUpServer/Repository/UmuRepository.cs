@@ -38,8 +38,12 @@ namespace UniMeetUpServer.Repository
             return groups;
         }
 
+        public List<Location> getLocationsForGroup(int id)
+        {
+            var locations = _context.Location
+                .Where(i => i.GroupId == id).ToList();
 
-
-
+            return locations;
+        }
     }
 }

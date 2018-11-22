@@ -261,6 +261,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserForLogin.cs" />
     <Compile Include="Model\UserForCreateAccount.cs" />
+    <Compile Include="Model\UserLocation.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ServerAccessLayer\Interfaces\IServerAccessLayer.cs" />
     <Compile Include="ServerAccessLayer\ServerAccessLayer.cs" />

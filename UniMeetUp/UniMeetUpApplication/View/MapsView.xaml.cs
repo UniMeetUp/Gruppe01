@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Device.Location;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-
-
+using System.Windows.Documents;
+using CommonLib.Models;
+using Newtonsoft.Json.Linq;
+using UniMeetUpApplication.Model;
+using UniMeetUpApplication.ServerAccessLayer.Interfaces;
+using UniMeetUpApplication.ViewModel;
 
 
 namespace UniMeetUpApplication.View
@@ -15,29 +21,21 @@ namespace UniMeetUpApplication.View
     public partial class MapsView : UserControl
     {
         public static WebBrowser browser;
-
+        private ServerAccessLayer.ServerAccessLayer _sal = new ServerAccessLayer.ServerAccessLayer();
 
         public MapsView()
         {
             InitializeComponent();
-
+            
             // Load map
             LoadMaps();
-
             browser = MyWebBrowser;
+           
         }
 
 
         public void LoadMaps()
         {
-            //if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html"))
-            //{
-
-            //    Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html");
-
-            //  MyWebBrowser.Navigate(uri);
-            //}
-            
             if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
             {
 
@@ -45,17 +43,38 @@ namespace UniMeetUpApplication.View
 
               MyWebBrowser.Navigate(uri);
             }
-            //else
-            //{
-            //    MessageBox.Show("File not found:");
-            //}
+            
+
+            Thread.Sleep(1000);
         }
 
 
         private void WebBrowser_OnLoaded(object sender, RoutedEventArgs e)
         {
 
-            ((WebBrowser)sender).ObjectForScripting = new HtmlInteropInternalTestClass();
+            ((WebBrowser) sender).ObjectForScripting = new HtmlInteropInternalTestClass();
+
+
+            //if (((MasterViewModel) App.Current.MainWindow.DataContext).User.Groups.CurrentGroup != null)
+            //{
+            //    int id = ((MasterViewModel) App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId;
+            //    int Id = 8;
+            //    string userLocations = _sal.Get_User_locations_for_group(Id);
+            //
+            //    JArray jsonLocations = new JArray(JArray.Parse(userLocations));
+            //
+            //
+            //
+            //    foreach (var location in jsonLocations)
+            //    {
+            //        double latitude = (double) location.ToObject<JObject>().GetValue("latitude");
+            //        double longitude = (double) location.ToObject<JObject>().GetValue("longitude");
+            //
+            //        browser.InvokeScript("addMarker", new object[] {latitude, longitude});
+            //
+            //    }
+            //
+            //}
         }
 
 
@@ -85,9 +104,6 @@ namespace UniMeetUpApplication.View
 
             private void Watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) // Find GeoLocation of Device  
             {
-
-
-
                 try
                 {
                     if (e.Status == GeoPositionStatus.Ready)
@@ -96,36 +112,23 @@ namespace UniMeetUpApplication.View
                         if (watcher.Position.Location.IsUnknown)
                         {
                             browser.InvokeScript("GeoLocationNotSupported");
-
                         }
                         else
                         {
                             double latitude = watcher.Position.Location.Latitude;
                             double longitute = watcher.Position.Location.Longitude;
-
-
-
+                            
                             browser.InvokeScript("addMarker", new object[] {latitude, longitute});
 
                             browser.InvokeScript("setStatus", new object[] {false});
-
                         }
                     }
-                    
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Exeption");
                 }
-
-
             }
-
-
         }
-
-
     }
-
-
 }

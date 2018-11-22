@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
 using UniMeetUpServer.Models;
+using UniMeetUpServer.Repository;
 
 namespace UniMeetUpServer.Controllers
 {
@@ -15,10 +16,12 @@ namespace UniMeetUpServer.Controllers
     public class LocationsController : ControllerBase
     {
         private readonly UniMeetUpServerContext _context;
+        private IUmuRepository _umuRepository;
 
-        public LocationsController(UniMeetUpServerContext context)
+        public LocationsController(UniMeetUpServerContext context, IUmuRepository repo)
         {
             _context = context;
+            _umuRepository = repo;
         }
 
         // GET: api/Locations
@@ -45,6 +48,25 @@ namespace UniMeetUpServer.Controllers
             }
 
             return Ok(location);
+        }
+
+        [HttpGet("{id}/all")]
+        public async Task<IActionResult> GetLocationsForGroup([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var locationsForGroup =  _umuRepository.getLocationsForGroup(id);
+
+            if (locationsForGroup == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(locationsForGroup);
         }
 
         // PUT: api/Locations/5
@@ -94,7 +116,7 @@ namespace UniMeetUpServer.Controllers
             _context.Location.Add(location);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLocation", new { id = location.LocationId }, location);
+            return CreatedAtAction("GetLocation", new {id = location.LocationId}, location);
         }
 
         // DELETE: api/Locations/5

@@ -46,6 +46,16 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return str;
         }
 
+
+        public string Get_User_locations_for_group(int id)
+        {
+            var str =
+                client.GetStringAsync($"api/Locations/{id}/all").Result;
+
+            return str;
+
+        }
+
         public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
            // var str =
