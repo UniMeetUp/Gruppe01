@@ -32,6 +32,30 @@
             var map;
             //var geocoder = new google.maps.Geocoder();
             var myVar = setInterval(myTimer, 0);
+            var currentMarker = new google.maps.Marker();
+
+            function setCurrentMarker(lat, long, info, timestamp, displayName) {
+                    currentMarker.setMap(null);
+                currentMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat, long),
+                    map: map,
+                    title: displayName + 's mor er en luder'
+
+            });
+                
+                
+                var contentOfMarker = '<div id="content"> <p>' + 'Email: ' + info + '<br>Displayname: ' +
+                    displayName + '<br>Last updated: ' + timestamp + '</p> </div>';
+                
+                var infoWindow = new google.maps.InfoWindow({
+                    content : contentOfMarker
+                })
+                
+                google.maps.event.addListener(currentMarker, 'click',
+                    function(){
+                        infoWindow.open(map, currentMarker);
+                    });
+            }
 
             var markerPlaced = false;
 
