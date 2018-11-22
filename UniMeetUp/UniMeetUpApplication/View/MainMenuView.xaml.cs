@@ -95,5 +95,7 @@ namespace UniMeetUpApplication.View
             if (txbSearch.Text == "Search for group...")
                 txbSearch.Text = string.Empty;
         }
+
+      
     }
 }

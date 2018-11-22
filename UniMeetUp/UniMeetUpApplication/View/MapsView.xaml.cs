@@ -30,14 +30,6 @@ namespace UniMeetUpApplication.View
 
         public void LoadMaps()
         {
-            //if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html"))
-            //{
-
-            //    Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "ApplicationGoogleMaps.html");
-
-            //  MyWebBrowser.Navigate(uri);
-            //}
-            
             if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
             {
 
@@ -45,10 +37,7 @@ namespace UniMeetUpApplication.View
 
               MyWebBrowser.Navigate(uri);
             }
-            //else
-            //{
-            //    MessageBox.Show("File not found:");
-            //}
+           
         }
 
 
@@ -83,11 +72,10 @@ namespace UniMeetUpApplication.View
 
             }
 
+
+
             private void Watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) // Find GeoLocation of Device  
             {
-
-
-
                 try
                 {
                     if (e.Status == GeoPositionStatus.Ready)
@@ -101,7 +89,7 @@ namespace UniMeetUpApplication.View
                         else
                         {
                             double latitude = watcher.Position.Location.Latitude;
-                            double longitute = watcher.Position.Location.Longitude;
+                            double longitute = watcher.Position.Location.Longitude;                                                                 
 
 
 
