@@ -132,17 +132,18 @@
                 }
             }
             
-            function drawMarkers(map){
+            function addMarkerWithInfo(lat, long, info, timestamp, displayName){
                 
                 var centerMarker = new google.maps.Marker({
-                    position : new google.maps.LatLng(56.171896, 10.188197),
+                    position : new google.maps.LatLng(lat,long),
                     map: map,
-                    title : "Anton the cool dude"
+                    title: "Anton the cool dude"
                     
                 });
                 
                 
-                var contentOfMarker = '<div id="content"> <img src="GrimFyr.jpg" height="120" width="120">        <p> Køn : Mand <br> Navn: Andreas  <br> Søger : Mænd (jeg er super Gay)</p> </div>';
+                var contentOfMarker = '<div id="content"> <p>' + 'Email: ' + info + '<br>Displayname: ' +
+                    displayName + '<br>Last updated: ' + timestamp + '</p> </div>';
                 
                 var infoWindow = new google.maps.InfoWindow({
                     content : contentOfMarker
@@ -212,11 +213,12 @@
                 controlText.style.lineHeight = '38px';
                 controlText.style.paddingLeft = '5px';
                 controlText.style.paddingRight = '5px';
-                controlText.innerHTML = 'UpdateMyLocation';
+                controlText.innerHTML = 'Add waypoint';
                 controlUI.appendChild(controlText);
 
 
-                controlUI.addEventListener('click', function() {
+                controlUI.addEventListener('click', function () {
+                    //This is the red button: UpdateMyLocation, on the map
                     addMarker(56.171896, 10.188197);
                 });
             }
@@ -244,7 +246,7 @@
                 controlText.style.lineHeight = '38px';
                 controlText.style.paddingLeft = '5px';
                 controlText.style.paddingRight = '5px';
-                controlText.innerHTML = 'Add WayPoint';
+                controlText.innerHTML = 'Update my location';
                 controlUI.appendChild(controlText);
 
 
