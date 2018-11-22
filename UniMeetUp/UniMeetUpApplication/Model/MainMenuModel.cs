@@ -17,11 +17,11 @@ namespace UniMeetUpApplication.Model
             _serverAccessLayer = serverAccessLayer;
         }
 
-        public List<FileMessageForDownload> GetAllFilenameAndIdForGroup(int groupId)
+        public List<FileMessageForFileFolder> GetAllFilenameAndIdForGroup(int groupId)
         {
             var jsonData = _serverAccessLayer.Get_Group_File_Messages_Name_And_Id(groupId);
 
-            var fetch = JsonConvert.DeserializeObject<FileMessageForDownload[]>(jsonData);
+            var fetch = JsonConvert.DeserializeObject<FileMessageForFileFolder[]>(jsonData);
 
             return fetch.ToList();
             

@@ -12,6 +12,6 @@ namespace UniMeetUpServer.Repository
         User GetUserById(string email);
         List<Group> GetGroupsForUser(string email);
         List<Location> getLocationsForGroup(int id);
-        List<FileMessageForDownloadDTO> GetGroupFileMessagesNameAndId(int groupId);
+        List<FileMessageForFileFolderDTO> GetGroupFileMessagesNameAndId(int groupId);
     }
 }

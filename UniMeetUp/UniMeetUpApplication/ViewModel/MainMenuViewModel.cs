@@ -127,9 +127,9 @@ namespace UniMeetUpApplication.ViewModel
                 return _fileRepoCommand ??
                        (_fileRepoCommand = new RelayCommand(() =>
                        {
-
                            CurrentPage = new FileRepoView();
-                           _mainManuModel.GetAllFilenameAndIdForGroup(8);
+                           ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.ListOfFilesInGroup 
+                               = _mainManuModel.GetAllFilenameAndIdForGroup(((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId);
 
                        }));
             }

@@ -62,9 +62,9 @@ namespace UniMeetUpApplication.Model
         //  the string is the email of the user/member
         //private Dictionary<string, User> users;
 
-        private List<FileMessageForDownload> _listOfFilesInGroup;
+        private List<FileMessageForFileFolder> _listOfFilesInGroup;
 
-        public List<FileMessageForDownload> ListOfFilesInGroup
+        public List<FileMessageForFileFolder> ListOfFilesInGroup
         {
             get { return _listOfFilesInGroup; }
             set

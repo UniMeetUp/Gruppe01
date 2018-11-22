@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniMeetUpApplication.Model
 {
-    public class FileMessageForDownload
+    public class FileMessageForFileFolder
     {
         //public FileMessageForDownload(int fileMessageId, string fileHeaders)
         //{

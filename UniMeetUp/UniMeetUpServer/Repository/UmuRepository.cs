@@ -47,20 +47,19 @@ namespace UniMeetUpServer.Repository
             return locations;
         }
 
-        public List<FileMessageForDownloadDTO> GetGroupFileMessagesNameAndId(int groupId)
+        public List<FileMessageForFileFolderDTO> GetGroupFileMessagesNameAndId(int groupId)
         {
             List<string> _FileHeaderlist = _context.FileMessage.Where(f => f.GroupId == groupId)
                 .Select(f => f.FileHeaders).ToList();
-
             
             List<int> _FileIdList = _context.FileMessage.Where(f => f.GroupId == groupId)
                 .Select(f => f.FileMessageId).ToList();
 
-            List<FileMessageForDownloadDTO> _listToReturn = new List<FileMessageForDownloadDTO>();
+            List<FileMessageForFileFolderDTO> _listToReturn = new List<FileMessageForFileFolderDTO>();
 
             for (int i = 0; i < _FileHeaderlist.Count; i++)
             {
-                _listToReturn.Add(new FileMessageForDownloadDTO(_FileIdList[i], _FileHeaderlist[i]));
+                _listToReturn.Add(new FileMessageForFileFolderDTO(_FileIdList[i], _FileHeaderlist[i]));
             }
 
             return _listToReturn;

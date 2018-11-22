@@ -8,6 +8,6 @@ namespace UniMeetUpApplication.Model.Interfaces
 {
     public interface IMainMenuModel
     {
-        List<FileMessageForDownload> GetAllFilenameAndIdForGroup(int groupId);
+        List<FileMessageForFileFolder> GetAllFilenameAndIdForGroup(int groupId);
     }
 }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace UniMeetUpServer.DTO
 {
-    public class FileMessageForDownloadDTO
+    public class FileMessageForFileFolderDTO
     {
-        public FileMessageForDownloadDTO(int fileMessageId, string fileHeaders)
+        public FileMessageForFileFolderDTO(int fileMessageId, string fileHeaders)
         {
             FileMessageId = fileMessageId;
             FileHeaders = fileHeaders;

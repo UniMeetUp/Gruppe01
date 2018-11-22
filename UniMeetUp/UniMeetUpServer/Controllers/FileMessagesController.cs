@@ -124,7 +124,7 @@ namespace UniMeetUpServer.Controllers
 
         // GET: api/FileMessages/Group/id
         [HttpGet("Group/{id}")]
-        public IEnumerable<FileMessageForDownloadDTO> GetGroupFileMessage([FromRoute] int id)
+        public IEnumerable<FileMessageForFileFolderDTO> GetGroupFileMessage([FromRoute] int id)
         {
             return _umuRepository.GetGroupFileMessagesNameAndId(id);
         }
