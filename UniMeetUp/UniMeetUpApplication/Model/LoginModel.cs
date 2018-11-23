@@ -19,9 +19,10 @@ namespace UniMeetUpApplication.Model
             _serverAccessLayer = serverAccessLayer;
         }
 
-        public bool Validate_Email_and_Password(UserForLogin userForLogin)
+        public async Task<bool> Validate_Email_and_Password(UserForLogin userForLogin)
         {
-            if (_serverAccessLayer.Check_if_Email_and_Password_is_in_database(userForLogin) == HttpStatusCode.OK)
+            var str = await _serverAccessLayer.Check_if_Email_and_Password_is_in_database(userForLogin);
+            if (str.StatusCode == HttpStatusCode.OK)
             {
                 return true;
             }

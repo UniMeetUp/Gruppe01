@@ -11,7 +11,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
 {
     public interface IServerAccessLayer
     {
-        HttpStatusCode Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin);
+        Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin);
         void Create_Account_In_Database(UserForCreateAccount userForCreateAccount);
         bool Check_In_Database_If_Email_Is_Already_In_Use(string username);
         string Get_user_from_database(string email);
