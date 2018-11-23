@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using UniMeetUpApplication.Command;
 
 namespace UniMeetUpApplication.Model
 {
@@ -12,9 +14,27 @@ namespace UniMeetUpApplication.Model
     {
         public Groups()
         {
-            Add(new Group("poul3"));
-            Add(new Group("poul2"));
-            Add(new Group("poul1"));
+
         }
+
+        #region Commands
+
+
+
+        ICommand _addMemberToGroupCommand;
+
+        public ICommand AddMemberToGroupCommand
+        {
+            get{
+                return _addMemberToGroupCommand ?? (_addMemberToGroupCommand = new RelayCommand(() =>
+                {
+
+                }));
+            }
+        }
+
+
+
+        #endregion
     }
 }

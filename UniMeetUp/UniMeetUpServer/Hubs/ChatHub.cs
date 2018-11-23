@@ -27,7 +27,7 @@ namespace UniMeetUpServer.Hubs
         public Task FileMessage(string emailAddress, int groupId, FileMessage file)
         {
             file.UserId = emailAddress;
-            file.GroupId = 1; 
+            file.GroupId = 8; 
             _context.FileMessage.Add(file);
             _context.SaveChanges();
             return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);
@@ -38,7 +38,7 @@ namespace UniMeetUpServer.Hubs
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupId.ToString());
 
-            System.Console.WriteLine($"Client joined room: {groupId.ToString()}");
+            //System.Console.WriteLine($"Client joined room: {groupId.ToString()}");
             //return Groups.Add(Context.ConnectionId, roomName);
         }
 
@@ -61,7 +61,7 @@ namespace UniMeetUpServer.Hubs
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupId.ToString());
 
-            System.Console.WriteLine($"Client left room: {groupId.ToString()}");
+            //System.Console.WriteLine($"Client left room: {groupId.ToString()}");
             //return Groups.Remove(Context.ConnectionId, roomName);
         }
     }

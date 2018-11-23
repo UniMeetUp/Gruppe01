@@ -45,10 +45,10 @@ namespace UniMeetUpApplication.View
 
               MyWebBrowser.Navigate(uri);
             }
-            else
-            {
-                MessageBox.Show("File not found:");
-            }
+            //else
+            //{
+            //    MessageBox.Show("File not found:");
+            //}
         }
 
 
@@ -85,7 +85,7 @@ namespace UniMeetUpApplication.View
 
             private void Watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) // Find GeoLocation of Device  
             {
-                
+
 
 
                 try
@@ -103,25 +103,22 @@ namespace UniMeetUpApplication.View
                             double latitude = watcher.Position.Location.Latitude;
                             double longitute = watcher.Position.Location.Longitude;
 
-                            
 
-                            browser.InvokeScript("addMarker", new object[]{latitude, longitute});
+
+                            browser.InvokeScript("addMarker", new object[] {latitude, longitute});
 
                             browser.InvokeScript("setStatus", new object[] {false});
 
                         }
                     }
-                    else
-                    {
-                        //browser.InvokeScript("GeoLocationNotSupported");
-                    }
+                    
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Exeption");
                 }
 
-                
+
             }
 
 

@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Migrations\20181115100111_UsergroupTest1.cs" />
     <Compile Remove="Migrations\20181115100111_UsergroupTest1.Designer.cs" />
+    <Compile Remove="Migrations\20181115132631_MaybeModelsIsUpdated.cs" />
+    <Compile Remove="Migrations\20181115132631_MaybeModelsIsUpdated.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

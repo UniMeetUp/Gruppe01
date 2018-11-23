@@ -18,12 +18,12 @@ namespace UniMeetUpApplication.ViewModel
     public class LoginViewModel : ViewModelBase
     {
         public UserControl _currentPage;
-
+   
         private ILoginModel _loginModel = new LoginModel(new ServerAccessLayer.ServerAccessLayer());
         private INotificationService _notificationService = new NotificationService();
         public LoginViewModel()
         {
-
+            
         }
 
         public UserControl CurrentPage
@@ -70,23 +70,19 @@ namespace UniMeetUpApplication.ViewModel
         public void Login(object parameter)
         {
             var values = (object[])parameter;
-
-
-
+            
             string Email = values[0].ToString();
             string Password = values[1].ToString();
-
+            //string Password = values[1].ToString();
+            
             UserForLogin userForLogin = new UserForLogin(Email, Password);
 
             if (_loginModel.Validate_Email_and_Password(userForLogin))
             {
-
-                _loginModel.getAllUserData(userForLogin.Email);
-                //((MasterViewModel)App.Current.MainWindow.DataContext).User = _loginModel.getAllUserData();
-
-                // Problem Fixed!!
                 var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
                 viewModel.MainPageCommand.Execute(null);
+                
+                _loginModel.getAllUserData(userForLogin.Email);
             }
             else
             {

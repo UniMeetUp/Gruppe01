@@ -48,7 +48,9 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
-            //Do something
+           // var str =
+           //     client.PostAsJsonAsync($"api/User/", userForCreateAccount );
+           
         }
 
         public bool Check_In_Database_If_Email_Is_Already_In_Use(string email)
@@ -58,5 +60,11 @@ namespace UniMeetUpApplication.ServerAccessLayer
             //Do something
             return false;
         }
+
+
+
+
+
+
     }
 }
