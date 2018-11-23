@@ -118,6 +118,16 @@ namespace UniMeetUpServer.Controllers
             return Ok(user);
         }
 
+        // POST: api/Users/CreateAccount
+        [HttpPost]
+        public async Task<IActionResult> PostUserForCreateAccount([FromBody] User user)
+        {
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUser", new { id = user.EmailAddress }, user);
+        }
+
         private bool UserExists(string id)
         {
             return _context.User.Any(e => e.EmailAddress == id);

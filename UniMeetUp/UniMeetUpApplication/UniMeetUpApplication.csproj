@@ -264,6 +264,7 @@
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\OtherUsers.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserForCreate.cs" />
     <Compile Include="Model\UserForLogin.cs" />
     <Compile Include="Model\UserForCreateAccount.cs" />
     <Compile Include="Model\UserLocation.cs" />
