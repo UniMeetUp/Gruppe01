@@ -35,8 +35,6 @@ namespace UniMeetUpApplication.View
         public LoginView()
         {
             InitializeComponent();
-           
-        
             spinner = MySpinner;
 
         }
@@ -51,12 +49,6 @@ namespace UniMeetUpApplication.View
             tbPassword.Text = passwordBx.Password;
         }
 
-        private void userPressesEnterBttn(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                tbPassword.Text = passwordBx.Password;
-            }
-        }
+      
     }
 }
