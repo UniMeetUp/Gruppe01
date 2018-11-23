@@ -16,6 +16,7 @@ namespace CommonLib.Models
         [MaxLength(25)]
         public string DisplayName { get; set; }
 
-        public List<UserGroup> UserGroups { get; set; }
+        [NotMapped]
+        public ICollection<UserGroup> UserGroups { get; set; }
     }
 }
