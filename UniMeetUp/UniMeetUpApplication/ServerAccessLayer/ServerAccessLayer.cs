@@ -93,6 +93,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return str;
         }
 
+        public async Task<HttpResponseMessage> Delete_user_from_DB(User user)
+        {
+            var str = 
+                await client.DeleteAsync($"api/Users/{user.emailAdresse}");
+
+            return str;
+        }
+
 
     }
 }
