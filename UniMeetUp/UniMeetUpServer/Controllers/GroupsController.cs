@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
 using UniMeetUpServer.Models;
+using UniMeetUpServer.Repository;
 
 namespace UniMeetUpServer.Controllers
 {
@@ -15,9 +16,10 @@ namespace UniMeetUpServer.Controllers
     public class GroupsController : ControllerBase
     {
         private readonly UniMeetUpServerContext _context;
-
-        public GroupsController(UniMeetUpServerContext context)
+        private Repository.IUmuRepository _umuRepository;
+        public GroupsController(UniMeetUpServerContext context, IUmuRepository umuRepo)
         {
+            _umuRepository = umuRepo;
             _context = context;
         }
 
@@ -45,6 +47,20 @@ namespace UniMeetUpServer.Controllers
             }
 
             return Ok(@group);
+        }
+
+        [HttpGet("{email}/all")]
+        public async Task<IActionResult> GetGroups([FromRoute] string email)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var groups = _umuRepository.GetGroupsForUser(email);
+
+            return Ok(groups);
+
         }
 
         // PUT: api/Groups/5
