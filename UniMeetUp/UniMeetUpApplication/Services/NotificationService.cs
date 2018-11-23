@@ -55,7 +55,6 @@ namespace UniMeetUpApplication.Services
         {
             MessageBox.Show("Your account has been successfully created.");
         }
-
         public void Show_Message_Something_went_wrong()
         {
             MessageBox.Show("Something went wrong");
