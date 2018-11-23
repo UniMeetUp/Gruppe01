@@ -56,11 +56,11 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         }
 
-        public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
+        public async Task<HttpResponseMessage> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
-            // var str =
-            //     client.PostAsJsonAsync($"api/User/", userForCreateAccount );
-
+             var str =
+                 await client.PostAsJsonAsync("api/Users/create", userForCreateAccount );
+            return str;
         }
 
         public bool Check_In_Database_If_Email_Is_Already_In_Use(string email)
@@ -89,6 +89,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
         public string Get_File_To_Download_By_Id(int fileId)
         {
             var str = client.GetStringAsync($"api/FileMessages/Download/{fileId}").Result;
+
+            return str;
+        }
+
+        public async Task<HttpResponseMessage> Delete_user_from_DB(User user)
+        {
+            var str = 
+                await client.DeleteAsync($"api/Users/{user.emailAdresse}");
 
             return str;
         }
