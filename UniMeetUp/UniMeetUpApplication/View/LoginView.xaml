@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             
              xmlns:services="clr-namespace:UniMeetUpApplication.Services"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              >
@@ -96,11 +95,11 @@
                 </TextBox.Style>
             </TextBox>
 
-            <PasswordBox x:Name="passwordBx" Margin="5"  LostFocus="passwordBx_LostFocus" ></PasswordBox>
+            <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="userPressesEnterBttn" ></PasswordBox>
             
           
         
-            <TextBox x:Name="tbPassword" Text="lort" Margin="0" Visibility="Hidden" Height="0" Width="0" />
+            <TextBox x:Name="tbPassword"  Margin="0" Visibility="Hidden" Height="0" Width="0" />
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 
@@ -144,6 +143,6 @@
         </StackPanel>
 
     </Grid>
-        <fa:ImageAwesome x:Name="MySpinner" Icon="Refresh"  Spin="True" Visibility="Hidden" Height="100" Width="100" Foreground="#FF348299" />
+        <fa:ImageAwesome x:Name="MySpinner" Icon="Spinner"  Spin="True" Visibility="Hidden" Height="80" Width="80" Foreground="#FF348299" />
     </Grid>
 </UserControl>
