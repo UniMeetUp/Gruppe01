@@ -31,7 +31,7 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
 
-        public void CreateAccount(object parameter)
+        public async void CreateAccount(object parameter)
         {
             var values = (object[])parameter;
 
@@ -47,12 +47,21 @@ namespace UniMeetUpApplication.ViewModel
                 if (_createAccountModel.Validate_Email(Email))
                 {
                     //_createAccountModel.Create_Account(DisplayName, Email, Password);
-                    _createAccountModel.Create_Account(new UserForCreateAccount(DisplayName, Email, Password));
 
-                    var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
-                    viewModel.MainPageCommand.Execute(null);
+                    var str = await _createAccountModel.Create_Account(new UserForCreateAccount(DisplayName, Email, Password));
 
-                    _notificationService.Show_Message_Account_Has_Been_Created();
+                    if (str == true)
+                    {
+                        var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
+                        viewModel.MainPageCommand.Execute(null);
+
+                        _notificationService.Show_Message_Account_Has_Been_Created();
+                    }
+                    else
+                    {
+                        _notificationService.Show_Message_Something_went_wrong();
+                    }
+                    
                 }
                 else
                 {
@@ -65,7 +74,7 @@ namespace UniMeetUpApplication.ViewModel
         {
             if (a == b)
                 return true;
-
+            
             return false;
         }
 

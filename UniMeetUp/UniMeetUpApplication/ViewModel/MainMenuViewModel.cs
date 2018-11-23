@@ -49,9 +49,6 @@ namespace UniMeetUpApplication.ViewModel
                 OnPropertyChanged("CurrentPage");
             }
         }
-
-
-
         public MainMenuViewModel()
         {
 

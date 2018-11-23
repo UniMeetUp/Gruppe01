@@ -9,10 +9,11 @@
              d:DesignHeight="450" d:DesignWidth="500">
 
         <UserControl.Resources>
-        <viewModel:AccountSettingsViewModel x:Key="vm"></viewModel:AccountSettingsViewModel>
-    </UserControl.Resources>
+            <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
+            <viewModel:AccountSettingsViewModel x:Key="AccountSettingsViewModel"></viewModel:AccountSettingsViewModel>
+        </UserControl.Resources>
 
-    <Grid Background="LightGray" DataContext="{StaticResource vm}">
+        <Grid Background="LightGray">
         <Grid ShowGridLines="False" Background="White" Margin="1,1,1,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -54,8 +55,8 @@
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Command="{Binding LogOutCommand}">Log out</Button>
-                <Button Grid.Column="1" Background="#FFEFB7B7">Delete account</Button>
+                <Button Grid.Column="0" DataContext="{StaticResource LoginViewModel}" Command="{Binding GoToLoginScreenCommand}">Log out</Button>
+                <Button Grid.Column="1" DataContext="{StaticResource AccountSettingsViewModel}"  Command="{Binding DeleteAccountCommand}" Background="#FFEFB7B7">Delete account</Button>
 
             </Grid>
 
