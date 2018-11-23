@@ -22,10 +22,10 @@ namespace UniMeetUpApplication.ServerAccessLayer
             client.BaseAddress = new Uri("https://localhost:44364/");
         }
 
-        public HttpStatusCode Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
+        public async HttpStatusCode Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
         {
             //HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", userForLogin); DUER IKKE!!!!!
-            var response = client.PostAsJsonAsync("api/Users/login", userForLogin).Result;
+            var response =  await client.PostAsJsonAsync("api/Users/login", userForLogin).Result;
 
             return response.StatusCode;
         }
