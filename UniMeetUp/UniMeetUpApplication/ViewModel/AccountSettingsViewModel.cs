@@ -16,7 +16,8 @@ namespace UniMeetUpApplication.ViewModel
 {
     public class AccountSettingsViewModel
     {
-
+        AccountSettingsModel asm = new AccountSettingsModel();
+        private INotificationService _notificationService = new NotificationService();
 
         ICommand _logOutCommand;
         public ICommand LogOutCommand
@@ -38,10 +39,8 @@ namespace UniMeetUpApplication.ViewModel
             _masterViewModel.LoginPageCommand.Execute(null);
 
         }
-    class AccountSettingsViewModel
-    {
-        AccountSettingsModel asm = new AccountSettingsModel();
-        private INotificationService _notificationService = new NotificationService();
+
+        
         ICommand _deleteAccountCommand;
         public ICommand DeleteAccountCommand
         {
