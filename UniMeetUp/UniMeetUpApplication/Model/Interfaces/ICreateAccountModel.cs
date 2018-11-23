@@ -9,6 +9,6 @@ namespace UniMeetUpApplication.Model.Interfaces
     public interface ICreateAccountModel
     {
         bool Validate_Email(string email);
-        void Create_Account(UserForCreateAccount userForCreateAccount);
+        Task<bool> Create_Account(UserForCreateAccount userForCreateAccount);
     }
 }

@@ -23,22 +23,10 @@ namespace UniMeetUpApplication.View
     /// </summary>
     public partial class FileRepoView : UserControl
     {
-        // Added 17/11
-        Files _files = new Files();
+        
         public FileRepoView()
         {
             InitializeComponent();
-
-            /* FOR TESTING PURPOSES, REASONED NO ACTUAL FILES ARE IN DB */
-            //_files.Add(new FileMessage("48d2d824dss884f2w8s", "AntonSlimSihm@gmail.com", 100));
-            //_files.Add(new FileMessage("48d2d824dss884f2w8s", "randomMail@outlook.dk", 321232223));
-            //_files.Add(new FileMessage("223ddw2", "testing'åøøæ@gmail.com", -1));
-            //_files.Add(new FileMessage("48d2d824dss884f2w8s", "efvb", 3));
-            /* TESTING STOPS HERE */
-
-
-            // Added 17/11
-            // dataGridFileRepo.ItemsSource = _files;
 
         }
 

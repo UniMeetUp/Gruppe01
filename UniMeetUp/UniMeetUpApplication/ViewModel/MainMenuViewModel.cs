@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using UniMeetUpApplication.Command;
+using UniMeetUpApplication.Model;
+using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.Services;
 using UniMeetUpApplication.Services.ServiceInterfaces;
 using UniMeetUpApplication.View;
@@ -19,6 +21,23 @@ namespace UniMeetUpApplication.ViewModel
         
         private INavigationService _nav => new NavigationService();
 
+        private int selectedIndex = 0;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                
+                selectedIndex = value;
+                
+                //ChatCommand.Execute(null);
+            }
+        }
+
+
+        private IMainMenuModel _mainManuModel = new MainMenuModel(new ServerAccessLayer.ServerAccessLayer());
+
         public UserControl _currentPage = new MapsView();
 
         public UserControl CurrentPage
@@ -30,9 +49,6 @@ namespace UniMeetUpApplication.ViewModel
                 OnPropertyChanged("CurrentPage");
             }
         }
-
-
-
         public MainMenuViewModel()
         {
 
@@ -110,6 +126,8 @@ namespace UniMeetUpApplication.ViewModel
                        (_fileRepoCommand = new RelayCommand(() =>
                        {
                            CurrentPage = new FileRepoView();
+                           ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.ListOfFilesInGroup 
+                               = _mainManuModel.GetAllFilenameAndIdForGroup(((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId);
 
                        }));
             }

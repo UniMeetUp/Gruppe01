@@ -43,6 +43,7 @@ namespace UniMeetUpServer
 
             services.AddDbContext<UniMeetUpServerContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("UniMeetUpServerContext")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "UMU API", Version = "v1"});});

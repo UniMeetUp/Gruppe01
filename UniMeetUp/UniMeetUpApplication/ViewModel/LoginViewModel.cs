@@ -67,8 +67,9 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
         
-        public void Login(object parameter)
+        public async void Login(object parameter)
         {
+
             var values = (object[])parameter;
             
             string Email = values[0].ToString();
@@ -77,7 +78,9 @@ namespace UniMeetUpApplication.ViewModel
             
             UserForLogin userForLogin = new UserForLogin(Email, Password);
 
-            if (_loginModel.Validate_Email_and_Password(userForLogin))
+            var str = await _loginModel.Validate_Email_and_Password(userForLogin);
+
+            if (str)
             {
                 var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
                 viewModel.MainPageCommand.Execute(null);

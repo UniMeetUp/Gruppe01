@@ -89,7 +89,7 @@
                 </TextBox.Style>
             </TextBox>
 
-            <PasswordBox x:Name="passwordBx" Margin="5" TextInput="PasswordIsSentToTxtBx" ></PasswordBox>
+            <PasswordBox x:Name="passwordBx" Margin="5"  LostFocus="passwordBx_LostFocus" ></PasswordBox>
             <TextBox x:Name="tbPassword" Text="lort" Margin="0" Visibility="Hidden" Height="0" Width="0" />
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
@@ -104,7 +104,7 @@
 
 <!--<Button Grid.Column="1" Name="btnLogin" Content="Login" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
                     Path=DataContext.MainPageCommand}">-->
-                <Button Grid.Column="1" Name="btnLogin" Content="Login" Command="{Binding LoginCommand}">
+                <Button Grid.Column="1" Name="btnLogin" IsDefault="True"  Content="Login" Command="{Binding LoginCommand}">
 
                     <Button.CommandParameter>
 

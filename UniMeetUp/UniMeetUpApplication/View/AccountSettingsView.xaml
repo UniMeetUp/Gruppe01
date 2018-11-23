@@ -4,9 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
+             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
-    <Grid Background="LightGray">
+
+        <UserControl.Resources>
+            <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
+            <viewModel:AccountSettingsViewModel x:Key="AccountSettingsViewModel"></viewModel:AccountSettingsViewModel>
+        </UserControl.Resources>
+
+        <Grid Background="LightGray">
         <Grid ShowGridLines="False" Background="White" Margin="1,1,1,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -48,8 +55,8 @@
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0">Log out</Button>
-                <Button Grid.Column="1" Background="#FFEFB7B7">Delete account</Button>
+                <Button Grid.Column="0" DataContext="{StaticResource LoginViewModel}" Command="{Binding GoToLoginScreenCommand}">Log out</Button>
+                <Button Grid.Column="1" DataContext="{StaticResource AccountSettingsViewModel}"  Command="{Binding DeleteAccountCommand}" Background="#FFEFB7B7">Delete account</Button>
 
             </Grid>
 
