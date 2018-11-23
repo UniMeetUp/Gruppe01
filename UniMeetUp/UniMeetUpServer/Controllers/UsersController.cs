@@ -90,9 +90,11 @@ namespace UniMeetUpServer.Controllers
         }
 
         // POST: api/Users
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> PostUser([FromBody] User user)
         {
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
