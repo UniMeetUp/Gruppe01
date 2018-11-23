@@ -9,6 +9,7 @@ using CommonLib.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
+using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.View
 {
@@ -19,9 +20,14 @@ namespace UniMeetUpApplication.View
     {
         private HubConnection connection;
         private const string storageDir = "ReceivedFiles";
+
+        private string _emailAddress = ((MasterViewModel) App.Current.MainWindow.DataContext).User.emailAdresse;
+        private int _groupId;
         public ChatView()
         {
             InitializeComponent();
+
+            _groupId = ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId;
 
             connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:44364/chatHub")
@@ -86,7 +92,7 @@ namespace UniMeetUpApplication.View
                 MessageList.AppendText(exception.Message);
             }
 
-            await connection.InvokeAsync("JoinGroup", 8);
+            await connection.InvokeAsync("JoinGroup", _groupId);
         }
 
         private async void SendBtnEvent(object sender, RoutedEventArgs e)
@@ -99,7 +105,7 @@ namespace UniMeetUpApplication.View
             try
             {
                 //Calls method in hub - with the three arguments: email, groupid and message
-                await connection.InvokeAsync("SendMessage", "anne@Petersen.dk", 8, MessageTextBox.Text);
+                await connection.InvokeAsync("SendMessage", _emailAddress, _groupId, MessageTextBox.Text);
                 MessageTextBox.Clear();
                 MessageTextBox.Focus();
             }
@@ -123,7 +129,10 @@ namespace UniMeetUpApplication.View
                 };
                 try
                 {
-                    await connection.InvokeAsync("FileMessage", "anne@Petersen.dk", 8, file);
+                    await connection.InvokeAsync("FileMessage", _emailAddress, _groupId, file);
+                    var newMessage = $"{_emailAddress}: Sent {fileName}\n";
+                    MessageList.AppendText(newMessage);
+                    MessageList.ScrollToEnd();
                 }
                 catch (Exception exception)
                 {

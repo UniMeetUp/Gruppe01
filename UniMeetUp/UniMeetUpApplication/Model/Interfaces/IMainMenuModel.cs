@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace UniMeetUpApplication.Model.Interfaces
 {
-    public interface ILoginModel
+    public interface IMainMenuModel
     {
-        Task<bool> Validate_Email_and_Password(UserForLogin userForLogin);
-        User getAllUserData(string email);
+        List<FileMessageForFileFolder> GetAllFilenameAndIdForGroup(int groupId);
     }
 }

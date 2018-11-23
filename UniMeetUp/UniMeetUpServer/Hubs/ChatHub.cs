@@ -24,13 +24,14 @@ namespace UniMeetUpServer.Hubs
             await Clients.Group(groupId.ToString()).SendAsync("ReceiveMessage", emailAddress, message);
         }
 
-        public Task FileMessage(string emailAddress, int groupId, FileMessage file)
+        public void FileMessage(string emailAddress, int groupId, FileMessage file)
         {
             file.UserId = emailAddress;
-            file.GroupId = 8; 
+            file.GroupId = groupId; 
             _context.FileMessage.Add(file);
             _context.SaveChanges();
-            return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);
+
+            //return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);
         }
 
         //Joing a group SignalR style.
