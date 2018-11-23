@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.Model.Interfaces;
@@ -69,50 +67,30 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
         
-        public void Login(object parameter)
+        public async void Login(object parameter)
         {
 
-            LoginView.spinner.Visibility = Visibility.Visible;
-            var taskLogin = Task.Factory.StartNew(() =>
-                {
-                    /* var values = (object[]) parameter;
+            var values = (object[])parameter;
+            
+            string Email = values[0].ToString();
+            string Password = values[1].ToString();
+            //string Password = values[1].ToString();
+            
+            UserForLogin userForLogin = new UserForLogin(Email, Password);
 
-                     string Email = values[0].ToString();
-                     string Password = values[1].ToString();
-                     string Password = values[1].ToString();
+            var str = await _loginModel.Validate_Email_and_Password(userForLogin);
 
-                     UserForLogin userForLogin = new UserForLogin(Email, Password);
-
-                     if (_loginModel.Validate_Email_and_Password(userForLogin))
-                     {
-                         App.Current.MainWindow.Dispatcher.Invoke(() =>
-                         {
-                             var viewModel = (MasterViewModel) App.Current.MainWindow.DataContext;
-                             viewModel.MainPageCommand.Execute(null);
-                         });
-
-
-                         _loginModel.getAllUserData(userForLogin.Email);
-                     }
-                     else
-                     {
-                         _notificationService.Show_Message_Email_Or_Password_Is_Incorrect();
-                     }
-                     */
-                    Thread.Sleep(5000);
-
-                }
-            );
-
-            var taskUpDateSpinner =
-                taskLogin.ContinueWith((antesedent) => { LoginView.spinner.Visibility = Visibility.Hidden; },
-                    TaskScheduler.FromCurrentSynchronizationContext());
-
-            taskUpDateSpinner.Wait();
-
-
-
-
+            if (str)
+            {
+                var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
+                viewModel.MainPageCommand.Execute(null);
+                
+                _loginModel.getAllUserData(userForLogin.Email);
+            }
+            else
+            {
+                _notificationService.Show_Message_Email_Or_Password_Is_Incorrect();
+            }
         }
 
         ICommand _createAccountBtnCommand;
