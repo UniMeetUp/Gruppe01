@@ -95,7 +95,7 @@
                 </TextBox.Style>
             </TextBox>
 
-            <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="userPressesEnterBttn" ></PasswordBox>
+                <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="PasswordBx_OnKeyDown"></PasswordBox>
             
           
         

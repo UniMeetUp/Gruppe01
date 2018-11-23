@@ -266,6 +266,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\Command.cs" />
+    <Compile Include="Model\AccountSettingsModel.cs" />
     <Compile Include="Model\CreateAccountModel.cs" />
     <Compile Include="Model\FileMessageForDownload.cs" />
     <Compile Include="Model\FileMessageForFileFolder.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Groups.cs" />
     <Compile Include="Model\Clock.cs" />
+    <Compile Include="Model\Interfaces\IAccountSettingsModel.cs" />
     <Compile Include="Model\Interfaces\ICreateAccountModel.cs" />
     <Compile Include="Model\Interfaces\IFileRepoModel.cs" />
     <Compile Include="Model\Interfaces\ILoginModel.cs" />

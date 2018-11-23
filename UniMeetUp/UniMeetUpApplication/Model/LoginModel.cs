@@ -56,7 +56,7 @@ namespace UniMeetUpApplication.Model
 
         private void addGroupsToCurrentuser(JArray jsonGroup, User user)
         {
-            user.Groups.Clear();
+           
 
             for (int i = 0; i < jsonGroup.Count; i++)
             {
@@ -64,7 +64,11 @@ namespace UniMeetUpApplication.Model
                     (int)jsonGroup[i].ToObject<JObject>().GetValue("groupId")));
             }
 
-            user.Groups.CurrentGroup = user.Groups[0];
+            if (user.Groups.Count != 0)
+            {
+                user.Groups.CurrentGroup = user.Groups[0];
+            }
+           
         }
 
         private void addDisplaynameAndEmailToCurrentUser(JObject jsonUser, User user)
