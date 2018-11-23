@@ -11,7 +11,6 @@ using UniMeetUpApplication.Services.ServiceInterfaces;
 using System.Windows.Input;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
-
 namespace UniMeetUpApplication.ViewModel
 {
     public class AccountSettingsViewModel
@@ -53,11 +52,11 @@ namespace UniMeetUpApplication.ViewModel
 
         public async void deleteAccount()
         {
-            var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
+            var viewModel = (MasterViewModel) App.Current.MainWindow.DataContext;
 
             var user = viewModel.User;
 
-            if ( await asm.Delete_account(user))
+            if (await asm.Delete_account(user))
             {
                 viewModel.LoginPageCommand.Execute(null);
             }
@@ -65,10 +64,6 @@ namespace UniMeetUpApplication.ViewModel
             {
                 _notificationService.Show_Message_Something_went_wrong();
             }
-            
-            
-            
         }
-
     }
 }

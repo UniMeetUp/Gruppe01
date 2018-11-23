@@ -30,6 +30,9 @@
         <DataGrid Grid.Row="1" IsReadOnly="True" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
                   ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.ListOfFilesInGroup}">
             <DataGrid.Columns>
+                <DataGridTextColumn x:Name ="fileCon">
+
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name ="fileId" Header="Id:" Binding="{Binding Path='FileMessageId'}"></DataGridTextColumn>
                 <DataGridTextColumn Header="File name:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn>

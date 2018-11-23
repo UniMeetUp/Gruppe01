@@ -21,7 +21,7 @@ namespace UniMeetUpApplication.Model
 
         #region Commands
 
-        private Group currentGroup;
+        Group currentGroup;
 
         public Group CurrentGroup
         {
@@ -29,7 +29,7 @@ namespace UniMeetUpApplication.Model
             {
                 if (currentGroup == null)
                 {
-                    return new Group("",0);
+                    return new Group("", 0);
                 }
                 return currentGroup;
             }
