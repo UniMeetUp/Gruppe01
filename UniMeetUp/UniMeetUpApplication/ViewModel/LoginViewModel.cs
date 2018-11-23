@@ -18,6 +18,7 @@ namespace UniMeetUpApplication.ViewModel
     public class LoginViewModel : ViewModelBase
     {
         public UserControl _currentPage;
+
    
         private ILoginModel _loginModel = new LoginModel(new ServerAccessLayer.ServerAccessLayer());
         private INotificationService _notificationService = new NotificationService();
@@ -69,7 +70,7 @@ namespace UniMeetUpApplication.ViewModel
         
         public async void Login(object parameter)
         {
-
+            LoginView.spinner.Visibility = Visibility.Visible;
             var values = (object[])parameter;
             
             string Email = values[0].ToString();
@@ -91,6 +92,8 @@ namespace UniMeetUpApplication.ViewModel
             {
                 _notificationService.Show_Message_Email_Or_Password_Is_Incorrect();
             }
+
+            LoginView.spinner.Visibility = Visibility.Hidden;
         }
 
         ICommand _createAccountBtnCommand;

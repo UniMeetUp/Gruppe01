@@ -21,11 +21,18 @@ namespace UniMeetUpApplication.Model
 
         #region Commands
 
-        Group currentGroup = null;
+        private Group currentGroup;
 
         public Group CurrentGroup
         {
-            get { return currentGroup; }
+            get
+            {
+                if (currentGroup == null)
+                {
+                    return new Group("",0);
+                }
+                return currentGroup;
+            }
             set
             {
                 if (currentGroup != value)

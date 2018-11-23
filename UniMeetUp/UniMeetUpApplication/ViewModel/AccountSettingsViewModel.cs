@@ -8,13 +8,39 @@ using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.Services;
 using UniMeetUpApplication.Services.ServiceInterfaces;
+using System.Windows.Input;
+using UniMeetUpApplication.Command;
+using UniMeetUpApplication.Model;
 
 namespace UniMeetUpApplication.ViewModel
 {
-    class AccountSettingsViewModel
+    public class AccountSettingsViewModel
     {
         AccountSettingsModel asm = new AccountSettingsModel();
         private INotificationService _notificationService = new NotificationService();
+
+        ICommand _logOutCommand;
+        public ICommand LogOutCommand
+        {
+            get
+            {
+                return _logOutCommand ?? (_logOutCommand = new RelayCommand(logOutCommandExe));
+            }
+        }
+
+        public void logOutCommandExe()
+        {
+            MasterViewModel _masterViewModel = ((MasterViewModel) App.Current.MainWindow.DataContext);
+            User _userHack = new User();
+           
+
+            _masterViewModel.User = _userHack;
+
+            _masterViewModel.LoginPageCommand.Execute(null);
+
+        }
+
+        
         ICommand _deleteAccountCommand;
         public ICommand DeleteAccountCommand
         {
