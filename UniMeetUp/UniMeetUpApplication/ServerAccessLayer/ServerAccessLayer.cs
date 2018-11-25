@@ -35,6 +35,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
             var str =
                 client.GetStringAsync($"api/Users/{email}").Result;
 
+
             return str;
         }
 
@@ -101,5 +102,23 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return str;
         }
 
+        public string Get_email_from_database(string email)
+        {
+            
+            try
+            {
+                var str =
+                    client.GetStringAsync($"api/Users/{email}").Result;
+
+
+                return str;
+            }
+            catch (Exception e)
+            {
+                return "error";
+
+            }
+            
+        }
     }
 }
