@@ -22,12 +22,12 @@ namespace UniMeetUpApplication.ServerAccessLayer
             client.BaseAddress = new Uri("https://localhost:44364/");
         }
 
-        public HttpStatusCode Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
+        public Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
         {
             //HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", userForLogin); DUER IKKE!!!!!
-            var response = client.PostAsJsonAsync("api/Users/login", userForLogin).Result;
+            var response = client.PostAsJsonAsync("api/Users/login", userForLogin);
 
-            return response.StatusCode;
+            return response;
         }
 
         public string Get_user_from_database(string email)
@@ -56,11 +56,11 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         }
 
-        public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
+        public async Task<HttpResponseMessage> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
-            // var str =
-            //     client.PostAsJsonAsync($"api/User/", userForCreateAccount );
-
+             var str =
+                 await client.PostAsJsonAsync("api/Users/create", userForCreateAccount );
+            return str;
         }
 
         public bool Check_In_Database_If_Email_Is_Already_In_Use(string email)
@@ -89,6 +89,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
         public string Get_File_To_Download_By_Id(int fileId)
         {
             var str = client.GetStringAsync($"api/FileMessages/Download/{fileId}").Result;
+
+            return str;
+        }
+
+        public async Task<HttpResponseMessage> Delete_user_from_DB(User user)
+        {
+            var str = 
+                await client.DeleteAsync($"api/Users/{user.emailAdresse}");
 
             return str;
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommonLib.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
@@ -98,6 +99,11 @@ namespace UniMeetUpServer.Repository
 
             byte[] fileAr = _context.FileMessage.Where(f => f.FileMessageId == fileId).Select(n => n.FileBinary).FirstOrDefault();
             return new FileMessageForDownloadDTO(fileAr, fileName);
+        }
+
+        public void PostUserWithEmailNameAndPassword(User user)
+        {
+            
         }
     }
 }

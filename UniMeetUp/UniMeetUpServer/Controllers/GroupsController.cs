@@ -15,12 +15,11 @@ namespace UniMeetUpServer.Controllers
     [ApiController]
     public class GroupsController : ControllerBase
     {
-        private IUmuRepository _umuRepository;
         private readonly UniMeetUpServerContext _context;
-
-        public GroupsController(UniMeetUpServerContext context, IUmuRepository repo)
+        private Repository.IUmuRepository _umuRepository;
+        public GroupsController(UniMeetUpServerContext context, IUmuRepository umuRepo)
         {
-            _umuRepository = repo;
+            _umuRepository = umuRepo;
             _context = context;
         }
 
@@ -57,7 +56,7 @@ namespace UniMeetUpServer.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
+
             var groups = _umuRepository.GetGroupsForUser(email);
 
             return Ok(groups);
