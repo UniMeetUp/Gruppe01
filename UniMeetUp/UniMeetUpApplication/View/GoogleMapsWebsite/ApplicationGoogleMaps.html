@@ -5,7 +5,8 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    </head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     </head>
         
 
         <style type="text/css">
@@ -23,6 +24,59 @@
                 padding-top: 5px;
                 padding-left: 5px;
             }
+            #contentWaypoint {
+                width: 150px;
+            }
+            #Description, #MeetTime {
+                font-weight: lighter;
+                color: red;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 12px;
+            }
+            b {
+                font-weight: bold;
+                color: black;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 14px;
+            }    
+    
+            .button {
+                position: relative;
+                background-color: red;
+                border: none;
+                font-size: 14px;
+                color: #FFFFFF;
+                padding: 20px;
+                text-align: center;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                text-decoration: none;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            .button:after {
+                content: "";
+                background: #f1f1f1;
+                display: block;
+                position: absolute;
+                padding-top: 300%;
+                padding-left: 350%;
+                margin-left: -20px !important;
+                margin-top: -120%;
+                opacity: 0;
+                transition: all 0.8s
+            }
+
+            .button:active:after {
+                padding: 0;
+                margin: 0;
+                opacity: 1;
+                transition: 0s
+            }
+
+            
+
         </style>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4la7nvqknfe1WbQpxob1-Z_aaY0OjUas">
         </script>
@@ -32,24 +86,111 @@
             var map;
             //var geocoder = new google.maps.Geocoder();
             var myVar = setInterval(myTimer, 0);
+            var wayPointTimer;
             var currentMarker = new google.maps.Marker();
+            var currentWayPoint = new google.maps.Marker();
+            var addWayPointPresses = false;
+            var currentWayPointDescription = '_____';
+            var currentTime = '_____';
+            var wayPointClickedBool = false;
+            var currentWayPointLat, currentWayPointLong;
 
-            function setCurrentMarker(lat, long, info, timestamp, displayName) {
-                    currentMarker.setMap(null);
-                currentMarker = new google.maps.Marker({
-                    position: new google.maps.LatLng(lat, long),
+
+            function addWayPoint(clickedPosition,displayName, howOld) {
+
+            
+                currentWayPoint.setMap(null);
+                var myicon = getIcon(howOld);
+
+                currentWayPoint = new google.maps.Marker({
+                    position: clickedPosition,
                     map: map,
-                    title: displayName + 's mor er en luder'
+                    icon: myicon,
+                    title: displayName + ' Sat this Waypoint',
+                    animation: google.maps.Animation.DROP
+                    
+                });
+            
+                var contentOfMarker = '<div id="contentWaypoint" > <p>' +
+                    '<b>Meeting time: </b> ' + '<p contentEditable = "true" id="MeetTime">' + currentTime + '</p>' +
+                    '<br><b> WayPoint Description: </b> <p contentEditable = "true" id="Description" >'+currentWayPointDescription + '</p> '  +
+                    '<div> <button class="button" onclick="updateLocation()">Update WayPoint</button> </div> </div>';
+
+                var infoWindow = new google.maps.InfoWindow({
+                    content: contentOfMarker
+                });
+            
+                google.maps.event.addListener(currentWayPoint, 'click',
+                    function(){
+                        infoWindow.open(map, currentWayPoint);
+                    });
+            
+            }
+
+            function updateLocation() {
+
+                //alert("test");
+                var descripTag = document.getElementById("Description");
+                var timeTag = document.getElementById("MeetTime");
+
+                currentWayPointDescription = descripTag.innerHTML;
+                currentTime = timeTag.innerHTML;
+
+                var button = document.getElementById("wayPointID");
+                button.style.fontSize = '16px';
+                blinkBool = false;
+
+                clearInterval(wayPointTimer);
+                
+
+
+                // Invoke C# and 
+            }
+            
+            function getIcon(howOld) {
+                var icon;
+                switch (howOld) {
+                    case 'red':
+                        icon = 'memberRed.png';
+                        break;
+                    case 'grey':
+                        icon = "memberGrey.png";
+                        break;
+                    case 'yellow':
+                        icon = "memberYellow.png";
+                        break;
+                    case 'wayPoint':
+                        icon = "universityRed.png";
+                        break;
+                default:
+                   break;
+                }
+                return icon;
+            }
+
+
+
+            function setCurrentMarker(lat, long, info, timestamp, displayName, howOld) {
+
+                currentMarker.setMap(null);
+                var myicon = getIcon(howOld);
+
+                currentMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, long),
+                map: map,
+                icon: myicon,
+                title: displayName + ' was here',
+                animation: google.maps.Animation.DROP
 
             });
                 
                 
                 var contentOfMarker = '<div id="content"> <p>' + 'Email: ' + info + '<br>Displayname: ' +
                     displayName + '<br>Last updated: ' + timestamp + '</p> </div>';
-                
+
                 var infoWindow = new google.maps.InfoWindow({
-                    content : contentOfMarker
-                })
+                    content: contentOfMarker
+                });
                 
                 google.maps.event.addListener(currentMarker, 'click',
                     function(){
@@ -78,20 +219,10 @@
                 var initialZoom = mapOptions.zoom;
                 
                 map = new google.maps.Map(document.getElementById("mapDiv"), mapOptions);
-                //addButton(map);
-                //drawMarkers(map);
+
                 addGoToIntialExtent(map, initialCenter, initialZoom);
 
-                // For debugging
-                //addShowCords(map);
-
-                // TEST
-                //showMyPosition();
-                //addMarker(56.170863, 10.18853);
-                //testMyLocation();            
-
-
-
+          
                 var UpdateLocationControlDiv = document.createElement('div');
                 var centerControl = new UpdateLocationControl(UpdateLocationControlDiv, map);
 
@@ -104,74 +235,46 @@
                 putWayPointDiv.index = 1;
                 map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(putWayPointDiv);
 
-
-
-
-            }
-
-            function testMyLocation() {
                 
-                navigater.geolocation.getCurrentPosition(function (position) {
+                map.addListener('click', function (e) {
+                    if (wayPointClickedBool === true) {
+                        addWayPoint(e.latLng, 'DisplayShit', 'wayPoint');
+                        wayPointClickedBool = false;
 
-                    alert("This went well");
+                        currentWayPointLat = e.latLng.latitude;
+                        currentWayPointLong = e.layLng.longitude;
 
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-
-                        var centerMarker = new google.maps.Marker({
-                            position: pos,
-                            map: map,
-                            title: "My Location"
-                    });
-                }, function () {
-                    alert("Error");
-                });
-             }
-            
-            function showMyPosition(){
-
-                if (navigator.geolocation) {
+                    }
                     
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        alert("hmm");
+                });
 
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-
-                        //alert(pos.lat + pos.lng);
-
-                        addMarker(pos.lat, pos.lng);
-
-
-                    }, function() {
-                        alert("error");
-                    });
-                } else {
-                    // Browser doesn't support Geolocation
-                    alert("browser does not suppport");
-                }
             }
+
             
-            function addMarkerWithInfo(lat, long, info, timestamp, displayName){
-                
+
+
+
+
+            function addMarkerWithInfo(lat, long, info, timestamp, displayName, howOld) {
+
+                var myicon = getIcon(howOld);
+
                 var centerMarker = new google.maps.Marker({
                     position : new google.maps.LatLng(lat,long),
                     map: map,
-                    title: "Anton the cool dude"
-                    
+                    icon: myicon,
+                    title: displayName + ' was here',
+                    animation: google.maps.Animation.DROP
+                       
                 });
                 
                 
                 var contentOfMarker = '<div id="content"> <p>' + 'Email: ' + info + '<br>Displayname: ' +
                     displayName + '<br>Last updated: ' + timestamp + '</p> </div>';
-                
+
                 var infoWindow = new google.maps.InfoWindow({
-                    content : contentOfMarker
-                })
+                    content: contentOfMarker
+                });
                 
                 google.maps.event.addListener(centerMarker, 'click',
                             function(){
@@ -237,13 +340,16 @@
                 controlText.style.lineHeight = '38px';
                 controlText.style.paddingLeft = '5px';
                 controlText.style.paddingRight = '5px';
+                controlText.id = 'wayPointID';
                 controlText.innerHTML = 'Add waypoint';
                 controlUI.appendChild(controlText);
 
 
                 controlUI.addEventListener('click', function () {
-                    //This is the red button: UpdateMyLocation, on the map
-                    addMarker(56.171896, 10.188197);
+
+                    wayPointClickedBool = true;
+                    wayPointTimer = setInterval(function() { myBlinker(controlText) }, 500);
+
                 });
             }
 
@@ -275,9 +381,7 @@
 
 
                 controlUI.addEventListener('click', function () {
-                    //showMyPosition();
-                    //addMarker(0, 0);
-                    //getLocation();
+                    
                     markerPlaced = true;
                     window.external.GetCurrentGroupID();
 
@@ -305,6 +409,24 @@
                 }
                 clearInterval(myVar);
             }
+
+
+            var blinkBool = false;
+            function myBlinker(button) {
+
+                if (blinkBool === false) {
+                    button.style.fontSize = '18px';
+                    blinkBool = true;
+                } else {
+                    button.style.fontSize = '16px';
+                    blinkBool = false;
+
+                }
+                
+             }
+
+
+           
 
            
 

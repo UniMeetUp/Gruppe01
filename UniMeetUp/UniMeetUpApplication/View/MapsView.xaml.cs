@@ -70,6 +70,28 @@ namespace UniMeetUpApplication.View
             private GeoCoordinate _currentLocation;
             GeoCoordinateWatcher _geoWatcher = new GeoCoordinateWatcher();
 
+
+            public void UpdateCurrentWayPoint(string meetTime, string description, decimal latitude, decimal longitute)
+            {
+
+                string descriptionToServer = meetTime + ';' + description;
+
+                var user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
+
+                UserLocation userLocation = new UserLocation()
+                {
+                    GroupId = user.Groups.CurrentGroup.GroupId,
+                    Latitude = (decimal)latitude,
+                    Longitude = (decimal)longitute,
+                    Timestamp = DateTime.Now,
+                    UserId = user.emailAdresse
+                };
+
+
+            }
+
+
+
             public void GetCurrentGroupID()
             {
                 watcher = new GeoCoordinateWatcher();
@@ -77,9 +99,7 @@ namespace UniMeetUpApplication.View
                 watcher.StatusChanged += Watcher_StatusChanged;
                 // Start the watcher.  
                 watcher.Start();
-
-
-
+                
             }
 
             private void Watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) // Find GeoLocation of Device  
@@ -110,14 +130,13 @@ namespace UniMeetUpApplication.View
                                 UserId = user.emailAdresse
                             };
 
+                            
                             if (_sal.Post_user_location(userLocation) != HttpStatusCode.NoContent)
                             {
                                 MessageBox.Show("fejl i locationservice");
                             }
-                            
-                            
 
-                            browser.InvokeScript("setCurrentMarker", new object[] { latitude, longitute, userLocation.UserId, userLocation.Timestamp.ToString(), user.DisplayName });
+                            browser.InvokeScript("setCurrentMarker", new object[] { latitude, longitute, userLocation.UserId, userLocation.Timestamp.ToString(), user.DisplayName, "red" });
                             browser.InvokeScript("setStatus", new object[] {false});
                             
                         }
@@ -162,13 +181,31 @@ namespace UniMeetUpApplication.View
 
                     string email = location.ToObject<JObject>().GetValue("userId").ToString();
 
-                    if (((MasterViewModel)App.Current.MainWindow.DataContext).User.emailAdresse == email)
+                    string howOld;
+                    DateTime timeStampObj = (DateTime)location.ToObject<JObject>().GetValue("timeStamp");
+
+                    
+                    if (timeStampObj.Day < DateTime.Now.Day && timeStampObj.Month == DateTime.Now.Month)
                     {
-                        browser.InvokeScript("setCurrentMarker", new object[] { latitude, longitude, email, timeStamp, displayName });
+                        howOld = "grey";
+                    }
+                    else if(timeStampObj.Day == DateTime.Now.Day &&  (DateTime.Now.Hour- timeStampObj.Hour) >4)
+                    {
+                        howOld = "yellow";
                     }
                     else
                     {
-                        browser.InvokeScript("addMarkerWithInfo", new object[] { latitude, longitude, email, timeStamp, displayName });
+                        howOld = "red";
+                    }
+
+
+                    if (((MasterViewModel)App.Current.MainWindow.DataContext).User.emailAdresse == email)
+                    {
+                        browser.InvokeScript("setCurrentMarker", new object[] { latitude, longitude, email, timeStamp, displayName, howOld });
+                    }
+                    else
+                    {
+                        browser.InvokeScript("addMarkerWithInfo", new object[] { latitude, longitude, email, timeStamp, displayName, howOld });
                     }
                     
 

@@ -438,6 +438,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
+    <Resource Include="View\GoogleMapsWebsite\universityBlue.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberGrey.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberYellow.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberRed.png" />
+    <Resource Include="View\GoogleMapsWebsite\universityRed.png" />
     <Resource Include="View\Images\geometry2.png" />
     <Resource Include="View\Images\TTYG3_NOBACK.png" />
   </ItemGroup>
