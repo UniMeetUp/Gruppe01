@@ -39,11 +39,6 @@ namespace UniMeetUpApplication.View
 
         }
 
-        //private void PasswordIsSentToTxtBx(object sender, TextCompositionEventArgs e)
-        //{
-        //    tbPassword.Text = passwordBx.Password;
-        //}
-
         private void passwordBx_LostFocus(object sender, RoutedEventArgs e)
         {
             tbPassword.Text = passwordBx.Password;

@@ -82,7 +82,15 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
 
+        //public ICommand _forgotPasswordPageCommand;
 
+        //public ICommand ForgotPasswordPageCommand
+        //{
+        //    get
+        //    {
+        //        return _forgotPasswordPageCommand?? 
+        //    }
+        //}
 
     }
 }

@@ -300,6 +300,7 @@
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\CreateAccountViewModel.cs" />
     <Compile Include="ViewModel\FileRepoViewModel.cs" />
+    <Compile Include="ViewModel\ForgotPasswordDialogViewModel.cs" />
     <Compile Include="ViewModel\GroupSettingsViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
@@ -323,6 +324,9 @@
     </Compile>
     <Compile Include="View\FileRepoView.xaml.cs">
       <DependentUpon>FileRepoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ForgotPasswordDialog.xaml.cs">
+      <DependentUpon>ForgotPasswordDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GroupSettingsView.xaml.cs">
       <DependentUpon>GroupSettingsView.xaml</DependentUpon>
@@ -369,6 +373,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FileRepoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ForgotPasswordDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
