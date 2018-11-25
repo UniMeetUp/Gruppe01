@@ -15,5 +15,8 @@ namespace UniMeetUpServer.Repository
         List<FileMessageForFileFolderDTO> GetGroupFileMessagesNameAndId(int groupId);
         void UpdateLocation(Location location);
         FileMessageForDownloadDTO GetFileToDownloadById(int fileId);
+        void UpdateWayPointForGroup(Waypoint waypoint);
+
+        Waypoint GetWaypointById(int groupId);
     }
 }
