@@ -14,6 +14,7 @@ namespace CommonLib.Models
         public decimal Longitude { get; set; }
         public decimal Latitude { get; set; }
         public DateTime TimeStamp { get; set; }
+        public string Description { get; set; }
 
         public string UserId { get; set; }
         public int GroupId { get; set; }

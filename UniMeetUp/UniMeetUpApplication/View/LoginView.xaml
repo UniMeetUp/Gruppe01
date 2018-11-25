@@ -127,7 +127,7 @@
             </Grid>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="5">
-                    <Hyperlink NavigateUri="www.google.com">Forgot password?</Hyperlink>
+                    <Hyperlink Command="{Binding SendEmailToUser}">Forgot password?</Hyperlink>
                 </TextBlock>
                 
                 <!--<Button Content="Forgot password">
