@@ -9,6 +9,7 @@ using System.Windows.Input;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.View;
+using UniMeetUpApplication.View.Dialogs;
 
 namespace UniMeetUpApplication.ViewModel
 {
@@ -82,15 +83,7 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
 
-        //public ICommand _forgotPasswordPageCommand;
-
-        //public ICommand ForgotPasswordPageCommand
-        //{
-        //    get
-        //    {
-        //        return _forgotPasswordPageCommand?? 
-        //    }
-        //}
+        
 
     }
 }

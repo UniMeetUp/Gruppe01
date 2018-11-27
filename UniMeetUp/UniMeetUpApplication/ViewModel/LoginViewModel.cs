@@ -123,52 +123,27 @@ namespace UniMeetUpApplication.ViewModel
         }
 
 
+        public ICommand _forgotPasswordPageCommand;
+        
 
-        //public ICommand _goToForgotPasswordDialog;
-
-        //public ICommand GoToForgotPasswordDialog
-        //{
-        //    get
-        //    {
-        //        return _goToForgotPasswordDialog ?? (_goToForgotPasswordDialog = new RelayCommand() =>
-        //        {
-        //            ViewModel.ForgotPasswordDialogViewModel.
-        //        }
-        //    }
-        //}
-
-        ICommand _sendEmailToUser;
-        public ICommand SendEmailToUser
+        public ICommand ForgotPasswordPageCommand
         {
             get
             {
-                return _sendEmailToUser ?? (_sendEmailToUser = new RelayCommand(() =>
+
+                return _forgotPasswordPageCommand ?? (_forgotPasswordPageCommand = new RelayCommand(() =>
                 {
-                    string to = "201508876PMH@gmail.com";
-                    string from = "unimeetupofficial@gmail.com";
-                    string subject = "Using the new SMTP client.";
-                    string body = @"Using this new feature, you can send an e-mail message from an application very easily.";
-
-                    MailMessage message = new MailMessage(from, to, subject, body);
-                    SmtpClient client = new SmtpClient("mail.stofanet.dk", 587);
-                    Console.WriteLine("Changing time out from {0} to 100.", client.Timeout);
-                    client.Timeout = 100;
-
-                    // Credentials are necessary if the server requires the client 
-                    // to authenticate before it will send e-mail on the client's behalf.
-                    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-                    try
+                    ForgotPasswordDialog _dialogBox = new ForgotPasswordDialog();
+                    _dialogBox.Owner = Application.Current.MainWindow;
+                    if (_dialogBox.ShowDialog() == true)
                     {
-                        client.Send(message);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Exception caught in CreateTimeoutTestMessage(): {0}",
-                            ex.ToString());
+                        //Do nothing
+                        
                     }
                 }));
             }
         }
+
+       
     }
 }
