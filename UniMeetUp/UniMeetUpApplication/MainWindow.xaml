@@ -10,17 +10,19 @@
         Icon="NewIco.ico"
         
         
-        Height="600" Width="1200"
+        
+        Height="550" Width="1000"
         DataContext="{StaticResource MasterViewModel}"
         >
     <!--Window dataContext can be acces through recursion parrent finding by tag = "Window"-->
     <!--static Resource MasterViewModel is accesed within App.Xaml.   (root Xaml) -->
 
+
     <Grid x:Name="MasterGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="751*"/>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="43*"/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>-->
         <ContentControl Height="{Binding ElementName=MasterGrid, Path=ActualHeight}" Width="{Binding ElementName=MasterGrid, Path=ActualWidth}" x:Name="MasterContentControl"
                         Content="{Binding}"  DataContext="{Binding CurrentMasterPage}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4"></ContentControl>
     </Grid>
