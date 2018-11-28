@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UniMeetUpApplication.Model;
 
+
 namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
 {
     public interface IServerAccessLayer
