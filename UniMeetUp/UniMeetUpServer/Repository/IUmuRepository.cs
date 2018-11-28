@@ -19,5 +19,6 @@ namespace UniMeetUpServer.Repository
 
         Waypoint GetWaypointById(int groupId);
         void PostUserWithEmailNameAndPassword(UserToPostDTO user);
+        int PostGroupWithGroupName(CreateGroupDTO group);
     }
 }

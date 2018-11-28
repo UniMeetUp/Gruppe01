@@ -69,6 +69,7 @@ namespace UniMeetUpServer.Repository
             return _listToReturn;
         }
 
+        
        
 
 
@@ -145,8 +146,16 @@ namespace UniMeetUpServer.Repository
         {
             var result = Mapper.Map<User>(user);
 
-            _context.User.Add(Mapper.Map<User>(result));
+            _context.User.Add(result);
             
+        }
+
+        public int PostGroupWithGroupName(CreateGroupDTO group)
+        {
+            var result = Mapper.Map<Group>(group);
+
+            _context.Group.Add(result);
+            return result.GroupId;
         }
     }
 }

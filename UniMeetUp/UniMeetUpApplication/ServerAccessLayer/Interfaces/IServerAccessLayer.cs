@@ -23,5 +23,8 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
         string Get_File_To_Download_By_Id(int fileId);
         //s
         Task<HttpResponseMessage> Delete_user_from_DB(User user);
+        Task<HttpResponseMessage> Create_Group_in_database(GroupForCreation group);
+
+        Task<HttpResponseMessage> Add_group_with_user(CommonLib.Models.Group group);
     }
 }

@@ -26,7 +26,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
         {
             //HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", userForLogin); DUER IKKE!!!!!
             var response = client.PostAsJsonAsync("api/Users/login", userForLogin);
-
+            
             return response;
         }
 
@@ -71,9 +71,6 @@ namespace UniMeetUpApplication.ServerAccessLayer
             }
            
             return client.GetStringAsync($"api/Waypoints/{GroupId}").Result;
-         
-            
-           
         }
 
 
@@ -156,6 +153,22 @@ namespace UniMeetUpApplication.ServerAccessLayer
         {
             var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
             return response.StatusCode;
+        }
+
+        public async Task<HttpResponseMessage> Create_Group_in_database(GroupForCreation group)
+        {
+            var response = await client.PostAsJsonAsync($"api/Groups/createGroup" ,group);
+            var strin = response.Content.ReadAsStringAsync();                                                                                                                                                                   
+
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> Add_group_with_user(CommonLib.Models.Group group)
+        {
+            var response = await client.PostAsJsonAsync($"api/Groups/createGroupWithUser", group);
+            var strin = response.Content.ReadAsStringAsync();
+
+            return response;
         }
     }
 }
