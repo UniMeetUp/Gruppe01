@@ -12,7 +12,6 @@ namespace UniMeetUpApplication.Model.Interfaces
     {
         List<FileMessageForFileFolder> GetAllFilenameAndIdForGroup(int groupId);
         Task<HttpResponseMessage> CreateGroup(string groupName);
-        Task<HttpStatusCode> AddCurrentUserToGroup(string groupName);
     }
 
 }

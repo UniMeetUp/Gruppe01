@@ -150,12 +150,6 @@ namespace UniMeetUpServer.Repository
             
         }
 
-        public int PostGroupWithGroupName(CreateGroupDTO group)
-        {
-            var result = Mapper.Map<Group>(group);
 
-            _context.Group.Add(result);
-            return result.GroupId;
-        }
     }
 }

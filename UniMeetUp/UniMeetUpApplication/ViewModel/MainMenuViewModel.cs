@@ -89,17 +89,9 @@ namespace UniMeetUpApplication.ViewModel
         {
             var response = await _mainManuModel.CreateGroup(parameter.ToString());
             
-            var result = response.Content.ReadAsStringAsync().Result;
-            JObject jsonResult = JObject.Parse(result);
-            int id = (int)jsonResult.GetValue("groupId");
-            Console.WriteLine(id);
-            //var response = await _mainManuModel.AddCurrentUserToGroup(parameter.ToString());
-
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 _notificationService.Show_Message_Group_Created();
-
-                
             }
             else
             {

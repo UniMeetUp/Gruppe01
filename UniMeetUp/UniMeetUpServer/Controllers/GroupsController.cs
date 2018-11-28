@@ -100,28 +100,8 @@ namespace UniMeetUpServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Groups
-        [HttpPost]
-        public async Task<IActionResult> PostGroup([FromBody] Group @group)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            
-            _context.Group.Add(@group);
-            await _context.SaveChangesAsync(); 
 
-
-            //List<UserGroup> userGroup = group.UserGroups.ToList();
-            //
-            //var ug = _context.UserGroup.Add(group.UserGroups);
-            //await _context.SaveChangesAsync();
-
-            
-            return CreatedAtAction("GetGroup", new { id = @group.GroupId }, @group);
-        }
-
+        // POST: api/Groups/createGroup
         [HttpPost("createGroup")]
         public async Task<IActionResult> PostGroup([FromBody] CreateGroupDTO @group)
         {
@@ -130,13 +110,11 @@ namespace UniMeetUpServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            //int id = _umuRepository.PostGroupWithGroupName(group);
-            var result = Mapper.Map<Group>(group);
+           var result = Mapper.Map<Group>(group);
 
             _context.Group.Add(result);
             await _context.SaveChangesAsync();
-            //return Created("GetGroup", group);
-
+           
             UserGroup ug = new UserGroup();
             ug.EmailAddress = group.EmailAddress;
             ug.GroupId = result.GroupId;
@@ -145,21 +123,6 @@ namespace UniMeetUpServer.Controllers
 
             return CreatedAtAction("GetGroup", result.GroupId, result);
         }
-
-        [HttpPost("createGroupWithUser")]
-        public async Task<IActionResult> PostGroupWithUser([FromBody] Group @group)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            
-            _context.Group.Add(group);
-            await _context.SaveChangesAsync();
-            //return Created("GetGroup", group);
-            return CreatedAtAction("GetGroup", group.GroupId, group);
-        }
-
 
 
         // DELETE: api/Groups/5

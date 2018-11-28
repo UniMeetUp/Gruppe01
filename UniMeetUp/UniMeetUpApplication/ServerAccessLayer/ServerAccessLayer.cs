@@ -163,12 +163,6 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return response;
         }
 
-        public async Task<HttpResponseMessage> Add_group_with_user(CommonLib.Models.Group group)
-        {
-            var response = await client.PostAsJsonAsync($"api/Groups/createGroupWithUser", group);
-            var strin = response.Content.ReadAsStringAsync();
 
-            return response;
-        }
     }
 }

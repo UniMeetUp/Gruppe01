@@ -42,25 +42,5 @@ namespace UniMeetUpApplication.Model
             }
             return null;
         }
-
-        public async Task<HttpStatusCode> AddCurrentUserToGroup(string groupName)
-        {
-            CommonLib.Models.Group group = new CommonLib.Models.Group();
-            
-            group.GroupName = groupName;
-            group.UserGroups.Add(new UserGroup()
-            {
-                EmailAddress = ((MasterViewModel)App.Current.MainWindow.DataContext).User.emailAdresse,
-            });
-            
-            var str = await _serverAccessLayer.Add_group_with_user(group);
-
-            if (str.StatusCode == HttpStatusCode.Created)
-            {
-                return str.StatusCode;
-            }
-            return str.StatusCode;
-        }
-
     }
 }
