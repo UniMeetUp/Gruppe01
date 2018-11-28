@@ -20,6 +20,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
         string Get_Group_File_Messages_Name_And_Id(int groupId);
         string Get_User_locations_for_group(int id);
 
+        string Get_DisplayName_In_All_Group_ByEmail(string email);
         HttpStatusCode Post_user_location(UserLocation userLocation);
         string Get_File_To_Download_By_Id(int fileId);
         //s
