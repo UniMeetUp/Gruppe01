@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using CommonLib.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.StaticFiles;
 using Swashbuckle.AspNetCore.Swagger;
+using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
 using UniMeetUpServer.Hubs;
 using UniMeetUpServer.Repository;
@@ -51,7 +53,9 @@ namespace UniMeetUpServer
 
             services.AddScoped<IUmuRepository, UmuRepository>();
 
-            services.AddAutoMapper();
+
+            
+            
             
         }
 
@@ -86,6 +90,8 @@ namespace UniMeetUpServer
                     options.ApplicationMaxBufferSize = 30 * 1024 * 1024;// 30 mb
                 });
             });
+
+            Mapper.Initialize(cfg => { cfg.CreateMap<UserToPostDTO, User>(); });
 
             app.UseMvc();
             app.UseSwagger();

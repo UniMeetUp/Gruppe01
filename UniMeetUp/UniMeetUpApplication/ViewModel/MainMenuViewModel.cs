@@ -72,17 +72,15 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
 
-        ICommand _addGroupPageShowCommand;
-        public ICommand AddGroupPageShowCommand
+        ICommand _addGroupCommand;
+        public ICommand AddGroupCommand
         {
             get
             {
-                return _addGroupPageShowCommand ??
-                       (_addGroupPageShowCommand = new RelayCommand(() =>
+                return _addGroupCommand ??
+                       (_addGroupCommand = new RelayCommand(() =>
                        {
-                           //CurrentPage = new CreateAccountView();
-
-                           //Lav en lille dialogboks
+                           
 
                        }));
             }

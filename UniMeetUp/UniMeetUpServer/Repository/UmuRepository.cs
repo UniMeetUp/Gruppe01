@@ -15,12 +15,10 @@ namespace UniMeetUpServer.Repository
     public class UmuRepository : IUmuRepository
     {
         private readonly UniMeetUpServerContext _context;
-        private readonly IMapper _mapper;
-        public UmuRepository(UniMeetUpServerContext context, IMapper mapper)
+        
+        public UmuRepository(UniMeetUpServerContext context)
         {
             _context = context;
-            _mapper = mapper;
-
         }
 
         public User GetUserById(string email)
@@ -142,11 +140,12 @@ namespace UniMeetUpServer.Repository
             return new FileMessageForDownloadDTO(fileAr, fileName);
         }
 
+
         public void PostUserWithEmailNameAndPassword(UserToPostDTO user)
         {
-            var result = _mapper.Map<UserToPostDTO>(user);
+            var result = Mapper.Map<User>(user);
 
-            _context.User.Add(_mapper.Map<User>(result));
+            _context.User.Add(Mapper.Map<User>(result));
             
         }
     }

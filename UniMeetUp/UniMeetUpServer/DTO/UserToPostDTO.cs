@@ -7,10 +7,10 @@ namespace UniMeetUpServer.DTO
 {
     public class UserToPostDTO
     {
-        public String Email { get; set; }
+        public string EmailAddress { get; set; }
 
-        public String Password { get; set; }
+        public string HashedPassword { get; set; }
 
-        public String DisplayName { get; set; }
+        public string DisplayName { get; set; }
     }
 }
