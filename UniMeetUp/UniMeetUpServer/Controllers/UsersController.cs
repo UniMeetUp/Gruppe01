@@ -156,6 +156,16 @@ namespace UniMeetUpServer.Controllers
             return Ok(user);
         }
 
+        //NOT WORKING AS INTENDED. 500. SERVER ERROR
+        // POST: api/Users/CreateAccount
+        [HttpPost("CreateAccount")]
+        public async Task<IActionResult> PostUserForCreateAccount([FromBody] UserToPostDTO user)
+        {
+            _umuRepository.PostUserWithEmailNameAndPassword(user);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetUser", new { id = user.Email }, user);
+        }
+
         private bool UserExists(string id)
         {
             return _context.User.Any(e => e.EmailAddress == id);

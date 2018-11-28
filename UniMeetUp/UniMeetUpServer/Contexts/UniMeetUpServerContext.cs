@@ -24,6 +24,7 @@ namespace UniMeetUpServer.Models
                 .HasOne(uc => uc.Group)
                 .WithMany(g => g.UserGroups)
                 .HasForeignKey(uc => uc.GroupId);
+
         }
 
         public DbSet<CommonLib.Models.ChatMessage> ChatMessage { get; set; }
