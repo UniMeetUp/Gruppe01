@@ -70,7 +70,7 @@ namespace UniMeetUpApplication.View
             AddGroupDialog _dialogBox = new AddGroupDialog();
             if (_dialogBox.ShowDialog() == true)
             {
-                //something
+                
             }
         }
 

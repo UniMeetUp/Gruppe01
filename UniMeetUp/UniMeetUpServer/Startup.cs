@@ -91,7 +91,11 @@ namespace UniMeetUpServer
                 });
             });
 
-            Mapper.Initialize(cfg => { cfg.CreateMap<UserToPostDTO, User>(); });
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<UserToPostDTO, User>();
+                cfg.CreateMap<CreateGroupDTO, Group>();
+            });
 
             app.UseMvc();
             app.UseSwagger();
