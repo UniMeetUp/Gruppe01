@@ -107,7 +107,7 @@ namespace UniMeetUpApplication.ViewModel
                     {
                         ForgotPasswordDialog.spinner.Text = "The given email was not found...";
                         ForgotPasswordDialog.spinner.Foreground = Brushes.DarkRed;
-                        //MessageBox.Show("The given email was not found...");
+                        
                     }
                     else if (statusCode == HttpStatusCode.BadRequest)
                     {
