@@ -14,6 +14,7 @@ namespace UniMeetUpApplication.Model
         }
 
         public string EmailAddress { set; get; }
+        //c
         
     }
 }

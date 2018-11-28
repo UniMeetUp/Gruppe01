@@ -19,6 +19,7 @@ namespace UniMeetUpApplication.View
     /// </summary>
     public partial class ForgotPasswordDialog : Window
     {
+        //s
         public static TextBlock spinner;
         public ForgotPasswordDialog()
         {
