@@ -51,33 +51,27 @@ namespace UniMeetUpApplication.View
 
             foreach (var message in loadedMessages)
             {
-                if (message.UserId == _emailAddress)
-                {
-                    string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 \b \line " + message.UserId + ":" + @"\b0\par";
-                    MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
-                    TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                    range.Load(stream, DataFormats.Rtf);
-
-                    string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 " + message.Message + @"\par";
-                    stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
-                    range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                    range.Load(stream, DataFormats.Rtf);
-                }
-                else
-                {
-                    string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 \b \line  " + message.UserId + ":" + @"\b0\par";
-                    MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
-                    TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                    range.Load(stream, DataFormats.Rtf);
-
-                    string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 " + message.Message + @"\par";
-                    stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
-                    range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                    range.Load(stream, DataFormats.Rtf);
-                }
+                bool alignRight = message.UserId == _emailAddress;
+                Print_To_Chat_RTF(message.UserId + ":", bold: true, alignRight: alignRight);
+                Print_To_Chat_RTF(message.Message, bold: false, alignRight: alignRight);
             }
 
             MessageList.IsEnabled = true;
+        }
+
+        private void Print_To_Chat_RTF(string text, bool bold, bool alignRight)
+        {
+            string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard";
+            rtf += alignRight ? @"\qr" : @"\ql";
+            rtf += @" \fs23 ";
+            rtf += bold ? @"\b \line " : "";
+            rtf += text;
+            rtf += bold ? @"\b0" : "";
+            rtf += @"\par";
+                   
+            MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
+            TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+            range.Load(stream, DataFormats.Rtf);
         }
 
         private async void Connect()
@@ -86,32 +80,11 @@ namespace UniMeetUpApplication.View
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    if (emailAddress == _emailAddress)
-                    {
-                        string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 \b \line " + emailAddress + ":" + @"\b0\par";
-                        MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
-                        TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                        range.Load(stream, DataFormats.Rtf);
 
-                        string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 " + message + @"\par";
-                        stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
-                        range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                        range.Load(stream, DataFormats.Rtf);
-                    }
-                    else
-                    {
-                        string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 \b \line  " + emailAddress + ":" + @"\b0\par";
-                        MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
-                        TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                        range.Load(stream, DataFormats.Rtf);
-
-                        string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 " + message + @"\par";
-                        stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
-                        range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
-                        range.Load(stream, DataFormats.Rtf);
-                    }
-
-
+                    bool alignRight = emailAddress == _emailAddress;
+                    Print_To_Chat_RTF(emailAddress + ":", bold: true, alignRight: alignRight);
+                    Print_To_Chat_RTF(message, bold: false, alignRight: alignRight);
+                    
                     MessageList.ScrollToEnd();
                 });
             });
