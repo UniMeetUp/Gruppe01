@@ -271,7 +271,6 @@
     <Compile Include="Model\FileMessageForDownload.cs" />
     <Compile Include="Model\FileMessageForFileFolder.cs" />
     <Compile Include="Model\FileRepoModel.cs" />
-    <Compile Include="Model\ForgotPasswordModel.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Groups.cs" />
     <Compile Include="Model\Clock.cs" />
