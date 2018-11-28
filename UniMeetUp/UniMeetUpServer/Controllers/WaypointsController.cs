@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
 using UniMeetUpServer.Models;
+using UniMeetUpServer.Repository;
 
 namespace UniMeetUpServer.Controllers
 {
@@ -15,10 +16,12 @@ namespace UniMeetUpServer.Controllers
     public class WaypointsController : ControllerBase
     {
         private readonly UniMeetUpServerContext _context;
+        private IUmuRepository _umuRepository;
 
-        public WaypointsController(UniMeetUpServerContext context)
+        public WaypointsController(UniMeetUpServerContext context, IUmuRepository repository)
         {
             _context = context;
+            _umuRepository = repository;
         }
 
         // GET: api/Waypoints
@@ -30,14 +33,14 @@ namespace UniMeetUpServer.Controllers
 
         // GET: api/Waypoints/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetWaypoint([FromRoute] int id)
+        public IActionResult GetWaypoint([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var waypoint = await _context.Waypoint.FindAsync(id);
+            var waypoint = _umuRepository.GetWaypointById(id);
 
             if (waypoint == null)
             {
@@ -82,19 +85,27 @@ namespace UniMeetUpServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Waypoints
-        [HttpPost]
-        public async Task<IActionResult> PostWaypoint([FromBody] Waypoint waypoint)
+        // POST: api/Waypoints/update
+        [HttpPost("{groupId}/update")]
+        public async Task<IActionResult> UpdateLocation([FromRoute] string groupId, [FromBody] Waypoint location)
         {
+            if (location == null)
+            {
+                return BadRequest();
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Waypoint.Add(waypoint);
+           
+            _umuRepository.UpdateWayPointForGroup(location);
+
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWaypoint", new { id = waypoint.WaypointId }, waypoint);
+            return NoContent();
+
         }
 
         // DELETE: api/Waypoints/5

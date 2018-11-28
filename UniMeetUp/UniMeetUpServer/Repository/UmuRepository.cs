@@ -95,6 +95,43 @@ namespace UniMeetUpServer.Repository
             }
         }
 
+
+        public void UpdateWayPointForGroup(Waypoint locationWaypoint)
+        {
+            var checkIfLocationExist = _context.Waypoint
+                .Where(i=> i.GroupId == locationWaypoint.GroupId).FirstOrDefault();
+
+            if (checkIfLocationExist == null)
+            {
+                _context.Waypoint.Add(locationWaypoint);
+            }
+            else
+            {
+                checkIfLocationExist.Latitude = locationWaypoint.Latitude;
+                checkIfLocationExist.Longitude = locationWaypoint.Longitude;
+                checkIfLocationExist.TimeStamp = locationWaypoint.TimeStamp;
+                checkIfLocationExist.Description = locationWaypoint.Description;
+                checkIfLocationExist.UserId = locationWaypoint.UserId;
+            }
+
+
+
+        }
+
+        public Waypoint GetWaypointById(int groupId)
+        {
+            Waypoint waypoint = _context.Waypoint.Where(i => i.GroupId == groupId).FirstOrDefault();
+
+            if (waypoint == null)
+            {
+                return null;
+            }
+            else
+            {
+                return waypoint;
+            }
+        }
+
         public FileMessageForDownloadDTO GetFileToDownloadById(int fileId)
         {
             string fileName = _context.FileMessage.Where(f => f.FileMessageId == fileId).Select(n => n.FileHeaders).FirstOrDefault();

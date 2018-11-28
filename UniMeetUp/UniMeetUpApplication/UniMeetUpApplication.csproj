@@ -289,6 +289,7 @@
     <Compile Include="Model\UserForLogin.cs" />
     <Compile Include="Model\UserForCreateAccount.cs" />
     <Compile Include="Model\UserLocation.cs" />
+    <Compile Include="Model\WayPoint.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ServerAccessLayer\Interfaces\IServerAccessLayer.cs" />
     <Compile Include="ServerAccessLayer\ServerAccessLayer.cs" />
@@ -469,6 +470,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
+    <Resource Include="View\GoogleMapsWebsite\memberGrey.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberYellow.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberRed.png" />
+    <Resource Include="View\GoogleMapsWebsite\universityRed.png" />
     <Resource Include="View\Images\Unlock_16x.png" />
     <Resource Include="View\NewIco.ico" />
     <Resource Include="View\Images\geometry2.png" />

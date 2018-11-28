@@ -57,7 +57,29 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         }
 
-        public async Task<HttpStatusCode> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
+
+        public string Get_Group_WayPoints_for_group(int GroupId)
+        {
+            // GET: api/Waypoints/5
+
+
+            var repsResult = client.GetAsync($"api/Waypoints/{GroupId}").Result;
+
+            if (repsResult.StatusCode == HttpStatusCode.NotFound)
+            {
+                return "error";
+            }
+           
+            return client.GetStringAsync($"api/Waypoints/{GroupId}").Result;
+         
+            
+           
+        }
+
+
+
+
+        public async Task<HttpResponseMessage> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
              var str =
                  await client.PostAsJsonAsync($"api/Users/CreateAccount", userForCreateAccount );
@@ -78,6 +100,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
                 client.PostAsJsonAsync($"api/Locations/{userLocation.UserId}/update", userLocation).Result;
 
 
+            return str.StatusCode;
+        }
+
+        public HttpStatusCode Post_Group_WayPoint(WayPoint gruopWayPoint)
+        {
+            var str =
+                client.PostAsJsonAsync($"api/Waypoints/{gruopWayPoint.GroupId}/update", gruopWayPoint).Result;
+            
             return str.StatusCode;
         }
 
