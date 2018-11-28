@@ -9,10 +9,6 @@ namespace UniMeetUpApplication.ViewModel
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
-
-
-
-
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
