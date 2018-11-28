@@ -103,12 +103,12 @@ namespace UniMeetUpServer.Repository
             return new FileMessageForDownloadDTO(fileAr, fileName);
         }
 
-        public void PostUserWithEmailNameAndPassword(UserToPostDTO user)
+        public User PostUserWithEmailNameAndPassword(UserToPostDTO user)
         {
-            var result = _mapper.Map<UserToPostDTO>(user);
 
-            _context.User.Add(_mapper.Map<User>(result));
+            User result = _context.User.Add(_mapper.Map<User>(user));
             
+            return result;
         }
     }
 }
