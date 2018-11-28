@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -76,13 +77,14 @@ namespace UniMeetUpApplication.View
 
         private async void Connect()
         {
-            connection.On<string, string>("ReceiveMessage", (emailAddress, message) =>
+            connection.On<string, string, string>("ReceiveMessage", (emailAddress, displayname, message) =>
             {
                 this.Dispatcher.Invoke(() =>
                 {
 
                     bool alignRight = emailAddress == _emailAddress;
                     Print_To_Chat_RTF(emailAddress + ":", bold: true, alignRight: alignRight);
+                    //Print_To_Chat_RTF(displayname + ":", bold: true, alignRight: alignRight);
                     Print_To_Chat_RTF(message, bold: false, alignRight: alignRight);
                     
                     MessageList.ScrollToEnd();
