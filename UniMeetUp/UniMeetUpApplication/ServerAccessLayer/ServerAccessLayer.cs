@@ -122,10 +122,10 @@ namespace UniMeetUpApplication.ServerAccessLayer
             
         }
 
-        public HttpStatusCode Post_email_to_db(ForgotPasswordModel forgotPasswordModel)
-        {
-            var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
-            return response.StatusCode;
-        }
+        //public HttpStatusCode Post_email_to_db(ForgotPasswordModel forgotPasswordModel)
+        //{
+        //    var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
+        //    return response.StatusCode;
+        //}
     }
 }
