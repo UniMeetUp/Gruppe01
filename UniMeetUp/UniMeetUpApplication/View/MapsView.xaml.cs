@@ -70,6 +70,15 @@ namespace UniMeetUpApplication.View
             private GeoCoordinate _currentLocation;
             GeoCoordinateWatcher _geoWatcher = new GeoCoordinateWatcher();
 
+            public void AddWayPoint(Decimal lat, Decimal lng, string time, string description)
+            {
+                var user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
+
+                browser.InvokeScript("addWayPoint", new object[] 
+                    { lat, lng,user.emailAdresse, time, description, "wayPoint" });
+
+            }
+
 
             public void UpdateCurrentWayPoint(string meetTime, string description, decimal latitude, decimal longitute)
             {
@@ -78,14 +87,22 @@ namespace UniMeetUpApplication.View
 
                 var user = ((MasterViewModel)App.Current.MainWindow.DataContext).User;
 
-                UserLocation userLocation = new UserLocation()
+                WayPoint wayPointForGroup = new WayPoint()
                 {
                     GroupId = user.Groups.CurrentGroup.GroupId,
                     Latitude = (decimal)latitude,
                     Longitude = (decimal)longitute,
                     Timestamp = DateTime.Now,
-                    UserId = user.emailAdresse
+                    UserId = user.emailAdresse,
+                    Description = descriptionToServer
+                    
                 };
+
+
+                if (_sal.Post_Group_WayPoint(wayPointForGroup) != HttpStatusCode.NoContent)
+                {
+                    MessageBox.Show("fejl i WayPointService");
+                }
 
 
             }
@@ -155,9 +172,50 @@ namespace UniMeetUpApplication.View
             var task = Task.Factory.StartNew(() =>
             {
                 //Thread.Sleep(1000);
-                this.Dispatcher.Invoke(() => { plotAllUsers(); });
+                this.Dispatcher.Invoke(() =>
+                {
+                    plotAllUsers();
+                    PlotWayPoint();
+                });
             });
         }
+
+
+        private void PlotWayPoint()
+        {
+
+
+            if (((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup != null)
+            {
+                int id = ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId;
+
+                string wayPointFromServerAsString = _sal.Get_Group_WayPoints_for_group(id);
+
+                if (wayPointFromServerAsString != "error")
+                {
+                    JObject wayPointjson = JObject.Parse(wayPointFromServerAsString);
+
+                    double lat = (double)wayPointjson.GetValue("latitude");
+                    double lng = (double)wayPointjson.GetValue("longitude");
+
+                    string[] descriptions = ((string)wayPointjson.GetValue("description")).Split(';');
+
+                    string wayPointTimeSet = descriptions[0];
+                    string concreteDescription = descriptions[1];
+
+                    string satByEmail = (string)wayPointjson.GetValue("userId");
+
+                    browser.InvokeScript("addWayPoint", new object[]
+                        { lat, lng,satByEmail, wayPointTimeSet, concreteDescription , "wayPoint" });
+                }
+                
+
+
+            
+            }
+        }
+
+
 
         private void plotAllUsers()
         {
