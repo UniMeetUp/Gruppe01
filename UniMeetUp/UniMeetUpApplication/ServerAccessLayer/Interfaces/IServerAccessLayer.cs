@@ -21,6 +21,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
 
         HttpStatusCode Post_user_location(UserLocation userLocation);
         string Get_File_To_Download_By_Id(int fileId);
+        //s
         Task<HttpResponseMessage> Delete_user_from_DB(User user);
     }
 }

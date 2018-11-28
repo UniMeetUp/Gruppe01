@@ -57,11 +57,10 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         }
 
-        public async Task<HttpStatusCode> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
+        public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
-             var str =
-                 await client.PostAsJsonAsync($"api/User/", userForCreateAccount );
-            return str.StatusCode;
+            // var str =
+            //     client.PostAsJsonAsync($"api/User/", userForCreateAccount );
 
         }
 
@@ -122,10 +121,11 @@ namespace UniMeetUpApplication.ServerAccessLayer
             
         }
 
-        //public HttpStatusCode Post_email_to_db(ForgotPasswordModel forgotPasswordModel)
-        //{
-        //    var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
-        //    return response.StatusCode;
-        //}
+        //s
+        public HttpStatusCode Post_email_to_db(ForgotPasswordModel forgotPasswordModel)
+        {
+            var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
+            return response.StatusCode;
+        }
     }
 }
