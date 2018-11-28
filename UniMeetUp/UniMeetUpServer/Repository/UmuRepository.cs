@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using CommonLib.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
@@ -13,6 +15,7 @@ namespace UniMeetUpServer.Repository
     public class UmuRepository : IUmuRepository
     {
         private readonly UniMeetUpServerContext _context;
+        
         public UmuRepository(UniMeetUpServerContext context)
         {
             _context = context;
@@ -84,6 +87,45 @@ namespace UniMeetUpServer.Repository
             {
                 item.Latitude = location.Latitude;
                 item.Longitude = location.Longitude;
+                item.TimeStamp = location.TimeStamp;
+
+            }
+        }
+
+
+        public void UpdateWayPointForGroup(Waypoint locationWaypoint)
+        {
+            var checkIfLocationExist = _context.Waypoint
+                .Where(i=> i.GroupId == locationWaypoint.GroupId).FirstOrDefault();
+
+            if (checkIfLocationExist == null)
+            {
+                _context.Waypoint.Add(locationWaypoint);
+            }
+            else
+            {
+                checkIfLocationExist.Latitude = locationWaypoint.Latitude;
+                checkIfLocationExist.Longitude = locationWaypoint.Longitude;
+                checkIfLocationExist.TimeStamp = locationWaypoint.TimeStamp;
+                checkIfLocationExist.Description = locationWaypoint.Description;
+                checkIfLocationExist.UserId = locationWaypoint.UserId;
+            }
+
+
+
+        }
+
+        public Waypoint GetWaypointById(int groupId)
+        {
+            Waypoint waypoint = _context.Waypoint.Where(i => i.GroupId == groupId).FirstOrDefault();
+
+            if (waypoint == null)
+            {
+                return null;
+            }
+            else
+            {
+                return waypoint;
             }
         }
 
@@ -111,6 +153,15 @@ namespace UniMeetUpServer.Repository
             }
 
             return _listToReturn;
+        }
+
+
+        public void PostUserWithEmailNameAndPassword(UserToPostDTO user)
+        {
+            var result = Mapper.Map<User>(user);
+
+            _context.User.Add(Mapper.Map<User>(result));
+            
         }
     }
 }

@@ -41,7 +41,7 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Grid.Column="1">Add</Button>
+        <Button Grid.Column="1" Command="{Binding}">Add</Button>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="5"/>

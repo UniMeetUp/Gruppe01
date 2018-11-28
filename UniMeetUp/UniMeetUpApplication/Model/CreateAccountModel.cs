@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using UniMeetUpApplication.Model.Interfaces;
@@ -25,9 +26,15 @@ namespace UniMeetUpApplication.Model
             return false;
         }
 
-        public void Create_Account(UserForCreateAccount userForCreateAccount)
+        public async Task<bool> Create_Account(UserForCreateAccount userForCreateAccount)
         {
-            _serverAccessLayer.Create_Account_In_Database(userForCreateAccount);
+            var str = await _serverAccessLayer.Create_Account_In_Database(userForCreateAccount);
+            if (str == HttpStatusCode.Created)
+            {
+                return true;
+            }
+            return false;
+
         }
     }
 }

@@ -135,8 +135,6 @@ namespace UniMeetUpServer.Controllers
         }
         
 
-
-
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] string id)
@@ -157,6 +155,18 @@ namespace UniMeetUpServer.Controllers
 
             return Ok(user);
         }
+
+        //NOT WORKING AS INTENDED. 500. SERVER ERROR
+        // POST: api/Users/CreateAccount
+        [HttpPost("CreateAccount")]
+        public async Task<IActionResult> PostUserForCreateAccount([FromBody] UserToPostDTO user)
+        {
+            _umuRepository.PostUserWithEmailNameAndPassword(user);
+
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetUser", new { id = user.EmailAddress }, user);
+        }
+
 
         private bool UserExists(string id)
         {

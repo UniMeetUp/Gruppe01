@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -67,8 +69,9 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
         
-        public void Login(object parameter)
+        public async void Login(object parameter)
         {
+            LoginView.spinner.Visibility = Visibility.Visible;
             var values = (object[])parameter;
             
             string Email = values[0].ToString();
@@ -77,7 +80,9 @@ namespace UniMeetUpApplication.ViewModel
             
             UserForLogin userForLogin = new UserForLogin(Email, Password);
 
-            if (_loginModel.Validate_Email_and_Password(userForLogin))
+            var str = await _loginModel.Validate_Email_and_Password(userForLogin);
+
+            if (str)
             {
                 var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
                 viewModel.MainPageCommand.Execute(null);
@@ -88,6 +93,7 @@ namespace UniMeetUpApplication.ViewModel
             {
                 _notificationService.Show_Message_Email_Or_Password_Is_Incorrect();
             }
+            LoginView.spinner.Visibility = Visibility.Hidden;
         }
 
         ICommand _createAccountBtnCommand;
@@ -115,5 +121,29 @@ namespace UniMeetUpApplication.ViewModel
                 }));
             }
         }
+
+
+        public ICommand _forgotPasswordPageCommand;
+        
+
+        public ICommand ForgotPasswordPageCommand
+        {
+            get
+            {
+
+                return _forgotPasswordPageCommand ?? (_forgotPasswordPageCommand = new RelayCommand(() =>
+                {
+                    ForgotPasswordDialog _dialogBox = new ForgotPasswordDialog();
+                    _dialogBox.Owner = Application.Current.MainWindow;
+                    if (_dialogBox.ShowDialog() == true)
+                    {
+                        //Do nothing
+                        
+                    }
+                }));
+            }
+        }
+
+       
     }
 }
