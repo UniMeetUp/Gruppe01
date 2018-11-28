@@ -162,9 +162,11 @@ namespace UniMeetUpServer.Controllers
         public async Task<IActionResult> PostUserForCreateAccount([FromBody] UserToPostDTO user)
         {
             _umuRepository.PostUserWithEmailNameAndPassword(user);
+
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetUser", new { id = user.Email }, user);
+            return CreatedAtAction("GetUser", new { id = user.EmailAddress }, user);
         }
+
 
         private bool UserExists(string id)
         {

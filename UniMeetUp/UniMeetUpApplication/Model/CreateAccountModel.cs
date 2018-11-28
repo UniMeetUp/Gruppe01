@@ -33,7 +33,7 @@ namespace UniMeetUpApplication.Model
             {
                 return true;
             }
-            else return false;
+            return false;
 
         }
     }

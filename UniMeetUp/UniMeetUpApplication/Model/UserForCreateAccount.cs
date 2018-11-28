@@ -11,12 +11,12 @@ namespace UniMeetUpApplication.Model
         public UserForCreateAccount(string displayName, string email, string password)
         {
             DisplayName = displayName;
-            Email = email;
-            Password = password;
+            EmailAddress = email;
+            HashedPassword = password;
         }
 
         public string DisplayName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string EmailAddress { get; set; }
+        public string HashedPassword { get; set; }
     }
 }

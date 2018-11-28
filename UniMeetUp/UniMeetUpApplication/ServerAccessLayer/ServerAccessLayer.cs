@@ -60,8 +60,8 @@ namespace UniMeetUpApplication.ServerAccessLayer
         public async Task<HttpStatusCode> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
              var str =
-                 client.PostAsJsonAsync($"api/User/", userForCreateAccount );
-            return str.Result.StatusCode;
+                 await client.PostAsJsonAsync($"api/Users/CreateAccount", userForCreateAccount );
+            return str.StatusCode;
         }
 
         public bool Check_In_Database_If_Email_Is_Already_In_Use(string email)
