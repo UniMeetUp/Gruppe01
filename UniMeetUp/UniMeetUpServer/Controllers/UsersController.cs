@@ -18,9 +18,10 @@ namespace UniMeetUpServer.Controllers
     {
         private readonly UniMeetUpServerContext _context;
         private IUmuRepository _umuRepository;
-        public UsersController(UniMeetUpServerContext context, IUmuRepository umuRepo)
+
+        public UsersController(UniMeetUpServerContext context, IUmuRepository repo)
         {
-            _umuRepository = umuRepo;
+            _umuRepository = repo;
             _context = context;
         }
 
@@ -32,15 +33,15 @@ namespace UniMeetUpServer.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] string id)
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUser([FromRoute] string email)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid)                                                                                                                                
             {
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.User.FindAsync(id);
+            var user = _umuRepository.GetUserById(email);
 
             if (user == null)
             {
@@ -49,6 +50,9 @@ namespace UniMeetUpServer.Controllers
 
             return Ok(user);
         }
+
+ 
+
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
@@ -86,11 +90,9 @@ namespace UniMeetUpServer.Controllers
         }
 
         // POST: api/Users
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] User user)
         {
-
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -101,6 +103,7 @@ namespace UniMeetUpServer.Controllers
 
             return CreatedAtAction("GetUser", new { id = user.EmailAddress }, user);
         }
+
 
         [HttpPost("login")]
         public async Task<IActionResult> RequestLogin([FromBody] UserForLoginDTO userForLogin)
@@ -116,7 +119,7 @@ namespace UniMeetUpServer.Controllers
             }
 
             var user = _umuRepository.GetUserById(userForLogin.Email);
-
+            
             if (user == null)
             {
                 return BadRequest();
@@ -130,6 +133,7 @@ namespace UniMeetUpServer.Controllers
             return BadRequest();
 
         }
+        
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

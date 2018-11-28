@@ -35,6 +35,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
             var str =
                 client.GetStringAsync($"api/Users/{email}").Result;
 
+
             return str;
         }
 
@@ -56,11 +57,11 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         }
 
-        public async Task<HttpResponseMessage> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
+        public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
-             var str =
-                 await client.PostAsJsonAsync("api/Users/create", userForCreateAccount );
-            return str;
+            // var str =
+            //     client.PostAsJsonAsync($"api/User/", userForCreateAccount );
+
         }
 
         public bool Check_In_Database_If_Email_Is_Already_In_Use(string email)
@@ -95,12 +96,36 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         public async Task<HttpResponseMessage> Delete_user_from_DB(User user)
         {
-            var str = 
+            var str =
                 await client.DeleteAsync($"api/Users/{user.emailAdresse}");
 
             return str;
         }
 
+        public string Get_email_from_database(string email)
+        {
+            
+            try
+            {
+                var str =
+                    client.GetStringAsync($"api/Users/{email}").Result;
 
+
+                return str;
+            }
+            catch (Exception e)
+            {
+                return "error";
+
+            }
+            
+        }
+
+        //s
+        public HttpStatusCode Post_email_to_db(ForgotPasswordModel forgotPasswordModel)
+        {
+            var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
+            return response.StatusCode;
+        }
     }
 }

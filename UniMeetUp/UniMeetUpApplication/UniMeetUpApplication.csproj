@@ -284,7 +284,6 @@
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\OtherUsers.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserForCreate.cs" />
     <Compile Include="Model\UserForLogin.cs" />
     <Compile Include="Model\UserForCreateAccount.cs" />
     <Compile Include="Model\UserLocation.cs" />
@@ -301,6 +300,7 @@
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\CreateAccountViewModel.cs" />
     <Compile Include="ViewModel\FileRepoViewModel.cs" />
+    <Compile Include="ViewModel\ForgotPasswordDialogViewModel.cs" />
     <Compile Include="ViewModel\GroupSettingsViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
@@ -324,6 +324,9 @@
     </Compile>
     <Compile Include="View\FileRepoView.xaml.cs">
       <DependentUpon>FileRepoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ForgotPasswordDialog.xaml.cs">
+      <DependentUpon>ForgotPasswordDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GroupSettingsView.xaml.cs">
       <DependentUpon>GroupSettingsView.xaml</DependentUpon>
@@ -373,6 +376,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ForgotPasswordDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GroupSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -402,6 +409,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Images\Message_16x.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Images\Unlock_16x.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -446,9 +457,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="WPFTest.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="NewIco.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -459,6 +467,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
+    <Resource Include="View\Images\Unlock_16x.png" />
+    <Resource Include="View\NewIco.ico" />
     <Resource Include="View\Images\geometry2.png" />
     <Resource Include="View\Images\TTYG3_NOBACK.png" />
   </ItemGroup>

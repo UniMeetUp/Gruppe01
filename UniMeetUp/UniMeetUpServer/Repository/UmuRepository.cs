@@ -92,6 +92,8 @@ namespace UniMeetUpServer.Repository
             {
                 item.Latitude = location.Latitude;
                 item.Longitude = location.Longitude;
+                item.TimeStamp = location.TimeStamp;
+
             }
         }
 
