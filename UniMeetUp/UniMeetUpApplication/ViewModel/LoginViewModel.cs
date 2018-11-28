@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -119,5 +121,29 @@ namespace UniMeetUpApplication.ViewModel
                 }));
             }
         }
+
+
+        public ICommand _forgotPasswordPageCommand;
+        
+
+        public ICommand ForgotPasswordPageCommand
+        {
+            get
+            {
+
+                return _forgotPasswordPageCommand ?? (_forgotPasswordPageCommand = new RelayCommand(() =>
+                {
+                    ForgotPasswordDialog _dialogBox = new ForgotPasswordDialog();
+                    _dialogBox.Owner = Application.Current.MainWindow;
+                    if (_dialogBox.ShowDialog() == true)
+                    {
+                        //Do nothing
+                        
+                    }
+                }));
+            }
+        }
+
+       
     }
 }

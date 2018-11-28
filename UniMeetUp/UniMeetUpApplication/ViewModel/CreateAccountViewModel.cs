@@ -46,14 +46,12 @@ namespace UniMeetUpApplication.ViewModel
             {
                 if (_createAccountModel.Validate_Email(Email))
                 {
-                    //_createAccountModel.Create_Account(DisplayName, Email, Password);
-
-                    var str = await _createAccountModel.Create_Account(new UserForCreateAccount(DisplayName, Email, Password));
+                   var str = await _createAccountModel.Create_Account(new UserForCreateAccount(DisplayName, Email, Password));
 
                     if (str == true)
                     {
                         var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
-                        viewModel.MainPageCommand.Execute(null);
+                        viewModel.LoginPageCommand.Execute(null);
 
                         _notificationService.Show_Message_Account_Has_Been_Created();
                     }

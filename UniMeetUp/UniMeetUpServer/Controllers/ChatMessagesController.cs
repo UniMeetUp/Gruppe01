@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
+using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
+using UniMeetUpServer.Repository;
 
 namespace UniMeetUpServer.Controllers
 {
@@ -15,10 +17,12 @@ namespace UniMeetUpServer.Controllers
     public class ChatMessagesController : ControllerBase
     {
         private readonly UniMeetUpServerContext _context;
+        private IUmuRepository _umuRepository;
 
-        public ChatMessagesController(UniMeetUpServerContext context)
+        public ChatMessagesController(UniMeetUpServerContext context, IUmuRepository repo)
         {
             _context = context;
+            _umuRepository = repo;
         }
 
         // GET: api/ChatMessages
@@ -121,6 +125,13 @@ namespace UniMeetUpServer.Controllers
         private bool ChatMessageExists(int id)
         {
             return _context.ChatMessage.Any(e => e.ChatMessageId == id);
+        }
+
+        // GET: api/ChatMessages/Group/8
+        [HttpGet("Group/{id}")]
+        public IEnumerable<MessageForLoadDTO> GetChatMessages([FromRoute] int id)
+        {
+            return _umuRepository.GetMessagesByGroupId(id);
         }
     }
 }

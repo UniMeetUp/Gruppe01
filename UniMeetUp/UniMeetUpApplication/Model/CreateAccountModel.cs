@@ -29,11 +29,12 @@ namespace UniMeetUpApplication.Model
         public async Task<bool> Create_Account(UserForCreateAccount userForCreateAccount)
         {
             var str = await _serverAccessLayer.Create_Account_In_Database(userForCreateAccount);
-            if (str.StatusCode == HttpStatusCode.Created)
+            if (str == HttpStatusCode.Created)
             {
                 return true;
             }
-            else return false;
+            return false;
+
         }
     }
 }

@@ -16,6 +16,7 @@
     <UserControl.Resources>
    
         <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
+
         <services:Converter x:Key="Converter"></services:Converter>
        
         <Style TargetType="{x:Type Button}">
@@ -127,7 +128,7 @@
             </Grid>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="5">
-                    <Hyperlink NavigateUri="www.google.com">Forgot password?</Hyperlink>
+                    <Hyperlink Command="{Binding ForgotPasswordPageCommand}">Forgot password?</Hyperlink>
                 </TextBlock>
                 
                 <!--<Button Content="Forgot password">
@@ -137,8 +138,8 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>-->
-                <CheckBox Margin="98,5,0,0" />
-                <Label Content="Remember me" />
+                <!--<CheckBox Margin="98,5,0,0" />
+                <Label Content="Remember me" />-->
             </StackPanel>
         </StackPanel>
 

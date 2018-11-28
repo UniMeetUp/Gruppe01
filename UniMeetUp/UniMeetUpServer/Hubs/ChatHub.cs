@@ -34,6 +34,8 @@ namespace UniMeetUpServer.Hubs
             //return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);
         }
 
+        
+
         //Joing a group SignalR style.
         public async Task JoinGroup(int groupId)
         {

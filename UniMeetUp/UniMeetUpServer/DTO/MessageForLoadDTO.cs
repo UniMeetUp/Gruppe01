@@ -12,7 +12,7 @@ namespace UniMeetUpServer.DTO
             UserId = userId;
             Message = message;
         }
-        string UserId { get; set; }
-        string Message { get; set; }
+        public string UserId { get; set; }
+        public string Message { get; set; }
     }
 }

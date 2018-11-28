@@ -15,12 +15,10 @@ namespace UniMeetUpServer.Repository
     public class UmuRepository : IUmuRepository
     {
         private readonly UniMeetUpServerContext _context;
-        private readonly IMapper _mapper;
-        public UmuRepository(UniMeetUpServerContext context, IMapper mapper)
+        
+        public UmuRepository(UniMeetUpServerContext context)
         {
             _context = context;
-            _mapper = mapper;
-
         }
 
         public User GetUserById(string email)
@@ -70,10 +68,7 @@ namespace UniMeetUpServer.Repository
 
             return _listToReturn;
         }
-
        
-
-
         public void UpdateLocation(Location location)
         {
             
@@ -92,6 +87,45 @@ namespace UniMeetUpServer.Repository
             {
                 item.Latitude = location.Latitude;
                 item.Longitude = location.Longitude;
+                item.TimeStamp = location.TimeStamp;
+
+            }
+        }
+
+
+        public void UpdateWayPointForGroup(Waypoint locationWaypoint)
+        {
+            var checkIfLocationExist = _context.Waypoint
+                .Where(i=> i.GroupId == locationWaypoint.GroupId).FirstOrDefault();
+
+            if (checkIfLocationExist == null)
+            {
+                _context.Waypoint.Add(locationWaypoint);
+            }
+            else
+            {
+                checkIfLocationExist.Latitude = locationWaypoint.Latitude;
+                checkIfLocationExist.Longitude = locationWaypoint.Longitude;
+                checkIfLocationExist.TimeStamp = locationWaypoint.TimeStamp;
+                checkIfLocationExist.Description = locationWaypoint.Description;
+                checkIfLocationExist.UserId = locationWaypoint.UserId;
+            }
+
+
+
+        }
+
+        public Waypoint GetWaypointById(int groupId)
+        {
+            Waypoint waypoint = _context.Waypoint.Where(i => i.GroupId == groupId).FirstOrDefault();
+
+            if (waypoint == null)
+            {
+                return null;
+            }
+            else
+            {
+                return waypoint;
             }
         }
 
@@ -103,12 +137,31 @@ namespace UniMeetUpServer.Repository
             return new FileMessageForDownloadDTO(fileAr, fileName);
         }
 
-        public User PostUserWithEmailNameAndPassword(UserToPostDTO user)
+        public List<MessageForLoadDTO> GetMessagesByGroupId(int groupId)
         {
+            List<string> _messagelist = _context.ChatMessage.Where(m => m.GroupId == groupId)
+                .Select(m => m.Message).ToList();
 
-            User result = _context.User.Add(_mapper.Map<User>(user));
+            List<string> _userIdList = _context.ChatMessage.Where(u => u.GroupId == groupId)
+                .Select(u => u.UserId).ToList();
+
+            List<MessageForLoadDTO> _listToReturn = new List<MessageForLoadDTO>();
+
+            for (int i = 0; i < _messagelist.Count; i++)
+            {
+                _listToReturn.Add(new MessageForLoadDTO(_userIdList[i],_messagelist[i]));
+            }
+
+            return _listToReturn;
+        }
+
+
+        public void PostUserWithEmailNameAndPassword(UserToPostDTO user)
+        {
+            var result = Mapper.Map<User>(user);
+
+            _context.User.Add(Mapper.Map<User>(result));
             
-            return result;
         }
     }
 }
