@@ -298,7 +298,15 @@
             </StatusBarItem>
             <Separator Grid.Column="1" />
             <StatusBarItem Grid.Column="2">
-                <TextBlock Text="Current font size: 14" />
+                <!--<TextBlock Text="Current font size: 14" />-->
+                <Menu>
+                    <MenuItem Header="F_ont &#8595;">
+                        <MenuItem Header="_Smalll" Click="FontSmall"></MenuItem>
+                        <MenuItem Header="_Normal" Click="FontNormal"></MenuItem>
+                        <MenuItem Header="_Large" Click="FontLarge"></MenuItem>
+                        <MenuItem Header="_Huge" Click="FontHuge"></MenuItem>
+                </MenuItem>
+                </Menu>
             </StatusBarItem>
             <Separator Grid.Column="3" />
             <StatusBarItem Grid.Column="4">

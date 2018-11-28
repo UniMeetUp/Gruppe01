@@ -111,7 +111,26 @@ namespace UniMeetUpApplication.View
             model.ChatCommand.Execute(null);
 
         }
+        private void FontLarge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 14.0;
+        }
 
-       
+        private void FontSmall(object sender, RoutedEventArgs e)
+        {
+            FontSize = 10.0;
+        }
+
+        private void FontHuge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 16.0;
+        }
+
+        private void FontNormal(object sender, RoutedEventArgs e)
+        {
+            FontSize = 12.0;
+        }
+
+
     }
 }
