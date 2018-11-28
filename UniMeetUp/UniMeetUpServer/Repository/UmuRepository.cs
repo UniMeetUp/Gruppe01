@@ -65,10 +65,7 @@ namespace UniMeetUpServer.Repository
 
             return _listToReturn;
         }
-
        
-
-
         public void UpdateLocation(Location location)
         {
             
@@ -96,6 +93,24 @@ namespace UniMeetUpServer.Repository
 
             byte[] fileAr = _context.FileMessage.Where(f => f.FileMessageId == fileId).Select(n => n.FileBinary).FirstOrDefault();
             return new FileMessageForDownloadDTO(fileAr, fileName);
+        }
+
+        public List<MessageForLoadDTO> GetMessagesByGroupId(int groupId)
+        {
+            List<string> _messagelist = _context.ChatMessage.Where(m => m.GroupId == groupId)
+                .Select(m => m.Message).ToList();
+
+            List<string> _userIdList = _context.ChatMessage.Where(u => u.GroupId == groupId)
+                .Select(u => u.UserId).ToList();
+
+            List<MessageForLoadDTO> _listToReturn = new List<MessageForLoadDTO>();
+
+            for (int i = 0; i < _messagelist.Count; i++)
+            {
+                _listToReturn.Add(new MessageForLoadDTO(_userIdList[i],_messagelist[i]));
+            }
+
+            return _listToReturn;
         }
     }
 }

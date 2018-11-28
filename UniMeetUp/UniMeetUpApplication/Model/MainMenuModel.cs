@@ -27,5 +27,7 @@ namespace UniMeetUpApplication.Model
             
         }
 
+        
+
     }
 }

@@ -9,5 +9,6 @@ namespace UniMeetUpApplication.Model.Interfaces
     public interface IMainMenuModel
     {
         List<FileMessageForFileFolder> GetAllFilenameAndIdForGroup(int groupId);
+        
     }
 }

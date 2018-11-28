@@ -21,5 +21,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
 
         HttpStatusCode Post_user_location(UserLocation userLocation);
         string Get_File_To_Download_By_Id(int fileId);
+
+        string Get_Messages_By_Group_Id(int groupId);
     }
 }

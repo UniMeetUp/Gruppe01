@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,8 @@ using CommonLib.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
+using UniMeetUpApplication.Model;
+using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.View
@@ -23,9 +26,12 @@ namespace UniMeetUpApplication.View
 
         private string _emailAddress = ((MasterViewModel) App.Current.MainWindow.DataContext).User.emailAdresse;
         private int _groupId;
+
+        private ChatModel _chatModel = new ChatModel(new ServerAccessLayer.ServerAccessLayer()); 
         public ChatView()
         {
             InitializeComponent();
+            MessageList.IsEnabled = false;
 
             _groupId = ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId;
 
@@ -41,7 +47,19 @@ namespace UniMeetUpApplication.View
             };
 
             Connect();
-            //MessageList.IsEnabled = true;
+
+            List<MessageForLoad> loadedMessages = _chatModel.GetMessagesByGroupId(_groupId);
+
+            foreach (var message in loadedMessages)
+            {
+
+                
+
+                MessageList.AppendText($"{message.UserId}: {message.Message}\n");
+                //MessageList.ScrollToEnd();
+            }
+            
+            MessageList.IsEnabled = true;
         }
 
         private async void Connect()
@@ -82,7 +100,8 @@ namespace UniMeetUpApplication.View
             try
             {
                 await connection.StartAsync();
-                MessageList.AppendText("Connection started\n");
+                MessageList.ScrollToEnd();
+                //MessageList.AppendText("Connection started\n");
                 //ConnectBtn.IsEnabled = false;
                 //SendBtn.IsEnabled = true;
 

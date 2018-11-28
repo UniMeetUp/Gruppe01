@@ -93,6 +93,12 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return str;
         }
 
+        public string Get_Messages_By_Group_Id(int groupId)
+        {
+            var str = client.GetStringAsync($"api/ChatMessages/Group/{groupId}").Result;
+            return str;
+        }
+
 
     }
 }
