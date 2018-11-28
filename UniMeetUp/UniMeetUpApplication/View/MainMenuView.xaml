@@ -16,7 +16,6 @@
 <UserControl.Resources>
 
         
-
         <DataTemplate DataType="{x:Type viewModel:CreateAccountViewModel}">
             <view:CreateAccountView DataContext="{Binding}"/>
         </DataTemplate>
@@ -126,8 +125,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
+           
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -151,14 +152,25 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--Labels:-->
 
 
-            <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0"
+            <!--<TreeView Name="lbGroups" Grid.Row="2" Grid.Column="0"
+                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}"
+                      DisplayMemberPath="GroupName" SelectedValuePath="{Binding SelectedIndex}" SelectedItemChanged="LbGroups_OnSelectedItemChanged" >
+
+            </TreeView>-->
+            
+    
+            
+
+            <ListView Name="lbGroups" Grid.Row="2" Grid.Column="0" 
                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" 
                      IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" Grid.ColumnSpan="2"
                      SelectedIndex="{Binding SelectedIndex}"
@@ -166,9 +178,12 @@
                      SelectionChanged="LbGroups_OnSelectionChanged"
                      >
                 
-            </ListBox>
-          
-            
+            </ListView>
+            <GroupBox Grid.Row="3" Header="Users in group:" FontStyle="Italic"  Background="White">
+                <ItemsControl DisplayMemberPath="GroupName" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" FontStyle="Normal"></ItemsControl>
+            </GroupBox>
+
+
 
 
             <!--Labels:-->
@@ -296,6 +311,7 @@
         </StatusBar>
         
         <Grid.Resources>
+       
             <!--<Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="5"/>
             </Style>-->
@@ -316,6 +332,13 @@
             </Style>
             <Style TargetType="{x:Type ListBox}">
                 <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type ListView}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type GroupBox}">
+                <Setter Property="Margin" Value="5"/>
+              
             </Style>
             <Style TargetType="{x:Type StatusBar}">
                 <Setter Property="Margin" Value="5"/>
