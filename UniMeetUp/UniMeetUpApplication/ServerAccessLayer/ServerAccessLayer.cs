@@ -165,5 +165,23 @@ namespace UniMeetUpApplication.ServerAccessLayer
             var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
             return response.StatusCode;
         }
+
+
+        public string Get_DisplayName_In_All_Group_ByEmail(string email)
+        {
+            try
+            {
+                var str =
+                    client.GetStringAsync($"api/Users/{email}/GetAllMembers").Result;
+
+
+                return str;
+            }
+            catch (Exception e)
+            {
+                return "error";
+
+            }
+        }
     }
 }

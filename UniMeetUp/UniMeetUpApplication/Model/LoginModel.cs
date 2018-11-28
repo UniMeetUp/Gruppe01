@@ -62,6 +62,7 @@ namespace UniMeetUpApplication.Model
             {
                 user.Groups.Add(new Group(jsonGroup[i].ToObject<JObject>().GetValue("groupName").ToString(),
                     (int)jsonGroup[i].ToObject<JObject>().GetValue("groupId")));
+
             }
 
             if (user.Groups.Count != 0)

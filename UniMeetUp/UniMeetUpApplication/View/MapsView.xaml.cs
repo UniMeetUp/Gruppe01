@@ -195,8 +195,8 @@ namespace UniMeetUpApplication.View
                 {
                     JObject wayPointjson = JObject.Parse(wayPointFromServerAsString);
 
-                    double lat = (double)wayPointjson.GetValue("latitude");
-                    double lng = (double)wayPointjson.GetValue("longitude");
+                    Decimal lat = (Decimal)wayPointjson.GetValue("latitude");
+                    Decimal lng = (Decimal)wayPointjson.GetValue("longitude");
 
                     string[] descriptions = ((string)wayPointjson.GetValue("description")).Split(';');
 

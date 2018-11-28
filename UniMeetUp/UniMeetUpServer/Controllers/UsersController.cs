@@ -51,7 +51,25 @@ namespace UniMeetUpServer.Controllers
             return Ok(user);
         }
 
- 
+
+       [HttpGet("{email}/GetAllMembers")]
+       public IEnumerable<GroupMemberDisplayNameListDTO> GetAllMembersDisplayNameOfAllGruops([FromRoute] string email)
+       {
+           if (_umuRepository.GetUserById(email) == null)
+           {
+               return null;
+           }
+
+           List<GroupMemberDisplayNameListDTO> listToClient = _umuRepository.GetAllMembersDisplayNameOfAllGruops(email);
+
+
+           if (listToClient == null)
+           {
+              return null;
+           }
+
+           return listToClient;
+        }
 
 
         // PUT: api/Users/5
