@@ -271,6 +271,7 @@
     <Compile Include="Model\FileMessageForDownload.cs" />
     <Compile Include="Model\FileMessageForFileFolder.cs" />
     <Compile Include="Model\FileRepoModel.cs" />
+    <Compile Include="Model\ForgotPasswordModel.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Groups.cs" />
     <Compile Include="Model\Clock.cs" />
@@ -284,6 +285,7 @@
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\OtherUsers.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserForCreate.cs" />
     <Compile Include="Model\UserForLogin.cs" />
     <Compile Include="Model\UserForCreateAccount.cs" />
     <Compile Include="Model\UserLocation.cs" />
