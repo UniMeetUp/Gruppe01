@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.IO;
+using System.Text;
+using System.Windows.Documents;
 using CommonLib.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,18 +18,15 @@ using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.View
 {
-    /// <summary>
-    /// Interaction logic for ChatView.xaml
-    /// </summary>
     public partial class ChatView : UserControl
     {
         private HubConnection connection;
         private const string storageDir = "ReceivedFiles";
 
-        private string _emailAddress = ((MasterViewModel) App.Current.MainWindow.DataContext).User.emailAdresse;
+        private string _emailAddress = ((MasterViewModel)App.Current.MainWindow.DataContext).User.emailAdresse;
         private int _groupId;
 
-        private ChatModel _chatModel = new ChatModel(new ServerAccessLayer.ServerAccessLayer()); 
+        private ChatModel _chatModel = new ChatModel(new ServerAccessLayer.ServerAccessLayer());
         public ChatView()
         {
             InitializeComponent();
@@ -52,13 +51,32 @@ namespace UniMeetUpApplication.View
 
             foreach (var message in loadedMessages)
             {
+                if (message.UserId == _emailAddress)
+                {
+                    string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 \b \line " + message.UserId + ":" + @"\b0\par";
+                    MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
+                    TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                    range.Load(stream, DataFormats.Rtf);
 
-                
+                    string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 " + message.Message + @"\par";
+                    stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
+                    range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                    range.Load(stream, DataFormats.Rtf);
+                }
+                else
+                {
+                    string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 \b \line  " + message.UserId + ":" + @"\b0\par";
+                    MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
+                    TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                    range.Load(stream, DataFormats.Rtf);
 
-                MessageList.AppendText($"{message.UserId}: {message.Message}\n");
-                //MessageList.ScrollToEnd();
+                    string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 " + message.Message + @"\par";
+                    stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
+                    range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                    range.Load(stream, DataFormats.Rtf);
+                }
             }
-            
+
             MessageList.IsEnabled = true;
         }
 
@@ -68,9 +86,32 @@ namespace UniMeetUpApplication.View
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    //String that are is displayed in listbox -> should be changed to displayname
-                    var newMessage = $"{emailAddress}: {message}\n";
-                    MessageList.AppendText(newMessage);
+                    if (emailAddress == _emailAddress)
+                    {
+                        string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 \b \line " + emailAddress + ":" + @"\b0\par";
+                        MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
+                        TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                        range.Load(stream, DataFormats.Rtf);
+
+                        string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\qr \fs23 " + message + @"\par";
+                        stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
+                        range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                        range.Load(stream, DataFormats.Rtf);
+                    }
+                    else
+                    {
+                        string rtf = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 \b \line  " + emailAddress + ":" + @"\b0\par";
+                        MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf));
+                        TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                        range.Load(stream, DataFormats.Rtf);
+
+                        string rtf2 = @"{\rtf1\ansi\deff0 {\fonttbl{\f0 Calibri;}} \pard\ql \fs23 " + message + @"\par";
+                        stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(rtf2));
+                        range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
+                        range.Load(stream, DataFormats.Rtf);
+                    }
+
+
                     MessageList.ScrollToEnd();
                 });
             });
@@ -84,16 +125,6 @@ namespace UniMeetUpApplication.View
                     Directory.CreateDirectory(storageDir);
                     File.WriteAllBytes(System.IO.Path.Combine(storageDir, file.FileHeaders), file.FileBinary);
                     MessageList.AppendText((file.FileHeaders));
-                    //var bitmapImage = new BitmapImage();
-                    //using (var ms = new MemoryStream(file.FileBinary))
-                    //{
-                    //    bitmapImage.BeginInit();
-                    //    bitmapImage.StreamSource = ms;
-                    //    bitmapImage.EndInit();
-                    //}
-                    //Image img = new Image();
-                    //img.Source = bitmapImage;
-                    //ChatHistory.Blocks.Add(new BlockUIContainer(img));
                 });
             });
 
@@ -101,10 +132,6 @@ namespace UniMeetUpApplication.View
             {
                 await connection.StartAsync();
                 MessageList.ScrollToEnd();
-                //MessageList.AppendText("Connection started\n");
-                //ConnectBtn.IsEnabled = false;
-                //SendBtn.IsEnabled = true;
-
             }
             catch (Exception exception)
             {
@@ -149,6 +176,7 @@ namespace UniMeetUpApplication.View
                 try
                 {
                     await connection.InvokeAsync("FileMessage", _emailAddress, _groupId, file);
+                    await connection.InvokeAsync("SendMessage", _emailAddress, _groupId, "Sent file \"" + fileName + "\"");
                 }
                 catch (Exception exception)
                 {
@@ -169,7 +197,6 @@ namespace UniMeetUpApplication.View
         private void ColoringGotFocus(object sender, RoutedEventArgs e)
         {
             MessageTextBox.Background = Brushes.AliceBlue;
-
         }
 
         private void ColoringLostfocus(object sender, RoutedEventArgs e)
