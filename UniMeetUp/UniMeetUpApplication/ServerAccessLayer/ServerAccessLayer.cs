@@ -57,10 +57,11 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         }
 
-        public void Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
+        public async Task<HttpStatusCode> Create_Account_In_Database(UserForCreateAccount userForCreateAccount)
         {
-            // var str =
-            //     client.PostAsJsonAsync($"api/User/", userForCreateAccount );
+             var str =
+                 await client.PostAsJsonAsync($"api/User/", userForCreateAccount );
+            return str.StatusCode;
 
         }
 
