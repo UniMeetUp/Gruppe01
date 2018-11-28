@@ -24,5 +24,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
         string Get_File_To_Download_By_Id(int fileId);
         //s
         Task<HttpResponseMessage> Delete_user_from_DB(User user);
+
+        string Get_Messages_By_Group_Id(int groupId);
     }
 }

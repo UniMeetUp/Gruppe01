@@ -267,6 +267,7 @@
     </ApplicationDefinition>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Model\AccountSettingsModel.cs" />
+    <Compile Include="Model\ChatModel.cs" />
     <Compile Include="Model\CreateAccountModel.cs" />
     <Compile Include="Model\FileMessageForDownload.cs" />
     <Compile Include="Model\FileMessageForFileFolder.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\MainMenuModel.cs" />
     <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\MessageForLoad.cs" />
     <Compile Include="Model\OtherUsers.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserForCreate.cs" />

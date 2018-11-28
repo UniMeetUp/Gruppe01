@@ -30,8 +30,8 @@
 
         </Grid>
 
-        
-        <RichTextBox Name="MessageList" Grid.Row="0"  VerticalScrollBarVisibility="Visible" IsReadOnly="True"></RichTextBox>
+
+        <RichTextBox Name="MessageList" Grid.Row="0" VerticalScrollBarVisibility="Visible" IsReadOnly="True"></RichTextBox>
         <!--<Button Name="SendBtn" Content="Send" Click="SendBtnEvent"></Button>-->
         
     </Grid>

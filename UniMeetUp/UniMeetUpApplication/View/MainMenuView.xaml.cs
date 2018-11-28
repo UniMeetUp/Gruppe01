@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,13 +31,16 @@ namespace UniMeetUpApplication.View
         public MainMenuView()
         {
             InitializeComponent();
+           
+
+
 
             spClock.DataContext = clock;
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
 
-
+          
             // Lille test til at skrive en besked om at brugeren ikke er i nogen gruppe.
             //if (((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.Count == 0)
             //{
@@ -97,14 +101,17 @@ namespace UniMeetUpApplication.View
                 txbSearch.Text = string.Empty;
         }
 
+
         private void LbGroups_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((MasterViewModel) App.Current.MainWindow.DataContext).User._groups.CurrentGroup =
-                ((Group) lbGroups.Items.CurrentItem);
+            ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup =
+                ((Group)lbGroups.Items.CurrentItem);
 
             MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
             model.ChatCommand.Execute(null);
 
         }
+
+       
     }
 }

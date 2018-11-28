@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace UniMeetUpServer.DTO
+namespace UniMeetUpApplication.Model
 {
-    public class MessageForLoadDTO
+    public class MessageForLoad
     {
-        public MessageForLoadDTO(string userId, string message)
+        public MessageForLoad(string userId, string message)
         {
             UserId = userId;
             Message = message;
@@ -16,3 +17,4 @@ namespace UniMeetUpServer.DTO
         public string Message { get; set; }
     }
 }
+

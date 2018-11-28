@@ -128,7 +128,15 @@ namespace UniMeetUpApplication.ServerAccessLayer
         {
             var str =
                 await client.DeleteAsync($"api/Users/{user.emailAdresse}");
+        
 
+
+            return str;
+        }
+
+        public string Get_Messages_By_Group_Id(int groupId)
+        {
+            var str = client.GetStringAsync($"api/ChatMessages/Group/{groupId}").Result;
             return str;
         }
 
