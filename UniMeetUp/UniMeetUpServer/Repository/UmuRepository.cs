@@ -69,6 +69,11 @@ namespace UniMeetUpServer.Repository
             return _listToReturn;
         }
        
+
+        
+       
+
+
         public void UpdateLocation(Location location)
         {
             
@@ -190,8 +195,10 @@ namespace UniMeetUpServer.Repository
         {
             var result = Mapper.Map<User>(user);
 
-            _context.User.Add(Mapper.Map<User>(result));
+            _context.User.Add(result);
             
         }
+
+
     }
 }

@@ -17,6 +17,7 @@ namespace UniMeetUpApplication.Services.ServiceInterfaces
         void Show_Message_Password_Not_Containing_Uppercase_Or_Number();
         void Show_Message_Account_Has_Been_Created();
         void Show_Message_Something_went_wrong();
+        void Show_Message_Group_Created();
     }
 }
 

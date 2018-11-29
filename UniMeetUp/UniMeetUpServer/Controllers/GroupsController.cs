@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
+using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
 using UniMeetUpServer.Repository;
 
@@ -98,20 +100,30 @@ namespace UniMeetUpServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Groups
-        [HttpPost]
-        public async Task<IActionResult> PostGroup([FromBody] Group @group)
+
+        // POST: api/Groups/createGroup
+        [HttpPost("createGroup")]
+        public async Task<IActionResult> PostGroup([FromBody] CreateGroupDTO @group)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Group.Add(@group);
+           var result = Mapper.Map<Group>(group);
+
+            _context.Group.Add(result);
+            await _context.SaveChangesAsync();
+           
+            UserGroup ug = new UserGroup();
+            ug.EmailAddress = group.EmailAddress;
+            ug.GroupId = result.GroupId;
+            _context.UserGroup.Add(ug);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGroup", new { id = @group.GroupId }, @group);
+            return CreatedAtAction("GetGroup", result.GroupId, result);
         }
+
 
         // DELETE: api/Groups/5
         [HttpDelete("{id}")]
@@ -138,5 +150,7 @@ namespace UniMeetUpServer.Controllers
         {
             return _context.Group.Any(e => e.GroupId == id);
         }
+
+        
     }
 }

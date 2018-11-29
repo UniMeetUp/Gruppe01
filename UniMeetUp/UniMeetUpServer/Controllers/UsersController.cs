@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -185,6 +187,55 @@ namespace UniMeetUpServer.Controllers
             return CreatedAtAction("GetUser", new { id = user.EmailAddress }, user);
         }
 
+        /* THIS WAS APPERENTLY DELETED */
+        // POST: api/Users/ForgotPassword
+        [HttpPost("{ForgotPassword}")]
+        public async Task<IActionResult> PostPassword([FromBody] ForgotPasswordDTO forgotPasswordDto)
+        {
+            if (forgotPasswordDto == null)
+            {
+                return BadRequest();
+            }
+
+            string to = forgotPasswordDto.EmailAddress;
+            User user = _umuRepository.GetUserById(to);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+
+            string from = "unimeetupofficial@gmail.com";
+            string subject = "Forgot password, UMU";
+            string body = @"This is an auto-resonse message. This is your current password: " + user.HashedPassword;
+
+            try
+            {
+
+                MailMessage message = new MailMessage(from, to, subject, body);
+                SmtpClient client = new SmtpClient("mail.stofanet.dk", 587);
+                Console.WriteLine("Changing time out from {0} to 100.", client.Timeout);
+                client.Timeout = 2000;
+
+                // Credentials are necessary if the server requires the client 
+                // to authenticate before it will send e-mail on the client's behalf.
+                client.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+                client.Send(message);
+
+
+
+                return Ok();
+
+
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
 
         private bool UserExists(string id)
         {

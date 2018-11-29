@@ -52,5 +52,10 @@ namespace UniMeetUpApplication.View
                 tbPassword.Text = passwordBx.Password;
             }
         }
+
+        private void largerFontByDefault(object sender, EventArgs e)
+        {
+            FontSize = 14.0;
+        }
     }
 }

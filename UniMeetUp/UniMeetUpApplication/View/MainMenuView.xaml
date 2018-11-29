@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
-             
+             Name="mainMenuUserControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000"
              >
@@ -301,7 +301,15 @@
             </StatusBarItem>
             <Separator Grid.Column="1" />
             <StatusBarItem Grid.Column="2">
-                <TextBlock Text="Current font size: 14" />
+                <!--<TextBlock Text="Current font size: 14" />-->
+                <Menu>
+                    <MenuItem Header="F_ont &#8595;">
+                        <MenuItem Header="_Smalll" Click="FontSmall"></MenuItem>
+                        <MenuItem Header="_Normal" Click="FontNormal"></MenuItem>
+                        <MenuItem Header="_Large" Click="FontLarge"></MenuItem>
+                        <MenuItem Header="_Huge" Click="FontHuge"></MenuItem>
+                </MenuItem>
+                </Menu>
             </StatusBarItem>
             <Separator Grid.Column="3" />
             <StatusBarItem Grid.Column="4">

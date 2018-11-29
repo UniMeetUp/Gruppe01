@@ -28,6 +28,7 @@ namespace UniMeetUpApplication.View
     {
         Clock clock = new Clock();
         DispatcherTimer timer = new DispatcherTimer();
+        private MasterViewModel masterViewModel = new MasterViewModel();
         public MainMenuView()
         {
             InitializeComponent();
@@ -70,7 +71,7 @@ namespace UniMeetUpApplication.View
             AddGroupDialog _dialogBox = new AddGroupDialog();
             if (_dialogBox.ShowDialog() == true)
             {
-                //something
+                
             }
         }
 
@@ -119,7 +120,27 @@ namespace UniMeetUpApplication.View
 
             
         }
+        private void FontLarge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 14.0;
+        }
 
-       
+        private void FontSmall(object sender, RoutedEventArgs e)
+        {
+            FontSize = 10.0;
+        }
+
+        private void FontHuge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 16.0;
+        }
+
+        private void FontNormal(object sender, RoutedEventArgs e)
+        {
+            FontSize = 12.0;
+        }
+
+      
+
     }
 }

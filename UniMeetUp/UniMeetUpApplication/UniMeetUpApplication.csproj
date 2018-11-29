@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7B555227-B40A-4C5F-84F8-8526E5D6F63F}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>UniMeetUpApplication</RootNamespace>
     <AssemblyName>UniMeetUpApplication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -48,6 +48,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -274,6 +277,7 @@
     <Compile Include="Model\FileRepoModel.cs" />
     <Compile Include="Model\ForgotPasswordModel.cs" />
     <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\GroupForCreation.cs" />
     <Compile Include="Model\Groups.cs" />
     <Compile Include="Model\Clock.cs" />
     <Compile Include="Model\Interfaces\IAccountSettingsModel.cs" />
@@ -472,10 +476,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
-    <Resource Include="View\GoogleMapsWebsite\memberGrey.png" />
-    <Resource Include="View\GoogleMapsWebsite\memberYellow.png" />
     <Resource Include="View\GoogleMapsWebsite\memberRed.png" />
     <Resource Include="View\GoogleMapsWebsite\universityRed.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberGrey.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberYellow.png" />
     <Resource Include="View\Images\Unlock_16x.png" />
     <Resource Include="View\NewIco.ico" />
     <Resource Include="View\Images\geometry2.png" />
