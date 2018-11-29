@@ -180,5 +180,23 @@ namespace UniMeetUpApplication.ServerAccessLayer
         }
 
 
+
+
+        public string Get_DisplayName_In_All_Group_ByEmail(string email)
+        {
+            try
+            {
+                var str =
+                    client.GetStringAsync($"api/Users/{email}/GetAllMembers").Result;
+
+
+                return str;
+            }
+            catch (Exception e)
+            {
+                return "error";
+
+            }
+        }
     }
 }
