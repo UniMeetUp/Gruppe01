@@ -36,6 +36,8 @@ namespace UniMeetUpApplication.ViewModel
             _masterViewModel.User = _userHack;
 
             _masterViewModel.LoginPageCommand.Execute(null);
+            MainWindow.MasterViewModel.Height = 550;
+            MainWindow.MasterViewModel.Width = 1000; 
 
         }
 

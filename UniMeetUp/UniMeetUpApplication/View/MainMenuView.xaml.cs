@@ -28,6 +28,7 @@ namespace UniMeetUpApplication.View
     {
         Clock clock = new Clock();
         DispatcherTimer timer = new DispatcherTimer();
+        private MasterViewModel masterViewModel = new MasterViewModel();
         public MainMenuView()
         {
             InitializeComponent();
@@ -131,6 +132,7 @@ namespace UniMeetUpApplication.View
             FontSize = 12.0;
         }
 
+      
 
     }
 }
