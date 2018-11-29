@@ -35,7 +35,7 @@ namespace UniMeetUpApplication.View
             _groupId = ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId;
 
             connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:44364/chatHub")
+                .WithUrl("https://62.107.0.222:5000/chatHub")
                 .AddMessagePackProtocol()
                 .Build();
 
