@@ -110,6 +110,14 @@ namespace UniMeetUpApplication.View
             MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
             model.ChatCommand.Execute(null);
 
+           
+            GroupMembers.Items.Clear();
+            foreach (var item in ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup.MemberList)
+            {
+                GroupMembers.Items.Add(item);
+            }
+
+            
         }
 
        

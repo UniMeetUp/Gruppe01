@@ -179,8 +179,11 @@
                      >
                 
             </ListView>
+
             <GroupBox Grid.Row="3" Header="Users in group:" FontStyle="Italic"  Background="White">
-                <ItemsControl DisplayMemberPath="GroupName" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" FontStyle="Normal"></ItemsControl>
+                <ListView  FontStyle="Italic"  Background="White" Name="GroupMembers">
+                      <ItemsControl DisplayMemberPath="GroupName" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.MemberList}" FontStyle="Normal"></ItemsControl>
+                 </ListView>
             </GroupBox>
 
 
