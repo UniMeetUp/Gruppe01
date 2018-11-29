@@ -241,5 +241,12 @@ namespace UniMeetUpServer.Controllers
         {
             return _context.User.Any(e => e.EmailAddress == id);
         }
+
+        // POST: api/Users
+        [HttpGet("dummy")]
+        public async Task<IActionResult> CheckConnectionToDb([FromBody] User user)
+        {
+            return Ok();
+        }
     }
 }
