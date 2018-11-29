@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,16 +28,20 @@ namespace UniMeetUpApplication.View
     {
         Clock clock = new Clock();
         DispatcherTimer timer = new DispatcherTimer();
+        private MasterViewModel masterViewModel = new MasterViewModel();
         public MainMenuView()
         {
             InitializeComponent();
+           
+
+
 
             spClock.DataContext = clock;
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
 
-
+          
             // Lille test til at skrive en besked om at brugeren ikke er i nogen gruppe.
             //if (((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.Count == 0)
             //{
@@ -66,7 +71,7 @@ namespace UniMeetUpApplication.View
             AddGroupDialog _dialogBox = new AddGroupDialog();
             if (_dialogBox.ShowDialog() == true)
             {
-                //something
+                
             }
         }
 
@@ -97,14 +102,45 @@ namespace UniMeetUpApplication.View
                 txbSearch.Text = string.Empty;
         }
 
+
         private void LbGroups_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((MasterViewModel) App.Current.MainWindow.DataContext).User._groups.CurrentGroup =
-                ((Group) lbGroups.Items.CurrentItem);
+            ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup =
+                ((Group)lbGroups.Items.CurrentItem);
 
             MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
             model.ChatCommand.Execute(null);
 
+           
+            GroupMembers.Items.Clear();
+            foreach (var item in ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup.MemberList)
+            {
+                GroupMembers.Items.Add(item);
+            }
+
+            
         }
+        private void FontLarge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 14.0;
+        }
+
+        private void FontSmall(object sender, RoutedEventArgs e)
+        {
+            FontSize = 10.0;
+        }
+
+        private void FontHuge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 16.0;
+        }
+
+        private void FontNormal(object sender, RoutedEventArgs e)
+        {
+            FontSize = 12.0;
+        }
+
+      
+
     }
 }

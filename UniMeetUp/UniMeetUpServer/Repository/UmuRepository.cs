@@ -69,6 +69,11 @@ namespace UniMeetUpServer.Repository
             return _listToReturn;
         }
        
+
+        
+       
+
+
         public void UpdateLocation(Location location)
         {
             
@@ -90,6 +95,36 @@ namespace UniMeetUpServer.Repository
                 item.TimeStamp = location.TimeStamp;
 
             }
+        }
+
+        public List<GroupMemberDisplayNameListDTO> GetAllMembersDisplayNameOfAllGruops(string email)
+        {
+            List<GroupMemberDisplayNameListDTO> listToReturn = new List<GroupMemberDisplayNameListDTO>();
+
+
+            // Get all GruopId's that current user is in
+            var usergroups = _context.UserGroup.Where(u => u.EmailAddress == email).ToList();
+            
+            foreach (var group in usergroups)
+            {
+                listToReturn.Add(new GroupMemberDisplayNameListDTO{GroupId = group.GroupId} );
+            }
+
+
+            foreach (var item in listToReturn)
+            {
+                var userInCurrentGroup =
+                    _context.UserGroup.Where(u => u.GroupId == item.GroupId).Include(u=> u.User).ToList();
+
+                foreach (var user in userInCurrentGroup)
+                {
+                    item.UserDisplayNamesList.Add(new UserDisplayNameDTO {DisplayName = user.User.DisplayName});
+                }
+
+            }
+                
+
+            return listToReturn;
         }
 
 
@@ -160,8 +195,10 @@ namespace UniMeetUpServer.Repository
         {
             var result = Mapper.Map<User>(user);
 
-            _context.User.Add(Mapper.Map<User>(result));
+            _context.User.Add(result);
             
         }
+
+
     }
 }

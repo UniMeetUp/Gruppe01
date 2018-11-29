@@ -20,8 +20,8 @@ namespace UniMeetUpServer.Hubs
             var msg = new ChatMessage {Message = message, UserId = emailAddress, GroupId = groupId};
             _context.ChatMessage.Add(msg);
             _context.SaveChanges();
-            
-            await Clients.Group(groupId.ToString()).SendAsync("ReceiveMessage", emailAddress, message);
+            var user = _context.User.Find(emailAddress);
+            await Clients.Group(groupId.ToString()).SendAsync("ReceiveMessage", emailAddress, user.DisplayName, message);
         }
 
         public void FileMessage(string emailAddress, int groupId, FileMessage file)

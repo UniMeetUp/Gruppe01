@@ -59,5 +59,10 @@ namespace UniMeetUpApplication.Services
         {
             MessageBox.Show("Something went wrong");
         }
+
+        public void Show_Message_Group_Created()
+        {
+            MessageBox.Show("Your group has been successfully created");
+        }
     }
 }

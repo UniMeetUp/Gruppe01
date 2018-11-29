@@ -4,17 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UniMeetUpApplication.View.Dialogs"
+        xmlns:vm="clr-namespace:UniMeetUpApplication.ViewModel"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Title="Add group" Height="70" Width="320">
+    <Window.Resources>
+        <vm:MainMenuViewModel x:Key="MainMenuViewModel"></vm:MainMenuViewModel>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="270"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBox>
+        <TextBox Name="txbGroupName">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
@@ -41,7 +45,7 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Grid.Column="1" Command="{Binding}">Add</Button>
+        <Button Grid.Column="1" DataContext="{StaticResource MainMenuViewModel}" Command="{Binding AddGroupCommand}" CommandParameter="{Binding Text, ElementName=txbGroupName}">Add</Button>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="5"/>

@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:services="clr-namespace:UniMeetUpApplication.Services"
-             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
+             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel" Initialized="largerFontByDefault"
+
              >
 
     <UserControl.Background>
@@ -18,7 +19,9 @@
         <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
 
         <services:Converter x:Key="Converter"></services:Converter>
-       
+        <!--<Style TargetType="{x:Type UserControl}">
+            <Setter Property="FontSize" Value="36" />
+        </Style>-->
         <Style TargetType="{x:Type Button}">
             <Style.Setters>
                 <Setter Property="Margin" Value="5" />
@@ -57,11 +60,11 @@
 <Grid>
     <Grid  DataContext="{StaticResource LoginViewModel}">
        
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>-->
 
 
         <StackPanel Grid.Column="1">
@@ -70,7 +73,7 @@
            
            
 
-            <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com">
+            <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com" MaxWidth="500">
 
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -96,7 +99,7 @@
                 </TextBox.Style>
             </TextBox>
 
-                <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="PasswordBx_OnKeyDown"></PasswordBox>
+                <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="PasswordBx_OnKeyDown" MaxWidth="500"></PasswordBox>
             
           
         
@@ -104,7 +107,7 @@
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 
-            <Grid>
+            <Grid MaxWidth="510">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -126,7 +129,7 @@
                     </Button.CommandParameter>
                 </Button>
             </Grid>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" MaxWidth="505">
                 <TextBlock Margin="5">
                     <Hyperlink Command="{Binding ForgotPasswordPageCommand}">Forgot password?</Hyperlink>
                 </TextBlock>

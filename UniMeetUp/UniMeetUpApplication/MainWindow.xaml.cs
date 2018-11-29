@@ -21,13 +21,13 @@ namespace UniMeetUpApplication
     public partial class MainWindow : Window
     {
 
-        
+        public static Window MasterViewModel;
         public MainWindow()
         {
             InitializeComponent();
+            MasterViewModel = MasterWindowToResize;
 
 
-            
         }
 
     }
