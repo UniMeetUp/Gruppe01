@@ -4,9 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
+             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel" Initialized="largerFontByDefault"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
-    <Grid Background="White">
-        <TextBox  FontSize="50" HorizontalAlignment="Left" Height="183" Margin="67,137,0,0" TextWrapping="Wrap" Text="THIS IS ADD MEMBER VIEW" VerticalAlignment="Top" Width="383"/>
+
+    <UserControl.Resources>
+
+        <viewModel:AddMemberViewModel x:Key="addMemberViewModel"></viewModel:AddMemberViewModel>
+
+      </UserControl.Resources>
+
+    <Grid Background="White" DataContext="{StaticResource addMemberViewModel}">
+        <ListView Name="personToAddList" ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" 
+                  IsSynchronizedWithCurrentItem="True"
+                  SelectedItem="{Binding Path=CurrrentEmailSelected}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,5"> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding EmailAddress}"  HorizontalAlignment="Left"/>
+                        <Button Grid.Column="1" Content="Add Member" HorizontalAlignment="Right"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </UserControl>

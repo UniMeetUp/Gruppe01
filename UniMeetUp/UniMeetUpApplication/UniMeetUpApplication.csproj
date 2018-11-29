@@ -270,6 +270,9 @@
     </ApplicationDefinition>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Model\AccountSettingsModel.cs" />
+    <Compile Include="Model\AddMemberModel.cs" />
+    <Compile Include="Model\AllUserEmail.cs" />
+    <Compile Include="Model\AllUserEmails.cs" />
     <Compile Include="Model\ChatModel.cs" />
     <Compile Include="Model\CreateAccountModel.cs" />
     <Compile Include="Model\FileMessageForDownload.cs" />

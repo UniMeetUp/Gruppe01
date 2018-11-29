@@ -181,9 +181,15 @@
             </ListView>
 
             <GroupBox Grid.Row="3" Header="Users in group:" FontStyle="Italic"  Background="White">
-                <ListView  FontStyle="Italic"  Background="White" Name="GroupMembers">
-                      <ItemsControl DisplayMemberPath="GroupName" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.MemberList}" FontStyle="Normal"></ItemsControl>
-                 </ListView>
+                <ListView  FontStyle="Normal"  Name="GroupMembers"  Background="Transparent" BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="false" />
+                            <Setter  Property="IsEnabled" Value="False" />
+                    
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </GroupBox>
 
 
@@ -264,7 +270,7 @@
                     <Frame Source="Images/GeoLocation_16x.xaml" />
                 </Viewbox>
             </Button>
-            <Button Background="Transparent" BorderThickness="0">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding AddMemberToGroupCommand}">
                 <Viewbox DockPanel.Dock="Right" Height="30">
                     <Frame Source="Images/AddUser_16x.xaml" />
                 </Viewbox>
