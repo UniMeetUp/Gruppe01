@@ -32,11 +32,14 @@ namespace UniMeetUpApplication.View
         {
             InitializeComponent();
             MessageList.IsEnabled = false;
+            Uri serverUri = new Uri("http://62.107.0.222:5000");
+            Uri localUri = new Uri("https://localhost:44364/");
 
             _groupId = ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId;
 
             connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:44364/chatHub")
+                .WithUrl("http://62.107.0.222:5000/chatHub")
+                //.WithUrl(serverUri + "/chatHub")
                 .AddMessagePackProtocol()
                 .Build();
 

@@ -17,9 +17,17 @@ namespace UniMeetUpApplication.ServerAccessLayer
     {
         private HttpClient client = new HttpClient();
 
+        Uri serverUri = new Uri("http://62.107.0.222:5000");
+        Uri localUri = new Uri("https://localhost:44364/");
+
+
         public ServerAccessLayer()
         {
-            client.BaseAddress = new Uri("https://localhost:44364/");
+            // for server
+            client.BaseAddress = serverUri;
+
+            // for local test
+            //client.BaseAddress = localUri;
         }
 
         public Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
