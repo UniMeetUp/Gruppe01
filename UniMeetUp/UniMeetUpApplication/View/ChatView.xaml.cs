@@ -21,6 +21,10 @@ namespace UniMeetUpApplication.View
 {
     public partial class ChatView : UserControl
     {
+
+        Uri serverUriChat = new Uri("http://62.107.0.222:5000/chatHub");
+        Uri localUriChat = new Uri("https://localhost:44364/chatHub");
+
         private HubConnection connection;
         private const string storageDir = "ReceivedFiles";
 
@@ -36,7 +40,7 @@ namespace UniMeetUpApplication.View
             _groupId = ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId;
 
             connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:44364/chatHub")
+                .WithUrl(serverUriChat)
                 .AddMessagePackProtocol()
                 .Build();
 

@@ -114,6 +114,22 @@ namespace UniMeetUpApplication.ViewModel
             }
         }
 
+
+
+        private ICommand _addMemberToGroupCommand;
+        public ICommand AddMemberToGroupCommand
+        {
+            get
+            {
+                return _addMemberToGroupCommand ??
+                       (_addMemberToGroupCommand = new RelayCommand(() =>
+                       {
+                           CurrentPage = new AddMemberView();
+
+                       }));
+            }
+        }
+
         private ICommand _mapCommand;
         public ICommand MapCommand
         {

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
-             
+             Name="mainMenuUserControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000"
              >
@@ -179,8 +179,17 @@
                      >
                 
             </ListView>
+
             <GroupBox Grid.Row="3" Header="Users in group:" FontStyle="Italic"  Background="White">
-                <ItemsControl DisplayMemberPath="GroupName" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" FontStyle="Normal"></ItemsControl>
+                <ListView  FontStyle="Normal"  Name="GroupMembers"  Background="Transparent" BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="false" />
+                            <Setter  Property="IsEnabled" Value="False" />
+                    
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </GroupBox>
 
 
@@ -261,7 +270,7 @@
                     <Frame Source="Images/GeoLocation_16x.xaml" />
                 </Viewbox>
             </Button>
-            <Button Background="Transparent" BorderThickness="0">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding AddMemberToGroupCommand}">
                 <Viewbox DockPanel.Dock="Right" Height="30">
                     <Frame Source="Images/AddUser_16x.xaml" />
                 </Viewbox>
@@ -298,7 +307,15 @@
             </StatusBarItem>
             <Separator Grid.Column="1" />
             <StatusBarItem Grid.Column="2">
-                <TextBlock Text="Current font size: 14" />
+                <!--<TextBlock Text="Current font size: 14" />-->
+                <Menu>
+                    <MenuItem Header="F_ont &#8595;">
+                        <MenuItem Header="_Smalll" Click="FontSmall"></MenuItem>
+                        <MenuItem Header="_Normal" Click="FontNormal"></MenuItem>
+                        <MenuItem Header="_Large" Click="FontLarge"></MenuItem>
+                        <MenuItem Header="_Huge" Click="FontHuge"></MenuItem>
+                </MenuItem>
+                </Menu>
             </StatusBarItem>
             <Separator Grid.Column="3" />
             <StatusBarItem Grid.Column="4">

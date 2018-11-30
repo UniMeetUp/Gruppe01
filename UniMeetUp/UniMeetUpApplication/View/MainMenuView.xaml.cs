@@ -28,6 +28,7 @@ namespace UniMeetUpApplication.View
     {
         Clock clock = new Clock();
         DispatcherTimer timer = new DispatcherTimer();
+        private MasterViewModel masterViewModel = new MasterViewModel();
         public MainMenuView()
         {
             InitializeComponent();
@@ -110,8 +111,36 @@ namespace UniMeetUpApplication.View
             MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
             model.ChatCommand.Execute(null);
 
+           
+            GroupMembers.Items.Clear();
+            foreach (var item in ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup.MemberList)
+            {
+                GroupMembers.Items.Add(item);
+            }
+
+            
+        }
+        private void FontLarge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 14.0;
         }
 
-       
+        private void FontSmall(object sender, RoutedEventArgs e)
+        {
+            FontSize = 10.0;
+        }
+
+        private void FontHuge(object sender, RoutedEventArgs e)
+        {
+            FontSize = 16.0;
+        }
+
+        private void FontNormal(object sender, RoutedEventArgs e)
+        {
+            FontSize = 12.0;
+        }
+
+      
+
     }
 }

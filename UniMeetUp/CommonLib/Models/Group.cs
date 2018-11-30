@@ -16,5 +16,8 @@ namespace CommonLib.Models
 
         
         public ICollection<UserGroup> UserGroups { get; set; }
+
+
+
     }
 }
