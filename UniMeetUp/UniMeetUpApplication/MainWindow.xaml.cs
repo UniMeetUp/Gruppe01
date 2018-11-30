@@ -28,20 +28,7 @@ namespace UniMeetUpApplication
             InitializeComponent();
             MasterViewModel = MasterWindowToResize;
 
-
-            ServerAccessLayer.ServerAccessLayer serverAccessLayer = new ServerAccessLayer.ServerAccessLayer();
-
-
-            /*if (serverAccessLayer.DummyRequestMustReturnOK() == HttpStatusCode.OK)
-            {
-                MessageBox.Show("Server API Connection is wokring");
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
-            */
-
+          
 
         }
 

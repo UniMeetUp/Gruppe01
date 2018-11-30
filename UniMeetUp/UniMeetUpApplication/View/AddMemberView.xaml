@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel" Initialized="largerFontByDefault"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500">
+             Name="UserControlName">
 
     <UserControl.Resources>
 
@@ -17,18 +17,19 @@
     <Grid Background="White" DataContext="{StaticResource addMemberViewModel}">
         <ListView Name="personToAddList" ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" 
                   IsSynchronizedWithCurrentItem="True"
-                  SelectedItem="{Binding Path=CurrrentEmailSelected}">
+                  SelectedItem="{Binding Path=CurrrentEmailSelected}" >
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="0,0,0,5"> 
+                    <Grid Margin="0,0,0,5" ShowGridLines="True"> 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80*" />
-                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="{Binding EmailAddress}"  HorizontalAlignment="Left"/>
-                        <Button Grid.Column="1" Content="Add Member" HorizontalAlignment="Right"/>
+                        <Button Grid.Column="2" Content="Add Member" HorizontalAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
