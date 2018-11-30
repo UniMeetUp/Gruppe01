@@ -41,8 +41,10 @@ namespace UniMeetUpApplication.View
 
         public void LoadMaps()
         {
+            //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
             if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
             {
+                //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
                 Uri uri = new Uri(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"));
 
               MyWebBrowser.Navigate(uri);
