@@ -13,27 +13,60 @@
         <viewModel:AddMemberViewModel x:Key="addMemberViewModel"></viewModel:AddMemberViewModel>
 
       </UserControl.Resources>
-
     <Grid Background="White" DataContext="{StaticResource addMemberViewModel}">
-        <ListView Name="personToAddList" ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" 
-                  IsSynchronizedWithCurrentItem="True"
-                  SelectedItem="{Binding Path=CurrrentEmailSelected}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+<Grid.RowDefinitions>
+    <RowDefinition Height="Auto"></RowDefinition>
+    <RowDefinition Height="Auto"></RowDefinition>
+</Grid.RowDefinitions>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,0,0,5" ShowGridLines="True"> 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="{Binding EmailAddress}"  HorizontalAlignment="Left"/>
-                        <Button Grid.Column="2" Content="Add Member" HorizontalAlignment="Right"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label>
+        <!--<DataGrid Grid.Row="1" ItemsSource="{Binding Path=EmailCollectionAllUserEmails}"  
+                  CanUserResizeColumns="False" IsSynchronizedWithCurrentItem="True">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn  Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Add member"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>-->
+
+        <DataGrid  GridLinesVisibility="Horizontal" Grid.Row="1" Name="DG1" ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="User Email:" Width="80*"  Binding="{Binding EmailAddress}"/>
+                 
+                    <!--The Email property contains a URI.  For example "mailto:lucy0@adventure-works.com"-->
+                    
+                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button >Add member</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            </DataGrid>
+
+        <Grid.Resources>
+
+            <!--<Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>-->
+            <!--<Style TargetType="{x:Type DataGridCellsPanel}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>-->
+        </Grid.Resources>
 
     </Grid>
+
+
+
+
 </UserControl>
