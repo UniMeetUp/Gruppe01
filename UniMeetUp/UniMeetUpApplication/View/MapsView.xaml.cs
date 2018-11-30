@@ -34,7 +34,7 @@ namespace UniMeetUpApplication.View
             
             // Load map
             LoadMaps();
-
+            
 
             browser = MyWebBrowser;
         }
