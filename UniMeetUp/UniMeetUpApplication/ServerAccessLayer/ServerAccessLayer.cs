@@ -17,16 +17,24 @@ namespace UniMeetUpApplication.ServerAccessLayer
     {
         private HttpClient client = new HttpClient();
 
+        Uri serverUri = new Uri("http://62.107.0.222:5000");
+        Uri localUri = new Uri("https://localhost:44364/");
+
+
         public ServerAccessLayer()
         {
-            client.BaseAddress = new Uri("https://localhost:44364/");
+            // for server
+            client.BaseAddress = serverUri;
+            
+            // for local test
+            //client.BaseAddress = localUri;
         }
 
         public Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
         {
             //HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", userForLogin); DUER IKKE!!!!!
             var response = client.PostAsJsonAsync("api/Users/login", userForLogin);
-
+            
             return response;
         }
 
@@ -57,6 +65,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
         }
 
+        public Task<string> Get_All_User_In_The_System()
+        {
+            // get all Users --> api/Users
+            var allUsersTask = client.GetStringAsync($"api/Users");
+
+            return allUsersTask;
+        }
+
 
         public string Get_Group_WayPoints_for_group(int GroupId)
         {
@@ -71,9 +87,6 @@ namespace UniMeetUpApplication.ServerAccessLayer
             }
            
             return client.GetStringAsync($"api/Waypoints/{GroupId}").Result;
-         
-            
-           
         }
 
 
@@ -134,6 +147,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return str;
         }
 
+        public HttpStatusCode DummyRequestMustReturnOK()
+        {
+
+            HttpStatusCode dummyCode = client.GetAsync("$api/Users/dummy").Result.StatusCode;
+
+            return dummyCode;
+        }
+
         public string Get_Messages_By_Group_Id(int groupId)
         {
             var str = client.GetStringAsync($"api/ChatMessages/Group/{groupId}").Result;
@@ -164,6 +185,34 @@ namespace UniMeetUpApplication.ServerAccessLayer
         {
             var response = client.PostAsJsonAsync($"api/Users/ForgotPassword", forgotPasswordModel).Result;
             return response.StatusCode;
+        }
+
+        public async Task<HttpResponseMessage> Create_Group_in_database(GroupForCreation group)
+        {
+            var response = await client.PostAsJsonAsync($"api/Groups/createGroup" ,group);
+            var strin = response.Content.ReadAsStringAsync();                                                                                                                                                                   
+
+            return response;
+        }
+
+
+
+
+        public string Get_DisplayName_In_All_Group_ByEmail(string email)
+        {
+            try
+            {
+                var str =
+                    client.GetStringAsync($"api/Users/{email}/GetAllMembers").Result;
+
+
+                return str;
+            }
+            catch (Exception e)
+            {
+                return "error";
+
+            }
         }
     }
 }

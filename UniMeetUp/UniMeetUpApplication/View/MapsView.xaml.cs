@@ -33,7 +33,7 @@ namespace UniMeetUpApplication.View
             
             // Load map
             LoadMaps();
-
+            
 
             browser = MyWebBrowser;
         }
@@ -41,9 +41,10 @@ namespace UniMeetUpApplication.View
 
         public void LoadMaps()
         {
+            //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
             if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
             {
-
+                //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
                 Uri uri = new Uri(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"));
 
               MyWebBrowser.Navigate(uri);
@@ -195,8 +196,8 @@ namespace UniMeetUpApplication.View
                 {
                     JObject wayPointjson = JObject.Parse(wayPointFromServerAsString);
 
-                    double lat = (double)wayPointjson.GetValue("latitude");
-                    double lng = (double)wayPointjson.GetValue("longitude");
+                    Decimal lat = (Decimal)wayPointjson.GetValue("latitude");
+                    Decimal lng = (Decimal)wayPointjson.GetValue("longitude");
 
                     string[] descriptions = ((string)wayPointjson.GetValue("description")).Split(';');
 

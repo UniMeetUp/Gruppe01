@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
-             
+             Name="mainMenuUserControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000"
              >
@@ -16,7 +16,6 @@
 <UserControl.Resources>
 
         
-
         <DataTemplate DataType="{x:Type viewModel:CreateAccountViewModel}">
             <view:CreateAccountView DataContext="{Binding}"/>
         </DataTemplate>
@@ -126,8 +125,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
+           
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -151,14 +152,25 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--Labels:-->
 
 
-            <ListBox Name="lbGroups" Grid.Row="2" Grid.Column="0"
+            <!--<TreeView Name="lbGroups" Grid.Row="2" Grid.Column="0"
+                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}"
+                      DisplayMemberPath="GroupName" SelectedValuePath="{Binding SelectedIndex}" SelectedItemChanged="LbGroups_OnSelectedItemChanged" >
+
+            </TreeView>-->
+            
+    
+            
+
+            <ListView Name="lbGroups" Grid.Row="2" Grid.Column="0" 
                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups}" 
                      IsSynchronizedWithCurrentItem="True" DisplayMemberPath="GroupName" Grid.ColumnSpan="2"
                      SelectedIndex="{Binding SelectedIndex}"
@@ -166,9 +178,21 @@
                      SelectionChanged="LbGroups_OnSelectionChanged"
                      >
                 
-            </ListBox>
-          
-            
+            </ListView>
+
+            <GroupBox Grid.Row="3" Header="Users in group:" FontStyle="Italic"  Background="White">
+                <ListView  FontStyle="Normal"  Name="GroupMembers"  Background="Transparent" BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="false" />
+                            <Setter  Property="IsEnabled" Value="False" />
+                    
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </GroupBox>
+
+
 
 
             <!--Labels:-->
@@ -246,7 +270,7 @@
                     <Frame Source="Images/GeoLocation_16x.xaml" />
                 </Viewbox>
             </Button>
-            <Button Background="Transparent" BorderThickness="0">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding AddMemberToGroupCommand}">
                 <Viewbox DockPanel.Dock="Right" Height="30">
                     <Frame Source="Images/AddUser_16x.xaml" />
                 </Viewbox>
@@ -283,7 +307,15 @@
             </StatusBarItem>
             <Separator Grid.Column="1" />
             <StatusBarItem Grid.Column="2">
-                <TextBlock Text="Current font size: 14" />
+                <!--<TextBlock Text="Current font size: 14" />-->
+                <Menu>
+                    <MenuItem Header="F_ont &#8595;">
+                        <MenuItem Header="_Smalll" Click="FontSmall"></MenuItem>
+                        <MenuItem Header="_Normal" Click="FontNormal"></MenuItem>
+                        <MenuItem Header="_Large" Click="FontLarge"></MenuItem>
+                        <MenuItem Header="_Huge" Click="FontHuge"></MenuItem>
+                </MenuItem>
+                </Menu>
             </StatusBarItem>
             <Separator Grid.Column="3" />
             <StatusBarItem Grid.Column="4">
@@ -296,6 +328,7 @@
         </StatusBar>
         
         <Grid.Resources>
+       
             <!--<Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="5"/>
             </Style>-->
@@ -316,6 +349,13 @@
             </Style>
             <Style TargetType="{x:Type ListBox}">
                 <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type ListView}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type GroupBox}">
+                <Setter Property="Margin" Value="5"/>
+              
             </Style>
             <Style TargetType="{x:Type StatusBar}">
                 <Setter Property="Margin" Value="5"/>

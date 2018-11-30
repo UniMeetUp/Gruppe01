@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Newtonsoft.Json.Linq;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.Model.Interfaces;
@@ -20,7 +23,7 @@ namespace UniMeetUpApplication.ViewModel
         // Commands
         
         private INavigationService _nav => new NavigationService();
-
+        private INotificationService _notificationService => new NotificationService();
         private int selectedIndex = 0;
 
         public int SelectedIndex
@@ -78,12 +81,23 @@ namespace UniMeetUpApplication.ViewModel
             get
             {
                 return _addGroupCommand ??
-                       (_addGroupCommand = new RelayCommand(() =>
-                       {
-                           
-
-                       }));
+                       (_addGroupCommand = new RelayCommand<object>(addGroup));
             }
+        }
+
+        public async void addGroup(object parameter)
+        {
+            var response = await _mainManuModel.CreateGroup(parameter.ToString());
+            
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                _notificationService.Show_Message_Group_Created();
+            }
+            else
+            {
+                _notificationService.Show_Message_Something_went_wrong();
+            }
+            
         }
 
         private ICommand _chatCommand;
@@ -95,6 +109,22 @@ namespace UniMeetUpApplication.ViewModel
                        (_chatCommand = new RelayCommand(() =>
                        {
                            CurrentPage = new ChatView();
+
+                       }));
+            }
+        }
+
+
+
+        private ICommand _addMemberToGroupCommand;
+        public ICommand AddMemberToGroupCommand
+        {
+            get
+            {
+                return _addMemberToGroupCommand ??
+                       (_addMemberToGroupCommand = new RelayCommand(() =>
+                       {
+                           CurrentPage = new AddMemberView();
 
                        }));
             }

@@ -14,20 +14,24 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Users\anton\Desktop\UniMeetUpApp\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <InstallUrl>http://62.107.0.222:5000/assets/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -48,6 +52,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>9124A59137A9DD52C3A99C442BF32B4ABC5BCC72</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>UniMeetUpApplication_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -267,6 +286,9 @@
     </ApplicationDefinition>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Model\AccountSettingsModel.cs" />
+    <Compile Include="Model\AddMemberModel.cs" />
+    <Compile Include="Model\AllUserEmail.cs" />
+    <Compile Include="Model\AllUserEmails.cs" />
     <Compile Include="Model\ChatModel.cs" />
     <Compile Include="Model\CreateAccountModel.cs" />
     <Compile Include="Model\FileMessageForDownload.cs" />
@@ -274,6 +296,7 @@
     <Compile Include="Model\FileRepoModel.cs" />
     <Compile Include="Model\ForgotPasswordModel.cs" />
     <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\GroupForCreation.cs" />
     <Compile Include="Model\Groups.cs" />
     <Compile Include="Model\Clock.cs" />
     <Compile Include="Model\Interfaces\IAccountSettingsModel.cs" />
@@ -457,6 +480,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="UniMeetUpApplication_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -472,10 +496,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\GoogleMapsWebsite\ApplicationGoogleMaps.html" />
-    <Resource Include="View\GoogleMapsWebsite\memberGrey.png" />
-    <Resource Include="View\GoogleMapsWebsite\memberYellow.png" />
     <Resource Include="View\GoogleMapsWebsite\memberRed.png" />
     <Resource Include="View\GoogleMapsWebsite\universityRed.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberGrey.png" />
+    <Resource Include="View\GoogleMapsWebsite\memberYellow.png" />
     <Resource Include="View\Images\Unlock_16x.png" />
     <Resource Include="View\NewIco.ico" />
     <Resource Include="View\Images\geometry2.png" />

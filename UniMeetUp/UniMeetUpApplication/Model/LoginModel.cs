@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.ServerAccessLayer.Interfaces;
@@ -39,6 +40,7 @@ namespace UniMeetUpApplication.Model
             
                var userStr = _serverAccessLayer.Get_user_from_database(email);
                var groupStr = _serverAccessLayer.Get_groups_for_specific_user(email);
+               var usersInGroups = _serverAccessLayer.Get_DisplayName_In_All_Group_ByEmail(email);
 
                if (userStr != null && groupStr != null)
                {
@@ -48,12 +50,16 @@ namespace UniMeetUpApplication.Model
                 
                    addDisplaynameAndEmailToCurrentUser(jsonUser, user);
                    addGroupsToCurrentuser(jsonGroup, user);
+            //          addAllMemberDisplayNamesToGroups(usersInGroups, user);
                }
             return user;
         }
 
         #region HelperFunctions
 
+
+
+       
         private void addGroupsToCurrentuser(JArray jsonGroup, User user)
         {
            
@@ -62,6 +68,7 @@ namespace UniMeetUpApplication.Model
             {
                 user.Groups.Add(new Group(jsonGroup[i].ToObject<JObject>().GetValue("groupName").ToString(),
                     (int)jsonGroup[i].ToObject<JObject>().GetValue("groupId")));
+
             }
 
             if (user.Groups.Count != 0)
@@ -76,6 +83,48 @@ namespace UniMeetUpApplication.Model
             user.DisplayName = jsonUser.GetValue("displayName").ToString();
             user.emailAdresse = jsonUser.GetValue("emailAddress").ToString();
         }
+
+
+
+        private void addAllMemberDisplayNamesToGroups(string jsonFromServer, User user)
+        {
+            var allGroupMemberArray = JsonConvert.DeserializeObject<AllGruopMembersClass[]>(jsonFromServer);
+
+            foreach (var item in allGroupMemberArray)
+            {
+                for (int i = 0; i < user.Groups.Count; i++)
+                {
+                    if (item.GroupId == user.Groups[i].GroupId)
+                    {
+                        for (int j = 0; j < item.UserDisplayNamesList.Count; j++)
+                        {
+                            user.Groups[i].MemberList.Add(item.UserDisplayNamesList[j].DisplayName);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            
+        }
+
+
+
+
+        private class DisplayNameClass
+        {
+            public string DisplayName { get; set; }
+            
+        }
+
+        private class AllGruopMembersClass
+        {
+            public int GroupId { get; set; }
+
+            public List<DisplayNameClass> UserDisplayNamesList { get; set; } = new List<DisplayNameClass>();
+        }
+
+
         #endregion
 
     }

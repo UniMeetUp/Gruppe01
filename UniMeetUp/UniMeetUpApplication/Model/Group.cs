@@ -50,9 +50,19 @@ namespace UniMeetUpApplication.Model
             }
         }
 
-        
-        
-        private List<string> _membersList { get; set; }
+
+        private List<string> _membersList = new List<string>();
+        public List<string> MemberList {
+            get
+            {
+                return _membersList;
+            }
+            set
+            {
+                _membersList = value;
+                OnPropertyChanged("MemberList");
+            }
+        }
         private List<Message> messages { get; set; }
 
         //private List<Location> _locationsList;

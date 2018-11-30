@@ -59,5 +59,27 @@ namespace UniMeetUpApplication.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///    &lt;!--&lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;--&gt;
+        ///    &lt;!--&lt;title&gt;Google Maps test&lt;/title&gt;--&gt;
+        ///    &lt;head&gt;
+        ///        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+        ///        &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no&quot;/&gt;
+        ///        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://www.w3schools.com/w3css/4/w3.css&quot;&gt;
+        ///     &lt;/head&gt;
+        ///        
+        ///
+        ///        &lt;style type=&quot;text/css&quot;&gt;
+        ///            html {height: 100%}
+        ///            bod [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ApplicationGoogleMaps {
+            get {
+                return ResourceManager.GetString("ApplicationGoogleMaps", resourceCulture);
+            }
+        }
     }
 }
