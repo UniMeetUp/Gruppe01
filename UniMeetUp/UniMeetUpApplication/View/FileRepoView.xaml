@@ -57,7 +57,7 @@
 
 
         </DataGrid>-->
-        <DataGrid  Grid.Row="1" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+            <DataGrid  IsReadOnly="True"  Grid.Row="1" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
                    ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.ListOfFilesInGroup}">
 
             <DataGrid.Columns>
@@ -72,7 +72,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
-                            <Button Content="Download" DataContext="{StaticResource FileRepoViewModel}" Command="{Binding DownloadFileCommand}" 
+                            <Button MinWidth="100" Content="Download" DataContext="{StaticResource FileRepoViewModel}" Command="{Binding DownloadFileCommand}" 
                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGridCell}, Path=Content.Content.FileMessageId}">
                                 
                                 <!--<Button.CommandParameter>

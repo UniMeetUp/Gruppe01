@@ -4,59 +4,90 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
-             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel" Initialized="largerFontByDefault"
+             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              mc:Ignorable="d" 
-             Name="UserControlName">
+             d:DesignHeight="450" d:DesignWidth="500" Initialized="largerFontByDefault"
+           
+            >
+
 
     <UserControl.Resources>
 
         <viewModel:AddMemberViewModel x:Key="addMemberViewModel"></viewModel:AddMemberViewModel>
 
       </UserControl.Resources>
-    <Grid Background="LightGray">
-    <Grid Margin="1,1,1,1"  Background="White" DataContext="{StaticResource addMemberViewModel}">
+
+
+
+    <Grid Background="LightGray" Name="Grid1">
+    <Grid Margin="1,1,1,1"  Background="White" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 <Grid.RowDefinitions>
     <RowDefinition Height="Auto"></RowDefinition>
-    <RowDefinition Height="Auto"></RowDefinition>
+    <RowDefinition></RowDefinition>
 </Grid.RowDefinitions>
 
+        <ItemsControl
+            ItemsSource="{Binding ObservableCollectionItems}"
+            AlternationCount="2">
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            </Trigger>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
 
-        <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
 
 
-        <DataGrid  GridLinesVisibility="Horizontal" Grid.Row="1" Name="DataGrid" ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AutoGenerateColumns="False" Margin="0" CanUserResizeColumns="False" HeadersVisibility="Column" >
-        
-            <DataGrid.Columns>
 
-                <DataGridTextColumn Header="User Email:" Width="75*"  Binding="{Binding EmailAddress}"/>
-                 
-                    <!--The Email property contains a URI.  For example "mailto:lucy0@adventure-works.com"-->
-                    
 
-                    <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            
-                            <Button >Add member</Button>
-                          
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
+
+
+
+
+
+
+            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label> 
+
+            <DataGrid DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+                      ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AlternationCount="1000"> 
+
+                <DataGrid.Columns>
+
+
+                    <!--<DataGridTextColumn Header="User nr.:">
+
+                    </DataGridTextColumn>-->
+
+                    <DataGridTextColumn Header="User email::"  Width="*"  Binding="{Binding EmailAddress}" IsReadOnly="True" ></DataGridTextColumn>
+
+
+
+                    <DataGridTemplateColumn Width="100">
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+
+                                <Button  Content="Add user"  DataContext="{StaticResource addMemberViewModel}" >
+
+                                </Button>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
 
-        <Grid.Resources>
-            <Style TargetType="Border" >
-                <Setter Property="Padding" Value="5,5,5,5" />
-            </Style>
 
 
-            </Grid.Resources>
 
-    </Grid>
+        </Grid>
     </Grid>
 
 
