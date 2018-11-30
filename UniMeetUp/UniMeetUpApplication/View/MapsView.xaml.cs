@@ -43,7 +43,6 @@ namespace UniMeetUpApplication.View
         {
             if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
             {
-
                 Uri uri = new Uri(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"));
 
               MyWebBrowser.Navigate(uri);
