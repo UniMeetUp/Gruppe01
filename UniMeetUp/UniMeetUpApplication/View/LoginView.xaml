@@ -4,120 +4,57 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             
              xmlns:services="clr-namespace:UniMeetUpApplication.Services"
-             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel" Initialized="largerFontByDefault"
+             xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             Initialized="largerFontByDefault"
 
-             >
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  
+    >
 
-    <UserControl.Background>
+    <!--<UserControl.Background>
         <ImageBrush ImageSource="Images/geometry2.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,420,420" />
-    </UserControl.Background>
+    </UserControl.Background>-->
    
+    
     <UserControl.Resources>
-   
-        <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
 
-        <services:Converter x:Key="Converter"></services:Converter>
-        <!--<Style TargetType="{x:Type UserControl}">
-            <Setter Property="FontSize" Value="36" />
-        </Style>-->
-        <Style TargetType="{x:Type Button}">
-            <Style.Setters>
-                <Setter Property="Margin" Value="5" />
-            </Style.Setters>
-        </Style>
-        <Style TargetType="{x:Type Image}">
-            <Style.Setters>
-                <Setter Property="Margin" Value="5" />
-            </Style.Setters>
-        </Style>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
 
-        <Style TargetType="{x:Type PasswordBox}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type PasswordBox}">
-                        <Border Name="MainBorder"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid>
-                                <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="1" />
-                                <TextBlock x:Name="PlaceHolder"
+            </ResourceDictionary.MergedDictionaries>
+            <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
 
-                                           Foreground="LightGray" IsHitTestVisible="False"
-                                           HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" />
-                            </Grid>
-                        </Border>
-
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
+            <services:Converter x:Key="Converter"></services:Converter>
+        </ResourceDictionary>
+        
     </UserControl.Resources>
 
-<Grid>
-    <Grid  DataContext="{StaticResource LoginViewModel}">
+    <Grid>
+    <Grid  DataContext="{StaticResource LoginViewModel}" Background="AliceBlue">
        
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>-->
-
 
         <StackPanel Grid.Column="1">
-            <Image Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
-               
-           
-           
-
-            <TextBox Name="tbEmail" Margin="5" Text="lort@hotmail.com" MaxWidth="500">
-
-                <TextBox.Style>
-                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                        <Style.Resources>
-                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                <VisualBrush.Visual>
-                                    <Label Content="E-mail" Foreground="LightGray" />
-                                </VisualBrush.Visual>
-                            </VisualBrush>
-                        </Style.Resources>
-                        <Style.Triggers>
-                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            </Trigger>
-                            <Trigger Property="Text" Value="{x:Null}">
-                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter Property="Background" Value="White" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
-
+            <Image Margin="0,20,0,20" Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
+                <TextBox Name="tbEmail" Margin="5"  MaxWidth="500" Controls:TextBoxHelper.Watermark="Please enter email..."  Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
                 <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="PasswordBx_OnKeyDown" MaxWidth="500"></PasswordBox>
-            
-          
-        
-            <TextBox x:Name="tbPassword"  Margin="0" Visibility="Hidden" Height="0" Width="0" />
 
-            <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 
-            <Grid MaxWidth="510">
+                <TextBox x:Name="tbPassword"  Margin="0" Visibility="Hidden" Height="0" Width="0" />
+
+               <Grid MaxWidth="500">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Name="btnCreateAccount" Content="Create Account" DataContext="{StaticResource LoginViewModel}" Command="{Binding CreateAccountBtnCommand}"></Button>
+                <Button Grid.Column="0" Margin="0,0,0,0" Name="btnCreateAccount" Content="Create Account" DataContext="{StaticResource LoginViewModel}" Command="{Binding CreateAccountBtnCommand}"></Button>
 
-<!--<Button Grid.Column="1" Name="btnLogin" Content="Login" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
-                    Path=DataContext.MainPageCommand}">-->
-                <Button Grid.Column="1" Name="btnLogin" IsDefault="True"  Content="Login " Command="{Binding LoginCommand}">
+                <Button Grid.Column="2" Margin="0,0,0,0" Name="btnLogin" IsDefault="True"  Content="Login " Command="{Binding LoginCommand}">
 
                     <Button.CommandParameter>
 
@@ -130,19 +67,10 @@
                 </Button>
             </Grid>
             <StackPanel Orientation="Horizontal" MaxWidth="505">
-                <TextBlock Margin="5">
+                <TextBlock Margin="0">
                     <Hyperlink Command="{Binding ForgotPasswordPageCommand}">Forgot password?</Hyperlink>
                 </TextBlock>
-                
-                <!--<Button Content="Forgot password">
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <ContentPresenter />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>-->
-                <!--<CheckBox Margin="98,5,0,0" />
-                <Label Content="Remember me" />-->
+               
             </StackPanel>
         </StackPanel>
 
