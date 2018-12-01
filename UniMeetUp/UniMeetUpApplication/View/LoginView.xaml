@@ -11,13 +11,13 @@
              Initialized="largerFontByDefault"
 
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  
-    >
+
+             >
 
     <!--<UserControl.Background>
         <ImageBrush ImageSource="Images/geometry2.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,420,420" />
     </UserControl.Background>-->
    
-    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

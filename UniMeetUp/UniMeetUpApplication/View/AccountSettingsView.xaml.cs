@@ -31,11 +31,16 @@ namespace UniMeetUpApplication.View
            
         }
 
-        private void validateInput(object sender, TextChangedEventArgs e)
+        private void largerFontByDefault(object sender, EventArgs e)
         {
-            string _userPassword = ((MasterViewModel) App.Current.MainWindow.DataContext).User.password;
+            FontSize = 14.0;
+        }
 
-            if (currentPassword.Text == _userPassword)
+        private void validateInput(object sender, RoutedEventArgs e)
+        {
+            string _userPassword = ((MasterViewModel)App.Current.MainWindow.DataContext).User.password;
+
+            if (currentPassword.Password == _userPassword)
             {
                 currentPassword.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
             }
@@ -44,9 +49,9 @@ namespace UniMeetUpApplication.View
                 currentPassword.BorderBrush = System.Windows.Media.Brushes.Red;
             }
         }
-        
 
-      
+
+
 
         private void newPasswordChanged(object sender, RoutedEventArgs e)
         {
@@ -95,7 +100,7 @@ namespace UniMeetUpApplication.View
 
         private void currentPasswordLostFocus(object sender, RoutedEventArgs e)
         {
-            if (currentPassword.Text == "")
+            if (currentPassword.Password == "")
             {
                 currentPassword.BorderBrush = System.Windows.Media.Brushes.LightGray;
             }
