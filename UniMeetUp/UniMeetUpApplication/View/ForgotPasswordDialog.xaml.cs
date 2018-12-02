@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace UniMeetUpApplication.View
 {
     /// <summary>
     /// Interaction logic for ForgotPasswordDialog.xaml
     /// </summary>
-    public partial class ForgotPasswordDialog : Window
+    public partial class ForgotPasswordDialog : MetroWindow
     {
         //s
         public static TextBlock spinner;

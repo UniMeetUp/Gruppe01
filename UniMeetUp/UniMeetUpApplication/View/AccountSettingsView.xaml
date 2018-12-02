@@ -33,14 +33,14 @@
     </UserControl.Resources>
 
         <Grid Background="LightGray">
-        <Grid ShowGridLines="False" Background="AliceBlue" Margin="1,1,1,0" DataContext="{StaticResource vm}">
+        <Grid ShowGridLines="False" Background="White" Margin="1,1,1,0" DataContext="{StaticResource vm}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition ></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -53,28 +53,28 @@
             </Grid.ColumnDefinitions>
             <Separator Grid.Row="1" Grid.ColumnSpan="2"></Separator>
             <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource StyleName}" FontWeight="Bold">Change your password here:</Label>
-            <Label Grid.Row="3" Grid.Column="0">Current password:</Label>
-            <Label Grid.Row="4" Grid.Column="0">New password:</Label>
-            <Label Grid.Row="5"  Grid.Column="0">Repeat new password:</Label>
+            <Label Margin="5" Grid.Row="3" Grid.Column="0">Current password:</Label>
+            <Label Margin="5"  Grid.Row="4" Grid.Column="0">New password:</Label>
+            <Label Margin="5" Grid.Row="5"  Grid.Column="0">Repeat new password:</Label>
 
 
             <!--<TextBox  Grid.Row="3" Grid.Column="1" Name="currentPassword" TextChanged="validateInput" LostFocus="currentPasswordLostFocus" 
                       Controls:TextBoxHelper.Watermark="Enter current password"  Controls:TextBoxHelper.ClearTextButton="True"/>-->
             <PasswordBox Grid.Row="3" Grid.Column="1" Controls:TextBoxHelper.Watermark="Enter your current password" 
-                         Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21" PasswordChar="*"
+                         Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21" 
                          Name="currentPassword"
                          PasswordChanged="validateInput" LostFocus="currentPasswordLostFocus"/>
 
 
             <!--<PasswordBox Grid.Row="4" Grid.Column="1" Name="newPassword" PasswordChanged="newPasswordChanged" LostFocus="newPasswordLostFocus" GotFocus="newPasswordGotFocus" />-->
             <PasswordBox Grid.Row="4" Grid.Column="1" Controls:TextBoxHelper.Watermark="Enter your new password" 
-                         Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21" PasswordChar="*"
+                         Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21" 
                          Name="newPassword"
                          PasswordChanged="newPasswordChanged" LostFocus="newPasswordLostFocus" GotFocus="newPasswordGotFocus"/>
 
             <!--<PasswordBox Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" PasswordChanged="repeatPasswordChanged" LostFocus="repeatNewpasswordLostFocus" GotFocus="repeatNewPasswordGotFocus"/>-->
             <PasswordBox Grid.Row="5" Grid.Column="1" Controls:TextBoxHelper.Watermark="Repeat your previous password" 
-                         Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21" PasswordChar="*"
+                         Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21"
                          Name="newPasswordRepeat"
                          PasswordChanged="repeatPasswordChanged" LostFocus="repeatNewpasswordLostFocus" GotFocus="repeatNewPasswordGotFocus"/>
 

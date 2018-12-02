@@ -88,14 +88,15 @@ namespace UniMeetUpApplication.ViewModel
                 viewModel.MainPageCommand.Execute(null);
                 
                 _loginModel.getAllUserData(userForLogin.Email);
+                MainWindow.MasterViewModel.Height = 700;
+                MainWindow.MasterViewModel.Width = 1300;
             }
             else
             {
                 _notificationService.Show_Message_Email_Or_Password_Is_Incorrect();
             }
             LoginView.spinner.Visibility = Visibility.Hidden;
-            MainWindow.MasterViewModel.Height = 700;
-            MainWindow.MasterViewModel.Width = 1300;
+           
 
                 
             

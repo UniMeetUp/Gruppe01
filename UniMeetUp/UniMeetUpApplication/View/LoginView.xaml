@@ -14,9 +14,9 @@
 
              >
 
-    <!--<UserControl.Background>
+    <UserControl.Background>
         <ImageBrush ImageSource="Images/geometry2.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,420,420" />
-    </UserControl.Background>-->
+    </UserControl.Background>
    
     <UserControl.Resources>
         <ResourceDictionary>
@@ -34,13 +34,15 @@
     </UserControl.Resources>
 
     <Grid>
-    <Grid  DataContext="{StaticResource LoginViewModel}" Background="AliceBlue">
+    <Grid  DataContext="{StaticResource LoginViewModel}">
        
 
         <StackPanel Grid.Column="1">
             <Image Margin="0,20,0,20" Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
                 <TextBox Name="tbEmail" Margin="5"  MaxWidth="500" Controls:TextBoxHelper.Watermark="Please enter email..."  Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
-                <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="PasswordBx_OnKeyDown" MaxWidth="500"></PasswordBox>
+                <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="PasswordBx_OnKeyDown" MaxWidth="500"
+                             Controls:TextBoxHelper.Watermark="Please enter password..." 
+                             Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}"></PasswordBox>
 
 
                 <TextBox x:Name="tbPassword"  Margin="0" Visibility="Hidden" Height="0" Width="0" />
@@ -67,7 +69,7 @@
                 </Button>
             </Grid>
             <StackPanel Orientation="Horizontal" MaxWidth="505">
-                <TextBlock Margin="0">
+                <TextBlock Margin="4,5,0,0">
                     <Hyperlink Command="{Binding ForgotPasswordPageCommand}">Forgot password?</Hyperlink>
                 </TextBlock>
                
@@ -75,6 +77,6 @@
         </StackPanel>
 
     </Grid>
-        <fa:ImageAwesome x:Name="MySpinner" Icon="Spinner"  Spin="True" Visibility="Hidden" Height="80" Width="80" Foreground="#FF348299" />
+        <fa:ImageAwesome x:Name="MySpinner" Icon="Cog"  Spin="True" Visibility="Hidden" Height="80" Width="80" Foreground="#FF348299" />
     </Grid>
 </UserControl>

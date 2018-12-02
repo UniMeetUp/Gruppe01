@@ -5,17 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500" Initialized="largerFontByDefault"
            
             >
 
-
     <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
 
-        <viewModel:AddMemberViewModel x:Key="addMemberViewModel"></viewModel:AddMemberViewModel>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
 
-      </UserControl.Resources>
+            </ResourceDictionary.MergedDictionaries>
+            <viewModel:AddMemberViewModel x:Key="addMemberViewModel"></viewModel:AddMemberViewModel>
+        </ResourceDictionary>
+
+
+    </UserControl.Resources>
+
 
 
 
@@ -57,7 +66,7 @@
             <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label> 
 
             <DataGrid DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-                      ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AlternationCount="1000"> 
+                      ItemsSource="{Binding Path=EmailCollectionAllUserEmails}"  > 
 
                 <DataGrid.Columns>
 

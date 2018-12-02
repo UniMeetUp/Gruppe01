@@ -75,32 +75,32 @@ namespace UniMeetUpApplication.View
             }
         }
 
-        private void searchLostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txbSearch.Text == "")
-            {
-                txbSearch.Text = "Search for group...";
-                txbSearch.Foreground = Brushes.LightGray;
+        //private void searchLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (txbSearch.Text == "")
+        //    {
+        //        txbSearch.Text = "Search for group...";
+        //        txbSearch.Foreground = Brushes.LightGray;
 
-            }
-        }
+        //    }
+        //}
 
-        private void searchGotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txbSearch.Text == "Search for group...")
-            {
-                txbSearch.Text = "";
-                txbSearch.Foreground = Brushes.Black;
+        //private void searchGotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (txbSearch.Text == "Search for group...")
+        //    {
+        //        txbSearch.Text = "";
+        //        txbSearch.Foreground = Brushes.Black;
 
-            }
-        }
+        //    }
+        //}
 
-        private void txbSearch_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
+        //private void txbSearch_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        //{
             
-            if (txbSearch.Text == "Search for group...")
-                txbSearch.Text = string.Empty;
-        }
+        //    if (txbSearch.Text == "Search for group...")
+        //        txbSearch.Text = string.Empty;
+        //}
 
 
         private void LbGroups_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
