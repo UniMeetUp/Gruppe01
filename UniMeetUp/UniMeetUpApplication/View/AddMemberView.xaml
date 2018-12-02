@@ -63,9 +63,9 @@
 
 
 
-            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label> 
+            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label>
 
-            <DataGrid DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+            <DataGrid GridLinesVisibility="Horizontal" Style="{DynamicResource AzureDataGrid}" DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
                       ItemsSource="{Binding Path=EmailCollectionAllUserEmails}"  > 
 
                 <DataGrid.Columns>
@@ -74,8 +74,8 @@
                     <!--<DataGridTextColumn Header="User nr.:">
 
                     </DataGridTextColumn>-->
-
-                    <DataGridTextColumn Header="User email::"  Width="*"  Binding="{Binding EmailAddress}" IsReadOnly="True" ></DataGridTextColumn>
+                    <DataGridTextColumn x:Name ="fileId" Header=":" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="User email"  Width="*"  Binding="{Binding EmailAddress}" IsReadOnly="True" ></DataGridTextColumn>
 
 
 
@@ -83,7 +83,7 @@
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
 
-                                <Button  Content="Add user"  DataContext="{StaticResource addMemberViewModel}" >
+                                <Button  Content="Add user" Margin="5" DataContext="{StaticResource addMemberViewModel}" >
 
                                 </Button>
 

@@ -77,6 +77,6 @@
         </StackPanel>
 
     </Grid>
-        <fa:ImageAwesome x:Name="MySpinner" Icon="Cog"  Spin="True" Visibility="Hidden" Height="80" Width="80" Foreground="#FF348299" />
+        <fa:ImageAwesome x:Name="MySpinner" Icon="CircleOutlineNotch"  Spin="True" Visibility="Hidden" Height="80" Width="80" Foreground="#FF348299" />
     </Grid>
 </UserControl>
