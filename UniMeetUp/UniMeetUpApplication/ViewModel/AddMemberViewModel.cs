@@ -83,8 +83,14 @@ namespace UniMeetUpApplication.ViewModel
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 _notificationService.Show_Message_Member_was_added_to_group(email);
+                var re = _addMemberModel.getUser(email);
+                
+                ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup.MemberList.Add(_addMemberModel.getUser(email));
 
-                ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup.MemberList.Add(email);
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                _notificationService.Show_Message_Already_in_group(email);
             }
             else
             {

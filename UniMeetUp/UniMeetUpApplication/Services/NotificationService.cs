@@ -67,7 +67,12 @@ namespace UniMeetUpApplication.Services
 
         public void Show_Message_Member_was_added_to_group(string email )
         {
-            MessageBox.Show(email + "was successfully added to group");
+            MessageBox.Show(email + " was successfully added to group");
+        }
+
+        public void Show_Message_Already_in_group(string email)
+        {
+            MessageBox.Show(email + " is already in the group");
         }
     }
 }

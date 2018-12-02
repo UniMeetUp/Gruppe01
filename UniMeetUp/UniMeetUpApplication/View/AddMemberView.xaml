@@ -69,7 +69,7 @@
                             <DataTemplate>
 
                                 <Button  Content="Add user" DataContext="{StaticResource addMemberViewModel}" Command="{Binding AddMemberToGruopCommand}" 
-                                         CommandParameter="{Binding CurrentEmailSelected}" >
+                                          >
 
                                 </Button>
 
