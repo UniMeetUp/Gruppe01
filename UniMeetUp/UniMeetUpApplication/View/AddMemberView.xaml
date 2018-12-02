@@ -29,7 +29,7 @@
 
 
     <Grid Background="LightGray" Name="Grid1">
-    <Grid Margin="1,1,1,1"  Background="White" >
+    <Grid Margin="1,1,1,1"  Background="AliceBlue" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>

@@ -51,7 +51,7 @@
                 <ColumnDefinition ></ColumnDefinition>
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Separator Grid.Row="1" Grid.ColumnSpan="2"></Separator>
+            <Separator Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,5"></Separator>
             <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource StyleName}" FontWeight="Bold">Change your password here:</Label>
             <Label Margin="5" Grid.Row="3" Grid.Column="0">Current password:</Label>
             <Label Margin="5"  Grid.Row="4" Grid.Column="0">New password:</Label>
