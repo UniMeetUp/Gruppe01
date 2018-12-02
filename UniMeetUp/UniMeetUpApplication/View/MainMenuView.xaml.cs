@@ -109,7 +109,7 @@ namespace UniMeetUpApplication.View
                 ((Group)lbGroups.Items.CurrentItem);
 
             MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
-            model.ChatCommand.Execute(null);
+            model.MapCommand.Execute(null);
 
            
             GroupMembers.Items.Clear();
