@@ -199,6 +199,11 @@ namespace UniMeetUpServer.Repository
             
         }
 
+        public void AddUserGroup(UserGroup userGroup)
+        {
+            _context.UserGroup.Add(userGroup);
+        }
+
 
     }
 }

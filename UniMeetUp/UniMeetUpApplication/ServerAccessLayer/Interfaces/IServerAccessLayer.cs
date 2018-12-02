@@ -5,7 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using CommonLib.Models;
 using UniMeetUpApplication.Model;
+using User = UniMeetUpApplication.Model.User;
 
 
 namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
@@ -33,5 +35,7 @@ namespace UniMeetUpApplication.ServerAccessLayer.Interfaces
         HttpStatusCode DummyRequestMustReturnOK();
 
         string Get_Messages_By_Group_Id(int groupId);
+
+        Task<HttpResponseMessage> Add_member_to_group(AddMemberGroup userGroup);
     }
 }

@@ -10,6 +10,8 @@ using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using CommonLib.Models;
+using User = UniMeetUpApplication.Model.User;
 
 namespace UniMeetUpApplication.ServerAccessLayer
 {
@@ -24,10 +26,10 @@ namespace UniMeetUpApplication.ServerAccessLayer
         public ServerAccessLayer()
         {
             // for server
-            client.BaseAddress = serverUri;
+            //client.BaseAddress = serverUri;
             
             // for local test
-            //client.BaseAddress = localUri;
+            client.BaseAddress = localUri;
         }
 
         public Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
@@ -194,10 +196,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
             return response;
         }
-
-
-
-
+        
         public string Get_DisplayName_In_All_Group_ByEmail(string email)
         {
             try
@@ -213,6 +212,13 @@ namespace UniMeetUpApplication.ServerAccessLayer
                 return "error";
 
             }
+        }
+
+        public async Task<HttpResponseMessage> Add_member_to_group(AddMemberGroup userGroup)
+        {
+            var response =  await client.PostAsJsonAsync("api/Groups/createUserGroup", userGroup);
+
+            return response;
         }
     }
 }

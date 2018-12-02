@@ -124,6 +124,20 @@ namespace UniMeetUpServer.Controllers
             return CreatedAtAction("GetGroup", result.GroupId, result);
         }
 
+        [HttpPost("createUserGroup")]
+        public async Task<IActionResult> PostGroupp([FromBody] UserGroupForCreation @userGroup)
+        {
+            UserGroup ug = new UserGroup();
+            ug.EmailAddress = userGroup.EmailAddress;
+            ug.GroupId = userGroup.GroupId;
+
+            _umuRepository.AddUserGroup(ug);
+            
+            await _context.SaveChangesAsync();
+
+            return Created("GetGroup", userGroup.GroupId);
+        }
+
 
         // DELETE: api/Groups/5
         [HttpDelete("{id}")]

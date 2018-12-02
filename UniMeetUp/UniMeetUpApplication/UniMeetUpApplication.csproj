@@ -286,6 +286,7 @@
     </ApplicationDefinition>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Model\AccountSettingsModel.cs" />
+    <Compile Include="Model\AddMemberGroup.cs" />
     <Compile Include="Model\AddMemberModel.cs" />
     <Compile Include="Model\AllUserEmail.cs" />
     <Compile Include="Model\AllUserEmails.cs" />

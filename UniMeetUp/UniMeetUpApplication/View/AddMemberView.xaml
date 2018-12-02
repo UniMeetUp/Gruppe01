@@ -45,19 +45,13 @@
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
 
-
-
-
-
-
-
-
-
-
             <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label> 
 
-            <DataGrid DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-                      ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AlternationCount="1000"> 
+            <DataGrid DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  
+                      IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+                      ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AlternationCount="1000" 
+                      SelectedIndex="{Binding CurrentIndex}"
+                      > 
 
                 <DataGrid.Columns>
 
@@ -66,7 +60,7 @@
 
                     </DataGridTextColumn>-->
 
-                    <DataGridTextColumn Header="User email::"  Width="*"  Binding="{Binding EmailAddress}" IsReadOnly="True" ></DataGridTextColumn>
+                    <DataGridTextColumn  Header="User email::"  Width="*"  Binding="{Binding EmailAddress}" IsReadOnly="True"  ></DataGridTextColumn>
 
 
 
@@ -74,7 +68,8 @@
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
 
-                                <Button  Content="Add user"  DataContext="{StaticResource addMemberViewModel}" >
+                                <Button  Content="Add user" DataContext="{StaticResource addMemberViewModel}" Command="{Binding AddMemberToGruopCommand}" 
+                                         CommandParameter="{Binding CurrentEmailSelected}" >
 
                                 </Button>
 
