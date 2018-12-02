@@ -73,16 +73,18 @@ namespace UniMeetUpApplication.ViewModel
         private async void AddMemberToGroupExe(object parameter)
         {
             string email = EmailCollectionAllUserEmails[CurrentIndex].EmailAddress;
-
+            
             AddMemberGroup grp = new AddMemberGroup(email, ((MasterViewModel)App.Current.MainWindow.DataContext).User.Groups.CurrentGroup.GroupId);
 
             var response = await _addMemberModel.AddMemberToGroup(grp);
 
-            //((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup.MemberList.Add();
+            
 
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 _notificationService.Show_Message_Member_was_added_to_group(email);
+
+                ((MasterViewModel)App.Current.MainWindow.DataContext).User._groups.CurrentGroup.MemberList.Add(email);
             }
             else
             {

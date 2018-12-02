@@ -125,7 +125,7 @@ namespace UniMeetUpServer.Controllers
         }
 
         [HttpPost("createUserGroup")]
-        public async Task<IActionResult> PostGroupp([FromBody] UserGroupForCreation @userGroup)
+        public async Task<IActionResult> PostUserGroup([FromBody] UserGroupForCreation @userGroup)
         {
             UserGroup ug = new UserGroup();
             ug.EmailAddress = userGroup.EmailAddress;
