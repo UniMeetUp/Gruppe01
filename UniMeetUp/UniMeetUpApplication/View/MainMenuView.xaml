@@ -150,6 +150,7 @@
                      SelectedIndex="{Binding SelectedIndex}"
                      SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup}"
                      SelectionChanged="LbGroups_OnSelectionChanged"
+                     
                      >
                 
             </ListView>

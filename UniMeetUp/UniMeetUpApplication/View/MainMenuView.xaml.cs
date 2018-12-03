@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -117,9 +118,12 @@ namespace UniMeetUpApplication.View
             {
                 GroupMembers.Items.Add(item);
             }
-
-            
         }
+
+
+
+
+
         private void FontLarge(object sender, RoutedEventArgs e)
         {
             FontSize = 14.0;
@@ -140,7 +144,7 @@ namespace UniMeetUpApplication.View
             FontSize = 12.0;
         }
 
-      
+
 
     }
 }

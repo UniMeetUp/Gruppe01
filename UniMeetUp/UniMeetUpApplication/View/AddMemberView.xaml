@@ -54,19 +54,14 @@
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
 
+            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label> 
 
-
-
-
-
-
-
-
-
-            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Users:</Label>
-
-            <DataGrid GridLinesVisibility="Horizontal" Style="{DynamicResource AzureDataGrid}" DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-                      ItemsSource="{Binding Path=EmailCollectionAllUserEmails}"  > 
+            <DataGrid DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  
+                      IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+                      ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AlternationCount="1000" 
+                      SelectedIndex="{Binding CurrentIndex}" GridLinesVisibility="Horizontal" Style="{DynamicResource AzureDataGrid}"
+                      > 
+           
 
                 <DataGrid.Columns>
 
