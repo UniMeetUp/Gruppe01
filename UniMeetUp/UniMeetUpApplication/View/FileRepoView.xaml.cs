@@ -51,7 +51,7 @@ namespace UniMeetUpApplication.View
         //}
         private void largerFontByDefault(object sender, EventArgs e)
         {
-            FontSize = 14.0;
+            FontSize = 12.0;
         }
     }
 }

@@ -6,7 +6,8 @@
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
-
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              Name="mainMenuUserControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000"
@@ -20,6 +21,7 @@
 
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
@@ -101,12 +103,18 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="40"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
+<!--<Rectangle.OpacityMask>
+                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
+            </Rectangle.OpacityMask>-->
         <!--Search field-->
         <!--<TextBox Grid.Row="0" Grid.Column="0" GotKeyboardFocus="TxbSearch_OnGotKeyboardFocus" Template="{StaticResource TextBoxBaseControlTemplate}" Name="txbSearch" Text="Search"  BorderBrush="AliceBlue" ></TextBox>-->
 
-        <TextBox  Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" Name="txbSearch" Controls:TextBoxHelper.Watermark="Search for groups..." Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+        <TextBox  Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" Name="txbSearch" Controls:TextBoxHelper.Watermark="Search for groups..." Controls:TextBoxHelper.ClearTextButton="True" 
+                  Style="{DynamicResource ButtonCommandMetroTextBox}" >
 
+
+        </TextBox>
+        
 
 
         <!--images/buttons:-->

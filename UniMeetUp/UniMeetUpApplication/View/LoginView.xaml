@@ -8,6 +8,7 @@
              xmlns:services="clr-namespace:UniMeetUpApplication.Services"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+            
              Initialized="largerFontByDefault"
 
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  

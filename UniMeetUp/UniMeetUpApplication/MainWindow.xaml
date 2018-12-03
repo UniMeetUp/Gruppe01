@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:UniMeetUpApplication.View"
         xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
-                      
-        
+                     
          xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+
          xmlns:services="clr-namespace:UniMeetUpApplication.Services"
          mc:Ignorable="d"
         Title="UniMeetUp" 
