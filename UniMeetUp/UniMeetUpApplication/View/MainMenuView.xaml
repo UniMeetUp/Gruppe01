@@ -155,7 +155,7 @@
                 
             </ListView>
 
-            <GroupBox Margin="5" Grid.Row="3" Header="Users in group:" FontStyle="Italic"  Background="White">
+            <GroupBox Margin="5" Grid.Row="3" MaxHeight="200" Header="Users in group:" FontStyle="Italic"  Background="White">
                 <ListView  FontStyle="Normal"  Name="GroupMembers"  Background="White" BorderThickness="0">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
