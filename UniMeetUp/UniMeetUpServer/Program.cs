@@ -13,7 +13,7 @@ namespace UniMeetUpServer
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
-                .UseUrls("http://192.168.87.112:5000", "http://localhost:5000", "https://localhost:44364")
+                .UseUrls("http://192.168.87.112:5000", "http://localhost:5000")
                 .UseStartup<Startup>();
     }
 }

@@ -78,7 +78,7 @@
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
 
-                                <Button  Content="Add user" Margin="5" DataContext="{StaticResource addMemberViewModel}" >
+                                <Button  Content="Add user" Margin="5" DataContext="{StaticResource addMemberViewModel}"  Command="{Binding AddMemberToGruopCommand}">
 
                                 </Button>
 

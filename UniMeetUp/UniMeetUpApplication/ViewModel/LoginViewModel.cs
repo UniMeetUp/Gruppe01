@@ -90,6 +90,10 @@ namespace UniMeetUpApplication.ViewModel
                 _loginModel.getAllUserData(userForLogin.Email);
                 MainWindow.MasterViewModel.Height = 700;
                 MainWindow.MasterViewModel.Width = 1300;
+
+                MainWindow.MasterViewModel = W
+
+
             }
             else
             {

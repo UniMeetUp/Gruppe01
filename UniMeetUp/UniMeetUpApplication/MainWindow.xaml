@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:UniMeetUpApplication.View"
         xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
+
                      
          xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
 
@@ -54,7 +55,7 @@
             <ColumnDefinition Width="43*"/>
         </Grid.ColumnDefinitions>-->
         <ContentControl Height="{Binding ElementName=MasterGrid, Path=ActualHeight}" Width="{Binding ElementName=MasterGrid, Path=ActualWidth}" x:Name="MasterContentControl"
-                        Content="{Binding}"  DataContext="{Binding CurrentMasterPage}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4"></ContentControl>
+                        Content="{Binding}"  DataContext="{Binding CurrentMasterPage}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" SizeChanged="test"></ContentControl>
     </Grid>
 
 

@@ -6,7 +6,8 @@
              xmlns:view="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500">
+             d:DesignHeight="450" d:DesignWidth="500"
+             >
     <UserControl.Resources>
 
         <viewModel:MapsViewModel x:Key="vm"></viewModel:MapsViewModel>
