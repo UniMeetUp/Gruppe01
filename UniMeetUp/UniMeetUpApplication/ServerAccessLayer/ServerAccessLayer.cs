@@ -26,10 +26,10 @@ namespace UniMeetUpApplication.ServerAccessLayer
         public ServerAccessLayer()
         {
             // for server
-            //client.BaseAddress = serverUri;
+            client.BaseAddress = serverUri;
             
             // for local test
-            client.BaseAddress = localUri;
+            //client.BaseAddress = localUri;
         }
 
         public Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
