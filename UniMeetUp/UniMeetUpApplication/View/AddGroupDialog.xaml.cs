@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace UniMeetUpApplication.View.Dialogs
 {
     /// <summary>
     /// Interaction logic for AddGroupDialog.xaml
     /// </summary>
-    public partial class AddGroupDialog : Window
+    public partial class AddGroupDialog : MetroWindow
     {
         public AddGroupDialog()
         {
