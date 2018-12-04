@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:UniMeetUpApplication.View.Dialogs"
         xmlns:vm="clr-namespace:UniMeetUpApplication.ViewModel"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner"
+        
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+                      WindowStartupLocation="CenterScreen"
         Title="Add group" Height="70" Width="350">
     <Window.Resources>
         <ResourceDictionary>
