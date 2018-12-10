@@ -42,5 +42,18 @@ namespace UniMeetUpApplication.View
         {
             tbPasswordRepeat.Text = PasswordBx2.Password;
         }
+
+        private void mustBeChecked(object sender, RoutedEventArgs e)
+        {
+            
+            if (CheckBox.IsChecked == false)
+            {
+                createAccBttn.IsEnabled = false;
+            }
+            else
+            {
+                createAccBttn.IsEnabled = true;
+            }
+        }
     }
 }

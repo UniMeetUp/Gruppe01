@@ -38,6 +38,8 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
@@ -51,29 +53,31 @@
                 <ColumnDefinition ></ColumnDefinition>
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Separator Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,5"></Separator>
-            <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource StyleName}" FontWeight="Bold">Change your password here:</Label>
-            <Label Margin="5" Grid.Row="3" Grid.Column="0">Current password:</Label>
-            <Label Margin="5"  Grid.Row="4" Grid.Column="0">New password:</Label>
-            <Label Margin="5" Grid.Row="5"  Grid.Column="0">Repeat new password:</Label>
+            <Separator Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10,0,5"></Separator>
+            <Label Grid.Row="4" Grid.Column="0" Style="{DynamicResource StyleName}" FontWeight="Bold">Change your password here:</Label>
+            <Label Margin="10,5,5,5" Grid.Row="5" Grid.Column="0">Current password:</Label>
+            <Label Margin="10,5,5,5"  Grid.Row="6" Grid.Column="0">New password:</Label>
+            <Label Margin="10,5,5,5" Grid.Row="7"  Grid.Column="0">Repeat new password:</Label>
+            <Button Grid.Row="0" Margin="10" Width="100" HorizontalAlignment="Left" Command="{Binding GoBackToMainMenu}">Back</Button>
+            <!--<Separator Grid.Row="1" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0"></Separator>-->
 
 
             <!--<TextBox  Grid.Row="3" Grid.Column="1" Name="currentPassword" TextChanged="validateInput" LostFocus="currentPasswordLostFocus" 
                       Controls:TextBoxHelper.Watermark="Enter current password"  Controls:TextBoxHelper.ClearTextButton="True"/>-->
-            <PasswordBox Grid.Row="3" Grid.Column="1" Controls:TextBoxHelper.Watermark="Enter your current password" 
+            <PasswordBox Grid.Row="5" Grid.Column="1" Controls:TextBoxHelper.Watermark="Enter your current password" 
                          Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21" 
                          Name="currentPassword"
                          PasswordChanged="validateInput" LostFocus="currentPasswordLostFocus"/>
 
 
             <!--<PasswordBox Grid.Row="4" Grid.Column="1" Name="newPassword" PasswordChanged="newPasswordChanged" LostFocus="newPasswordLostFocus" GotFocus="newPasswordGotFocus" />-->
-            <PasswordBox Grid.Row="4" Grid.Column="1" Controls:TextBoxHelper.Watermark="Enter your new password" 
+            <PasswordBox Grid.Row="6" Grid.Column="1" Controls:TextBoxHelper.Watermark="Enter your new password" 
                          Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21" 
                          Name="newPassword"
                          PasswordChanged="newPasswordChanged" LostFocus="newPasswordLostFocus" GotFocus="newPasswordGotFocus"/>
 
             <!--<PasswordBox Grid.Row="5" Grid.Column="1" Name="newPasswordRepeat" PasswordChanged="repeatPasswordChanged" LostFocus="repeatNewpasswordLostFocus" GotFocus="repeatNewPasswordGotFocus"/>-->
-            <PasswordBox Grid.Row="5" Grid.Column="1" Controls:TextBoxHelper.Watermark="Repeat your previous password" 
+            <PasswordBox Grid.Row="7" Grid.Column="1" Controls:TextBoxHelper.Watermark="Repeat your previous password" 
                          Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" Height="21"
                          Name="newPasswordRepeat"
                          PasswordChanged="repeatPasswordChanged" LostFocus="repeatNewpasswordLostFocus" GotFocus="repeatNewPasswordGotFocus"/>
@@ -81,11 +85,11 @@
             <Label Grid.Row="5" Grid.Column="2" Name="hiddenNew" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
             <Label Grid.Row="4" Grid.Column="2" Name="hiddenRe" Opacity="0" FontStyle="Italic" Foreground="#FFD4CFCF">←Text fields dont match</Label>
 
-            <Label Margin="0,5,0,0" Grid.Row="0" Grid.Column="0">Display name:</Label>
-            <TextBox  Margin="0,5,0,0" Grid.Row="0" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"
+            <Label Margin="10,5,0,0" Grid.Row="2" Grid.Column="0">Display name:</Label>
+            <TextBox  Margin="0,5,0,0" Grid.Row="2" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.DisplayName}"
                       Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
 
-            <Grid Grid.Row="8" ShowGridLines="False">
+            <Grid Grid.Row="10" ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition Width="110"></ColumnDefinition>
@@ -96,7 +100,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="8" Grid.Column="2" ShowGridLines="False">
+            <Grid Grid.Row="10" Grid.Column="2" ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>

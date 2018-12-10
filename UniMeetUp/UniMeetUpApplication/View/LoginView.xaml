@@ -39,7 +39,8 @@
        
 
         <StackPanel Grid.Column="1">
-            <Image Margin="0,20,0,20" Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
+            <Image Margin="0,20,0,10" Source="Images/TTYG3_NOBACK.png" MaxWidth="400" Height="300" />
+            <Separator Width="600" Margin="0,0,0,10"></Separator>
                 <TextBox Name="tbEmail" Margin="5"  MaxWidth="500" Controls:TextBoxHelper.Watermark="Please enter email..."  Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
                 <PasswordBox x:Name="passwordBx" Margin="5" LostFocus="passwordBx_LostFocus" KeyDown="PasswordBx_OnKeyDown" MaxWidth="500"
                              Controls:TextBoxHelper.Watermark="Please enter password..." 

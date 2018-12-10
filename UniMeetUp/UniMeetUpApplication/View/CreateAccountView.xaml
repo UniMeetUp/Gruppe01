@@ -57,8 +57,8 @@
             <PasswordBox Margin="5" Grid.Row="5" Grid.Column="1" Name="PasswordBx1" Controls:TextBoxHelper.Watermark="Please enter password..."  Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" LostFocus="PasswordHack1" />
         <Label Margin="5" Grid.Row="6" Content="Repeat password:"/>
             <PasswordBox Margin="5" Grid.Row="6" Grid.Column="1" Name="PasswordBx2" Controls:TextBoxHelper.Watermark="Please repeat password..."  Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" LostFocus="PasswordHack2"/>
-        <CheckBox Margin="10" Grid.Row="7"></CheckBox>
-        <Label Grid.Row="7" Margin="30,5,0,0" Grid.Column="0">I accept the terms</Label>
+        <CheckBox Margin="10" Grid.Row="7" Name="CheckBox" Click="mustBeChecked"/>
+            <Label Grid.Row="7" Margin="30,5,0,0" Grid.Column="0">I accept the terms</Label>
 
 
            
@@ -67,7 +67,7 @@
             <TextBox Grid.Row="2" Grid.Column="2" Visibility="Hidden" Name="tbPassword"></TextBox>
             <TextBox Grid.Row="3" Grid.Column="2"  Visibility="Hidden" Name="tbPasswordRepeat"></TextBox>
 
-        <Button Grid.Row="9" Grid.Column="2"  Content="Create Account" Width="100" HorizontalAlignment="Right" Margin="10" DataContext="{StaticResource CreateAccountViewModel}" Command="{Binding CreateAccountCommand}">
+        <Button Grid.Row="9" Grid.Column="2" Name="createAccBttn" IsEnabled="False" Content="Create Account" Width="100" HorizontalAlignment="Right" Margin="10" DataContext="{StaticResource CreateAccountViewModel}" Command="{Binding CreateAccountCommand}">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource Converter}">
                     <Binding Path="Text" ElementName="tbUsername"></Binding>

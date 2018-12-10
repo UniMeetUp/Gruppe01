@@ -39,32 +39,10 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBox Name="txbGroupName" Margin="5" Controls:TextBoxHelper.Watermark="Please enter group name..."  Controls:TextBoxHelper.ClearTextButton="True">
+        <TextBox Name="txbGroupName" Margin="5" Controls:TextBoxHelper.Watermark="Please enter group name..."  Controls:TextBoxHelper.ClearTextButton="True" TextChanged="ValidateInput" Loaded="Loaded">
        
         </TextBox>
-        <Button Grid.Column="1" Margin="5" DataContext="{StaticResource MainMenuViewModel}" Command="{Binding AddGroupCommand}" CommandParameter="{Binding Text, ElementName=txbGroupName}">Add</Button>
-        <!--<Grid.Resources>
-            <Style TargetType="{x:Type TextBox}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            <Style TargetType="{x:Type Viewbox}">
-                <Setter Property="Margin" Value="3"/>
-            </Style>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            <Style TargetType="{x:Type ListBoxItem}">
-                <Setter Property="Margin" Value="0"/>
-            </Style>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            <Style TargetType="{x:Type Separator}">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            <Style TargetType="{x:Type StackPanel}">
-                <Setter Property="Margin" Value="0"/>
-            </Style>
-        </Grid.Resources>-->
+        <Button Name="addBttn" Grid.Column="1" Margin="5" DataContext="{StaticResource MainMenuViewModel}" Command="{Binding AddGroupCommand}" CommandParameter="{Binding Text, ElementName=txbGroupName}" Click="AddBttn_Click" >Add</Button>
+
     </Grid>
 </Controls:MetroWindow>

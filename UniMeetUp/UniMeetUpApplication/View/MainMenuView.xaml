@@ -156,6 +156,7 @@
             </ListView>
 
             <GroupBox Margin="5" Grid.Row="3" MaxHeight="200" Header="Users in group:" FontStyle="Italic"  Background="White">
+               
                 <ListView  FontStyle="Normal"  Name="GroupMembers"  Background="White" BorderThickness="0">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -228,7 +229,7 @@
         <!--ButtonPaneRight-->
 
         <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
-            <Button Background="Transparent" BorderThickness="0" Command="{Binding ChatCommand}">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding ChatCommand}"  Name="chatBttn" Loaded="disabelChatBeforeInGroup">
                 <Viewbox DockPanel.Dock="Right" Height="25">
                     <Frame Source="Images/Message_16x.xaml" />
                 </Viewbox>
@@ -240,18 +241,18 @@
         <!--ButtonPaneRight-->
         <ContentControl  x:Name="ConControl" Grid.Column="1" Grid.RowSpan="3" Margin="0,5,0,0" Content="{Binding}" DataContext="{Binding CurrentPage}" ></ContentControl>
         <StackPanel Grid.Row="1" Grid.Column="2">
-            <Button Background="Transparent" BorderThickness="0" Command="{Binding MapCommand}">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding MapCommand}" Name="mapsBttn" Loaded="disableMapsBeforeINGroup" >
                 <Viewbox DockPanel.Dock="Right" Height="30">
                     <Frame Source="Images/GeoLocation_16x.xaml" />
                 </Viewbox>
             </Button>
-            <Button Background="Transparent" BorderThickness="0" Command="{Binding AddMemberToGroupCommand}">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding AddMemberToGroupCommand}" Name="AddBttn" Loaded="disableAddBeforeInGroup">
                 <Viewbox DockPanel.Dock="Right" Height="30">
                     <Frame Source="Images/AddUser_16x.xaml" />
                 </Viewbox>
             </Button>
             <Separator></Separator>
-            <Button Background="Transparent" BorderThickness="0" Command="{Binding FileRepoCommand}">
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding FileRepoCommand}" Name="FileRepBttn" Loaded="disableRepoBeforeInGroup">
                 <Viewbox DockPanel.Dock="Right">
                     <Frame Source="Images/Folder_16xSM.xaml" />
                 </Viewbox>

@@ -272,7 +272,7 @@ namespace UniMeetUpApplication.View
                     DateTime timeStampObj = (DateTime)location.ToObject<JObject>().GetValue("timeStamp");
 
                     
-                    if (timeStampObj.Day < DateTime.Now.Day && timeStampObj.Month == DateTime.Now.Month)
+                    if ((timeStampObj.Day < DateTime.Now.Day && timeStampObj.Month == DateTime.Now.Month) || (timeStampObj.Month != DateTime.Now.Month))
                     {
                         howOld = "grey";
                     }

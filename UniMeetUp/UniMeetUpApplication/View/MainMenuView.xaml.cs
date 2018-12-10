@@ -30,10 +30,13 @@ namespace UniMeetUpApplication.View
         Clock clock = new Clock();
         DispatcherTimer timer = new DispatcherTimer();
         private MasterViewModel masterViewModel = new MasterViewModel();
+
+        
+
         public MainMenuView()
         {
             InitializeComponent();
-           
+       
 
 
 
@@ -145,6 +148,61 @@ namespace UniMeetUpApplication.View
         }
 
 
+     
 
+        private void disabelChatBeforeInGroup(object sender, RoutedEventArgs e)
+        {
+            if (groupCount.Content.Equals(0))
+            {
+                chatBttn.IsEnabled = false;
+                MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
+                model.DisabledViewCommand.Execute(null);
+                    
+            }
+            else
+            {
+                chatBttn.IsEnabled = true;
+                MainMenuViewModel model = (MainMenuViewModel)TryFindResource("MainMenuViewModel");
+                model.MapCommand.Execute(null);
+            }
+
+        }
+
+        private void disableMapsBeforeINGroup(object sender, RoutedEventArgs e)
+        {
+
+            if (groupCount.Content.Equals(0))
+            {
+                mapsBttn.IsEnabled = false;
+            }
+            else
+            {
+                mapsBttn.IsEnabled = true;
+            }
+        }
+
+        private void disableAddBeforeInGroup(object sender, RoutedEventArgs e)
+        {
+            if (groupCount.Content.Equals(0))
+            {
+                AddBttn.IsEnabled = false;
+            }
+            else
+            {
+                AddBttn.IsEnabled = true;
+            }
+        }
+
+        private void disableRepoBeforeInGroup(object sender, RoutedEventArgs e)
+        {
+            if (groupCount.Content.Equals(0))
+            {
+                FileRepBttn.IsEnabled = false;
+            }
+            else
+            {
+                FileRepBttn.IsEnabled = true;
+            }
+        }
     }
 }
