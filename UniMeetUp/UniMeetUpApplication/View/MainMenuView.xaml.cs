@@ -66,7 +66,7 @@ namespace UniMeetUpApplication.View
                 txtBox.Text = string.Empty;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Add_Group(object sender, RoutedEventArgs e)
         {
             AddGroupDialog _dialogBox = new AddGroupDialog();
             if (_dialogBox.ShowDialog() == true)
