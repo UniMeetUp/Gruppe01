@@ -51,7 +51,7 @@ namespace UniMeetUpApplication.Model
                    addDisplaynameAndEmailToCurrentUser(jsonUser, user);
                    addGroupsToCurrentuser(jsonGroup, user);
                    addAllMemberDisplayNamesToGroups(usersInGroups, user);
-               }
+            }
             return user;
         }
 

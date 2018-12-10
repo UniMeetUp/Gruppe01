@@ -10,6 +10,8 @@ using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using CommonLib.Models;
+using User = UniMeetUpApplication.Model.User;
 
 namespace UniMeetUpApplication.ServerAccessLayer
 {
@@ -17,9 +19,17 @@ namespace UniMeetUpApplication.ServerAccessLayer
     {
         private HttpClient client = new HttpClient();
 
+        Uri serverUri = new Uri("http://62.107.0.222:5000");
+        Uri localUri = new Uri("https://localhost:44364/");
+
+
         public ServerAccessLayer()
         {
-            client.BaseAddress = new Uri("http://62.107.0.222:5000");
+            // for server
+            //client.BaseAddress = serverUri;
+            
+            // for local test
+            client.BaseAddress = localUri;
         }
 
         public Task<HttpResponseMessage> Check_if_Email_and_Password_is_in_database(UserForLogin userForLogin)
@@ -55,6 +65,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
             return str;
 
+        }
+
+        public Task<string> Get_All_User_In_The_System()
+        {
+            // get all Users --> api/Users
+            var allUsersTask = client.GetStringAsync($"api/Users");
+
+            return allUsersTask;
         }
 
 
@@ -131,6 +149,14 @@ namespace UniMeetUpApplication.ServerAccessLayer
             return str;
         }
 
+        public HttpStatusCode DummyRequestMustReturnOK()
+        {
+
+            HttpStatusCode dummyCode = client.GetAsync("$api/Users/dummy").Result.StatusCode;
+
+            return dummyCode;
+        }
+
         public string Get_Messages_By_Group_Id(int groupId)
         {
             var str = client.GetStringAsync($"api/ChatMessages/Group/{groupId}").Result;
@@ -170,10 +196,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
 
             return response;
         }
-
-
-
-
+        
         public string Get_DisplayName_In_All_Group_ByEmail(string email)
         {
             try
@@ -189,6 +212,13 @@ namespace UniMeetUpApplication.ServerAccessLayer
                 return "error";
 
             }
+        }
+
+        public async Task<HttpResponseMessage> Add_member_to_group(AddMemberGroup userGroup)
+        {
+            var response =  await client.PostAsJsonAsync("api/Groups/createUserGroup", userGroup);
+
+            return response;
         }
     }
 }

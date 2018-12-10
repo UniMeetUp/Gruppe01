@@ -97,6 +97,8 @@ namespace UniMeetUpApplication.ViewModel
             MainWindow.MasterViewModel.Height = 700;
             MainWindow.MasterViewModel.Width = 1300;
 
+                
+            
         }
 
         ICommand _createAccountBtnCommand;

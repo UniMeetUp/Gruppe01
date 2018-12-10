@@ -30,24 +30,28 @@ namespace UniMeetUpApplication.View
 
         }
 
-        private void searchGotFocus(object sender, RoutedEventArgs e)
+        //private void searchGotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (searchBoxFileRep.Text == "Search for file...")
+        //    {
+        //        searchBoxFileRep.Text = "";
+        //        searchBoxFileRep.Foreground = Brushes.Black;
+
+        //    }
+        //}
+
+        //private void searchLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (searchBoxFileRep.Text == "")
+        //    {
+        //        searchBoxFileRep.Text = "Search for file...";
+        //        searchBoxFileRep.Foreground = Brushes.LightGray;
+
+        //    }
+        //}
+        private void largerFontByDefault(object sender, EventArgs e)
         {
-            if (searchBoxFileRep.Text == "Search for file...")
-            {
-                searchBoxFileRep.Text = "";
-                searchBoxFileRep.Foreground = Brushes.Black;
-
-            }
-        }
-
-        private void searchLostFocus(object sender, RoutedEventArgs e)
-        {
-            if (searchBoxFileRep.Text == "")
-            {
-                searchBoxFileRep.Text = "Search for file...";
-                searchBoxFileRep.Foreground = Brushes.LightGray;
-
-            }
+            FontSize = 14.0;
         }
     }
 }

@@ -26,17 +26,19 @@
             }
             
             #contentWaypoint {
-                width: 150px;
+                width: 227px;
+
                 
             }
             #Description, #MeetTime {
                 font-weight: lighter;
                 color: red;
                 font-family: Helvetica, Arial, sans-serif;
-                font-size: 12px;
+                font-size: 16px;
             }
             #Description {
                 outline: none;
+                
             }
             b {
                 font-weight: bold;
@@ -49,6 +51,7 @@
                 margin-top: 10px;
                 position: relative;
                 background-color: red;
+                width: 225px;
                 border: none;
                 font-size: 14px;
                 color: #FFFFFF;
@@ -121,7 +124,7 @@
                     '<b>Meeting time: </b> ' +
                     '<p contentEditable = "true" id="MeetTime">' + currentTimeSat + '</p>' +
                     '<br><b>Description: </b> ' +
-                    '<textarea rows="4" cols="24" id="Description" style="overflow:auto">\r\n' + currentWayPointDescriptionWayPoint +'\r\n</textarea>'+
+                    '<textarea rows="4" cols="29" id="Description" style="overflow:auto">\r\n' + currentWayPointDescriptionWayPoint +'\r\n</textarea>'+
                    // '<p contentEditable = "true" id="Description" >' + currentWayPointDescriptionWayPoint + '</p> ' +
                     '<div> <button class="button" onclick="updateLocation()">Update WayPoint</button> </div> </div>';
 
