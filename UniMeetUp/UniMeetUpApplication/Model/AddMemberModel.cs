@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using CommonLib.Models;
 using Newtonsoft.Json.Linq;
+using UniMeetUpApplication.Annotations;
 using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 
 namespace UniMeetUpApplication.Model
@@ -33,8 +36,23 @@ namespace UniMeetUpApplication.Model
                 listOfEmailsToReturn.Add(currentEmail);
             }
 
-            return listOfEmailsToReturn;
-            
+            return listOfEmailsToReturn;  
+        }
+
+        public async Task<HttpResponseMessage> AddMemberToGroup(AddMemberGroup userGroup)
+        {
+            var response = await  _serverAccessLayer.Add_member_to_group(userGroup);
+
+            return response;
+
+        }
+
+        public  string getUser(string email)
+        {
+            var response =   _serverAccessLayer.Get_user_from_database(email);
+            JObject JObject = Newtonsoft.Json.Linq.JObject.Parse(response);
+            string displayName = JObject.GetValue("displayName").ToString();
+            return displayName;
         }
        
 

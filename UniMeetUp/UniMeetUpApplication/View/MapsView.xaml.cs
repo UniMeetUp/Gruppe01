@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,15 +43,42 @@ namespace UniMeetUpApplication.View
         public void LoadMaps()
         {
             //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
-            if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
-            {
-                //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
-                Uri uri = new Uri(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"));
 
-              MyWebBrowser.Navigate(uri);
+            /* if (File.Exists(Properties.Resources.ApplicationGoogleMaps))
+             {
+                 //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
+                 Uri uri = new Uri(Properties.Resources.ApplicationGoogleMaps);
+
+                 MyWebBrowser.Navigate(uri);
+             }
+             */
+
+
+            //if (File.Exists(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html")))
+            //{
+            //    //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
+            //    Uri uri = new Uri(Path.GetFullPath(@"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"));
+
+            //    MyWebBrowser.Navigate(uri);
+            //}
+           
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"))
+            {
+                //MessageBox.Show("OK");
+                //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
+                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html");
+
+                MyWebBrowser.Navigate(uri);
             }
-            
-        }
+            else
+            {
+                
+                Uri toMaps = new Uri("http://62.107.0.222:5000/assets/ApplicationGoogleMaps.html");
+
+                MyWebBrowser.Navigate(toMaps);
+            }
+
+         }
 
 
         private void WebBrowser_OnLoaded(object sender, RoutedEventArgs e)

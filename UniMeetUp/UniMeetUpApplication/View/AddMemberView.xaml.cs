@@ -30,5 +30,7 @@ namespace UniMeetUpApplication.View
         {
             FontSize = 14.0;
         }
+
+       
     }
 }

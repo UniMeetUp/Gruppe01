@@ -23,5 +23,7 @@ namespace UniMeetUpServer.Repository
         void PostUserWithEmailNameAndPassword(UserToPostDTO user);
 
         List<MessageForLoadDTO> GetMessagesByGroupId(int groupId);
+
+        void AddUserGroup(UserGroup userGroup);
     }
 }
