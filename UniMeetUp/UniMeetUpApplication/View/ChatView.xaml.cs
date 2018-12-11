@@ -79,32 +79,18 @@ namespace UniMeetUpApplication.View
             range.Load(stream, DataFormats.Rtf);
         }
 
+
+
         private async void Connect()
         {
             connection.On<string, string, string>("ReceiveMessage", (emailAddress, displayname, message) =>
-            {
-                this.Dispatcher.Invoke(() =>
                 {
-
-                    bool alignRight = emailAddress == _emailAddress;
-                    Print_To_Chat_RTF(emailAddress + ":", bold: true, alignRight: alignRight);
-                    //Print_To_Chat_RTF(displayname + ":", bold: true, alignRight: alignRight);
-                    Print_To_Chat_RTF(message, bold: false, alignRight: alignRight);
-                    
-                    MessageList.ScrollToEnd();
+                    this.Dispatcher.Invoke(() => ReceiveMessage(emailAddress, message));
                 });
-            });
 
             connection.On<FileMessage>("FileMessage", (file) =>
             {
-                this.Dispatcher.Invoke(() =>
-                {
-                    MessageList.AppendText("File received\n");
-
-                    Directory.CreateDirectory(storageDir);
-                    File.WriteAllBytes(System.IO.Path.Combine(storageDir, file.FileHeaders), file.FileBinary);
-                    MessageList.AppendText((file.FileHeaders));
-                });
+                this.Dispatcher.Invoke(() => ReceiveFileMessage(file));
             });
 
             try
@@ -139,6 +125,24 @@ namespace UniMeetUpApplication.View
                 MessageList.AppendText(exception.Message);
             }
         }
+
+        private void ReceiveMessage(string emailAddress, string message)
+        {
+            bool alignRight = emailAddress == _emailAddress;
+            Print_To_Chat_RTF(emailAddress + ":", bold: true, alignRight: alignRight);
+            Print_To_Chat_RTF(message, bold: false, alignRight: alignRight);
+
+            MessageList.ScrollToEnd();
+        }
+
+        private void ReceiveFileMessage(FileMessage file)
+        {
+            MessageList.AppendText("File received\n");
+
+            Directory.CreateDirectory(storageDir);
+            File.WriteAllBytes(System.IO.Path.Combine(storageDir, file.FileHeaders), file.FileBinary);
+            MessageList.AppendText((file.FileHeaders));
+        } 
 
         private async void SendFileBtnEvent(object sender, RoutedEventArgs e)
         {
