@@ -202,7 +202,7 @@
                 <Label DockPanel.Dock="Left" FontWeight="Bold">Groups:</Label>
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                    <Button Background="Transparent" BorderThickness="0" Click="Button_Click">
+                    <Button Background="Transparent" BorderThickness="0" Click="Add_Group">
                         <Viewbox MaxHeight="20" DockPanel.Dock="Right" Width="30" >
                             <Frame Source="Images/Add_grey_16x.xaml"/>
                         </Viewbox>
