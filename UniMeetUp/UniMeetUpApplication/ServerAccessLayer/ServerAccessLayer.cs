@@ -27,7 +27,7 @@ namespace UniMeetUpApplication.ServerAccessLayer
         {
             // for server
             client.BaseAddress = serverUri;
-            
+
             // for local test
             //client.BaseAddress = localUri;
         }

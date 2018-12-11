@@ -6,16 +6,27 @@
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              xmlns:services="clr-namespace:UniMeetUpApplication.Services"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500" Initialized="largerFontByDefault">
-
     <UserControl.Resources>
-        <services:Converter x:Key="Converter"></services:Converter>
-        <viewModel:FileRepoViewModel x:Key="FileRepoViewModel"></viewModel:FileRepoViewModel>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />-->
+
+            </ResourceDictionary.MergedDictionaries>
+            <services:Converter x:Key="Converter"></services:Converter>
+            <viewModel:FileRepoViewModel x:Key="FileRepoViewModel"></viewModel:FileRepoViewModel>
+        </ResourceDictionary>
+
+    
     </UserControl.Resources>
 
     <Grid Background="LightGray">
-    <Grid Background="White" Margin="1,1,1,1">
+    <Grid Background="AliceBlue" Margin="1,1,1,1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -24,41 +35,10 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Files:</Label>
-        <!--<TextBox Grid.Column="0" Grid.Row="0" Foreground="#FFD2CCCC" Name="searchBoxFileRep" Text="Search for file..." GotFocus="searchGotFocus" LostFocus="searchLostFocus">
 
-            
-        </TextBox>-->
-
-        <!--<DataGrid Grid.Row="1" IsReadOnly="True" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.ListOfFilesInGroup}">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name ="fileCon">
-
-                </DataGridTextColumn>
-                <DataGridTextColumn x:Name ="fileId" Header="Id:" Binding="{Binding Path='FileMessageId'}"></DataGridTextColumn>
-                <DataGridTextColumn Header="File name:" Binding="{Binding Path='FileHeaders'}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Download" DataContext="{StaticResource FileRepoViewModel}" Command="{Binding DownloadFileCommand}" 
-                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGridCell}, Path=Content.Content.FileMessageId}">
-                                --><!--<Button.CommandParameter>
-
-                                    <MultiBinding Converter="{StaticResource Converter}">
-                                        <Binding Path="" ElementName="fileId"></Binding>
-                                    </MultiBinding>
-
-                                </Button.CommandParameter>--><!--
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-
-
-        </DataGrid>-->
-            <DataGrid  IsReadOnly="True"  Grid.Row="1" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-                   ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.ListOfFilesInGroup}">
+            <DataGrid  IsReadOnly="True" GridLinesVisibility="Horizontal" Style="{DynamicResource AzureDataGrid}" Grid.Row="1" x:Name="dataGridFileRepo" IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+                   ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.User.Groups.CurrentGroup.ListOfFilesInGroup}" 
+                       >
 
             <DataGrid.Columns>
 
@@ -72,8 +52,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
-                            <Button MinWidth="100" Content="Download" DataContext="{StaticResource FileRepoViewModel}" Command="{Binding DownloadFileCommand}" 
-                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGridCell}, Path=Content.Content.FileMessageId}">
+                            <Button MinWidth="100" Margin="5" Content="Download" DataContext="{StaticResource FileRepoViewModel}" Command="{Binding DownloadFileCommand}" 
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGridCell}, Path=Content.Content.FileMessageId}"
+                                    
+                                    >
                                 
                                 <!--<Button.CommandParameter>
 
@@ -97,9 +79,6 @@
             </Style>
 
             <Style TargetType="{x:Type ListBox}">
-                <Setter Property="Margin" Value="0"/>
-            </Style>
-            <Style TargetType="{x:Type DataGridRow}">
                 <Setter Property="Margin" Value="0"/>
             </Style>
 

@@ -88,14 +88,27 @@ namespace UniMeetUpApplication.ViewModel
                 viewModel.MainPageCommand.Execute(null);
                 
                 _loginModel.getAllUserData(userForLogin.Email);
+                App.Current.MainWindow.Height = 700;
+                App.Current.MainWindow.Width = 1300;
+
+                double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+                double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+                double windowWidth = App.Current.MainWindow.Width;
+                double windowHeight = App.Current.MainWindow.Height;
+
+                App.Current.MainWindow.Left = (screenWidth / 2) - (windowWidth / 2);
+                App.Current.MainWindow.Top = (screenHeight / 2) - (windowHeight / 2);
+
+
+
+
             }
             else
             {
                 _notificationService.Show_Message_Email_Or_Password_Is_Incorrect();
             }
             LoginView.spinner.Visibility = Visibility.Hidden;
-            MainWindow.MasterViewModel.Height = 700;
-            MainWindow.MasterViewModel.Width = 1300;
+           
 
                 
             

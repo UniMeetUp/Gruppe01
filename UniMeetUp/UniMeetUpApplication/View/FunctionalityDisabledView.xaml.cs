@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MahApps.Metro.Controls;
 
 namespace UniMeetUpApplication.View
 {
     /// <summary>
-    /// Interaction logic for ForgotPasswordDialog.xaml
+    /// Interaction logic for FunctionalityDisabledView.xaml
     /// </summary>
-    public partial class ForgotPasswordDialog : MetroWindow
+    public partial class FunctionalityDisabledView : UserControl
     {
-        //s
-        public static TextBlock spinner;
-        public ForgotPasswordDialog()
+        public FunctionalityDisabledView()
         {
             InitializeComponent();
-            spinner = TextBlockToAppear;
         }
     }
 }

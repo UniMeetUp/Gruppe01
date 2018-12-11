@@ -64,20 +64,14 @@ namespace UniMeetUpApplication.View
            
             if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html"))
             {
-                //MessageBox.Show("OK");
-                //Skal ændres til Path.GetFullPath(Properties.Resources.ApplicationGoogleMaps.html)
                 Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\View\GoogleMapsWebsite\ApplicationGoogleMaps.html");
-
                 MyWebBrowser.Navigate(uri);
             }
             else
-            {
-                
+            {                
                 Uri toMaps = new Uri("http://62.107.0.222:5000/assets/ApplicationGoogleMaps.html");
-
                 MyWebBrowser.Navigate(toMaps);
             }
-
          }
 
 
@@ -272,7 +266,7 @@ namespace UniMeetUpApplication.View
                     DateTime timeStampObj = (DateTime)location.ToObject<JObject>().GetValue("timeStamp");
 
                     
-                    if (timeStampObj.Day < DateTime.Now.Day && timeStampObj.Month == DateTime.Now.Month)
+                    if ((timeStampObj.Day < DateTime.Now.Day && timeStampObj.Month == DateTime.Now.Month) || (timeStampObj.Month != DateTime.Now.Month))
                     {
                         howOld = "grey";
                     }

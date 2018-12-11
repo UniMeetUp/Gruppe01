@@ -5,22 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UniMeetUpApplication.View"
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500" Initialized="largerFontByDefault"
            
             >
 
-
     <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
 
-        <viewModel:AddMemberViewModel x:Key="addMemberViewModel"></viewModel:AddMemberViewModel>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
 
-      </UserControl.Resources>
+            </ResourceDictionary.MergedDictionaries>
+            <viewModel:AddMemberViewModel x:Key="addMemberViewModel"></viewModel:AddMemberViewModel>
+        </ResourceDictionary>
+
+
+    </UserControl.Resources>
+
 
 
 
     <Grid Background="LightGray" Name="Grid1">
-    <Grid Margin="1,1,1,1"  Background="White" >
+    <Grid Margin="1,1,1,1"  Background="AliceBlue" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -50,8 +59,9 @@
             <DataGrid DataContext="{StaticResource addMemberViewModel}" IsReadOnly="True"  Grid.Row="1"  
                       IsSynchronizedWithCurrentItem="True" HeadersVisibility="Column" AutoGenerateColumns="False"
                       ItemsSource="{Binding Path=EmailCollectionAllUserEmails}" AlternationCount="1000" 
-                      SelectedIndex="{Binding CurrentIndex}"
+                      SelectedIndex="{Binding CurrentIndex}" GridLinesVisibility="Horizontal" Style="{DynamicResource AzureDataGrid}"
                       > 
+           
 
                 <DataGrid.Columns>
 
@@ -59,8 +69,8 @@
                     <!--<DataGridTextColumn Header="User nr.:">
 
                     </DataGridTextColumn>-->
-
-                    <DataGridTextColumn  Header="User email::"  Width="*"  Binding="{Binding EmailAddress}" IsReadOnly="True"  ></DataGridTextColumn>
+                    <DataGridTextColumn x:Name ="fileId" Header=":" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="User email"  Width="*"  Binding="{Binding EmailAddress}" IsReadOnly="True" ></DataGridTextColumn>
 
 
 
@@ -68,8 +78,7 @@
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate>
 
-                                <Button  Content="Add user" DataContext="{StaticResource addMemberViewModel}" Command="{Binding AddMemberToGruopCommand}" 
-                                          >
+                                <Button  Content="Add user" Margin="5" DataContext="{StaticResource addMemberViewModel}"  Command="{Binding AddMemberToGruopCommand}">
 
                                 </Button>
 

@@ -7,30 +7,92 @@
              xmlns:viewModel="clr-namespace:UniMeetUpApplication.ViewModel"
              xmlns:services="clr-namespace:UniMeetUpApplication.Services"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500">
+             d:DesignHeight="450" d:DesignWidth="500"
+             Initialized="largerFontByDefault"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  >
     <UserControl.Resources>
-        <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
-        <viewModel:CreateAccountViewModel x:Key="CreateAccountViewModel"></viewModel:CreateAccountViewModel>
-        <services:Converter x:Key="Converter"></services:Converter>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
 
-        <Style TargetType="{x:Type Label}">
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="MinWidth" Value="100"/>
-            <Setter Property="Margin" Value="5,5,0,0"/>
-        </Style>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
 
-        <Style TargetType="{x:Type TextBox}">
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="MinWidth" Value="100"/>
-            <Setter Property="Margin" Value="10,0,0,0"/>
-        </Style>
+            </ResourceDictionary.MergedDictionaries>
+            <viewModel:LoginViewModel x:Key="LoginViewModel"></viewModel:LoginViewModel>
+            <viewModel:CreateAccountViewModel x:Key="CreateAccountViewModel"></viewModel:CreateAccountViewModel>
+            <services:Converter x:Key="Converter"></services:Converter>
+        </ResourceDictionary>
+
     </UserControl.Resources>
 
-
     <Grid Background="White">
-        <StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Width="100" Margin="10" Content="Back" Name="btnBack" HorizontalAlignment="Left"  DataContext="{StaticResource LoginViewModel}" Command="{Binding GoToLoginScreenCommand}"/>
+            <Separator Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5,0,10"></Separator>
+        <Label Margin="5" Grid.Row="2"  Content="Display name:"/>
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="1"  Name="tbUsername" Controls:TextBoxHelper.Watermark="Please enter display name..."  Controls:TextBoxHelper.ClearTextButton="True"/>
+        <Label Margin="5" Grid.Row="3"  Content="E-mail:"/>
+        <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Name="tbEmail" Controls:TextBoxHelper.Watermark="Please enter email..."  Controls:TextBoxHelper.ClearTextButton="True"/>
+        <Label Margin="5" Grid.Row="4"  Content="Confirm E-mail:"/>
+        <TextBox Margin="5" Grid.Row="4" Grid.Column="1" Name="tbEmailConfirm" Controls:TextBoxHelper.Watermark="Please confirm email..."  Controls:TextBoxHelper.ClearTextButton="True"/>
+        <Label Margin="5" Grid.Row="5" Content="Password:"/>
+            <PasswordBox Margin="5" Grid.Row="5" Grid.Column="1" Name="PasswordBx1" Controls:TextBoxHelper.Watermark="Please enter password..."  Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" LostFocus="PasswordHack1" />
+        <Label Margin="5" Grid.Row="6" Content="Repeat password:"/>
+            <PasswordBox Margin="5" Grid.Row="6" Grid.Column="1" Name="PasswordBx2" Controls:TextBoxHelper.Watermark="Please repeat password..."  Controls:TextBoxHelper.ClearTextButton="True" Style="{StaticResource MetroButtonRevealedPasswordBox}" LostFocus="PasswordHack2"/>
+        <CheckBox Margin="10" Grid.Row="7" Name="CheckBox" Click="mustBeChecked"/>
+            <Label Grid.Row="7" Margin="30,5,0,0" Grid.Column="0">I accept the terms</Label>
+
+
+           
+
+
+            <TextBox Grid.Row="2" Grid.Column="2" Visibility="Hidden" Name="tbPassword"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="2"  Visibility="Hidden" Name="tbPasswordRepeat"></TextBox>
+
+        <Button Grid.Row="9" Grid.Column="2" Name="createAccBttn" IsEnabled="False" Content="Create Account" Width="100" HorizontalAlignment="Right" Margin="10" DataContext="{StaticResource CreateAccountViewModel}" Command="{Binding CreateAccountCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="tbUsername"></Binding>
+                    <Binding Path="Text" ElementName="tbEmail"></Binding>
+                    <Binding Path="Text" ElementName="tbEmailConfirm"></Binding>
+                        <Binding Path="Text" ElementName="tbPassword"></Binding>
+                        <Binding Path="Text" ElementName="tbPasswordRepeat"></Binding>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+            <GroupBox Margin="10" Grid.Row="8" Grid.ColumnSpan="3" Header="Terms and Conditions of Website Use" FontStyle="Italic"  Background="White">
+                <ScrollViewer>
+                    <TextBlock TextWrapping="Wrap" FontStyle="Normal"  Opacity="0.4"
+                               Text="USER CONTENT AND UPLOADING MATERIAL TO THE SITE &#x0a;You may be allowed to post or link to content or applications or provide comments for others to see on or to the Site . If you post, link to or contribute User Content, you guarantee, represent and warrant to us that:&#x0a;Whenever you make use of a feature that allows you to upload material to the Site, or to make contact with other users of the Site, you must comply with the content standards set out in our acceptable use policy. You warrant that any such contribution does comply with those standards, and you indemnify us for any breach of that warranty. Any material you upload to the Site will be considered non-confidential and non-proprietary, and we have the right to use, copy, distribute and disclose to third parties any such material for any purpose. We also have the right to disclose your identity to any third party who is claiming that any material posted or uploaded by you to the Site constitutes a violation of their intellectual property rights, or of their right to privacy.
+
+We will not be responsible, or liable to any third party, for the content or accuracy of any materials posted by you or any other user of the Site.
+                               You must not misuse the Site by knowingly introducing viruses, trojans, worms, logic bombs or other material which is malicious or technologically harmful. You must not attempt to gain unauthorised access to the Site, the server on which the Site is stored or any server, computer or database connected to the Site. You must not attack the Site via a denial-of-service attack or a distributed denial-of service attack."
+                    >
+
+                    </TextBlock>
+                </ScrollViewer>
+                
+            </GroupBox>
+        </Grid>
+        <!--<StackPanel>
             <Button Content="Back" Name="btnBack" Width="40" HorizontalAlignment="Left" Margin="10,15,0,0" DataContext="{StaticResource LoginViewModel}" Command="{Binding GoToLoginScreenCommand}"/>
            
             <Label Content="Display name:"/>
@@ -59,6 +121,6 @@
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>

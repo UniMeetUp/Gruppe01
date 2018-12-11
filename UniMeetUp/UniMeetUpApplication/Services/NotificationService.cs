@@ -5,19 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using UniMeetUpApplication.Services.ServiceInterfaces;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.Behaviours;
 
 namespace UniMeetUpApplication.Services
 {
    
-    public class NotificationService : INotificationService
+    public class NotificationService : MetroWindow, INotificationService
     {
         public NotificationService()
         {
+           
         }
 
         public void Show_Message_Email_Or_Password_Is_Incorrect()
         {
             MessageBox.Show("The e-mail or password you entered is incorrect.\nPlease try again.");
+            
         }
 
         public void Show_Message_Email_Is_Already_In_Use()

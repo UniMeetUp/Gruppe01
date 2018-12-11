@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using CommonLib.Models;
 using Newtonsoft.Json.Linq;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
@@ -14,6 +17,7 @@ using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.Services;
 using UniMeetUpApplication.Services.ServiceInterfaces;
 using UniMeetUpApplication.View;
+using UniMeetUpApplication.View.Dialogs;
 
 namespace UniMeetUpApplication.ViewModel
 {
@@ -24,6 +28,8 @@ namespace UniMeetUpApplication.ViewModel
         
         private INavigationService _nav => new NavigationService();
         private INotificationService _notificationService => new NotificationService();
+        
+
         private int selectedIndex = 0;
 
         public int SelectedIndex
@@ -92,6 +98,7 @@ namespace UniMeetUpApplication.ViewModel
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 _notificationService.Show_Message_Group_Created();
+                
             }
             else
             {
@@ -111,6 +118,21 @@ namespace UniMeetUpApplication.ViewModel
                            CurrentPage = new ChatView();
 
                        }));
+            }
+        }
+
+        private ICommand _disabledViewCommand;
+
+        public ICommand DisabledViewCommand
+        {
+            get
+            {
+                return _disabledViewCommand ??
+                       (_disabledViewCommand =
+                           new RelayCommand(() =>
+                           {
+                               CurrentPage = new FunctionalityDisabledView();
+                           }));
             }
         }
 
