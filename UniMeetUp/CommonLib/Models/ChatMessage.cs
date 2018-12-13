@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CommonLib.Models
@@ -20,7 +19,6 @@ namespace CommonLib.Models
             }
             set { TimeStamp = DateTime.Now; }
         }
-
 
         public string UserId { get; set; }
         public User User { get; set; }

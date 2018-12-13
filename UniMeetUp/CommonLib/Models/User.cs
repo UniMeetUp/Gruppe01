@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace CommonLib.Models
 {
@@ -15,8 +12,6 @@ namespace CommonLib.Models
         public string HashedPassword { get; set; }
         [MaxLength(25)]
         public string DisplayName { get; set; }
-
-        
         public ICollection<UserGroup> UserGroups { get; set; }
     }
 }

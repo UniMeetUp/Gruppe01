@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CommonLib.Models
 {
@@ -23,7 +22,6 @@ namespace CommonLib.Models
         [Required]
         public byte[] FileBinary { get; set; }
         public string FileHeaders { get; set; }
-
         public string UserId { get; set; }
         public int GroupId { get; set; }
         public User User { get; set; }
