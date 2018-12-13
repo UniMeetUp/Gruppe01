@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.View;
-using UniMeetUpApplication.View.Dialogs;
 
 namespace UniMeetUpApplication.ViewModel
 {
@@ -17,10 +10,8 @@ namespace UniMeetUpApplication.ViewModel
     {
         // start up screen
         public UserControl _currentMasterPage = new LoginView();
-        
         private User _user = new User();
-        
-        
+
         public User User
         {
             get { return _user; }
@@ -50,7 +41,7 @@ namespace UniMeetUpApplication.ViewModel
                        (_loginPageCommand = new RelayCommand(() =>
                        {
                            CurrentMasterPage = new LoginView();
-                           
+
                        }));
             }
         }
@@ -82,8 +73,5 @@ namespace UniMeetUpApplication.ViewModel
                        }));
             }
         }
-
-        
-
     }
 }

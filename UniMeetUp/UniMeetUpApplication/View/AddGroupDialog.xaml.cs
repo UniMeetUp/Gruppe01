@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 
 namespace UniMeetUpApplication.View.Dialogs
@@ -20,7 +9,6 @@ namespace UniMeetUpApplication.View.Dialogs
     /// </summary>
     public partial class AddGroupDialog : MetroWindow
     {
-
         public AddGroupDialog()
         {
             InitializeComponent();
@@ -44,7 +32,6 @@ namespace UniMeetUpApplication.View.Dialogs
             {
                 addBttn.IsEnabled = false;
             }
-
         }
 
         private void AddBttn_Click(object sender, RoutedEventArgs e)

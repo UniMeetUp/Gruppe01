@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
@@ -49,7 +48,6 @@ namespace UniMeetUpServer.Controllers
             {
                 return NotFound();
             }
-
             return Ok(user);
         }
 
@@ -63,13 +61,11 @@ namespace UniMeetUpServer.Controllers
            }
 
            List<GroupMemberDisplayNameListDTO> listToClient = _umuRepository.GetAllMembersDisplayNameOfAllGruops(email);
-
-
+            
            if (listToClient == null)
            {
               return null;
            }
-
            return listToClient;
         }
 
@@ -124,7 +120,6 @@ namespace UniMeetUpServer.Controllers
             return CreatedAtAction("GetUser", new { id = user.EmailAddress }, user);
         }
 
-
         [HttpPost("login")]
         public async Task<IActionResult> RequestLogin([FromBody] UserForLoginDTO userForLogin)
         {
@@ -151,10 +146,8 @@ namespace UniMeetUpServer.Controllers
             }
 
             return BadRequest();
-
         }
         
-
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] string id)
@@ -205,14 +198,12 @@ namespace UniMeetUpServer.Controllers
                 return NotFound();
             }
 
-
             string from = "unimeetupofficial@gmail.com";
             string subject = "Forgot password, UMU";
             string body = @"This is an auto-resonse message. This is your current password: " + user.HashedPassword;
 
             try
             {
-
                 MailMessage message = new MailMessage(from, to, subject, body);
                 SmtpClient client = new SmtpClient("mail.stofanet.dk", 587);
                 Console.WriteLine("Changing time out from {0} to 100.", client.Timeout);
@@ -221,20 +212,13 @@ namespace UniMeetUpServer.Controllers
                 // Credentials are necessary if the server requires the client 
                 // to authenticate before it will send e-mail on the client's behalf.
                 client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
                 client.Send(message);
-
-
-
                 return Ok();
-
-
             }
             catch (Exception)
             {
                 return BadRequest();
             }
-
         }
 
         private bool UserExists(string id)

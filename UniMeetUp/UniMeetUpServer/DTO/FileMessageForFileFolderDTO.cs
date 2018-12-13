@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace UniMeetUpServer.DTO
+﻿namespace UniMeetUpServer.DTO
 {
     public class FileMessageForFileFolderDTO
     {
@@ -13,7 +8,6 @@ namespace UniMeetUpServer.DTO
             FileHeaders = fileHeaders;
         }
         public int FileMessageId { get; set; }
-
         public string FileHeaders { get; set; }
     }
 }

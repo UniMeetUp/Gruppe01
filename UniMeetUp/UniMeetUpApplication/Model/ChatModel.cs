@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 
@@ -19,11 +16,8 @@ namespace UniMeetUpApplication.Model
         public List<MessageForLoad> GetMessagesByGroupId(int groupId)
         {
             var jsonData = _serverAccessLayer.Get_Messages_By_Group_Id(groupId);
-
             var fetch = JsonConvert.DeserializeObject<MessageForLoad[]>(jsonData);
-
             return fetch.ToList();
-
         }
     }
 }

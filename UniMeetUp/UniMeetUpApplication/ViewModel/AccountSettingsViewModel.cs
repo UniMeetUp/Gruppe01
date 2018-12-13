@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.Services;
 using UniMeetUpApplication.Services.ServiceInterfaces;
-using System.Windows.Input;
-using UniMeetUpApplication.Command;
-using UniMeetUpApplication.Model;
 namespace UniMeetUpApplication.ViewModel
 {
     public class AccountSettingsViewModel
     {
         AccountSettingsModel asm = new AccountSettingsModel();
         private INotificationService _notificationService = new NotificationService();
-
         ICommand _logOutCommand;
         public ICommand LogOutCommand
         {
@@ -30,12 +21,9 @@ namespace UniMeetUpApplication.ViewModel
 
         public void logOutCommandExe()
         {
-            MasterViewModel _masterViewModel = ((MasterViewModel) App.Current.MainWindow.DataContext);
+            MasterViewModel _masterViewModel = ((MasterViewModel)App.Current.MainWindow.DataContext);
             User _userHack = new User();
-           
-
             _masterViewModel.User = _userHack;
-
             _masterViewModel.LoginPageCommand.Execute(null);
             MainWindow.MasterViewModel.Height = 550;
             MainWindow.MasterViewModel.Width = 1000;
@@ -43,13 +31,10 @@ namespace UniMeetUpApplication.ViewModel
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
             double windowWidth = App.Current.MainWindow.Width;
             double windowHeight = App.Current.MainWindow.Height;
-
             App.Current.MainWindow.Left = (screenWidth / 2) - (windowWidth / 2);
             App.Current.MainWindow.Top = (screenHeight / 2) - (windowHeight / 2);
-
         }
 
-        
         ICommand _deleteAccountCommand;
         public ICommand DeleteAccountCommand
         {
@@ -62,7 +47,7 @@ namespace UniMeetUpApplication.ViewModel
 
         public async void deleteAccount()
         {
-            var viewModel = (MasterViewModel) App.Current.MainWindow.DataContext;
+            var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
 
             var user = viewModel.User;
             MessageBoxResult result = MessageBox.Show("By doing this, your account will be permantly deleted", "Delete account", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
@@ -100,8 +85,6 @@ namespace UniMeetUpApplication.ViewModel
                     // ...
                     break;
             }
-
-           
         }
 
         ICommand _goBackToMainMenu;
@@ -117,8 +100,6 @@ namespace UniMeetUpApplication.ViewModel
         {
             var viewModel = (MasterViewModel)App.Current.MainWindow.DataContext;
             viewModel.MainPageCommand.Execute(null);
-
-
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UniMeetUpApplication.Services.ServiceInterfaces;
+﻿using UniMeetUpApplication.Services.ServiceInterfaces;
 using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.Services
@@ -12,7 +7,6 @@ namespace UniMeetUpApplication.Services
     {
         public NavigationService()
         {
-
         }
 
         public void Show(ViewModelBase vm)

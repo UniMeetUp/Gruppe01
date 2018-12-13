@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
+﻿using System.Net;
 using System.Threading.Tasks;
 using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 
 namespace UniMeetUpApplication.Model
 {
-    
     public class CreateAccountModel : ICreateAccountModel
     {
         private IServerAccessLayer _serverAccessLayer;
@@ -34,7 +29,6 @@ namespace UniMeetUpApplication.Model
                 return true;
             }
             return false;
-
         }
     }
 }

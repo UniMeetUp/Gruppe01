@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using CommonLib.Models;
 using Newtonsoft.Json;
 using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.ServerAccessLayer.Interfaces;
@@ -24,9 +21,7 @@ namespace UniMeetUpApplication.Model
         public List<FileMessageForFileFolder> GetAllFilenameAndIdForGroup(int groupId)
         {
             var jsonData = _serverAccessLayer.Get_Group_File_Messages_Name_And_Id(groupId);
-
             var fetch = JsonConvert.DeserializeObject<FileMessageForFileFolder[]>(jsonData);
-
             return fetch.ToList();
         }
 
@@ -42,8 +37,5 @@ namespace UniMeetUpApplication.Model
             }
             return null;
         }
-
-        
-
     }
 }

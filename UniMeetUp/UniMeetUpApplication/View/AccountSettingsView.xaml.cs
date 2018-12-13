@@ -23,12 +23,11 @@ namespace UniMeetUpApplication.View
     /// </summary>
     public partial class AccountSettingsView : UserControl
     {
-        
-         User _user = new User();
+
+        User _user = new User();
         public AccountSettingsView()
         {
             InitializeComponent();
-           
         }
 
         private void largerFontByDefault(object sender, EventArgs e)
@@ -50,12 +49,9 @@ namespace UniMeetUpApplication.View
             }
         }
 
-
-
-
         private void newPasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (newPassword.Password == newPasswordRepeat.Password &&  newPasswordRepeat.Password == newPassword.Password
+            if (newPassword.Password == newPasswordRepeat.Password && newPasswordRepeat.Password == newPassword.Password
                 && newPassword.Password != "")
             {
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.LimeGreen;
@@ -130,7 +126,7 @@ namespace UniMeetUpApplication.View
                 hiddenRe.Opacity = 100;
                 hiddenNew.Opacity = 100;
             }
-           }
+        }
 
         private void repeatNewpasswordLostFocus(object sender, RoutedEventArgs e)
         {
@@ -158,8 +154,7 @@ namespace UniMeetUpApplication.View
                 newPasswordRepeat.BorderBrush = System.Windows.Media.Brushes.Gray;
                 hiddenNew.Opacity = 0;
             }
-
-           }
+        }
 
         private void repeatNewPasswordGotFocus(object sender, RoutedEventArgs e)
         {
@@ -167,8 +162,7 @@ namespace UniMeetUpApplication.View
             {
                 newPassword.BorderBrush = System.Windows.Media.Brushes.Gray;
                 hiddenRe.Opacity = 0;
-
             }
-          }
+        }
     }
 }

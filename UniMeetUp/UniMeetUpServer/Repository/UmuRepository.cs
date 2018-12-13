@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using CommonLib.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UniMeetUpServer.DTO;
 using UniMeetUpServer.Models;
@@ -23,16 +19,13 @@ namespace UniMeetUpServer.Repository
 
         public User GetUserById(string email)
         {
-
             return _context.User.Where(u => u.EmailAddress == email).FirstOrDefault();
-           
         }
 
         public List<Group> GetGroupsForUser(string email)
         {
             var usergroups =_context.UserGroup.Where(u => u.EmailAddress == email)
                 .Include(c => c.Group).ToList();
-
             List<Group> groups = new List<Group>();
 
             foreach (var group in usergroups)
@@ -68,15 +61,9 @@ namespace UniMeetUpServer.Repository
 
             return _listToReturn;
         }
-       
-
-        
-       
-
 
         public void UpdateLocation(Location location)
         {
-            
             var checkIfLocationExist = _context.Location
                 .Where(i => i.UserId == location.UserId && i.GroupId == location.GroupId).FirstOrDefault();
 
@@ -93,14 +80,12 @@ namespace UniMeetUpServer.Repository
                 item.Latitude = location.Latitude;
                 item.Longitude = location.Longitude;
                 item.TimeStamp = location.TimeStamp;
-
             }
         }
 
         public List<GroupMemberDisplayNameListDTO> GetAllMembersDisplayNameOfAllGruops(string email)
         {
             List<GroupMemberDisplayNameListDTO> listToReturn = new List<GroupMemberDisplayNameListDTO>();
-
 
             // Get all GruopId's that current user is in
             var usergroups = _context.UserGroup.Where(u => u.EmailAddress == email).ToList();
@@ -109,7 +94,6 @@ namespace UniMeetUpServer.Repository
             {
                 listToReturn.Add(new GroupMemberDisplayNameListDTO{GroupId = group.GroupId} );
             }
-
 
             foreach (var item in listToReturn)
             {
@@ -120,13 +104,10 @@ namespace UniMeetUpServer.Repository
                 {
                     item.UserDisplayNamesList.Add(new UserDisplayNameDTO {DisplayName = user.User.DisplayName});
                 }
-
             }
-                
 
             return listToReturn;
         }
-
 
         public void UpdateWayPointForGroup(Waypoint locationWaypoint)
         {
@@ -145,9 +126,6 @@ namespace UniMeetUpServer.Repository
                 checkIfLocationExist.Description = locationWaypoint.Description;
                 checkIfLocationExist.UserId = locationWaypoint.UserId;
             }
-
-
-
         }
 
         public Waypoint GetWaypointById(int groupId)
@@ -190,20 +168,15 @@ namespace UniMeetUpServer.Repository
             return _listToReturn;
         }
 
-
         public void PostUserWithEmailNameAndPassword(UserToPostDTO user)
         {
             var result = Mapper.Map<User>(user);
-
             _context.User.Add(result);
-            
         }
 
         public void AddUserGroup(UserGroup userGroup)
         {
             _context.UserGroup.Add(userGroup);
         }
-
-
     }
 }

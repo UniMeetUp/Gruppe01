@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows.Input;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
@@ -19,9 +15,8 @@ namespace UniMeetUpApplication.ViewModel
 
         public CreateAccountViewModel()
         {
-           
         }
-       
+
         ICommand _createAccountCommand;
         public ICommand CreateAccountCommand
         {
@@ -34,7 +29,6 @@ namespace UniMeetUpApplication.ViewModel
         public async void CreateAccount(object parameter)
         {
             var values = (object[])parameter;
-
             string DisplayName = values[0].ToString();
             string Email = values[1].ToString();
             string EmailConfirm = values[2].ToString();
@@ -46,7 +40,7 @@ namespace UniMeetUpApplication.ViewModel
             {
                 if (_createAccountModel.Validate_Email(Email))
                 {
-                   var str = await _createAccountModel.Create_Account(new UserForCreateAccount(DisplayName, Email, Password));
+                    var str = await _createAccountModel.Create_Account(new UserForCreateAccount(DisplayName, Email, Password));
 
                     if (str == true)
                     {
@@ -59,7 +53,7 @@ namespace UniMeetUpApplication.ViewModel
                     {
                         _notificationService.Show_Message_Something_went_wrong();
                     }
-                    
+
                 }
                 else
                 {
@@ -72,7 +66,7 @@ namespace UniMeetUpApplication.ViewModel
         {
             if (a == b)
                 return true;
-            
+
             return false;
         }
 

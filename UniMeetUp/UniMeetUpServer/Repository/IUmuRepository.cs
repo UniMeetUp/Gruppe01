@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CommonLib.Models;
 using UniMeetUpServer.DTO;
 
@@ -14,16 +11,12 @@ namespace UniMeetUpServer.Repository
         List<Location> getLocationsForGroup(int id);
         List<FileMessageForFileFolderDTO> GetGroupFileMessagesNameAndId(int groupId);
         void UpdateLocation(Location location);
-
         List<GroupMemberDisplayNameListDTO> GetAllMembersDisplayNameOfAllGruops(string email);
         FileMessageForDownloadDTO GetFileToDownloadById(int fileId);
         void UpdateWayPointForGroup(Waypoint waypoint);
-
         Waypoint GetWaypointById(int groupId);
         void PostUserWithEmailNameAndPassword(UserToPostDTO user);
-
         List<MessageForLoadDTO> GetMessagesByGroupId(int groupId);
-
         void AddUserGroup(UserGroup userGroup);
     }
 }

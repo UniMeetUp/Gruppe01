@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
@@ -96,11 +95,9 @@ namespace UniMeetUpServer.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
-
-
+        
         // POST: api/Groups/createGroup
         [HttpPost("createGroup")]
         public async Task<IActionResult> PostGroup([FromBody] CreateGroupDTO @group)
@@ -110,28 +107,24 @@ namespace UniMeetUpServer.Controllers
                 return BadRequest(ModelState);
             }
 
-           var result = Mapper.Map<Group>(group);
-
+            var result = Mapper.Map<Group>(group);
             _context.Group.Add(result);
             await _context.SaveChangesAsync();
-           
             UserGroup ug = new UserGroup();
             ug.EmailAddress = group.EmailAddress;
             ug.GroupId = result.GroupId;
             _context.UserGroup.Add(ug);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetGroup", result.GroupId, result);
         }
 
         [HttpPost("createUserGroup")]
         public async Task<IActionResult> PostUserGroup([FromBody] UserGroupForCreation @userGroup)
         {
-           
+
             UserGroup ug = new UserGroup();
             ug.EmailAddress = userGroup.EmailAddress;
             ug.GroupId = userGroup.GroupId;
-
             _umuRepository.AddUserGroup(ug);
 
             try
@@ -142,11 +135,8 @@ namespace UniMeetUpServer.Controllers
             {
                 return BadRequest();
             }
-             
-
             return Created("GetGroup", userGroup.GroupId);
         }
-
 
         // DELETE: api/Groups/5
         [HttpDelete("{id}")]
@@ -173,7 +163,5 @@ namespace UniMeetUpServer.Controllers
         {
             return _context.Group.Any(e => e.GroupId == id);
         }
-
-        
     }
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UniMeetUpApplication.Annotations;
 
 namespace UniMeetUpApplication.Model
@@ -15,7 +10,6 @@ namespace UniMeetUpApplication.Model
         {
             _groups = new Groups();
             //_groups.Add(new Group("TESTGRUPPE", 99));
-            
         }
 
         private string _displayName;
@@ -31,15 +25,6 @@ namespace UniMeetUpApplication.Model
         
         public string emailAdresse { set; get; }
         public string password { set; get; }
-
-        // The string is for the group name
-        //private List<Group> _groups;
-        //public List<Group> Groups
-        //{
-        //    get { return _groups; }
-        //    set { _groups = value; OnPropertyChanged("Groups");}
-        //}
-
         public Groups _groups;
 
         public Groups Groups
@@ -47,18 +32,12 @@ namespace UniMeetUpApplication.Model
             get { return _groups;}
             set { _groups = value; OnPropertyChanged("Groups"); }
         }
-        
-        
-
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            
         }
     }
 }

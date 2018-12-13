@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CommonLib.Models;
 
 namespace UniMeetUpServer.Models
 {
@@ -24,21 +23,14 @@ namespace UniMeetUpServer.Models
                 .HasOne(uc => uc.Group)
                 .WithMany(g => g.UserGroups)
                 .HasForeignKey(uc => uc.GroupId);
-
         }
 
         public DbSet<CommonLib.Models.ChatMessage> ChatMessage { get; set; }
-
         public DbSet<CommonLib.Models.FileMessage> FileMessage { get; set; }
-
         public DbSet<CommonLib.Models.Group> Group { get; set; }
-
         public DbSet<CommonLib.Models.Location> Location { get; set; }
-
         public DbSet<CommonLib.Models.User> User { get; set; }
-
         public DbSet<CommonLib.Models.Waypoint> Waypoint { get; set; }
-
         public DbSet<CommonLib.Models.UserGroup> UserGroup { get; set; }
     }
 }

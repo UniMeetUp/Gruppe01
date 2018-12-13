@@ -17,8 +17,7 @@ using UniMeetUpServer.Repository;
 
 
 namespace UniMeetUpServer
-{
-    public class Startup
+{public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -52,11 +51,6 @@ namespace UniMeetUpServer
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "UMU API", Version = "v1"});});
 
             services.AddScoped<IUmuRepository, UmuRepository>();
-
-
-            
-            
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

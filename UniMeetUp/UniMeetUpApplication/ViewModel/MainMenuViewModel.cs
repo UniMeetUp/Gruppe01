@@ -1,35 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Net;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using CommonLib.Models;
-using Newtonsoft.Json.Linq;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.Model.Interfaces;
 using UniMeetUpApplication.Services;
 using UniMeetUpApplication.Services.ServiceInterfaces;
 using UniMeetUpApplication.View;
-using UniMeetUpApplication.View.Dialogs;
 
 namespace UniMeetUpApplication.ViewModel
 {
     public class MainMenuViewModel : ViewModelBase
     {
-
         // Commands
-        
         private INavigationService _nav => new NavigationService();
         private INotificationService _notificationService => new NotificationService();
-        
-
         private int selectedIndex = 0;
 
         public int SelectedIndex
@@ -37,16 +22,12 @@ namespace UniMeetUpApplication.ViewModel
             get { return selectedIndex; }
             set
             {
-                
                 selectedIndex = value;
-                
                 //ChatCommand.Execute(null);
             }
         }
 
-
         private IMainMenuModel _mainManuModel = new MainMenuModel(new ServerAccessLayer.ServerAccessLayer());
-
         public UserControl _currentPage = new MapsView();
 
         public UserControl CurrentPage
@@ -62,8 +43,6 @@ namespace UniMeetUpApplication.ViewModel
         {
 
         }
-
-
         #region Commands
 
         ICommand _logOutCommand;

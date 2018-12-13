@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
@@ -46,7 +44,6 @@ namespace UniMeetUpServer.Controllers
             {
                 return NotFound();
             }
-
             return Ok(location);
         }
 
@@ -64,8 +61,6 @@ namespace UniMeetUpServer.Controllers
             {
                 return NotFound();
             }
-
-
             return Ok(locationsForGroup);
         }
 
@@ -83,9 +78,7 @@ namespace UniMeetUpServer.Controllers
             }
 
             _umuRepository.UpdateLocation(location);
-
             await _context.SaveChangesAsync();
-
             return NoContent();
 
         }
@@ -118,7 +111,6 @@ namespace UniMeetUpServer.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
@@ -133,7 +125,6 @@ namespace UniMeetUpServer.Controllers
 
             _context.Location.Add(location);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetLocation", new {id = location.LocationId}, location);
         }
 
@@ -154,7 +145,6 @@ namespace UniMeetUpServer.Controllers
 
             _context.Location.Remove(location);
             await _context.SaveChangesAsync();
-
             return Ok(location);
         }
 

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Input;
 using Microsoft.Win32;
 using UniMeetUpApplication.Command;
 using UniMeetUpApplication.Model;
 using UniMeetUpApplication.Model.Interfaces;
-using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 
 namespace UniMeetUpApplication.ViewModel
 {

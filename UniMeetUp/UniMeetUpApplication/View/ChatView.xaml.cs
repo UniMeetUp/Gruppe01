@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +13,6 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using UniMeetUpApplication.Model;
-using UniMeetUpApplication.ServerAccessLayer.Interfaces;
 using UniMeetUpApplication.ViewModel;
 
 namespace UniMeetUpApplication.View
@@ -78,8 +76,6 @@ namespace UniMeetUpApplication.View
             TextRange range = new TextRange(MessageList.Document.ContentEnd, MessageList.Document.ContentEnd);
             range.Load(stream, DataFormats.Rtf);
         }
-
-
 
         private async void Connect()
         {

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonLib.Models;
@@ -98,14 +96,10 @@ namespace UniMeetUpServer.Controllers
             {
                 return BadRequest(ModelState);
             }
-
            
             _umuRepository.UpdateWayPointForGroup(location);
-
             await _context.SaveChangesAsync();
-
             return NoContent();
-
         }
 
         // DELETE: api/Waypoints/5
@@ -125,7 +119,6 @@ namespace UniMeetUpServer.Controllers
 
             _context.Waypoint.Remove(waypoint);
             await _context.SaveChangesAsync();
-
             return Ok(waypoint);
         }
 

@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UniMeetUpApplication.Annotations;
 
 namespace UniMeetUpApplication.Model
 {
-    
     public class Group
     {
-
-        
         public Group()
         {
 
@@ -34,7 +25,7 @@ namespace UniMeetUpApplication.Model
             get { return _groupName; }
             set
             {
-                _groupName = value; 
+                _groupName = value;
                 OnPropertyChanged("Groupname");
             }
         }
@@ -50,9 +41,9 @@ namespace UniMeetUpApplication.Model
             }
         }
 
-
         private List<string> _membersList = new List<string>();
-        public List<string> MemberList {
+        public List<string> MemberList
+        {
             get
             {
                 return _membersList;
@@ -64,14 +55,6 @@ namespace UniMeetUpApplication.Model
             }
         }
         private List<Message> messages { get; set; }
-
-        //private List<Location> _locationsList;
-        //
-        //private List<WayPoint> _wayPointsList;
-
-        //  the string is the email of the user/member
-        //private Dictionary<string, User> users;
-
         private List<FileMessageForFileFolder> _listOfFilesInGroup;
 
         public List<FileMessageForFileFolder> ListOfFilesInGroup
@@ -96,8 +79,5 @@ namespace UniMeetUpApplication.Model
         }
 
         #endregion
-
-
-
     }
 }

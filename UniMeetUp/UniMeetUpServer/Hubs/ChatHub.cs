@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CommonLib.Models;
 using Microsoft.AspNetCore.SignalR;
 using UniMeetUpServer.Models;
@@ -9,7 +8,6 @@ namespace UniMeetUpServer.Hubs
     public class ChatHub : Hub
     {
         private readonly UniMeetUpServerContext _context;
-
         //Database context - has connection to database
         public ChatHub(UniMeetUpServerContext context)
         {
@@ -30,25 +28,17 @@ namespace UniMeetUpServer.Hubs
             file.GroupId = groupId; 
             _context.FileMessage.Add(file);
             _context.SaveChanges();
-
-            //return Clients.Group(groupId.ToString()).SendAsync("FileMessage", file);
         }
         
         //Joing a group SignalR style.
         public async Task JoinGroup(int groupId)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupId.ToString());
-
-            //System.Console.WriteLine($"Client joined room: {groupId.ToString()}");
-            //return Groups.Add(Context.ConnectionId, roomName);
         }
 
         public async Task LeaveGroup(int groupId)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupId.ToString());
-
-            //System.Console.WriteLine($"Client left room: {groupId.ToString()}");
-            //return Groups.Remove(Context.ConnectionId, roomName);
         }
     }
 }
