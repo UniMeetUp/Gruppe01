@@ -57,7 +57,7 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>9124A59137A9DD52C3A99C442BF32B4ABC5BCC72</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0F0CD8FF6D78EB50E5A154067B0F9DC0FAC39F5E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>UniMeetUpApplication_TemporaryKey.pfx</ManifestKeyFile>
@@ -66,7 +66,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -496,6 +496,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="UniMeetUpApplication_TemporaryKey.pfx" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
