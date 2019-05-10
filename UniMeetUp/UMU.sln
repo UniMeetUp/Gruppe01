@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeetUpApplication", "Uni
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UMUApp", "UMUApp", "{983AD0FE-9C99-45FF-A921-76163D11EF7C}"
 	ProjectSection(SolutionItems) = preProject
-		UMUApp\publish.htm = UMUApp\publish.htm
-		UMUApp\setup.exe = UMUApp\setup.exe
-		UMUApp\UniMeetUpApplication.application = UMUApp\UniMeetUpApplication.application
+		..\..\..\..\..\Desktop\UMUApp\publish.htm = ..\..\..\..\..\Desktop\UMUApp\publish.htm
+		..\..\..\..\..\Desktop\UMUApp\setup.exe = ..\..\..\..\..\Desktop\UMUApp\setup.exe
+		..\..\..\..\..\Desktop\UMUApp\UniMeetUpApplication.application = ..\..\..\..\..\Desktop\UMUApp\UniMeetUpApplication.application
 	EndProjectSection
 EndProject
 Global
