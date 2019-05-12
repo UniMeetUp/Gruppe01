@@ -10,8 +10,8 @@ using UniMeetUpServer.Models;
 namespace UniMeetUpServer.Migrations
 {
     [DbContext(typeof(UniMeetUpServerContext))]
-    [Migration("20181114121503_UpdatedAllControllersAndModelsToContext")]
-    partial class UpdatedAllControllersAndModelsToContext
+    [Migration("20190512202055_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,6 +142,8 @@ namespace UniMeetUpServer.Migrations
                     b.Property<int>("WaypointId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
 
                     b.Property<int>("GroupId");
 

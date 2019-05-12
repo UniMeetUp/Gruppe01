@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UniMeetUpServer.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -152,6 +152,7 @@ namespace UniMeetUpServer.Migrations
                     Longitude = table.Column<decimal>(nullable: false),
                     Latitude = table.Column<decimal>(nullable: false),
                     TimeStamp = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
                     GroupId = table.Column<int>(nullable: false)
                 },

@@ -38,7 +38,7 @@ namespace UniMeetUpApplication.View
             }
             else
             {
-                Uri toMaps = new Uri("http://62.107.0.222:5000/assets/ApplicationGoogleMaps.html");
+                Uri toMaps = new Uri("http://62.107.0.222:5000/umu/assets/ApplicationGoogleMaps.html");
                 MyWebBrowser.Navigate(toMaps);
             }
         }
