@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLib", "CommonLib\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeetUpApplication", "UniMeetUpApplication\UniMeetUpApplication.csproj", "{7B555227-B40A-4C5F-84F8-8526E5D6F63F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UMUApp", "UMUApp", "{983AD0FE-9C99-45FF-A921-76163D11EF7C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BF2C67FD-08F8-4C40-8B16-C5C15E51D302}"
 	ProjectSection(SolutionItems) = preProject
-		UMUApp\publish.htm = UMUApp\publish.htm
-		UMUApp\setup.exe = UMUApp\setup.exe
-		UMUApp\UniMeetUpApplication.application = UMUApp\UniMeetUpApplication.application
+		UMUApp.rar = UMUApp.rar
 	EndProjectSection
 EndProject
 Global
