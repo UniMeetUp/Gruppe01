@@ -10,8 +10,8 @@ using UniMeetUpServer.Models;
 namespace UniMeetUpServer.Migrations
 {
     [DbContext(typeof(UniMeetUpServerContext))]
-    [Migration("20190512202055_initial")]
-    partial class initial
+    [Migration("20190517101603_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
